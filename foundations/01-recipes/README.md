@@ -23,4 +23,4 @@ While the curriculum recommends using VS Code, I am actually trying to adopt Neo
 
 ## 🚀 Live Preview
 
-A live preview can be viewed [here](https://recipes-seven-teal.vercel.app/). The source code can be found [here](https://github.com/arvingarciabtw/the-odin-project/tree/main/foundations/01-recipes).
+A live preview can be viewed [here](https://recipes-seven-teal.vercel.app/).
