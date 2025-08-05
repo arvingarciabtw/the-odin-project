@@ -162,3 +162,11 @@ blockquote {
   border-radius: 10px;
   font-weight: bold;
 }
+
+footer {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--clr-dark-bg);
+  color: var(--clr-white);
+}
