@@ -28,7 +28,7 @@ body {
 }
 
 .wrapper {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -49,7 +49,7 @@ nav {
 }
 
 section.one {
-  padding: 4rem 0;
+  padding: 8rem 0;
   background-color: var(--clr-dark-bg);
   color: var(--clr-white);
 }
@@ -64,6 +64,10 @@ section.one {
   max-width: 700px;
 }
 
+.hero-contents h1 {
+  font-size: 2.5rem;
+}
+
 .hero-contents .btn-sign-up {
   margin-top: 1rem;
   padding: 6px 20px;
@@ -72,4 +76,41 @@ section.one {
   border: none;
   border-radius: 12px;
   font-weight: bold;
+}
+
+.hero-img {
+  max-width: 600px;
+}
+
+section.two {
+  padding: 4rem 0;
+}
+
+section.two h2 {
+  text-align: center;
+}
+
+.cards-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card p {
+  text-align: center;
+}
+
+.card img {
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
 }
