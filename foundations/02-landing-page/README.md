@@ -26,6 +26,6 @@ This project was a good opportunity to test how well I know my CSS fundamentals,
 
 ## 📸 Image Credits
 
-- Images of Hornet and the Hollow Knight are official art by [Team Cherry](https://www.teamcherry.com.au/about)
+- Images of Hornet and The Knight are official art by [Team Cherry](https://www.teamcherry.com.au/about)
 - Quirrel image by [Perceval21](https://wall.alphacoders.com/big.php?i=866195)
 - Grimm image by [MoonieQ](https://steamcommunity.com/sharedfiles/filedetails/?id=1587106975)
