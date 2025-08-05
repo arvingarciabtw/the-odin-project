@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,14 +7,17 @@
 }
 
 :root {
-  --clr-dark-bg: #1f2937;
+  --clr-dark: #12151c;
   --clr-gray: #e5e7eb;
+  --clr-black: #000000;
   --clr-white: #ffffff;
   --clr-blue: #3882f6;
+  --clr-red: #e83046;
 }
 
 a {
   text-decoration: none;
+  color: var(--clr-white);
 }
 
 ul {
@@ -25,6 +30,7 @@ button {
 
 body {
   background-color: white;
+  font-family: "Geist", sans-serif;
 }
 
 .wrapper {
@@ -34,13 +40,18 @@ body {
 
 header {
   padding: 1rem 0;
-  background-color: var(--clr-dark-bg);
+  background-color: var(--clr-red);
   color: var(--clr-white);
+}
+
+.logo {
+  max-width: 32px;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav-links-container {
@@ -54,13 +65,14 @@ section.three {
 }
 
 section.one {
-  background-color: var(--clr-dark-bg);
-  color: var(--clr-white);
+  background-color: var(--clr-white);
+  color: var(--clr-black);
 }
 
 .hero-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 3rem;
 }
 
@@ -70,25 +82,35 @@ section.one {
 
 .hero-contents h1 {
   font-size: 2.5rem;
+  line-height: 2.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .hero-contents .btn-sign-up {
   margin-top: 1rem;
-  padding: 6px 20px;
-  background-color: var(--clr-blue);
+  padding: 6px 28px;
+  background-color: var(--clr-red);
   color: var(--clr-white);
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
+  font-family: "Geist", sans-serif;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .hero-img {
   max-width: 600px;
+  border-radius: 12px;
 }
 
 section.two,
 section.four {
   padding: 4rem 0;
+}
+
+section.two {
+  background-color: var(--clr-dark);
+  color: var(--clr-white);
 }
 
 section.two h2 {
@@ -99,7 +121,7 @@ section.two h2 {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .card {
@@ -108,6 +130,7 @@ section.two h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .card p {
@@ -118,6 +141,7 @@ section.two h2 {
   object-fit: cover;
   width: 180px;
   height: 180px;
+  border-radius: 12px;
 }
 
 section.three {
@@ -130,6 +154,7 @@ blockquote {
 }
 
 .author {
+  margin-top: 1rem;
   text-align: right;
 }
 
@@ -138,7 +163,7 @@ blockquote {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--clr-blue);
+  background-color: var(--clr-red);
   color: var(--clr-white);
   border-radius: 10px;
 }
@@ -147,26 +172,29 @@ blockquote {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  max-width: 650px;
 }
 
 .cta-contents h4 {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .cta-container .btn-sign-up {
-  padding: 6px 20px;
+  padding: 6px 28px;
   background-color: transparent;
   color: var(--clr-white);
   border: 1px solid var(--clr-white);
-  border-radius: 10px;
+  border-radius: 16px;
   font-weight: bold;
+  font-family: "Geist", sans-serif;
+  font-size: 1rem;
 }
 
 footer {
   padding: 2rem 0;
   display: flex;
   justify-content: center;
-  background-color: var(--clr-dark-bg);
+  background-color: var(--clr-dark);
   color: var(--clr-white);
 }
