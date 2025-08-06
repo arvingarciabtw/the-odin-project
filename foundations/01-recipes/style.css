@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Skranji:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Geist", sans-serif;
+}
+
+body {
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}
+
+ul {
+  list-style-type: none;
+}
+
+header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 32px;
+}
+
+nav h4 {
+  color: #a78347;
+  font-family: "Skranji", sans-serif;
+  font-weight: 100;
+  font-size: 1.75rem;
+}
+
+nav .left,
+nav .right {
+  display: flex;
+  align-items: center;
+}
+
+nav .left {
+  gap: 1rem;
+}
+
+nav .right {
+  gap: 2rem;
+}
