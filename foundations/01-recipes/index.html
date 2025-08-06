@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <nav>
+      <nav class="wrapper">
         <div class="left">
           <img src="./images/logo.svg" alt="odin logo" />
           <h4>Odin Recipes</h4>
@@ -24,10 +24,21 @@
         </ul>
       </nav>
     </header>
-    <ul>
-      <a href="./recipes/pizza.html"><li>Pizza</li></a>
-      <a href="./recipes/buffalo-wings.html"><li>Buffalo Wings</li></a>
-      <a href="./recipes/sushi.html"><li>Sushi</li></a>
-    </ul>
+    <main>
+      <div class="cards-container">
+        <a class="card" href="./recipes/pizza.html">
+          <img src="./images/pizza.jpg" alt="pizza" />
+          <p>Brick-Oven Pizza (Brooklyn Style)</p>
+        </a>
+        <a class="card" href="./recipes/buffalo-wings.html">
+          <img src="./images/buffalo-wings.jpg" alt="buffalo wings" />
+          <p>Baked Buffalo Wings</p>
+        </a>
+        <a class="card" href="./recipes/sushi.html">
+          <img src="./images/sushi.jpg" alt="sushi" />
+          <p>Homemade Sushi</p>
+        </a>
+      </div>
+    </main>
   </body>
 </html>

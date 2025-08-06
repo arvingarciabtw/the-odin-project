@@ -20,6 +20,11 @@ ul {
   list-style-type: none;
 }
 
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 header {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #d7d7d7;
@@ -54,4 +59,35 @@ nav .left {
 
 nav .right {
   gap: 2rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.card {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.card p {
+  text-align: center;
 }
