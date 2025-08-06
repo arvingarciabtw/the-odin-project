@@ -79,7 +79,38 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  // function playRound(getHumanChoice(), getComputerChoice()) {
-  //
-  // }
+  function playRound(humanChoice, computerChoice) {
+    function printChoices() {
+      console.log(
+        `Computer chose ${computerChoice}.\nYou chose ${humanChoice}.`,
+      );
+    }
+
+    function printDrawResult() {
+      console.log(
+        `It's a draw!\nComputer score: ${computerScore}\nHuman score: ${humanScore}`,
+      );
+    }
+
+    // Draw conditions
+    if (humanChoice === "rock" && computerChoice === "rock") {
+      printChoices();
+      printDrawResult();
+    } else if (humanChoice === "paper" && computerChoice === "paper") {
+      printChoices();
+      printDrawResult();
+    }
+    if (humanChoice === "scissors" && computerChoice === "scissors") {
+      printChoices();
+      printDrawResult();
+    }
+
+    // Human win conditions
+    if (humanChoice === "rock" && computerChoice === "scissors") {
+    }
+  }
+
+  playRound(getHumanChoice(), "paper");
 }
+
+playGame();
