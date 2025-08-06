@@ -19,6 +19,8 @@ In this project, I built a basic recipe website purely with HTML.
 
 The website consists of a main index page which has links to a few recipes. The website doesn't look very pretty by the time I’ve finished it but it’s important to keep in mind that the purpose of this project is to build my HTML chops. This project will be potentially revisited in the future to style it up with CSS.
 
+Edit: I've now added some simple styling to the website with CSS!
+
 ## 💡 Learnings
 
 As mentioned in the prior section, this project is built only with HTML. While I already have slight familiarity with web development fundamentals prior to doing this, the project was a good refresher on HTML basics such as meta tags and the difference of absolute and relative paths (admittedly I struggle with when I should or should not use `./`, a site I deployed before had an error because of pathing issues).
