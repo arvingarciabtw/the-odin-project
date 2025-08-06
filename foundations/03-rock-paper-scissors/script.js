@@ -79,6 +79,10 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
+  console.log(
+    "---------- ROCK PAPER SCISSORS ----------\n\nWelcome to rock paper scissors! The rules are simple.\nYou have three moves: rock, paper, or scissors.\nRock beats scissors, scissors beats paper, and paper beats rock.\n\nYou will be playing five rounds against a computer.",
+  );
+
   function playRound(humanChoice, computerChoice) {
     function printChoices() {
       console.log(
