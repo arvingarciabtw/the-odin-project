@@ -92,6 +92,12 @@ function playGame() {
       );
     }
 
+    function printHumanWin() {
+      console.log(
+        `You win!\nComputer score: ${computerScore}\nHuman score: ${++humanScore}`,
+      );
+    }
+
     // Draw conditions
     if (humanChoice === "rock" && computerChoice === "rock") {
       printChoices();
@@ -99,14 +105,21 @@ function playGame() {
     } else if (humanChoice === "paper" && computerChoice === "paper") {
       printChoices();
       printDrawResult();
-    }
-    if (humanChoice === "scissors" && computerChoice === "scissors") {
+    } else if (humanChoice === "scissors" && computerChoice === "scissors") {
       printChoices();
       printDrawResult();
     }
 
     // Human win conditions
     if (humanChoice === "rock" && computerChoice === "scissors") {
+      printChoices();
+      printHumanWin();
+    } else if (humanChoice === "paper" && computerChoice === "rock") {
+      printChoices();
+      printHumanWin();
+    } else if (humanChoice === "scissors" && computerChoice === "paper") {
+      printChoices();
+      printHumanWin();
     }
   }
 
