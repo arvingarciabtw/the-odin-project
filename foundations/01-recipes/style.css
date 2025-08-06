@@ -20,8 +20,12 @@ ul {
   list-style-type: none;
 }
 
+ol {
+  margin-left: 1rem;
+}
+
 .wrapper {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -65,6 +69,10 @@ main {
   padding: 2rem;
 }
 
+main.main-recipe {
+  padding: 1.5rem 2rem 2rem;
+}
+
 .cards-container {
   display: flex;
   justify-content: center;
@@ -90,4 +98,29 @@ main {
 
 .card p {
   text-align: center;
+}
+
+.main-recipe img {
+  width: 100%;
+  height: auto;
+}
+
+.main-recipe p,
+.main-recipe ol,
+.main-recipe ul {
+  color: #444444;
+}
+
+.recipe-name,
+.description-heading,
+.ingredients-heading,
+.steps-heading {
+  margin-bottom: 0.5rem;
+}
+
+.recipe-image,
+.description-content,
+.ingredients-content,
+.steps-content {
+  margin-bottom: 1.5rem;
 }
