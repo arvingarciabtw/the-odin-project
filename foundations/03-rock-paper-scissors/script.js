@@ -1,9 +1,9 @@
 // --- GENERAL INSTRUCTIONS ---
 // Have a function named getComputerChoice that returns "rock", "paper", or "scissors"
 // Have a function named getHumanChoice that returns "rock", "paper", or "scissors"
-// Have humanScore and computerScore variables in the global scope
 // Have a function named playRound that takes two parameters: humanChoice and computerChoice
 // Have a function named playGame that calls playRound five times
+// Have humanScore and computerScore variables in the playGame scope
 // The humanChoice must be case-insensitive
 // The playRound function and score variables should be inside the playGame
 // Loops may be used
@@ -13,7 +13,6 @@
 // Inputs: One user input (rock, paper, scissors, [invalid inputs]) taken via prompt, repeated five times
 // Output:
 //-- The game should be repeated five times. Round number should be indicated.
-//-- In each round, while the prompt is active, the console should log a "Computer choosing..." message.
 //-- Prompt will be repeated until user enters a valid input.
 //-- Both human and computer choices should be logged in the console.
 //-- The winner shall be logged, and the current scores.
@@ -26,7 +25,6 @@
 //-- Log game start message
 //-- For five rounds, invoke playRound
 //---- Log round number
-//---- Log "Computer choosing..."
 //---- Ask for valid user input
 //---- If statements for winning conditions
 //---- Log winner and increment winner's score
