@@ -139,10 +139,26 @@ function playGame() {
     }
   }
 
+  // Repeat round five times
   for (let i = 0; i < 5; i++) {
     console.log(`// ROUND ${i + 1} //\n`);
     playRound(getHumanChoice(), getComputerChoice());
   }
+
+  // Game end message
+  let winnerMessage = "";
+
+  if (humanScore > computerScore) {
+    winnerMessage = "Congratulations, you won!";
+  } else if (computerScore > humanScore) {
+    winnerMessage = "Computer won! Better luck next time!";
+  } else {
+    winnerMessage = "Woah, it's a draw!";
+  }
+
+  console.log(
+    `--- GAME OVER! ---\n\nFinal computer score: ${computerScore}\nFinal human score: ${humanScore}\n\n${winnerMessage}\n\nPress CTRL + R to play again!`,
+  );
 }
 
 playGame();
