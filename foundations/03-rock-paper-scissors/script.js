@@ -79,73 +79,70 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
+  // Game start message
   console.log(
     "---------- ROCK PAPER SCISSORS ----------\n\nWelcome to rock paper scissors! The rules are simple.\nYou have three moves: rock, paper, or scissors.\nRock beats scissors, scissors beats paper, and paper beats rock.\n\nYou will be playing five rounds against a computer.",
   );
 
   function playRound(humanChoice, computerChoice) {
     function printChoices() {
-      console.log(
-        `Computer chose ${computerChoice}.\nYou chose ${humanChoice}.`,
-      );
+      return `Computer chose ${computerChoice}.\nYou chose ${humanChoice}.\n\n`;
     }
 
     function printDrawResult() {
-      console.log(
-        `It's a draw!\nComputer score: ${computerScore}\nHuman score: ${humanScore}`,
-      );
+      return `It's a draw!\nComputer score: ${computerScore}\nHuman score: ${humanScore}`;
     }
 
     function printHumanWin() {
-      console.log(
-        `You win!\nComputer score: ${computerScore}\nHuman score: ${++humanScore}`,
-      );
+      return `You win!\nComputer score: ${computerScore}\nHuman score: ${++humanScore}`;
     }
 
     function printComputerWin() {
-      console.log(
-        `Computer wins!\nComputer score: ${++computerScore}\nHuman score: ${humanScore}`,
-      );
+      return `Computer wins!\nComputer score: ${++computerScore}\nHuman score: ${humanScore}`;
+    }
+
+    function printMessage(winCondition) {
+      if (winCondition === "draw") {
+        console.log(printChoices() + printDrawResult());
+      } else if (winCondition === "humanWin") {
+        console.log(printChoices() + printHumanWin());
+      } else if (winCondition === "computerWin") {
+        console.log(printChoices() + printComputerWin());
+      }
     }
 
     // Draw conditions
     if (humanChoice === "rock" && computerChoice === "rock") {
-      printChoices();
-      printDrawResult();
+      printMessage("draw");
     } else if (humanChoice === "paper" && computerChoice === "paper") {
-      printChoices();
-      printDrawResult();
+      printMessage("draw");
     } else if (humanChoice === "scissors" && computerChoice === "scissors") {
-      printChoices();
-      printDrawResult();
+      printMessage("draw");
     }
 
     // Human win conditions
     if (humanChoice === "rock" && computerChoice === "scissors") {
-      printChoices();
-      printHumanWin();
+      printMessage("humanWin");
     } else if (humanChoice === "paper" && computerChoice === "rock") {
-      printChoices();
-      printHumanWin();
+      printMessage("humanWin");
     } else if (humanChoice === "scissors" && computerChoice === "paper") {
-      printChoices();
-      printHumanWin();
+      printMessage("humanWin");
     }
 
     // Computer win conditions
     if (humanChoice === "scissors" && computerChoice === "rock") {
-      printChoices();
-      printComputerWin();
+      printMessage("computerWin");
     } else if (humanChoice === "rock" && computerChoice === "paper") {
-      printChoices();
-      printComputerWin();
+      printMessage("computerWin");
     } else if (humanChoice === "paper" && computerChoice === "scissors") {
-      printChoices();
-      printComputerWin();
+      printMessage("computerWin");
     }
   }
 
-  playRound(getHumanChoice(), getComputerChoice());
+  for (let i = 0; i < 5; i++) {
+    console.log(`// ROUND ${i + 1} //\n`);
+    playRound(getHumanChoice(), getComputerChoice());
+  }
 }
 
 playGame();
