@@ -1,34 +1,16 @@
-// --- GENERAL INSTRUCTIONS ---
-// Have a function named getComputerChoice that returns "rock", "paper", or "scissors"
-// Have a function named getHumanChoice that returns "rock", "paper", or "scissors"
-// Have a function named playRound that takes two parameters: humanChoice and computerChoice
-// Have a function named playGame that calls playRound five times
-// Have humanScore and computerScore variables in the playGame scope
-// The humanChoice must be case-insensitive
-// The playRound function and score variables should be inside the playGame
-// Loops may be used
+const rockButton = document.querySelector(".rock-button");
+const paperButton = document.querySelector(".paper-button");
+const scissorsButton = document.querySelector(".scissors-button");
+const buttonsContainer = document.querySelector(".buttons-container");
+const humanScoreElement = document.querySelector(".human-score .score");
+const computerScoreElement = document.querySelector(".computer-score .score");
+const humanMoveElement = document.querySelector(".human-move");
+const computerMoveElement = document.querySelector(".computer-move");
+const container = document.querySelector(".container");
+const winnerMessage = document.querySelector(".move-message");
 
-// --- PLAN ---
-// Interface: Game will only be played in the browser console
-// Inputs: One user input (rock, paper, scissors, [invalid inputs]) taken via prompt, repeated five times
-// Output:
-//-- The game should be repeated five times. Round number should be indicated.
-//-- Prompt will be repeated until user enters a valid input.
-//-- Both human and computer choices should be logged in the console.
-//-- The winner shall be logged, and the current scores.
-//-- Once five rounds has passed, a game end message should be logged.
-
-// --- PSEUDOCODE ---
-// Invoke playGame
-//-- Declare humanScore and computerScore
-//-- Initialize humanScore and computerScore to 0
-//-- Log game start message
-//-- For five rounds, invoke playRound
-//---- Log round number
-//---- Ask for valid user input
-//---- If statements for winning conditions
-//---- Log winner and increment winner's score
-//-- Log game end message
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
   const randomNum = Math.random();
@@ -45,118 +27,70 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function getHumanChoice() {
-  let result = prompt("Enter your move! (rock, paper, scissors)");
+function playRound(humanChoice, computerChoice) {
+  function updateResult(winCondition) {
+    humanMoveElement.textContent = humanChoice.toUpperCase();
+    computerMoveElement.textContent = computerChoice.toUpperCase();
 
-  // Result is null if user clicks Cancel. Using the toLowerCase method on a null data type will cause a TypeError.
-  // As a solution, if it is null (or canceled), then the user will still be redirected to the while loop.
-  if (result !== null) {
-    result = result.toLowerCase();
+    if (winCondition === "humanWin") {
+      humanScoreElement.textContent = ++humanScore;
+    } else if (winCondition === "computerWin") {
+      computerScoreElement.textContent = ++computerScore;
+    }
   }
 
-  if (result === "rock" || result === "paper" || result === "scissors") {
-    return result;
-  } else {
-    while (result !== "rock" || result !== "paper" || result !== "scissors") {
-      result = prompt(
-        "It seems your input is invalid. Enter your move again! (rock, paper, scissors)",
-      );
+  // Draw conditions
+  if (humanChoice === "rock" && computerChoice === "rock") {
+    updateResult();
+  } else if (humanChoice === "paper" && computerChoice === "paper") {
+    updateResult();
+  } else if (humanChoice === "scissors" && computerChoice === "scissors") {
+    updateResult();
+  }
 
-      if (result !== null) {
-        result = result.toLowerCase();
-      }
+  // Human win conditions
+  if (humanChoice === "rock" && computerChoice === "scissors") {
+    updateResult("humanWin");
+  } else if (humanChoice === "paper" && computerChoice === "rock") {
+    updateResult("humanWin");
+  } else if (humanChoice === "scissors" && computerChoice === "paper") {
+    updateResult("humanWin");
+  }
 
-      if (result === "rock" || result === "paper" || result === "scissors") {
-        return result;
-      }
+  // Computer win conditions
+  if (humanChoice === "scissors" && computerChoice === "rock") {
+    updateResult("computerWin");
+  } else if (humanChoice === "rock" && computerChoice === "paper") {
+    updateResult("computerWin");
+  } else if (humanChoice === "paper" && computerChoice === "scissors") {
+    updateResult("computerWin");
+  }
+
+  if (humanScore === 5 || computerScore === 5) {
+    rockButton.setAttribute("disabled", "disabled");
+    paperButton.setAttribute("disabled", "disabled");
+    scissorsButton.setAttribute("disabled", "disabled");
+
+    if (humanScore === 5) {
+      winnerMessage.textContent = "Game over! You won!";
+    } else {
+      winnerMessage.textContent = "Game over! Computer won!";
     }
   }
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+buttonsContainer.addEventListener("click", (event) => {
+  let target = event.target;
 
-  // Game start message
-  console.log(
-    "---------- ROCK PAPER SCISSORS ----------\n\nWelcome to rock paper scissors! The rules are simple.\nYou have three moves: rock, paper, or scissors.\nRock beats scissors, scissors beats paper, and paper beats rock.\n\nYou will be playing five rounds against a computer.",
-  );
-
-  function playRound(humanChoice, computerChoice) {
-    function printChoices() {
-      return `Computer chose ${computerChoice}.\nYou chose ${humanChoice}.\n\n`;
-    }
-
-    function printDrawResult() {
-      return `It's a draw!\nComputer score: ${computerScore}\nHuman score: ${humanScore}`;
-    }
-
-    function printHumanWin() {
-      return `You win!\nComputer score: ${computerScore}\nHuman score: ${++humanScore}`;
-    }
-
-    function printComputerWin() {
-      return `Computer wins!\nComputer score: ${++computerScore}\nHuman score: ${humanScore}`;
-    }
-
-    function printMessage(winCondition) {
-      if (winCondition === "draw") {
-        console.log(printChoices() + printDrawResult());
-      } else if (winCondition === "humanWin") {
-        console.log(printChoices() + printHumanWin());
-      } else if (winCondition === "computerWin") {
-        console.log(printChoices() + printComputerWin());
-      }
-    }
-
-    // Draw conditions
-    if (humanChoice === "rock" && computerChoice === "rock") {
-      printMessage("draw");
-    } else if (humanChoice === "paper" && computerChoice === "paper") {
-      printMessage("draw");
-    } else if (humanChoice === "scissors" && computerChoice === "scissors") {
-      printMessage("draw");
-    }
-
-    // Human win conditions
-    if (humanChoice === "rock" && computerChoice === "scissors") {
-      printMessage("humanWin");
-    } else if (humanChoice === "paper" && computerChoice === "rock") {
-      printMessage("humanWin");
-    } else if (humanChoice === "scissors" && computerChoice === "paper") {
-      printMessage("humanWin");
-    }
-
-    // Computer win conditions
-    if (humanChoice === "scissors" && computerChoice === "rock") {
-      printMessage("computerWin");
-    } else if (humanChoice === "rock" && computerChoice === "paper") {
-      printMessage("computerWin");
-    } else if (humanChoice === "paper" && computerChoice === "scissors") {
-      printMessage("computerWin");
-    }
+  switch (target.className) {
+    case "rock-button":
+      playRound("rock", getComputerChoice());
+      break;
+    case "paper-button":
+      playRound("paper", getComputerChoice());
+      break;
+    case "scissors-button":
+      playRound("scissors", getComputerChoice());
+      break;
   }
-
-  // Repeat round five times
-  for (let i = 0; i < 5; i++) {
-    console.log(`// ROUND ${i + 1} //\n`);
-    playRound(getHumanChoice(), getComputerChoice());
-  }
-
-  // Game end message
-  let winnerMessage = "";
-
-  if (humanScore > computerScore) {
-    winnerMessage = "Congratulations, you won!";
-  } else if (computerScore > humanScore) {
-    winnerMessage = "Computer won! Better luck next time!";
-  } else {
-    winnerMessage = "Woah, it's a draw!";
-  }
-
-  console.log(
-    `--- GAME OVER! ---\n\nFinal computer score: ${computerScore}\nFinal human score: ${humanScore}\n\n${winnerMessage}\n\nPress CTRL + R to play again!`,
-  );
-}
-
-playGame();
+});

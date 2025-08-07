@@ -8,11 +8,28 @@
       content="A rock paper scissors game played via the browser console."
     />
     <title>Rock Paper Scissors</title>
-    <!-- This is simply to stop the browser from making a GET request for the favicon (makes the console output for this project look messy). Link to the source below: -->
-    <!-- https://stackoverflow.com/questions/1321878/how-to-prevent-favicon-ico-requests -->
-    <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <div class="container">
+      <h1 class="title">Rock Paper Scissors</h1>
+      <div class="scores-container">
+        <h4 class="human-score">PLAYER SCORE: <span class="score">0</span></h4>
+        <h4 class="computer-score">
+          COMPUTER SCORE: <span class="score">0</span>
+        </h4>
+      </div>
+      <div class="moves-container">
+        <h2 class="human-move">MOVE</h2>
+        <h2 class="computer-move">MOVE</h2>
+      </div>
+      <p class="move-message">Choose your move: rock, paper, or scissors!</p>
+      <div class="buttons-container">
+        <button class="rock-button" type="button">ROCK</button>
+        <button class="paper-button" type="button">PAPER</button>
+        <button class="scissors-button" type="button">SCISSORS</button>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </hmtl>
