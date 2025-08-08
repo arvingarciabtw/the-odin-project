@@ -14,6 +14,8 @@ function askInput() {
     userInput = +prompt("Invalid input. Please enter an integer from 1 - 100.");
   }
 
+  gridSize.textContent = `${userInput}x${userInput} Grid`;
+
   return userInput;
 }
 
