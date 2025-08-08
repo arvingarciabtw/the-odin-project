@@ -1,3 +1,6 @@
+const main = document.querySelector("main");
+const gridSize = document.querySelector(".grid-size");
+const resetButton = document.querySelector(".btn-reset");
 const grid = document.querySelector(".grid");
 
 function askInput() {
@@ -11,6 +14,7 @@ function askInput() {
 }
 
 function makeSquares(number) {
+  grid.innerHTML = "";
   for (let i = 1; i <= number * number; i++) {
     const square = document.createElement("div");
     square.classList.add(i);
@@ -23,4 +27,8 @@ function makeSquares(number) {
   }
 }
 
-makeSquares(askInput());
+makeSquares(32);
+
+resetButton.addEventListener("click", () => {
+  makeSquares(askInput());
+});

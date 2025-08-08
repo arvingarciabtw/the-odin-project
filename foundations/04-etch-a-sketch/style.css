@@ -79,9 +79,10 @@ main {
 .buttons-container {
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }
 
-.btn-new-grid {
+.btn-reset {
   padding: 0.5em 1.25em;
   border-radius: 12px;
   background-color: black;
