@@ -1,7 +1,11 @@
 const main = document.querySelector("main");
+const grid = document.querySelector(".grid");
 const gridSize = document.querySelector(".grid-size");
 const resetButton = document.querySelector(".btn-reset");
-const grid = document.querySelector(".grid");
+const modesContainer = document.querySelector(".modes-container");
+const blackModeButton = document.querySelector(".btn-black-mode");
+const rgbModeButton = document.querySelector(".btn-rgb-mode");
+const opacityModeButton = document.querySelector(".btn-opacity-mode");
 
 function askInput() {
   let userInput = +prompt("Input an integer from 1 - 100");
@@ -38,4 +42,26 @@ makeSquares(32);
 
 resetButton.addEventListener("click", () => {
   makeSquares(askInput());
+});
+
+modesContainer.addEventListener("click", (event) => {
+  let target = event.target;
+
+  switch (target.className) {
+    case "btn-black-mode":
+      target.classList.toggle("active");
+      rgbModeButton.classList.remove("active");
+      opacityModeButton.classList.remove("active");
+      break;
+    case "btn-rgb-mode":
+      target.classList.toggle("active");
+      blackModeButton.classList.remove("active");
+      opacityModeButton.classList.remove("active");
+      break;
+    case "btn-opacity-mode":
+      target.classList.toggle("active");
+      blackModeButton.classList.remove("active");
+      rgbModeButton.classList.remove("active");
+      break;
+  }
 });
