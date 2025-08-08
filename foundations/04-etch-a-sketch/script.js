@@ -17,13 +17,20 @@ function makeSquares(number) {
   grid.innerHTML = "";
   for (let i = 1; i <= number * number; i++) {
     const square = document.createElement("div");
+    square.classList.add("square");
     square.classList.add(i);
     square.style.border = "1px solid #d0d0d0";
     square.style.flex = "1 0 auto";
     square.style.aspectRatio = "1 / 1";
+
     const squareSide = 760 / number;
     square.style.width = `${squareSide}px`;
     grid.appendChild(square);
+
+    square.addEventListener("mouseover", () => {
+      square.style.backgroundColor = "black";
+      square.style.border = "1px solid black";
+    });
   }
 }
 
