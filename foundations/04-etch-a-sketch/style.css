@@ -38,7 +38,7 @@ a {
 .wrapper {
   margin: 0 auto;
   padding: 1rem;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 /* --- NAVBAR --- */
@@ -123,9 +123,11 @@ main {
 }
 
 .grid {
-  width: 568px;
-  height: 568px;
-  border: 1px solid var(--c-gray);
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 768px;
+  min-height: 768px;
+  border: 1px solid black;
 }
 
 /* --- FOOTER --- */
