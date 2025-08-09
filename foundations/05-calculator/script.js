@@ -4,9 +4,9 @@
 // multiply
 // divide
 //
-// Each operation (function) should consist of a number, an operator, and another number. So, there should be three variables.
+// Each operation (function) should consist of a number, an operator, and another number. So, there should be three (or two?) variables.
 //
-// Create another function called operate. The argument it should receive is one of the functions above.
+// Create another function called operate. The arguments it should receive are the operator, and two numbers.
 //
 // Create the UI for each digit and operator, including =, and a display at the top where inputs will be shown
 //
@@ -52,4 +52,18 @@ function divide(firstNumber, secondNumber) {
   }
 
   return +quotient;
+}
+
+function operate(operator, firstNumber, secondNumber) {
+  if (operator === "+") {
+    return add(firstNumber, secondNumber);
+  } else if (operator === "-") {
+    return subtract(firstNumber, secondNumber);
+  } else if (operator === "*") {
+    return multiply(firstNumber, secondNumber);
+  } else if (operator === "/") {
+    return divide(firstNumber, secondNumber);
+  } else {
+    console.error("Something went wrong!");
+  }
 }
