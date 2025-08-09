@@ -22,3 +22,34 @@
 // -- Handle edge cases (dividing by 0, etc)
 // -- Take note of flow again. (e.g. 3 ++--+-+----+ 9 = 12; last operator is considered)
 // -- When you have result, and clicked a digit, result should be cleared, and digit should appear on display for a NEW calculation.
+
+function add(firstNumber, secondNumber) {
+  return firstNumber + secondNumber;
+}
+
+function subtract(firstNumber, secondNumber) {
+  return firstNumber - secondNumber;
+}
+
+function multiply(firstNumber, secondNumber) {
+  return firstNumber * secondNumber;
+}
+
+function divide(firstNumber, secondNumber) {
+  if (secondNumber === 0) {
+    return "You cant divide by 0, silly!";
+  }
+
+  let quotient = firstNumber / secondNumber;
+
+  function countDecimals(value) {
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split(".")[1].length || 0;
+  }
+
+  if (countDecimals(quotient) > 2) {
+    quotient = quotient.toFixed(2);
+  }
+
+  return +quotient;
+}
