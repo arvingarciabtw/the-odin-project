@@ -67,3 +67,42 @@ function operate(operator, firstNumber, secondNumber) {
     console.error("Something went wrong!");
   }
 }
+
+const buttonsContainer = document.querySelector(".buttons-container");
+const display = document.querySelector(".display");
+
+buttonsContainer.addEventListener("click", (event) => {
+  let target = event.target;
+
+  // Display number when clicked
+  for (let i = 0; i <= 9; i++) {
+    const current = i.toString();
+    switch (target.className) {
+      case current:
+        display.textContent = current;
+        break;
+    }
+  }
+
+  // Display symbols, clearing, and equal
+  switch (target.className) {
+    case "add":
+      display.textContent = "+";
+      break;
+    case "subtract":
+      display.textContent = "-";
+      break;
+    case "multiply":
+      display.textContent = "×";
+      break;
+    case "divide":
+      display.textContent = "÷";
+      break;
+    case "clear":
+      display.textContent = "";
+      break;
+    case "equal":
+      display.textContent = "result";
+      break;
+  }
+});
