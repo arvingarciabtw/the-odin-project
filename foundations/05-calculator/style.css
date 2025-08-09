@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --c-green: #9ea8a0;
+  --c-beige: #ede6d8;
+  --c-beige-darker: #e3dacb;
+  --c-orange: #bb8c61;
+  --c-gray: #59514b;
+  --c-black: #1f1b18;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--c-green);
+}
