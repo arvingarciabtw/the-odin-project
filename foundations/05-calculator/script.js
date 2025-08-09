@@ -73,14 +73,34 @@ const display = document.querySelector(".display");
 
 buttonsContainer.addEventListener("click", (event) => {
   let target = event.target;
+  let isAnOperator = null;
+  const operators = "+-×÷";
+
+  for (const operator of operators) {
+    if (display.textContent.includes(operator)) {
+      isAnOperator = true;
+      break;
+    } else {
+      isAnOperator = false;
+    }
+  }
 
   // Display number when clicked
   for (let i = 0; i <= 9; i++) {
     const current = i.toString();
-    switch (target.className) {
-      case current:
-        display.textContent = current;
-        break;
+
+    if (isAnOperator) {
+      switch (target.className) {
+        case current:
+          display.textContent = current;
+          break;
+      }
+    } else {
+      switch (target.className) {
+        case current:
+          display.textContent += current;
+          break;
+      }
     }
   }
 
