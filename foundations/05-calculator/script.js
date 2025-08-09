@@ -1,46 +1,21 @@
-// --- FUNCTIONS FOR EACH OPERATION ---
-// add
-// subtract
-// multiply
-// divide
-//
-// Each operation (function) should consist of a number, an operator, and another number. So, there should be three (or two?) variables.
-//
-// Create another function called operate. The arguments it should receive are the operator, and two numbers.
-//
-// Create the UI for each digit and operator, including =, and a display at the top where inputs will be shown
-//
-// Create the function(s) that populate the display when digit buttons are clicked. The content of the display (the number) should be stored in a variable
-//
-// Make it work. The first and second numbers should be stored, and operate() will be called when user clicks =
-//
-// GOTCHAS
-// -- Take note of flow. Refer to TOP page.
-// -- Round answers with long decimals to prevent overflow
-// -- Clicking = before entering all numbers could cause bugs
-// -- Clear should clear all existing data
-// -- Handle edge cases (dividing by 0, etc)
-// -- Take note of flow again. (e.g. 3 ++--+-+----+ 9 = 12; last operator is considered)
-// -- When you have result, and clicked a digit, result should be cleared, and digit should appear on display for a NEW calculation.
-
-function add(firstNumber, secondNumber) {
-  return firstNumber + secondNumber;
+function add(firstOperand, secondOperand) {
+  return firstOperand + secondOperand;
 }
 
-function subtract(firstNumber, secondNumber) {
-  return firstNumber - secondNumber;
+function subtract(firstOperand, secondOperand) {
+  return firstOperand - secondOperand;
 }
 
-function multiply(firstNumber, secondNumber) {
-  return firstNumber * secondNumber;
+function multiply(firstOperand, secondOperand) {
+  return firstOperand * secondOperand;
 }
 
-function divide(firstNumber, secondNumber) {
-  if (secondNumber === 0) {
+function divide(firstOperand, secondOperand) {
+  if (secondOperand === 0) {
     return "You cant divide by 0, silly!";
   }
 
-  let quotient = firstNumber / secondNumber;
+  let quotient = firstOperand / secondOperand;
 
   function countDecimals(value) {
     if (Math.floor(value) === value) return 0;
@@ -54,15 +29,15 @@ function divide(firstNumber, secondNumber) {
   return +quotient;
 }
 
-function operate(operator, firstNumber, secondNumber) {
+function operate(operator, firstOperand, secondOperand) {
   if (operator === "+") {
-    return add(firstNumber, secondNumber);
+    return add(firstOperand, secondOperand);
   } else if (operator === "-") {
-    return subtract(firstNumber, secondNumber);
-  } else if (operator === "*") {
-    return multiply(firstNumber, secondNumber);
-  } else if (operator === "/") {
-    return divide(firstNumber, secondNumber);
+    return subtract(firstOperand, secondOperand);
+  } else if (operator === "×") {
+    return multiply(firstOperand, secondOperand);
+  } else if (operator === "÷") {
+    return divide(firstOperand, secondOperand);
   } else {
     console.error("Something went wrong!");
   }
@@ -71,19 +46,20 @@ function operate(operator, firstNumber, secondNumber) {
 const buttonsContainer = document.querySelector(".buttons-container");
 const display = document.querySelector(".display");
 
+let isAnOperator = null;
+let firstOperand = null;
+let secondOperand = null;
+let operator = null;
+
 buttonsContainer.addEventListener("click", (event) => {
   let target = event.target;
-  let isAnOperator = null;
-  const operators = "+-×÷";
 
-  for (const operator of operators) {
-    if (display.textContent.includes(operator)) {
-      isAnOperator = true;
-      break;
-    } else {
-      isAnOperator = false;
-    }
-  }
+  // Replace multiple leading zeros
+  display.textContent = display.textContent.replace(/^0+/, "");
+
+  const operators = "+-×÷=";
+
+  let temp = display.textContent;
 
   // Display number when clicked
   for (let i = 0; i <= 9; i++) {
@@ -104,6 +80,16 @@ buttonsContainer.addEventListener("click", (event) => {
     }
   }
 
+  for (const operator of operators) {
+    // if (display.textContent.includes(operator)) {
+    if (target.textContent.includes(operator)) {
+      isAnOperator = true;
+      break;
+    } else {
+      isAnOperator = false;
+    }
+  }
+
   // Display symbols, clearing, and equal
   switch (target.className) {
     case "add":
@@ -120,9 +106,38 @@ buttonsContainer.addEventListener("click", (event) => {
       break;
     case "clear":
       display.textContent = "";
+      firstOperand = null;
+      secondOperand = null;
+      operator = null;
       break;
     case "equal":
-      display.textContent = "result";
       break;
+  }
+
+  if (isAnOperator) {
+    if (firstOperand === null) {
+      firstOperand = Number(temp);
+    } else if (secondOperand === null) {
+      secondOperand = Number(temp);
+    }
+
+    if (firstOperand !== null && secondOperand !== null && operator !== null) {
+      const result = operate(operator, firstOperand, secondOperand);
+      console.log(
+        `RESULT OF ${firstOperand} ${operator} ${secondOperand} is: ${result}`,
+      );
+      display.textContent = result;
+      firstOperand = result;
+      secondOperand = null;
+    }
+
+    if (operator === "÷" && secondOperand === 0) {
+      display.textContent = "ERROR";
+    }
+
+    operator = target.textContent;
+    if (operator === "=") {
+      firstOperand = null;
+    }
   }
 });
