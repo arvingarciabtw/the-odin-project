@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Silkscreen:wght@400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Geist", sans-serif;
 }
 
 :root {
@@ -19,8 +22,113 @@ button {
 
 a {
   text-decoration: none;
+  color: var(--c-black);
+  transition: opacity 0.3s ease;
+}
+
+button:hover,
+a:hover {
+  opacity: 0.7;
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   background-color: var(--c-green);
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+/* --- NAVBAR --- */
+
+header {
+  background-color: var(--c-beige);
+  border-bottom: 1px solid var(--c-orange);
+}
+
+nav {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--c-black);
+}
+
+.title {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: -0.25rem;
+}
+
+.logo-github {
+  width: 28px;
+  height: 28px;
+}
+
+/* --- MAIN --- */
+
+main {
+  padding: 1rem;
+  flex: 1;
+}
+
+.calculator-base {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 270px;
+  min-height: 500px;
+  background-color: var(--c-beige);
+  border-radius: 20px;
+}
+
+.display {
+  height: 80px;
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  font-size: 3.5rem;
+  word-break: break-all;
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.buttons-container button {
+  flex: 1 0 auto;
+  width: 44px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--c-beige-darker);
+  border: none;
+  border-radius: 50%;
+  font-family: "Geist", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--c-gray);
+  transition: opacity 0.3s ease;
+}
+
+.buttons-container button.clear,
+.buttons-container button.equal {
+  color: var(--c-orange);
+}
+
+/* --- FOOTER --- */
+footer {
+  padding: 1rem;
+  color: var(--c-black);
+  font-size: 0.875rem;
+
+.author {
+  text-decoration: underline;
 }
