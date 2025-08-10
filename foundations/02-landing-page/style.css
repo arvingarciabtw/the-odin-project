@@ -29,6 +29,9 @@ button {
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: white;
   font-family: "Geist", sans-serif;
 }
@@ -57,6 +60,10 @@ nav {
 .nav-links-container {
   display: flex;
   gap: 2rem;
+}
+
+main {
+  flex: 1;
 }
 
 section.one,
