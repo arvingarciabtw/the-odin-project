@@ -81,7 +81,6 @@ buttonsContainer.addEventListener("click", (event) => {
   }
 
   for (const operator of operators) {
-    // if (display.textContent.includes(operator)) {
     if (target.textContent.includes(operator)) {
       isAnOperator = true;
       break;
@@ -115,10 +114,12 @@ buttonsContainer.addEventListener("click", (event) => {
   }
 
   if (isAnOperator) {
-    if (firstOperand === null) {
-      firstOperand = Number(temp);
-    } else if (secondOperand === null) {
-      secondOperand = Number(temp);
+    if (!isNaN(Number(temp))) {
+      if (firstOperand === null) {
+        firstOperand = Number(temp);
+      } else if (secondOperand === null) {
+        secondOperand = Number(temp);
+      }
     }
 
     if (firstOperand !== null && secondOperand !== null && operator !== null) {
