@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+/* -- FONTS -- */
+@font-face {
+  font-family: "NorseBold";
+  src: url("./assets/fonts/Norse-Bold.otf");
+}
+
+/* -- COLORS -- */
+:root {
+  --c-light-green: #bcf5bc;
+}
+
+/*
+  -- CSS Reset (from Josh Comeau)
+  -- https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  font-family: "Geist", sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* -- BODY -- */
+body {
+  background-color: white;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+main {
+  display: flex;
+}
+
+section.left {
+  padding: 1rem 0;
+  min-height: 100vh;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background: no-repeat url("./assets/images/green-image.jpg");
+  background-size: cover;
+}
+
+.logo-container {
+  padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.logo-container > img {
+  max-height: 108px;
+}
+
+.logo-container > h1 {
+  color: white;
+  font-family: "NorseBold", sans-serif;
+  font-size: 6rem;
+}
+
+.photographer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.photographer > a {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.photographer > a:hover {
+  color: var(--c-light-green);
+}
+
+section.right {
+  width: 100%;
+  background-color: lightgreen;
+}
