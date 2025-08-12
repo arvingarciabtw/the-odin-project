@@ -47,8 +47,70 @@
           </p>
           <p>You <em>know</em> you want to.</p>
         </section>
-        <section class="two">two</section>
-        <section class="three">three</section>
+        <section class="two">
+          <h3>Let's do this!</h3>
+          <form id="my-form" action="">
+            <div class="name-container">
+              <div class="first-name-container">
+                <label for="first-name">FIRST NAME</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  placeholder="Odin"
+                />
+              </div>
+              <div class="last-name-container">
+                <label for="last-name">LAST NAME</label>
+                <input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  placeholder="Borrson"
+                />
+              </div>
+            </div>
+            <div class="contacts-container">
+              <div class="email-container">
+                <label for="email">EMAIL</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="theodinborrson@gmail.com"
+                />
+              </div>
+              <div class="phone-number-container">
+                <label for="phone-number">PHONE NUMBER</label>
+                <input
+                  type="tel"
+                  id="phone-number"
+                  name="phone-number"
+                  placeholder="01234-5678"
+                  pattern="[0-9]{5}-[0-9]{4}"
+                />
+              </div>
+            </div>
+            <div class="passwords-container">
+              <div class="password-container">
+                <label for="password">PASSWORD (*)</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+              <div class="confirm-password-container">
+                <label for="confirm-password">CONFIRM PASSWORD (*)</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  required
+                />
+              </div>
+            </div>
+          </form>
+        </section>
+        <section class="three">
+          <input type="submit" form="my-form" value="Create Account" />
+        </section>
       </section>
     </main>
   </body>
