@@ -8,6 +8,8 @@
 
 /* -- COLORS -- */
 :root {
+  --c-green: #041804;
+  --c-medium-green: #026f23;
   --c-light-green: #bcf5bc;
   --c-light-gray: #f5f5f5;
   --c-gray: #e5e7eb;
@@ -224,10 +226,44 @@ input::placeholder {
   color: var(--c-dark-gray);
 }
 
-input[type="password"]:invalid {
+input:invalid {
   outline: 1px solid red;
 }
 
 input:focus {
   outline: 1px solid blue;
+}
+
+section.right > section.three {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input[type="submit"] {
+  padding: 0.75rem 2rem;
+  align-self: flex-start;
+  background: var(--c-green);
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background: var(--c-medium-green);
+}
+
+input[type="submit"] + p {
+  font-size: 0.875rem;
+}
+
+input[type="submit"] + p > a {
+  color: var(--c-green);
+  transition: color 0.3s ease;
+}
+
+input[type="submit"] + p > a:hover {
+  color: var(--c-medium-green);
 }
