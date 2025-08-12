@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+/* -- COLORS -- */
+:root {
+  --c-white: #ffffff;
+}
+
+/*
+  -- CSS Reset (from Josh Comeau)
+  -- https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  font-family: "Geist", sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* -- BODY -- */
+
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "aside main"
+    "footer footer";
+  background-color: white;
+}
+
+svg,
+img {
+  width: 36px;
+  height: 36px;
+}
+
+header {
+  grid-area: header;
+  background-color: coral;
+}
+
+aside {
+  grid-area: aside;
+  background-color: lightyellow;
+}
+
+main {
+  grid-area: main;
+  background: lightblue;
+}
+
+footer {
+  grid-area: footer;
+  background: lightgreen;
+}
