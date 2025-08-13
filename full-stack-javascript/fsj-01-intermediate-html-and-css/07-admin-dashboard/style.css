@@ -2,7 +2,7 @@
 
 /* -- COLORS -- */
 :root {
-  --c-light-gray: #efefef;
+  --c-light-gray: #eaeaea;
 }
 
 /*
@@ -86,7 +86,7 @@ body {
     "aside header"
     "aside main"
     "aside main"
-    "footer footer";
+    "aside footer";
   background-color: white;
 }
 
@@ -115,6 +115,7 @@ header {
   grid-area: header;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
+  border-bottom: 1px solid var(--c-light-gray);
 }
 
 header > div {
@@ -207,7 +208,7 @@ aside {
   display: grid;
   grid-template-rows: 48px 240px 240px;
   gap: 3rem;
-  border-right: 1px solid lightgray;
+  border-right: 1px solid var(--c-light-gray);
 }
 
 aside > h1 {
@@ -236,10 +237,22 @@ aside > ul > li:hover {
 
 main {
   grid-area: main;
-  background: lightblue;
+  /* background: lightblue; */
 }
 
 footer {
+  padding: 0.75rem;
   grid-area: footer;
-  background: lightgreen;
+  display: grid;
+  place-content: center;
+  border-top: 1px solid var(--c-light-gray);
+}
+
+.author {
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.author:hover {
+  color: blue;
 }
