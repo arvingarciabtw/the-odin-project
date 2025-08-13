@@ -2,7 +2,7 @@
 
 /* -- COLORS -- */
 :root {
-  --c-light-gray: #eaeaea;
+  --c-light-gray: #efefef;
 }
 
 /*
@@ -90,6 +90,10 @@ body {
   background-color: white;
 }
 
+p {
+  font-size: 0.875rem;
+}
+
 ul {
   padding: 0;
   list-style-type: none;
@@ -108,6 +112,11 @@ svg {
 svg,
 button {
   cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 img {
@@ -151,7 +160,7 @@ header div.top .left input {
   border: none;
   border-radius: 16px;
   font-size: 0.875rem;
-  background: lightgray;
+  background: var(--c-light-gray);
 }
 
 header div.top .left input::placeholder {
@@ -253,11 +262,16 @@ main {
   background: var(--c-light-gray);
 }
 
-main .tasks-section {
-  grid-area: tasks;
+main .tasks-section,
+main .announcements-section,
+main .crew-section {
   display: grid;
   grid-template-rows: 28px 1fr;
   gap: 0.5rem;
+}
+
+main .tasks-section {
+  grid-area: tasks;
 }
 
 main .tasks-section h3,
@@ -277,7 +291,11 @@ main .crew-section h3 {
   background: white;
   border-radius: 16px;
   display: grid;
-  grid-template-rows: 24px minmax(4fr, 200px) 1fr;
+  grid-template-rows: 24px minmax(3fr, 200px) 1fr;
+}
+
+.task p {
+  font-size: 1rem;
 }
 
 .task .icons-container {
@@ -306,13 +324,32 @@ main .crew-section h3 {
 
 main .announcements-section {
   grid-area: announcements;
-  display: grid;
-  grid-template-rows: 28px 1fr;
-  gap: 0.5rem;
 }
 
 main .crew-section {
   grid-area: crew;
+}
+
+.all-crewmates {
+  padding: 1rem;
+  background: white;
+  border-radius: 16px;
+}
+
+.crewmate {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 1rem;
+}
+
+.crewmate > img {
+  width: 42px;
+  height: 42px;
+}
+
+.crewmate > .crewmate-details > .crewmate-tag {
+  font-weight: 600;
 }
 
 footer {
