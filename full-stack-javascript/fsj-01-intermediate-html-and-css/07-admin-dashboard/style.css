@@ -103,6 +103,7 @@ a {
 svg {
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 img {
@@ -236,12 +237,59 @@ aside > ul > li:hover {
 }
 
 main {
+  padding: 1rem;
   grid-area: main;
-  /* background: lightblue; */
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "tasks announcements"
+    "tasks crew";
+  gap: 1rem;
+  background: var(--c-light-gray);
+}
+
+main .tasks-section {
+  grid-area: tasks;
+}
+
+main .tasks-section h3 {
+  margin-bottom: 0.5rem;
+}
+
+.all-tasks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.task {
+  padding: 1rem;
+  background: white;
+  border-radius: 16px;
+  display: grid;
+  grid-template-rows: 24px minmax(4fr, 200px) 1fr;
+}
+
+.task .icons-container {
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 24px);
+  justify-content: end;
+  align-content: end;
+  gap: 1rem;
+}
+
+main .announcements-section {
+  grid-area: announcements;
+}
+
+main .crew-section {
+  grid-area: crew;
 }
 
 footer {
-  padding: 0.75rem;
+  padding: 0.5rem;
   grid-area: footer;
   display: grid;
   place-content: center;
