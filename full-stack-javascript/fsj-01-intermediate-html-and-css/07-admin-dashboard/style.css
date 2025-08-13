@@ -2,7 +2,7 @@
 
 /* -- COLORS -- */
 :root {
-  --c-white: #ffffff;
+  --c-light-gray: #efefef;
 }
 
 /*
@@ -81,13 +81,23 @@ h6 {
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: minmax(240px, 1fr) 5fr;
   grid-template-areas:
     "aside header"
     "aside main"
     "aside main"
     "footer footer";
   background-color: white;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 svg {
@@ -191,8 +201,37 @@ header div.bottom .right > button {
 }
 
 aside {
+  padding: 1.5rem 1.25rem 1.25rem;
   grid-area: aside;
-  background-color: lightyellow;
+  border-radius: 0 20px 20px 0;
+  display: grid;
+  grid-template-rows: 48px 240px 240px;
+  gap: 3rem;
+  border-right: 1px solid lightgray;
+}
+
+aside > h1 {
+  padding: 0.5rem 0.75rem;
+}
+
+aside > ul {
+  display: grid;
+  grid-template-rows: 48px;
+  grid-auto-rows: 48px;
+}
+
+aside > ul > li {
+  padding: 0.5rem 0.75rem;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 1rem;
+  align-self: center;
+  border-radius: 16px;
+  transition: background 0.3s ease;
+}
+
+aside > ul > li:hover {
+  background: var(--c-light-gray);
 }
 
 main {
