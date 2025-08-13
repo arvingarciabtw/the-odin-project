@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Geist:wght@100..900&display=swap");
+
+/* -- COLORS -- */
+:root {
+  --c-gray: #dfdfdf;
+  --c-green: #30534d;
+  --c-dark-green: #243e3a;
+  --c-light-green: #e8f7f4;
+  --c-yellow: #fdd738;
+}
+
+/*
+  Josh Comeau's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* -- BODY -- */
+
+* {
+  padding: 0;
+  font-family: "Geist", sans-serif;
+}
+
+body {
+  background: var(--c-light-green);
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  padding: 0.5em 1.25em;
+  text-decoration: none;
+  color: white;
+  font-size: 0.875rem;
+  border-radius: 24px;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+a:hover {
+  background: var(--c-yellow);
+  color: black;
+}
+
+button {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: "Alegreya", serif;
+  font-weight: 900;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+/* -- NAVBAR -- */
+
+header {
+  padding: 1rem;
+  background: var(--c-green);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+nav > ul {
+  display: flex;
+  gap: 1rem;
+}
+
+/* -- SUBTITLE -- */
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subtitle {
+  padding: 1rem 1rem 0.75rem;
+}
+
+.subtitle > p {
+  text-align: center;
+  color: var(--c-dark-green);
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+.btn-new-book {
+  padding: 0.5em 1.25em;
+  background: var(--c-green);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 24px;
+}
