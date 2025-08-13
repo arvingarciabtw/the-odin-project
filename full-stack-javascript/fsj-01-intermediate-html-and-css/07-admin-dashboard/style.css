@@ -81,24 +81,113 @@ h6 {
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr;
   grid-template-areas:
-    "header header"
+    "aside header"
     "aside main"
     "aside main"
     "footer footer";
   background-color: white;
 }
 
-svg,
+svg {
+  width: 24px;
+  height: 24px;
+}
+
 img {
-  width: 36px;
-  height: 36px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
 }
 
 header {
   grid-area: header;
-  background-color: coral;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+header > div {
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+}
+
+header div.top {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+
+header div.top .left {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+header div.top .left input {
+  padding: 0 0.75rem;
+  height: 30px;
+  width: 75%;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  background: lightgray;
+}
+
+header div.top .left input::placeholder {
+  color: gray;
+}
+
+header div.top .right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 3fr;
+  justify-self: end;
+  justify-items: end;
+  align-items: center;
+  gap: 1rem;
+}
+
+header div.top .right h3 {
+  font-size: 1rem;
+}
+
+header div.bottom {
+  padding: 0 1rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+header div.bottom .left {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0.5rem;
+}
+
+header div.bottom .left img {
+  width: 56px;
+  height: 56px;
+}
+
+header div.bottom .right {
+  justify-self: end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+header div.bottom .right > button {
+  padding: 0.4em 1em;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: black;
+  color: white;
 }
 
 aside {
