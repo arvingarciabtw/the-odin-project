@@ -81,7 +81,7 @@ h6 {
 body {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) 5fr;
+  grid-template-columns: minmax(240px, 1fr) 6fr;
   grid-template-areas:
     "aside header"
     "aside main"
@@ -129,7 +129,7 @@ header {
   grid-area: header;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-  border-bottom: 1px solid var(--c-light-gray);
+  border-bottom: 1px solid lightgray;
 }
 
 header > div {
@@ -222,7 +222,7 @@ aside {
   display: grid;
   grid-template-rows: 48px 240px 240px;
   gap: 3rem;
-  border-right: 1px solid var(--c-light-gray);
+  border-right: 1px solid lightgray;
 }
 
 aside > h1 {
@@ -294,10 +294,6 @@ main .crew-section h3 {
   grid-template-rows: 24px minmax(3fr, 200px) 1fr;
 }
 
-.task p {
-  font-size: 1rem;
-}
-
 .task .icons-container {
   padding-top: 1rem;
   display: grid;
@@ -318,8 +314,8 @@ main .crew-section h3 {
 
 .all-announcements .announcement:nth-of-type(1),
 .all-announcements .announcement:nth-of-type(2) {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--c-light-gray);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid lightgray;
 }
 
 main .announcements-section {
@@ -357,7 +353,7 @@ footer {
   grid-area: footer;
   display: grid;
   place-content: center;
-  border-top: 1px solid var(--c-light-gray);
+  border-top: 1px solid lightgray;
 }
 
 .author {
