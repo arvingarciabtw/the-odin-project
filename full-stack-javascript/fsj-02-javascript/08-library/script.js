@@ -37,6 +37,7 @@ function addBookToBooks(title, author, pages, isRead) {
 }
 
 function displayBooks() {
+  booksContainer.innerHTML = "";
   const COLOR_GREEN = "#67a55a";
   const COLOR_RED = "#ff6962";
 
@@ -90,8 +91,11 @@ function displayBooks() {
       const bookToBeRemoved = document.getElementById(`${parentID}`);
       bookToBeRemoved.remove();
       books = books.filter((book) => book.id !== parentID);
+      displayBooks();
     });
+  }
 
+  for (let i = 0; i < toggleReadButtons.length; i++) {
     toggleReadButtons[i].addEventListener("click", () => {
       if (books[i].isRead === "Read") {
         toggleReadButtons[i].style.backgroundColor = COLOR_RED;
@@ -129,14 +133,40 @@ form.addEventListener("submit", (event) => {
 
   modal.close();
 
-  booksContainer.innerHTML = "";
   addBookToBooks(titleValue, authorValue, pagesValue, isReadValue);
   displayBooks();
 });
 
-// -- LOG STATEMENTS FOR TESTING --
-const book1 = addBookToBooks("Atomic Habits", "James Clear", 123, true);
-const book2 = addBookToBooks("The Last Days of Socrates", "Plato", 267, false);
-const book3 = addBookToBooks("Circe", "Madeline Miller", 381, false);
+// -- PREPOPULATE BOOKS ARRAY --
+
+const prepopulatedBooks = [
+  [
+    "Atomic Habits",
+    "The Last Days of Socrates",
+    "The Song of Achilles",
+    "Tao Te Ching",
+    1984,
+    "Clean Code",
+  ],
+  [
+    "James Clear",
+    "Plato",
+    "Madeline Miller",
+    "Lao Tzu",
+    "George Orwell",
+    "Robert Martin",
+  ],
+  [320, 304, 416, 86, 328, 464],
+  [true, false, false, true, true, false],
+];
+
+for (let i = 0; i < prepopulatedBooks[0].length; i++) {
+  const title = prepopulatedBooks[0][i];
+  const author = prepopulatedBooks[1][i];
+  const pages = prepopulatedBooks[2][i];
+  const isRead = prepopulatedBooks[3][i];
+
+  addBookToBooks(title, author, pages, isRead);
+}
 
 displayBooks();

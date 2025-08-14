@@ -385,12 +385,12 @@ footer {
   color: var(--c-dark-green);
 }
 
-.author {
+footer .author {
   text-decoration: underline;
   color: var(--c-dark-green);
   transition: color 0.3s ease;
 }
 
-.author:hover {
+footer .author:hover {
   color: var(--c-bookmark-green);
 }
