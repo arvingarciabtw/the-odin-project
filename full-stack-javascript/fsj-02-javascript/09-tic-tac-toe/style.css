@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Geist", sans-serif;
+}
+
+:root {
+  --c-very-dark-blue: #17203f;
+  --c-dark-blue: #1c2754;
+  --c-blue: #6882e2;
+  --c-orange: #e3a134;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--c-very-dark-blue);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1600px;
+}
+
+/* -- NAVBAR -- */
+
+header {
+  padding: 1rem 0;
+  background: var(--c-dark-blue);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > h1 {
+  font-size: 2rem;
+}
+
+nav > h1 > span:nth-of-type(odd) {
+  color: var(--c-blue);
+}
+
+nav > h1 > span:nth-of-type(even) {
+  color: var(--c-orange);
+}
+
+nav > ul {
+  display: flex;
+  gap: 3rem;
+}
+
+nav > ul > li > a:hover {
+  text-decoration: underline;
+  color: var(--c-orange);
+}
+
+/* -- MAIN -- */
+
+main {
+  flex: 1;
+}
+
+/* -- FOOTER -- */
+
+footer.wrapper {
+  padding: 1rem;
+}
+
+footer > a:hover {
+  text-decoration: underline;
+  color: var(--c-orange);
+}
