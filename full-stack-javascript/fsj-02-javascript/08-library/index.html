@@ -13,6 +13,51 @@
     <script defer src="script.js"></script>
   </head>
   <body>
+    <dialog>
+      <div class="top">
+        <h3>Add a Book</h3>
+        <button class="btn-close" autofocus>×</button>
+      </div>
+      <form>
+        <div>
+          <div class="title-container">
+            <label for="title">Title</label>
+            <input
+              required
+              type="text"
+              id="title"
+              name="title"
+              placeholder="The Fall"
+            />
+          </div>
+          <div class="author-container">
+            <label for="author">Author</label>
+            <input
+              required
+              type="text"
+              id="author"
+              name="author"
+              placeholder="Albert Camus"
+            />
+          </div>
+          <div class="pages-container">
+            <label for="pages">Number of Pages</label>
+            <input
+              required
+              type="number"
+              id="pages"
+              name="pages"
+              placeholder="314"
+            />
+          </div>
+          <div class="is-read-container">
+            <label for="is-read">Have you read the book?</label>
+            <input type="checkbox" id="is-read" name="is-read" value="isRead" />
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </dialog>
     <header>
       <nav class="wrapper">
         <h1>Bookmark.</h1>

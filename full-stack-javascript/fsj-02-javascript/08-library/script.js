@@ -2,6 +2,9 @@ const books = [];
 
 // -- SELECTING DOM ELEMENTS --
 const booksContainer = document.querySelector(".books");
+const newBookButton = document.querySelector(".btn-new-book");
+const modal = document.querySelector("dialog");
+const closeModalButton = document.querySelector("dialog .btn-close");
 
 // -- FUNCTIONS --
 function Book(title, author, pages, isRead, id) {
@@ -48,6 +51,15 @@ function displayBooks() {
     booksContainer.appendChild(bookElement);
   }
 }
+
+// -- EVENT LISTENERS --
+newBookButton.addEventListener("click", () => {
+  modal.showModal();
+});
+
+closeModalButton.addEventListener("click", () => {
+  modal.close();
+});
 
 // -- LOG STATEMENTS FOR TESTING --
 const book1 = addBookToBooks("Atomic Habits", "James Clear", 123, true);
