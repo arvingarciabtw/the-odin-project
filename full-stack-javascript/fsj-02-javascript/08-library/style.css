@@ -252,12 +252,24 @@ form input {
   border: 1px solid lightgray;
 }
 
-.btn-close {
+.btn-close,
+.btn-remove-book {
   margin-bottom: 4px;
   width: 24px;
   height: 24px;
   border: none;
   border-radius: 50%;
+}
+
+.btn-remove-book {
+  margin: 0;
+  font-size: 1.75rem;
+  align-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  background: transparent;
 }
 
 dialog .top {

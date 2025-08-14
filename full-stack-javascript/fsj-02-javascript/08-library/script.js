@@ -1,4 +1,4 @@
-const books = [];
+let books = [];
 
 // -- SELECTING DOM ELEMENTS --
 const booksContainer = document.querySelector(".books");
@@ -36,25 +36,41 @@ function displayBooks() {
     const author = document.createElement("p");
     const pages = document.createElement("p");
     const isRead = document.createElement("p");
+    const removeBookButton = document.createElement("button");
 
     bookElement.classList.add("book");
     title.classList.add("title");
     author.classList.add("author");
     pages.classList.add("pages");
     isRead.classList.add("is-read");
+    removeBookButton.classList.add("btn-remove-book");
+    removeBookButton.classList.add(book.id);
 
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = "A " + book.pages + " page book by";
     isRead.textContent = book.isRead;
+    removeBookButton.textContent = "×";
     bookElement.setAttribute("id", book.id);
 
-    bookElement.appendChild(isRead);
+    // bookElement.appendChild(isRead);
+    bookElement.appendChild(removeBookButton);
     bookElement.appendChild(title);
     bookElement.appendChild(pages);
     bookElement.appendChild(author);
 
     booksContainer.appendChild(bookElement);
+  }
+
+  const removeBookButton = document.querySelectorAll(".btn-remove-book");
+
+  for (let i = 0; i < removeBookButton.length; i++) {
+    removeBookButton[i].addEventListener("click", (event) => {
+      const parentID = event.target.parentNode.id;
+      const bookToBeRemoved = document.getElementById(`${parentID}`);
+      bookToBeRemoved.remove();
+      books = books.filter((book) => book.id !== parentID);
+    });
   }
 }
 
@@ -92,9 +108,5 @@ form.addEventListener("submit", (event) => {
 const book1 = addBookToBooks("Atomic Habits", "James Clear", 123, true);
 const book2 = addBookToBooks("The Last Days of Socrates", "Plato", 267, false);
 const book3 = addBookToBooks("Circe", "Madeline Miller", 381, false);
-
-for (const book of books) {
-  console.log(book);
-}
 
 displayBooks();
