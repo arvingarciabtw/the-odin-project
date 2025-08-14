@@ -5,14 +5,20 @@ const booksContainer = document.querySelector(".books");
 const newBookButton = document.querySelector(".btn-new-book");
 const modal = document.querySelector("dialog");
 const closeModalButton = document.querySelector("dialog .btn-close");
+const form = document.querySelector("form");
 
 // -- FUNCTIONS --
 function Book(title, author, pages, isRead, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.isRead = isRead;
   this.id = id;
+
+  if (isRead) {
+    this.isRead = "Read";
+  } else {
+    this.isRead = "Not Read";
+  }
 }
 
 function addBookToBooks(title, author, pages, isRead) {
@@ -43,7 +49,7 @@ function displayBooks() {
     isRead.textContent = book.isRead;
     bookElement.setAttribute("id", book.id);
 
-    // bookElement.appendChild(isRead);
+    bookElement.appendChild(isRead);
     bookElement.appendChild(title);
     bookElement.appendChild(pages);
     bookElement.appendChild(author);
@@ -59,6 +65,27 @@ newBookButton.addEventListener("click", () => {
 
 closeModalButton.addEventListener("click", () => {
   modal.close();
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const titleValue = document.querySelector(".title").value;
+  const authorValue = document.querySelector(".author").value;
+  const pagesValue = document.querySelector(".pages").value;
+  let isReadValue = false;
+
+  if (document.querySelector(".is-read").checked) {
+    isReadValue = true;
+  } else {
+    isReadValue = false;
+  }
+
+  modal.close();
+
+  booksContainer.innerHTML = "";
+  addBookToBooks(titleValue, authorValue, pagesValue, isReadValue);
+  displayBooks();
 });
 
 // -- LOG STATEMENTS FOR TESTING --

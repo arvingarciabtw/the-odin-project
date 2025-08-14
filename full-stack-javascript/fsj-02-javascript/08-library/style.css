@@ -183,6 +183,7 @@ body > section {
 .books {
   margin-top: 2rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -198,6 +199,7 @@ body > section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .book .title,
@@ -211,6 +213,10 @@ body > section {
 .book .title {
   font-size: 2.25rem;
   line-height: 1.1;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* -- DIALOG -- */
@@ -290,4 +296,8 @@ form > div > div.is-read-container {
 input[type="checkbox"] {
   width: 14px;
   height: 14px;
+}
+
+input:focus {
+  outline: 2px solid var(--c-green);
 }
