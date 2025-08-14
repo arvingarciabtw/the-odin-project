@@ -7,6 +7,8 @@
   --c-dark-green: #243e3a;
   --c-light-green: #e8f7f4;
   --c-yellow: #fdd738;
+  --c-bookmark-green: #67a55a;
+  --c-bookmark-red: #ff6962;
 }
 
 /*
@@ -87,6 +89,13 @@ h6 {
 body {
   margin: 0;
   background: var(--c-light-green);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body > div {
+  flex: 1;
 }
 
 ul {
@@ -94,7 +103,7 @@ ul {
   list-style-type: none;
 }
 
-a {
+li > a {
   padding: 0.5em 1.25em;
   text-decoration: none;
   color: white;
@@ -103,11 +112,12 @@ a {
   transition:
     background 0.3s ease,
     color 0.3s ease;
+  font-weight: 500;
 }
 
-a:hover {
-  background: var(--c-yellow);
-  color: black;
+li > a:hover {
+  background: var(--c-light-green);
+  color: var(--c-dark-green);
 }
 
 button {
@@ -127,6 +137,7 @@ h1 {
 }
 
 .wrapper {
+  padding: 0 1rem;
   margin: 0 auto;
   max-width: 1600px;
 }
@@ -147,19 +158,22 @@ nav {
 
 nav > ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 /* -- SUBTITLE -- */
 
-body > section {
+section.subtitle-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.75rem;
 }
 
 .subtitle {
   padding: 1rem 1rem 0.75rem;
+  margin-top: 0.75rem;
 }
 
 .subtitle > p {
@@ -167,6 +181,21 @@ body > section {
   color: var(--c-dark-green);
   font-weight: 400;
   font-size: 0.875rem;
+}
+
+.legend-green,
+.legend-red {
+  padding: 0.1em 0.45em 0.25em;
+  color: white;
+  border-radius: 8px;
+}
+
+.legend-green {
+  background: var(--c-bookmark-green);
+}
+
+.legend-red {
+  background: var(--c-bookmark-red);
 }
 
 .btn-new-book {
@@ -185,6 +214,7 @@ body > section {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 
 .book {
@@ -217,6 +247,22 @@ body > section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.book .pages {
+  font-style: italic;
+  font-size: 0.875rem;
+  letter-spacing: 0.1px;
+}
+
+.btn-toggle-read {
+  position: absolute;
+  top: 0px;
+  left: 12px;
+  border: none;
+  width: 20px;
+  height: 60px;
+  border-radius: 0 0 4px 4px;
 }
 
 /* -- DIALOG -- */
@@ -272,6 +318,10 @@ form input {
   background: transparent;
 }
 
+.btn-remove-book:hover {
+  opacity: 0.5;
+}
+
 dialog .top {
   display: flex;
   justify-content: space-between;
@@ -312,4 +362,35 @@ input[type="checkbox"] {
 
 input:focus {
   outline: 2px solid var(--c-green);
+}
+
+dialog[open] {
+  animation: myFadeIn 0.8s ease normal;
+}
+
+@keyframes myFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* -- FOOTER -- */
+footer {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--c-dark-green);
+}
+
+.author {
+  text-decoration: underline;
+  color: var(--c-dark-green);
+  transition: color 0.3s ease;
+}
+
+.author:hover {
+  color: var(--c-bookmark-green);
 }

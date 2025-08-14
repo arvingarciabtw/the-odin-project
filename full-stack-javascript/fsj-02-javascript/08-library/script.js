@@ -21,6 +21,14 @@ function Book(title, author, pages, isRead, id) {
   }
 }
 
+Book.prototype.toggleReadStatus = function () {
+  if (this.isRead === "Read") {
+    this.isRead = "Not Read";
+  } else {
+    this.isRead = "Read";
+  }
+};
+
 function addBookToBooks(title, author, pages, isRead) {
   const id = self.crypto.randomUUID();
   const book = new Book(title, author, pages, isRead, id);
@@ -29,6 +37,9 @@ function addBookToBooks(title, author, pages, isRead) {
 }
 
 function displayBooks() {
+  const COLOR_GREEN = "#67a55a";
+  const COLOR_RED = "#ff6962";
+
   for (const book of books) {
     // Book UI
     const bookElement = document.createElement("div");
@@ -37,6 +48,7 @@ function displayBooks() {
     const pages = document.createElement("p");
     const isRead = document.createElement("p");
     const removeBookButton = document.createElement("button");
+    const toggleReadButton = document.createElement("button");
 
     bookElement.classList.add("book");
     title.classList.add("title");
@@ -45,6 +57,7 @@ function displayBooks() {
     isRead.classList.add("is-read");
     removeBookButton.classList.add("btn-remove-book");
     removeBookButton.classList.add(book.id);
+    toggleReadButton.classList.add("btn-toggle-read");
 
     title.textContent = book.title;
     author.textContent = book.author;
@@ -53,7 +66,13 @@ function displayBooks() {
     removeBookButton.textContent = "×";
     bookElement.setAttribute("id", book.id);
 
-    // bookElement.appendChild(isRead);
+    if (book.isRead === "Read") {
+      toggleReadButton.style.backgroundColor = COLOR_GREEN;
+    } else {
+      toggleReadButton.style.backgroundColor = COLOR_RED;
+    }
+
+    bookElement.appendChild(toggleReadButton);
     bookElement.appendChild(removeBookButton);
     bookElement.appendChild(title);
     bookElement.appendChild(pages);
@@ -63,6 +82,7 @@ function displayBooks() {
   }
 
   const removeBookButton = document.querySelectorAll(".btn-remove-book");
+  const toggleReadButtons = document.querySelectorAll(".btn-toggle-read");
 
   for (let i = 0; i < removeBookButton.length; i++) {
     removeBookButton[i].addEventListener("click", (event) => {
@@ -70,6 +90,16 @@ function displayBooks() {
       const bookToBeRemoved = document.getElementById(`${parentID}`);
       bookToBeRemoved.remove();
       books = books.filter((book) => book.id !== parentID);
+    });
+
+    toggleReadButtons[i].addEventListener("click", () => {
+      if (books[i].isRead === "Read") {
+        toggleReadButtons[i].style.backgroundColor = COLOR_RED;
+        books[i].toggleReadStatus();
+      } else {
+        toggleReadButtons[i].style.backgroundColor = COLOR_GREEN;
+        books[i].toggleReadStatus();
+      }
     });
   }
 }
