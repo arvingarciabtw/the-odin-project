@@ -47,7 +47,7 @@ function Square() {
   };
 }
 
-function Game(playerOneName = "Batman", playerTwoName = "Superman") {
+function Game(playerOneName = "Player One", playerTwoName = "Player 2") {
   const board = Gameboard();
   const actualBoard = board.getBoard();
   let counter = 0;
@@ -92,33 +92,6 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
       getActivePlayer().moveType,
     );
 
-    const checkWin = (actualBoard) => {
-      const winConditions = [
-        [[0, 0], [0, 1], [0, 2]],
-        [[1, 0], [1, 1], [1, 2]],
-        [[2, 0], [2, 1], [2, 2]],
-        [[0, 0], [1, 0], [2, 0]],
-        [[0, 1], [1, 1], [2, 1]],
-        [[0, 2], [1, 2], [2, 2]],
-        [[0, 0], [1, 1], [2, 2]],
-        [[0, 2], [1, 1], [2, 0]],
-      ];
-
-      for (const condition of winConditions) {
-        const [pos1, pos2, pos3] = condition;
-
-        const val1 = actualBoard[pos1[0]][pos1[1]].getValue();
-        const val2 = actualBoard[pos2[0]][pos2[1]].getValue();
-        const val3 = actualBoard[pos3[0]][pos3[1]].getValue();
-
-        if (val1 !== "" && val1 === val2 && val2 === val3) {
-          return true;
-        }
-
-      }
-        return null;
-    };
-
     if (triggeredMove) {
       if (checkWin(actualBoard)) {
         board.printBoard();
@@ -138,9 +111,36 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
     }
   };
 
+  const checkWin = (actualBoard) => {
+    const winConditions = [
+      [[0, 0], [0, 1], [0, 2]],
+      [[1, 0], [1, 1], [1, 2]],
+      [[2, 0], [2, 1], [2, 2]],
+      [[0, 0], [1, 0], [2, 0]],
+      [[0, 1], [1, 1], [2, 1]],
+      [[0, 2], [1, 2], [2, 2]],
+      [[0, 0], [1, 1], [2, 2]],
+      [[0, 2], [1, 1], [2, 0]],
+    ];
+
+    for (const condition of winConditions) {
+      const [pos1, pos2, pos3] = condition;
+
+      const val1 = actualBoard[pos1[0]][pos1[1]].getValue();
+      const val2 = actualBoard[pos2[0]][pos2[1]].getValue();
+      const val3 = actualBoard[pos3[0]][pos3[1]].getValue();
+
+      if (val1 !== "" && val1 === val2 && val2 === val3) {
+        return true;
+      }
+
+    }
+      return null;
+  };
+
   printNewRound();
 
-  return { getActivePlayer, playRound, getBoard: board.getBoard };
+  return { getActivePlayer, playRound, checkWin, getBoard: board.getBoard };
 }
 
 function UI() {
@@ -170,6 +170,17 @@ function UI() {
       })
       rowNum++;
     })
+
+    let isOver = game.checkWin(board);
+
+    if (isOver) {
+      turn.textContent = `${activePlayer.name} won!`
+      const allSquares = document.querySelectorAll(".square")
+
+      for (const square of allSquares) {
+        square.setAttribute("disabled", "disabled");
+      }
+    }
   }
 
   function clickHandlerBoard(e) {
