@@ -37,7 +37,38 @@
       </nav>
     </header>
     <main class="wrapper">
-      <h1 class="turn">It is X's turn</h1>
+      <div class="inputs-container">
+        <div class="player-one-container">
+          <div>
+            <label for="player-one">Player 1 Name:</label>
+            <p class="player-one-score">0</p>
+          </div>
+          <input
+            class="player-one-input"
+            type="text"
+            name="player-one"
+            id="player-one"
+            value="Luffy"
+          />
+        </div>
+        <div class="player-two-container">
+          <div>
+            <label for="player-two">Player 2 Name:</label>
+            <p class="player-two-score">0</p>
+          </div>
+          <input
+            class="player-two-input"
+            type="text"
+            name="player-two"
+            id="player-two"
+            value="Zoro"
+          />
+        </div>
+      </div>
+      <div class="btn-and-turn-container">
+        <button class="btn-start-game" type="button">Start Game</button>
+        <h1 class="turn">Please put player names before starting the game!</h1>
+      </div>
       <div class="board-container"></div>
     </main>
     <footer class="wrapper">

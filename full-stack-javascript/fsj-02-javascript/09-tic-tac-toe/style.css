@@ -83,6 +83,80 @@ main.wrapper {
   flex: 1;
 }
 
+.inputs-container {
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.inputs-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.inputs-container > div > input {
+  padding: 0.5em 1em;
+  background: var(--c-dark-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.inputs-container > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputs-container > div > div > p {
+  padding: 0.1em 0.5em;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.player-one-score {
+  background: var(--c-orange);
+  color: var(--c-dark-blue);
+}
+
+.player-two-score {
+  background: var(--c-blue);
+  color: var(--c-dark-blue);
+}
+
+.btn-and-turn-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-start-game {
+  padding: 0.5em 1em;
+  background: var(--c-orange);
+  color: var(--c-dark-blue);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.btn-start-game:hover {
+  opacity: 0.8;
+}
+
+.turn {
+  max-width: 400px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 .board-container {
   margin-top: 1rem;
   display: grid;
