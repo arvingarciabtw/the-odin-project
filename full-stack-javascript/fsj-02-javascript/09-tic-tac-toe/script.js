@@ -12,6 +12,16 @@ function Gameboard() {
 
   const getBoard = () => board;
 
+  const makeMove = (row, column, moveType) => {
+    if (board[row][column].getValue() !== 0) {
+      console.error("This spot is already taken. Choose a free one.");
+      return false;
+    } else {
+      board[row][column].updateSquare(moveType);
+      return true;
+    }
+  };
+
   const printBoard = () => {
     const boardWithSquareValues = board.map((row) =>
       row.map((square) => square.getValue()),
@@ -19,21 +29,21 @@ function Gameboard() {
     console.log(boardWithSquareValues);
   };
 
-  return { getBoard, printBoard };
+  return { getBoard, printBoard, makeMove };
 }
 
 function Square() {
   let value = 0;
 
-  // Trigger player's move to change the value of the square
-  const triggerMove = (player) => {
-    value = player;
+  // Update the value of the square with player's move
+  const updateSquare = (moveType) => {
+    value = moveType;
   };
 
   const getValue = () => value;
 
   return {
-    triggerMove,
+    updateSquare,
     getValue,
   };
 }
@@ -55,7 +65,7 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
 
   const printNewRound = () => {
     board.printBoard();
-    console.log(`${getActivePlayer().name}'s turn.`);
+    console.log(`It is now ${getActivePlayer().name}'s turn!`);
   };
 
   const playRound = (row, column) => {
@@ -72,14 +82,21 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
     }
 
     console.log(
-      `${getActivePlayer().name} is making a move on row ${row} and column ${column}`,
+      `${getActivePlayer().name} made a move on row ${row} and column ${column}.`,
     );
 
-    // Trigger a move here?
-    // board.triggerMove(row, column, getActivePlayer().moveType)
+    const triggeredMove = board.makeMove(
+      row,
+      column,
+      getActivePlayer().moveType,
+    );
 
-    switchActivePlayer();
-    printNewRound();
+    if (triggeredMove) {
+      switchActivePlayer();
+      printNewRound();
+    } else {
+      return;
+    }
   };
 
   printNewRound();
