@@ -13,7 +13,7 @@ function Gameboard() {
   const getBoard = () => board;
 
   const makeMove = (row, column, moveType) => {
-    if (board[row][column].getValue() !== 0) {
+    if (board[row][column].getValue() !== "") {
       console.error("This spot is already taken. Choose a free one.");
       return false;
     } else {
@@ -33,7 +33,7 @@ function Gameboard() {
 }
 
 function Square() {
-  let value = 0;
+  let value = "";
 
   const updateSquare = (moveType) => {
     value = moveType;
@@ -52,8 +52,8 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
   const actualBoard = board.getBoard();
   let counter = 0;
   const players = [
-    { name: playerOneName, moveType: 1 },
-    { name: playerTwoName, moveType: 2 },
+    { name: playerOneName, moveType: "X" },
+    { name: playerTwoName, moveType: "O" },
   ];
 
   let activePlayer = players[0];
@@ -111,7 +111,7 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
         const val2 = actualBoard[pos2[0]][pos2[1]].getValue();
         const val3 = actualBoard[pos3[0]][pos3[1]].getValue();
 
-        if (val1 !== 0 && val1 === val2 && val2 === val3) {
+        if (val1 !== "" && val1 === val2 && val2 === val3) {
           return true;
         }
 
@@ -140,7 +140,51 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
 
   printNewRound();
 
-  return { getActivePlayer, playRound };
+  return { getActivePlayer, playRound, getBoard: board.getBoard };
 }
 
-const game = Game();
+function UI() {
+  const game = Game();
+
+  const turn = document.querySelector(".turn")
+  const boardContainer = document.querySelector(".board-container")
+
+  const updateScreen = () => {
+    boardContainer.textContent = "";
+
+    const board = game.getBoard();
+    const activePlayer = game.getActivePlayer();
+
+    turn.textContent = `${activePlayer.name}'s turn...`
+
+    let rowNum = 0;
+    board.forEach(row => {
+      row.forEach((square, index) => {
+        const squareButton = document.createElement("button");
+        squareButton.classList.add("square");
+        squareButton.dataset.column = index
+        squareButton.dataset.row = rowNum
+        squareButton.textContent = square.getValue();
+        squareButton.style.color = square.getValue() === "X" ? "#e3a134" : "#6882e2";  
+        boardContainer.appendChild(squareButton);
+      })
+      rowNum++;
+    })
+  }
+
+  function clickHandlerBoard(e) {
+    const selectedColumn = e.target.dataset.column;
+    const selectedRow = e.target.dataset.row;
+
+    if (!selectedColumn) return;
+    
+    game.playRound(selectedRow, selectedColumn);
+    updateScreen();
+  }
+  boardContainer.addEventListener("click", clickHandlerBoard);
+
+  updateScreen();
+
+}
+
+UI();

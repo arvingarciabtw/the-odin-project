@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Geist:wght@100..900&display=swap');
 
 * {
   margin: 0;
@@ -59,11 +59,11 @@ nav > h1 {
 }
 
 nav > h1 > span:nth-of-type(odd) {
-  color: var(--c-blue);
+  color: var(--c-orange);
 }
 
 nav > h1 > span:nth-of-type(even) {
-  color: var(--c-orange);
+  color: var(--c-blue);
 }
 
 nav > ul {
@@ -78,8 +78,32 @@ nav > ul > li > a:hover {
 
 /* -- MAIN -- */
 
-main {
+main.wrapper {
+  padding: 1.5rem 1rem;
   flex: 1;
+}
+
+.board-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+  gap: 1rem;
+}
+
+.square {
+  background: var(--c-dark-blue);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: "Fredoka", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+.square:hover {
+  opacity: 0.4;
 }
 
 /* -- FOOTER -- */
