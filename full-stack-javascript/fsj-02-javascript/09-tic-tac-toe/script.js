@@ -35,7 +35,6 @@ function Gameboard() {
 function Square() {
   let value = 0;
 
-  // Update the value of the square with player's move
   const updateSquare = (moveType) => {
     value = moveType;
   };
@@ -50,6 +49,7 @@ function Square() {
 
 function Game(playerOneName = "Batman", playerTwoName = "Superman") {
   const board = Gameboard();
+  const actualBoard = board.getBoard();
   const players = [
     { name: playerOneName, moveType: 1 },
     { name: playerTwoName, moveType: 2 },
@@ -91,9 +91,41 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
       getActivePlayer().moveType,
     );
 
+    const checkWin = (actualBoard) => {
+      const winConditions = [
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[0, 2], [1, 2], [2, 2]],
+        [[0, 0], [1, 1], [2, 2]],
+        [[0, 2], [1, 1], [2, 0]],
+      ];
+
+      for (const condition of winConditions) {
+        const [pos1, pos2, pos3] = condition;
+
+        const val1 = actualBoard[pos1[0]][pos1[1]].getValue();
+        const val2 = actualBoard[pos2[0]][pos2[1]].getValue();
+        const val3 = actualBoard[pos3[0]][pos3[1]].getValue();
+
+        if (val1 !== 0 && val1 === val2 && val2 === val3) {
+          return true;
+        }
+
+      }
+        return null;
+    };
+
     if (triggeredMove) {
-      switchActivePlayer();
-      printNewRound();
+      if (checkWin(actualBoard)) {
+        board.printBoard();
+        console.log(`${getActivePlayer().name} won!`);
+      } else {
+        switchActivePlayer();
+        printNewRound();
+      }
     } else {
       return;
     }
