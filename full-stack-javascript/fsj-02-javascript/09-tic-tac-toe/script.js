@@ -50,6 +50,7 @@ function Square() {
 function Game(playerOneName = "Batman", playerTwoName = "Superman") {
   const board = Gameboard();
   const actualBoard = board.getBoard();
+  let counter = 0;
   const players = [
     { name: playerOneName, moveType: 1 },
     { name: playerTwoName, moveType: 2 },
@@ -126,6 +127,12 @@ function Game(playerOneName = "Batman", playerTwoName = "Superman") {
         switchActivePlayer();
         printNewRound();
       }
+
+      counter++;
+      if (counter === 9) {
+        console.log("It's a draw!")
+      }
+
     } else {
       return;
     }
