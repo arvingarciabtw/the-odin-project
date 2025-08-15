@@ -38,7 +38,7 @@ function Square() {
   };
 }
 
-const game = (function (playerOneName = "Batman", playerTwoName = "Superman") {
+function Game(playerOneName = "Batman", playerTwoName = "Superman") {
   const board = Gameboard();
   const players = [
     { name: playerOneName, moveType: 1 },
@@ -58,7 +58,33 @@ const game = (function (playerOneName = "Batman", playerTwoName = "Superman") {
     console.log(`${getActivePlayer().name}'s turn.`);
   };
 
+  const playRound = (row, column) => {
+    if (row < 0 || row > 2) {
+      throw new Error(
+        "The game is played on a 3x3 grid. ROW should be 0, 1, or 2.",
+      );
+    }
+
+    if (column < 0 || column > 2) {
+      throw new Error(
+        "The game is played on a 3x3 grid. COLUMN should be 0, 1, or 2.",
+      );
+    }
+
+    console.log(
+      `${getActivePlayer().name} is making a move on row ${row} and column ${column}`,
+    );
+
+    // Trigger a move here?
+    // board.triggerMove(row, column, getActivePlayer().moveType)
+
+    switchActivePlayer();
+    printNewRound();
+  };
+
   printNewRound();
 
-  return { getActivePlayer };
-})();
+  return { getActivePlayer, playRound };
+}
+
+const game = Game();
