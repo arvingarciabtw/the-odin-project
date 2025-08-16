@@ -18,5 +18,112 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--c-light-white);
+  background: var(--c-white);
+}
+
+.wrapper {
+  padding: 1.5rem 1rem;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* -- NAVBAR -- */
+
+header {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-black);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > h1 {
+  font-size: 1.75rem;
+  font-family: "Noto Sans JP", sans-serif;
+  color: var(--c-red);
+}
+
+nav > .pages-container {
+  display: flex;
+  gap: 1rem;
+}
+
+nav > .pages-container button {
+  padding: 0.75em 1.25em;
+  border: none;
+  border-radius: 20px;
+  background: transparent;
+  color: var(--c-black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+nav > .pages-container > button.active {
+  background: var(--c-red);
+  color: var(--c-white);
+}
+
+nav > .pages-container > button:hover {
+  background: var(--c-red);
+  color: var(--c-white);
+}
+
+/* -- MAIN -- */
+main {
+  flex: 1;
+}
+
+/* -- FOOTER -- */
+footer {
+  padding: 0.5rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 0.875rem;
+  background: var(--c-black);
+  color: var(--c-white);
+  /* border-top: 1px solid var(--c-black); */
+}
+
+footer > div {
+  display: flex;
+  gap: 4rem;
+}
+
+footer > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pages-footer-container > button {
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  color: var(--c-white);
+}
+
+.pages-footer-container > button:hover {
+  text-decoration: underline;
+  color: var(--c-light-red);
+}
+
+.developer {
+  color: var(--c-white);
+  text-decoration: none;
+}
+
+.developer:hover {
+  color: var(--c-light-red);
+  text-decoration: underline;
 }
