@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Geist:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Geist", sans-serif;
+}
+
+:root {
+  --c-red: #bd2a33;
+  --c-light-red: #d9545c;
+  --c-white: #fbf8f6;
+  --c-black: #020806;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-light-white);
+}
