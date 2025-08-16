@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Geist:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Geist:wght@100..900&display=swap");
 
 * {
   margin: 0;
@@ -114,18 +114,18 @@ main.wrapper {
 
 .inputs-container > div > div > p {
   padding: 0.1em 0.5em;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 50%;
+  width: 19px;
 }
 
-.player-one-score {
+.player-one-indicator {
   background: var(--c-orange);
-  color: var(--c-dark-blue);
+  height: 100%;
 }
 
-.player-two-score {
+.player-two-indicator {
   background: var(--c-blue);
-  color: var(--c-dark-blue);
+  height: 100%;
 }
 
 .btn-and-turn-container {

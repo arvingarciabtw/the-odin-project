@@ -14,7 +14,6 @@ function Gameboard() {
 
   const makeMove = (row, column, moveType) => {
     if (board[row][column].getValue() !== "") {
-      console.error("This spot is already taken. Choose a free one.");
       return false;
     } else {
       board[row][column].updateSquare(moveType);
@@ -65,11 +64,6 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
   const getActivePlayer = () => activePlayer;
   const getCounter = () => counter;
 
-  const printNewRound = () => {
-    board.printBoard();
-    console.log(`It is now ${getActivePlayer().name}'s turn!`);
-  };
-
   const playRound = (row, column) => {
     if (row < 0 || row > 2) {
       throw new Error(
@@ -83,10 +77,6 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
       );
     }
 
-    console.log(
-      `${getActivePlayer().name} made a move on row ${row} and column ${column}.`,
-    );
-
     const triggeredMove = board.makeMove(
       row,
       column,
@@ -94,18 +84,11 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
     );
 
     if (triggeredMove) {
-      if (checkWin(actualBoard)) {
-        board.printBoard();
-        console.log(`${getActivePlayer().name} won!`);
-      } else {
+      if (!checkWin(actualBoard)) {
         switchActivePlayer();
-        printNewRound();
       }
 
       counter++;
-      if (counter === 9) {
-        console.log("It's a draw!");
-      }
     } else {
       return;
     }
@@ -113,46 +96,14 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
 
   const checkWin = (actualBoard) => {
     const winConditions = [
-      [
-        [0, 0],
-        [0, 1],
-        [0, 2],
-      ],
-      [
-        [1, 0],
-        [1, 1],
-        [1, 2],
-      ],
-      [
-        [2, 0],
-        [2, 1],
-        [2, 2],
-      ],
-      [
-        [0, 0],
-        [1, 0],
-        [2, 0],
-      ],
-      [
-        [0, 1],
-        [1, 1],
-        [2, 1],
-      ],
-      [
-        [0, 2],
-        [1, 2],
-        [2, 2],
-      ],
-      [
-        [0, 0],
-        [1, 1],
-        [2, 2],
-      ],
-      [
-        [0, 2],
-        [1, 1],
-        [2, 0],
-      ],
+      [[0, 0], [0, 1], [0, 2]],
+      [[1, 0], [1, 1], [1, 2]],
+      [[2, 0], [2, 1], [2, 2]],
+      [[0, 0], [1, 0], [2, 0]],
+      [[0, 1], [1, 1], [2, 1]],
+      [[0, 2], [1, 2], [2, 2]],
+      [[0, 0], [1, 1], [2, 2]],
+      [[0, 2], [1, 1], [2, 0]],
     ];
 
     for (const condition of winConditions) {
@@ -169,8 +120,6 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
     return null;
   };
 
-  printNewRound();
-
   return {
     getActivePlayer,
     getCounter,
@@ -183,11 +132,9 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
 function UI() {
   const playerOneName = document.querySelector(".player-one-input").value;
   const playerTwoName = document.querySelector(".player-two-input").value;
-
-  const game = Game(playerOneName, playerTwoName);
-
   const turn = document.querySelector(".turn");
   const boardContainer = document.querySelector(".board-container");
+  const game = Game(playerOneName, playerTwoName);
 
   const updateScreen = () => {
     boardContainer.textContent = "";
@@ -205,8 +152,7 @@ function UI() {
         squareButton.dataset.column = index;
         squareButton.dataset.row = rowNum;
         squareButton.textContent = square.getValue();
-        squareButton.style.color =
-          square.getValue() === "X" ? "#e3a134" : "#6882e2";
+        squareButton.style.color = square.getValue() === "X" ? "#e3a134" : "#6882e2";
         boardContainer.appendChild(squareButton);
       });
       rowNum++;
@@ -214,24 +160,23 @@ function UI() {
 
     let isOver = game.checkWin(board);
 
-    if (isOver) {
-      turn.textContent = `${activePlayer.name} won!`;
-      startGameButton.textContent = "Restart Game";
+    function disableSquares () {
       const allSquares = document.querySelectorAll(".square");
-
       for (const square of allSquares) {
         square.setAttribute("disabled", "disabled");
       }
     }
 
-    if (game.getCounter() === 9) {
+    if (isOver) {
+      turn.textContent = `${activePlayer.name} won!`;
+      startGameButton.textContent = "Restart Game";
+      disableSquares();
+    }
+
+    if (!isOver && (game.getCounter() === 9)) {
       turn.textContent = "It's a draw!";
       startGameButton.textContent = "Restart Game";
-      const allSquares = document.querySelectorAll(".square");
-
-      for (const square of allSquares) {
-        square.setAttribute("disabled", "disabled");
-      }
+      disableSquares();
     }
   };
 
@@ -244,8 +189,8 @@ function UI() {
     game.playRound(selectedRow, selectedColumn);
     updateScreen();
   }
-  boardContainer.addEventListener("click", clickHandlerBoard);
 
+  boardContainer.addEventListener("click", clickHandlerBoard);
   updateScreen();
 }
 
