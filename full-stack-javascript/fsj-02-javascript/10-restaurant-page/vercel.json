@@ -1,0 +1,4 @@
+{
+  "buildCommand": "npx webpack",
+  "outputDirectory": "dist"
+}
