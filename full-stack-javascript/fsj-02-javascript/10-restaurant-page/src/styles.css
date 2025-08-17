@@ -8,8 +8,8 @@
 }
 
 :root {
-  --c-red: #bd2a33;
-  --c-light-red: #d9545c;
+  --c-red: #e82e02;
+  --c-light-red: #f04202;
   --c-white: #fbf8f6;
   --c-black: #020806;
 }
@@ -29,6 +29,10 @@ body {
 
 button {
   cursor: pointer;
+}
+
+img {
+  object-fit: cover;
 }
 
 /* -- NAVBAR -- */
@@ -81,6 +85,51 @@ nav > .pages-container > button:hover {
 /* -- MAIN -- */
 main {
   flex: 1;
+  width: 100%;
+}
+
+.home-container {
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.home-container > .section-one {
+  display: flex;
+  gap: 3rem;
+}
+
+.hero-img {
+  min-width: 50%;
+  max-height: 400px;
+}
+
+.hero-heading {
+  margin-bottom: 1rem;
+  font-family: "Andada Pro", serif;
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.hero-description {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  width: 90%;
+}
+
+.hero-cta {
+  margin-top: 1rem;
+  padding: 0.5em 1.25em;
+  background: var(--c-red);
+  color: var(--c-white);
+  border: none;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.hero-cta:hover {
+  opacity: 0.8;
 }
 
 /* -- FOOTER -- */
@@ -92,7 +141,6 @@ footer {
   font-size: 0.875rem;
   background: var(--c-black);
   color: var(--c-white);
-  /* border-top: 1px solid var(--c-black); */
 }
 
 footer > div {
