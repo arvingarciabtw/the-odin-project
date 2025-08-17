@@ -14,6 +14,11 @@
   --c-black: #020806;
 }
 
+::selection {
+  background-color: var(--c-red);
+  color: var(--c-white);
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -33,6 +38,10 @@ button {
 
 img {
   object-fit: cover;
+}
+
+p {
+  line-height: 1.4;
 }
 
 /* -- NAVBAR -- */
@@ -60,7 +69,7 @@ nav > .pages-container {
 }
 
 nav > .pages-container button {
-  padding: 0.75em 1.25em;
+  padding: 0.65em 1.25em;
   border: none;
   border-radius: 20px;
   background: transparent;
@@ -91,6 +100,23 @@ main {
 .home-container {
   padding: 1rem 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.menu-container {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.about-container {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .home-container > .section-one {
@@ -101,6 +127,11 @@ main {
 .hero-img {
   min-width: 50%;
   max-height: 400px;
+  border-radius: 40px;
+}
+
+.hero-details-container {
+  align-self: center;
 }
 
 .hero-heading {
@@ -118,7 +149,7 @@ main {
 
 .hero-cta {
   margin-top: 1rem;
-  padding: 0.5em 1.25em;
+  padding: 0.65em 1.25em;
   background: var(--c-red);
   color: var(--c-white);
   border: none;
@@ -130,6 +161,112 @@ main {
 
 .hero-cta:hover {
   opacity: 0.8;
+}
+
+.section-two-heading,
+.section-three-heading,
+.featured-bowls-heading,
+.sides-heading,
+.about-heading {
+  margin-bottom: 1.75rem;
+  font-family: "Andada Pro", serif;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.about-heading {
+  margin-bottom: 1.25rem;
+}
+
+.card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--c-black);
+  border-radius: 16px;
+}
+
+.card-heading {
+  font-family: "Andada Pro", serif;
+  font-size: 1.4rem;
+}
+
+.card-description {
+  font-size: 0.875rem;
+}
+
+.cards-container,
+.testimonials-container,
+.featured-bowls-container,
+.sides-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.testimonials-container,
+.featured-bowls-container,
+.sides-container {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.testimonial,
+.featured-bowl,
+.side {
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.testimonial-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.testimonial-name,
+.featured-bowl-name,
+.side-name {
+  font-family: "Andada Pro", serif;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.testimonial-description,
+.featured-bowl-description,
+.side-description {
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.featured-bowl-image,
+.side-image {
+  width: 240px;
+  height: 240px;
+  border-radius: 32px;
+}
+
+.featured-bowl-price,
+.side-price {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.about-image {
+  width: 100%;
+  height: 600px;
+  border-radius: 40px;
+}
+
+.story-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.875rem;
 }
 
 /* -- FOOTER -- */
