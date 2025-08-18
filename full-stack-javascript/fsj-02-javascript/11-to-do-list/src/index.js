@@ -69,3 +69,15 @@ console.log("Coding stuff are below:");
 codingProject.listOfTodos.forEach((codingTask) => {
   console.log(codingTask);
 });
+
+codingProject.deleteTodo(learnHTML);
+
+console.log("Deleted the HTML to-do!");
+
+console.log("Coding stuff are below:");
+codingProject.listOfTodos.forEach((codingTask) => {
+  console.log(codingTask);
+});
+
+console.log("But, the HTML todo still exists?");
+console.log(learnHTML);
