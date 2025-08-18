@@ -55,3 +55,17 @@ console.log("Coding stuff are below:");
 codingProject.listOfTodos.forEach((codingTask) => {
   console.log(codingTask);
 });
+
+learnHTML.editTodo(
+  "learn intermediate HTML",
+  "open intermediate HTML course",
+  "2025-10-10",
+  "high",
+);
+
+console.log("Edited the HTML to-do:");
+console.log(learnHTML);
+console.log("Coding stuff are below:");
+codingProject.listOfTodos.forEach((codingTask) => {
+  console.log(codingTask);
+});
