@@ -1,3 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Geist:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Geist", sans-serif;
+}
+
 body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 72px 1fr 60px;
+  grid-template-areas: "aside header" "aside main" "aside footer";
   background: white;
+}
+
+/* -- HEADER -- */
+
+header {
+  padding: 1rem 1.25rem 1rem 1rem;
+  grid-area: header;
+  border-bottom: 1px solid gray;
+  align-self: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > .left,
+nav > .right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav > .right {
+  gap: 1.25rem;
+}
+
+nav > .left > h1 {
+  font-family: "Andada Pro", serif;
+}
+
+.logo,
+svg {
+  width: 28px;
+  height: 28px;
+}
+
+.logo {
+  stroke: coral;
+}
+
+.profile-picture {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+/* -- ASIDE -- */
+
+aside {
+  padding: 1.5rem;
+  grid-area: aside;
+  border-radius: 0 20px 20px 0;
+  border-right: 1px solid gray;
+}
+
+aside > h1 {
+  margin-bottom: 1rem;
+  font-family: "Andada Pro", serif;
+}
+
+.btn-add-project {
+  padding: 0.5em 1.25em 0.6em;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn-add-project:hover {
+  opacity: 0.8;
+}
+
+/* -- MAIN -- */
+
+main {
+  grid-area: main;
+  background: lightyellow;
+}
+
+/* -- FOOTER -- */
+
+footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  border-top: 1px solid gray;
+}
+
+footer > p > a {
+  color: black;
+  text-decoration: none;
+}
+
+footer > p > a:hover {
+  text-decoration: underline;
 }
