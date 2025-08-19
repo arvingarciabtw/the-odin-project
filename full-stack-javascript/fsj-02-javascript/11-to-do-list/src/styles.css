@@ -484,3 +484,50 @@ footer > p > a:hover {
 .form-edit-task > .buttons-container > button:hover {
   opacity: 0.85;
 }
+
+/* -- DIALOG DELETE TASK -- */
+
+.dialog-delete-task::backdrop {
+  background: black;
+  opacity: 0.8;
+}
+
+.dialog-delete-task {
+  border: none;
+  border-radius: 20px;
+}
+
+.form-delete-task {
+  padding: 0.5rem;
+}
+
+.form-delete-task > h1 {
+  font-family: "Andada Pro", serif;
+  font-size: 2rem;
+}
+
+.form-delete-task > p {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+}
+
+.form-delete-task > .buttons-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-delete-task > .buttons-container > button {
+  padding: 0.4em 1.25em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.form-delete-task > .buttons-container > button:hover {
+  opacity: 0.85;
+}

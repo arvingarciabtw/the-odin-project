@@ -4,7 +4,7 @@ import { Element, Image } from "./element.js";
 import editSVG from "../assets/images/edit.svg";
 import removeSVG from "../assets/images/remove.svg";
 import editTodo from "./editTodo.js";
-import setLocalStorage from "./setLocalStorage.js";
+import deleteTodo from "./deleteTodo.js";
 
 export default function displayProjectTodos(project, mainContainer) {
   mainContainer.innerHTML = "";
@@ -27,9 +27,7 @@ export default function displayProjectTodos(project, mainContainer) {
     });
 
     removeTodoButton.addEventListener("click", () => {
-      project.deleteTodo(todo);
-      setLocalStorage();
-      displayProjectTodos(project, mainContainer);
+      deleteTodo(project, todo, mainContainer);
     });
 
     const todoTitle = new Element("h4", "todo-title", todo.title).create();
