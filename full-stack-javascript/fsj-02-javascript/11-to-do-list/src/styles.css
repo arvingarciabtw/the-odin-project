@@ -369,6 +369,7 @@ footer > p > a:hover {
   padding: 0.25rem 0.5rem;
   border: 1px solid gray;
   border-radius: 6px;
+  font-size: 0.875rem;
 }
 
 .form-add-task > .buttons-container {

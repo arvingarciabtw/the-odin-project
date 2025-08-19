@@ -18,6 +18,7 @@
           <h1>Doowit</h1>
         </div>
         <div class="right">
+          <button class="btn-add-task" type="button">Add Task</button>
           <svg
             class="icon-bell"
             xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +84,13 @@
         <h1>Add Project</h1>
         <div class="input-container">
           <label for="title">Project Title</label>
-          <input required class="input-add-project" type="text" id="title" name="title">
+          <input
+            required
+            class="input-add-project"
+            type="text"
+            id="title"
+            name="title"
+          />
         </div>
         <div class="buttons-container">
           <button class="btn-submit-add-project" type="submit">Add</button>
@@ -97,23 +104,45 @@
         <div class="inputs-container">
           <div class="input-title-container">
             <label for="title">Title</label>
-            <input required class="input-title-add-task" type="text" id="title" name="title">
+            <input
+              required
+              class="input-title-add-task"
+              type="text"
+              id="title"
+              name="title"
+            />
           </div>
           <div class="input-due-date-container">
             <label for="due-date">Due Date</label>
-            <input required class="input-due-date-add-task" type="date" id="due-date" name="due-date">
+            <input
+              required
+              class="input-due-date-add-task"
+              type="date"
+              id="due-date"
+              name="due-date"
+            />
           </div>
           <div class="input-priority-container">
             <label for="priority">Priority</label>
-            <select required class="input-priority-add-task" id="priority" name="priority">
-              <option value="low">Low</option>   
-              <option value="medium">Medium</option>   
-              <option value="high">High</option>   
-            </select> 
+            <select
+              required
+              class="input-priority-add-task"
+              id="priority"
+              name="priority"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
           </div>
           <div class="input-description-container">
             <label for="description">Description</label>
-            <textarea required class="input-description-add-task" id="description" name="description"></textarea> 
+            <textarea
+              required
+              class="input-description-add-task"
+              id="description"
+              name="description"
+            ></textarea>
           </div>
         </div>
         <div class="buttons-container">

@@ -9,6 +9,8 @@ export default function displayProjectTodos(project, mainContainer) {
   console.log("the mainContainer that was passed is: ");
   console.log(mainContainer);
 
+  mainContainer.innerHTML = "";
+
   for (const todo of project.listOfTodos) {
     const todoEl = new Element("div", "todo", null).create();
     const todoTopDiv = new Element("div", "todo-top-div", null).create();
