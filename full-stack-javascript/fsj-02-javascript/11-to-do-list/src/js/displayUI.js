@@ -7,6 +7,8 @@ import addTask from "./addTask.js";
 const projectsContainer = document.querySelector(".projects-container");
 const mainContainer = document.querySelector("main");
 
+let currentActiveProject = null;
+
 function displayFirstProject(project) {
   mainContainer.innerHTML = "";
   addTask(project, mainContainer);
@@ -22,6 +24,12 @@ export default function displayUI() {
     projectsContainer.appendChild(projectEl);
 
     projectEl.addEventListener("click", () => {
+      if (currentActiveProject) {
+        currentActiveProject.classList.remove("project-active");
+      }
+      projectEl.classList.add("project-active");
+      currentActiveProject = projectEl;
+
       mainContainer.innerHTML = "";
 
       addTask(project, mainContainer);

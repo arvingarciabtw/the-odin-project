@@ -138,6 +138,10 @@ main {
   gap: 1.5rem;
 }
 
+.project-active {
+  background: #ececec;
+}
+
 .btn-add-task {
   padding: 0.5em 1.25em;
   background: black;
