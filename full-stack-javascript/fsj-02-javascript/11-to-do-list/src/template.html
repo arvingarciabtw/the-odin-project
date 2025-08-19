@@ -78,5 +78,49 @@
         >
       </p>
     </footer>
+    <dialog class="dialog-add-project">
+      <form class="form-add-project">
+        <h1>Add Project</h1>
+        <div class="input-container">
+          <label for="title">Project Title</label>
+          <input required class="input-add-project" type="text" id="title" name="title">
+        </div>
+        <div class="buttons-container">
+          <button class="btn-submit-add-project" type="submit">Add</button>
+          <button class="btn-close-add-project" type="button">Close</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="dialog-add-task">
+      <form class="form-add-task">
+        <h1>Add Task</h1>
+        <div class="inputs-container">
+          <div class="input-title-container">
+            <label for="title">Title</label>
+            <input required class="input-title-add-task" type="text" id="title" name="title">
+          </div>
+          <div class="input-due-date-container">
+            <label for="due-date">Due Date</label>
+            <input required class="input-due-date-add-task" type="date" id="due-date" name="due-date">
+          </div>
+          <div class="input-priority-container">
+            <label for="priority">Priority</label>
+            <select required class="input-priority-add-task" id="priority" name="priority">
+              <option value="low">Low</option>   
+              <option value="medium">Medium</option>   
+              <option value="high">High</option>   
+            </select> 
+          </div>
+          <div class="input-description-container">
+            <label for="description">Description</label>
+            <textarea required class="input-description-add-task" id="description" name="description"></textarea> 
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button class="btn-submit-add-task" type="submit">Add</button>
+          <button class="btn-close-add-task" type="button">Close</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

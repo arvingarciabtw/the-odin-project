@@ -1,4 +1,4 @@
 import "./styles.css";
-import displayTodoLogic from "./js/todoLogic";
+import displayUI from "./js/displayUI";
 
-displayTodoLogic();
+displayUI();

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Geist:wght@100..900&display=swap");
 
-* {
+*:not(dialog) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,6 +14,14 @@ body {
   grid-template-rows: 72px 1fr 60px;
   grid-template-areas: "aside header" "aside main" "aside footer";
   background: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* -- HEADER -- */
@@ -44,12 +52,17 @@ nav > .right {
 
 nav > .left > h1 {
   font-family: "Andada Pro", serif;
+  font-size: 2rem;
 }
 
-.logo,
-svg {
+.logo {
   width: 28px;
   height: 28px;
+}
+
+svg {
+  width: 24px;
+  height: 24px;
 }
 
 .logo {
@@ -74,16 +87,19 @@ aside {
 aside > h1 {
   margin-bottom: 1rem;
   font-family: "Andada Pro", serif;
+  font-size: 2rem;
 }
 
 .btn-add-project {
-  padding: 0.5em 1.25em 0.6em;
+  padding: 0.6em 1.25em 0.6em;
   width: 100%;
   border: none;
   border-radius: 20px;
   background: black;
   color: white;
   cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
   transition: opacity 0.3s ease;
 }
 
@@ -91,11 +107,119 @@ aside > h1 {
   opacity: 0.8;
 }
 
+aside > ul {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+aside > ul > li {
+  padding: 0.5em 1em;
+  font-size: 0.875rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+aside > ul > li:hover {
+  background: #efefef;
+}
+
 /* -- MAIN -- */
 
 main {
+  padding: 1.5rem;
+  background: #ececec;
   grid-area: main;
-  background: lightyellow;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.btn-add-task {
+  padding: 0.5em 1.25em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.btn-add-task:hover {
+  opacity: 0.8;
+}
+
+.todo {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 20px;
+}
+
+.todo-top-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.todo-top-right-div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.todo-top-right-div > .btn-edit-todo {
+  width: 18px;
+  height: 18px;
+}
+
+.todo-top-right-div > .btn-remove-todo {
+  width: 20px;
+  height: 20px;
+}
+
+.todo-top-right-div > img {
+  box-sizing: content-box;
+  padding: 0.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.todo-top-right-div > img:hover {
+  background: #ececec;
+}
+
+.todo-middle-div {
+  margin-top: 0.25rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-title {
+  font-family: "Andada Pro", serif;
+  font-size: 1.25rem;
+}
+
+.todo-description {
+  font-size: 0.875rem;
+}
+
+.todo-due-date,
+.todo-priority {
+  padding: 0.35em 0.85em;
+  background: black;
+  color: white;
+  font-weight: 500;
+  border-radius: 16px;
+  font-size: 0.75rem;
+}
+
+.todo-description {
+  margin-top: 1rem;
 }
 
 /* -- FOOTER -- */
@@ -116,4 +240,154 @@ footer > p > a {
 
 footer > p > a:hover {
   text-decoration: underline;
+}
+
+/* -- DIALOG ADD PROJECT -- */
+
+.dialog-add-project::backdrop {
+  background: black;
+  opacity: 0.8;
+}
+
+.dialog-add-project {
+  border: none;
+  border-radius: 20px;
+}
+
+.form-add-project {
+  padding: 0.5rem;
+}
+
+.form-add-project > h1 {
+  font-family: "Andada Pro", serif;
+  font-size: 2rem;
+}
+
+.form-add-project > .input-container {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-add-project > .input-container > input {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.form-add-project > .input-container > input:focus {
+  border: 1px solid black;
+  outline: 1px solid black;
+}
+
+.form-add-project > .input-container > label {
+  font-size: 0.875rem;
+}
+
+.form-add-project > .buttons-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-add-project > .buttons-container > button {
+  padding: 0.4em 1.25em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.form-add-project > .buttons-container > button:hover {
+  opacity: 0.85;
+}
+
+/* -- DIALOG ADD TASK -- */
+
+.dialog-add-task::backdrop {
+  background: black;
+  opacity: 0.8;
+}
+
+.dialog-add-task {
+  border: none;
+  border-radius: 20px;
+}
+
+.form-add-task {
+  padding: 0.5rem;
+}
+
+.form-add-task > h1 {
+  font-family: "Andada Pro", serif;
+  font-size: 2rem;
+}
+
+.form-add-task > .inputs-container {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-add-task > .inputs-container > div {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-add-task input {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.form-add-task input:focus,
+.form-add-task select:focus,
+.form-add-task textarea:focus {
+  border: 1px solid black;
+  outline: 1px solid black;
+}
+
+.form-add-task label {
+  font-size: 0.875rem;
+}
+
+.form-add-task select {
+  background: white;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.form-add-task textarea {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.form-add-task > .buttons-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-add-task > .buttons-container > button {
+  padding: 0.4em 1.25em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.form-add-task > .buttons-container > button:hover {
+  opacity: 0.85;
 }
