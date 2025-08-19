@@ -1,6 +1,6 @@
 import { allProjects } from "./todoLogic";
 import { Element } from "./element";
-import addProject from "./addProject.js";
+import "./addProject.js";
 import displayProjectTodos from "./displayProjectTodos.js";
 import addTask from "./addTask.js";
 
@@ -33,6 +33,4 @@ export default function displayUI() {
       isFirstProject = false;
     }
   }
-
-  addProject();
 }
