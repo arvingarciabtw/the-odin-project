@@ -100,7 +100,7 @@
     </dialog>
     <dialog class="dialog-add-task">
       <form class="form-add-task">
-        <h1>Add Task</h1>
+        <h1>Add Todo</h1>
         <div class="inputs-container">
           <div class="input-title-container">
             <label for="title">Title</label>
@@ -148,6 +148,59 @@
         <div class="buttons-container">
           <button class="btn-submit-add-task" type="submit">Add</button>
           <button class="btn-close-add-task" type="button">Close</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog class="dialog-edit-task">
+      <form class="form-edit-task">
+        <h1>Edit Todo</h1>
+        <div class="inputs-container">
+          <div class="input-title-container">
+            <label for="title">Title</label>
+            <input
+              required
+              class="input-title-edit-task"
+              type="text"
+              id="title"
+              name="title"
+            />
+          </div>
+          <div class="input-due-date-container">
+            <label for="due-date">Due Date</label>
+            <input
+              required
+              class="input-due-date-edit-task"
+              type="date"
+              id="due-date"
+              name="due-date"
+            />
+          </div>
+          <div class="input-priority-container">
+            <label for="priority">Priority</label>
+            <select
+              required
+              class="input-priority-edit-task"
+              id="priority"
+              name="priority"
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="input-description-container">
+            <label for="description">Description</label>
+            <textarea
+              required
+              class="input-description-edit-task"
+              id="description"
+              name="description"
+            ></textarea>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button class="btn-submit-edit-task" type="submit">Add</button>
+          <button class="btn-close-edit-task" type="button">Close</button>
         </div>
       </form>
     </dialog>

@@ -9,8 +9,13 @@ const mainContainer = document.querySelector("main");
 
 let currentActiveProject = null;
 
-function displayFirstProject(project) {
+function displayFirstProject(project, projectEl) {
   mainContainer.innerHTML = "";
+  if (currentActiveProject) {
+    currentActiveProject.classList.remove("project-active");
+  }
+  projectEl.classList.add("project-active");
+  currentActiveProject = projectEl;
   addTask(project, mainContainer);
   displayProjectTodos(project, mainContainer);
 }
@@ -37,7 +42,7 @@ export default function displayUI() {
     });
 
     if (isFirstProject) {
-      displayFirstProject(project);
+      displayFirstProject(project, projectEl);
       isFirstProject = false;
     }
   }

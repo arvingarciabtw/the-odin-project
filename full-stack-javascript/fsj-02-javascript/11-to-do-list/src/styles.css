@@ -396,3 +396,90 @@ footer > p > a:hover {
 .form-add-task > .buttons-container > button:hover {
   opacity: 0.85;
 }
+
+/* -- DIALOG EDIT TASK -- */
+
+.dialog-edit-task::backdrop {
+  background: black;
+  opacity: 0.8;
+}
+
+.dialog-edit-task {
+  border: none;
+  border-radius: 20px;
+}
+
+.form-edit-task {
+  padding: 0.5rem;
+}
+
+.form-edit-task > h1 {
+  font-family: "Andada Pro", serif;
+  font-size: 2rem;
+}
+
+.form-edit-task > .inputs-container {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-edit-task > .inputs-container > div {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-edit-task input {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.form-edit-task input:focus,
+.form-edit-task select:focus,
+.form-edit-task textarea:focus {
+  border: 1px solid black;
+  outline: 1px solid black;
+}
+
+.form-edit-task label {
+  font-size: 0.875rem;
+}
+
+.form-edit-task select {
+  background: white;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+}
+
+.form-edit-task textarea {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.form-edit-task > .buttons-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-edit-task > .buttons-container > button {
+  padding: 0.4em 1.25em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.form-edit-task > .buttons-container > button:hover {
+  opacity: 0.85;
+}

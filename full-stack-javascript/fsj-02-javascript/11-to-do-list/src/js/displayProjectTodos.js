@@ -1,14 +1,9 @@
 import { Element, Image } from "./element.js";
 import editSVG from "../assets/images/edit.svg";
 import removeSVG from "../assets/images/remove.svg";
+import editTodo from "./editTodo.js";
 
 export default function displayProjectTodos(project, mainContainer) {
-  console.log("displayProjectTodos has been invoked!");
-  console.log("the project that was passed is: ");
-  console.log(project);
-  console.log("the mainContainer that was passed is: ");
-  console.log(mainContainer);
-
   mainContainer.innerHTML = "";
 
   for (const todo of project.listOfTodos) {
@@ -24,9 +19,12 @@ export default function displayProjectTodos(project, mainContainer) {
     const editTodoButton = new Image("btn-edit-todo", editSVG).create();
     const removeTodoButton = new Image("btn-remove-todo", removeSVG).create();
 
+    editTodoButton.addEventListener("click", () => {
+      editTodo(todo, project, mainContainer);
+    });
+
     removeTodoButton.addEventListener("click", () => {
       project.deleteTodo(todo);
-      console.log(project);
       displayProjectTodos(project, mainContainer);
     });
 
