@@ -1,4 +1,5 @@
 import displayProjectTodos from "./displayProjectTodos";
+import setLocalStorage from "./setLocalStorage.js";
 
 const dialog = document.querySelector(".dialog-edit-task");
 const closeDialogButton = document.querySelector(".btn-close-edit-task");
@@ -26,6 +27,7 @@ form.addEventListener("submit", (e) => {
     dueDate.value,
     priority.value,
   );
+  setLocalStorage();
 
   displayProjectTodos(currentProject, currentMainContainer);
   dialog.close();

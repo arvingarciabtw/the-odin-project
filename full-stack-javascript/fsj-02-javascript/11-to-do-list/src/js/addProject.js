@@ -1,6 +1,7 @@
 import { allProjects } from "./todoLogic";
 import displayUI from "./displayUI.js";
 import Project from "./projects.js";
+import setLocalStorage from "./setLocalStorage";
 
 const projectsContainer = document.querySelector(".projects-container");
 const addProjectButton = document.querySelector(".btn-add-project");
@@ -20,6 +21,7 @@ closeDialogAddProject.addEventListener("click", () => {
 formAddProject.addEventListener("submit", (e) => {
   e.preventDefault();
   allProjects.push(new Project(inputAddProject.value));
+  setLocalStorage();
   dialogAddProject.close();
   projectsContainer.innerHTML = "";
   displayUI();

@@ -1,7 +1,10 @@
+import { format } from "date-fns";
+
 import { Element, Image } from "./element.js";
 import editSVG from "../assets/images/edit.svg";
 import removeSVG from "../assets/images/remove.svg";
 import editTodo from "./editTodo.js";
+import setLocalStorage from "./setLocalStorage.js";
 
 export default function displayProjectTodos(project, mainContainer) {
   mainContainer.innerHTML = "";
@@ -25,6 +28,7 @@ export default function displayProjectTodos(project, mainContainer) {
 
     removeTodoButton.addEventListener("click", () => {
       project.deleteTodo(todo);
+      setLocalStorage();
       displayProjectTodos(project, mainContainer);
     });
 
@@ -49,6 +53,20 @@ export default function displayProjectTodos(project, mainContainer) {
     todoDescription.textContent = todo.description;
     todoDueDate.textContent = todo.dueDate;
     todoPriority.textContent = todo.priority;
+
+    const formattedDate = format(todo.dueDate, "MMMM dd, yyyy");
+    todoDueDate.textContent = formattedDate;
+
+    if (todo.priority === "Low") {
+      todoPriority.style.background = "#fdfd96";
+      todoPriority.style.color = "#222222";
+    } else if (todo.priority === "Medium") {
+      todoPriority.style.background = "#ffb347";
+      todoPriority.style.color = "#222222";
+    } else if (todo.priority === "High") {
+      todoPriority.style.background = "#ff6961";
+      todoPriority.style.color = "#222222";
+    }
 
     todoTopDiv.appendChild(todoTitle);
     todoTopDiv.appendChild(todoTopRightDiv);

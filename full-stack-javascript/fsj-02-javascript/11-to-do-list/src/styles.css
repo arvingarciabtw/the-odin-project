@@ -134,7 +134,8 @@ main {
   grid-area: main;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  align-items: start;
+  grid-auto-rows: max-content;
+  /* align-items: start; */
   gap: 1.5rem;
 }
 
@@ -198,7 +199,7 @@ main {
 }
 
 .todo-middle-div {
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   display: flex;
   gap: 0.5rem;
 }

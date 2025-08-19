@@ -24,7 +24,6 @@ export default function displayUI() {
   let isFirstProject = true;
 
   for (const project of allProjects) {
-    // Display all projects in sidebar
     const projectEl = new Element("li", null, project.name).create();
     projectsContainer.appendChild(projectEl);
 

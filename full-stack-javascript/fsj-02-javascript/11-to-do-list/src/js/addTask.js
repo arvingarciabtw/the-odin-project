@@ -1,5 +1,7 @@
 import displayProjectTodos from "./displayProjectTodos";
 import Todo from "./todos";
+import setLocalStorage from "./setLocalStorage";
+import { allProjects } from "./todoLogic";
 
 const addTaskButton = document.querySelector(".btn-add-task");
 const dialogAddTask = document.querySelector(".dialog-add-task");
@@ -35,6 +37,7 @@ formAddTask.addEventListener("submit", (e) => {
   displayProjectTodos(currentProject, currentMainContainer);
   dialogAddTask.close();
   formAddTask.reset();
+  setLocalStorage(allProjects);
 });
 
 closeDialogButton.addEventListener("click", () => {
