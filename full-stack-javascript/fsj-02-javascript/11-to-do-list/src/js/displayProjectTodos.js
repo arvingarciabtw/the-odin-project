@@ -24,6 +24,12 @@ export default function displayProjectTodos(project, mainContainer) {
     const editTodoButton = new Image("btn-edit-todo", editSVG).create();
     const removeTodoButton = new Image("btn-remove-todo", removeSVG).create();
 
+    removeTodoButton.addEventListener("click", () => {
+      project.deleteTodo(todo);
+      console.log(project);
+      displayProjectTodos(project, mainContainer);
+    });
+
     const todoTitle = new Element("h4", "todo-title", todo.title).create();
     const todoDescription = new Element(
       "p",

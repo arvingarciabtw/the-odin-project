@@ -21,7 +21,6 @@ export default function displayUI() {
     const projectEl = new Element("li", null, project.name).create();
     projectsContainer.appendChild(projectEl);
 
-    // Display all todos based on project clicked
     projectEl.addEventListener("click", () => {
       mainContainer.innerHTML = "";
 

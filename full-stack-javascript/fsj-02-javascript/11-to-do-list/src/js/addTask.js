@@ -34,7 +34,6 @@ formAddTask.addEventListener("submit", (e) => {
   currentProject.addTodo(newTodo);
   displayProjectTodos(currentProject, currentMainContainer);
   dialogAddTask.close();
-
   formAddTask.reset();
 });
 
