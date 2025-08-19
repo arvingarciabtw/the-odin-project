@@ -1,85 +1,69 @@
 import Todo from "./todos.js";
 import Project from "./projects.js";
-import log from "./logger.js";
 
-export default function displayTodoLogic() {
-  const chores = new Project("Chores");
-  const codingProject = new Project("Coding");
+const allProjects = [];
 
-  const toWashDishes = new Todo(
-    "wash dishes",
-    "need to wash the dishes",
-    "2025-08-30",
-    "high",
-  );
-  const toSweepFloor = new Todo(
-    "sweep floor",
-    "gonna sweep the floor",
-    "2025-08-21",
-    "medium",
-  );
+const htmlProject = new Project("HTML");
+const cssProject = new Project("CSS");
+const javascriptProject = new Project("JavaScript");
 
-  const learnHTML = new Todo(
-    "learn html",
-    "open HTML TOP course",
-    "2025-08-22",
-    "high",
-  );
+allProjects.push(htmlProject);
+allProjects.push(cssProject);
+allProjects.push(javascriptProject);
 
-  const learnCSS = new Todo(
-    "learn css",
-    "open CSS TOP course",
-    "2025-09-03",
-    "low",
-  );
+const todoHTML1 = new Todo(
+  "Semantic HTML",
+  "Learn about semantic HTML",
+  "2025-08-22",
+  "High",
+);
+const todoHTML2 = new Todo(
+  "Emmet",
+  "Study on how to use Emmet",
+  "2025-09-11",
+  "Low",
+);
+const todoHTML3 = new Todo(
+  "Form Validation",
+  "Read the MDN documentation on form validation",
+  "2025-09-14",
+  "High",
+);
 
-  const learnJS = new Todo(
-    "learn js",
-    "open JS TOP course",
-    "2025-09-17",
-    "high",
-  );
+const todoCSS1 = new Todo(
+  "Flexbox",
+  "Study flexbox properties",
+  "2025-08-29",
+  "High",
+);
+const todoCSS2 = new Todo(
+  "Grid",
+  "Study on how to use CSS grid",
+  "2025-09-19",
+  "High",
+);
 
-  chores.addTodo(toWashDishes);
-  chores.addTodo(toSweepFloor);
+const todoJS1 = new Todo(
+  "Event Listeners",
+  "Study on event listeners",
+  "2025-09-20",
+  "Low",
+);
+const todoJS2 = new Todo(
+  "ES6 Modules",
+  "Read articles about ES6 modules",
+  "2025-09-28",
+  "Medium",
+);
 
-  codingProject.addTodo(learnHTML);
-  codingProject.addTodo(learnCSS);
-  codingProject.addTodo(learnJS);
+htmlProject.addTodo(todoHTML1);
+htmlProject.addTodo(todoHTML2);
+htmlProject.addTodo(todoHTML3);
 
-  log("Chores are below:");
-  chores.listOfTodos.forEach((chore) => {
-    log(chore);
-  });
+cssProject.addTodo(todoCSS1);
+cssProject.addTodo(todoCSS2);
 
-  log("Coding stuff are below:");
-  codingProject.listOfTodos.forEach((codingTask) => {
-    log(codingTask);
-  });
+javascriptProject.addTodo(todoJS1);
+javascriptProject.addTodo(todoJS2);
 
-  learnHTML.editTodo(
-    "learn intermediate HTML",
-    "open intermediate HTML course",
-    "2025-10-10",
-    "high",
-  );
-
-  log("Edited the HTML to-do:");
-  log(learnHTML);
-  log("Coding stuff are below:");
-  codingProject.listOfTodos.forEach((codingTask) => {
-    log(codingTask);
-  });
-
-  codingProject.deleteTodo(learnHTML);
-
-  log("Deleted the HTML to-do!");
-
-  log("Coding stuff are below:");
-  codingProject.listOfTodos.forEach((codingTask) => {
-    log(codingTask);
-  });
-
-  log("But, the HTML todo still exists?");
-  log(learnHTML);
-}
+export { allProjects };
