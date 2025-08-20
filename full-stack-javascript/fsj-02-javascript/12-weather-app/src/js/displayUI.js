@@ -5,6 +5,10 @@ export default function displayUI(data) {
   function displayTodayMain() {
     const topDiv = document.querySelector("aside div.top");
     const bottomDiv = document.querySelector("aside div.bottom");
+
+    topDiv.innerHTML = "";
+    bottomDiv.innerHTML = "";
+
     const dateAndTimeContainer = new Element(
       "div",
       "date-and-time-container",
@@ -58,7 +62,13 @@ export default function displayUI(data) {
     bottomDiv.appendChild(humidity);
   }
 
-  // displayNextSevenDays()
+  function displayNextSevenDays() {
+    const daysContainer = document.querySelector(".days-container");
+
+    // for () {
+    //
+    // }
+  }
   // displayTodayHighlights()
 
   displayTodayMain();
