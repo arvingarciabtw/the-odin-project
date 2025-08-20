@@ -20,6 +20,7 @@ form.addEventListener("submit", async (e) => {
   console.log(processedWeatherData);
 
   displayUI(processedWeatherData);
+  form.reset();
 });
 
 export { processedWeatherData };

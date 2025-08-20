@@ -7,9 +7,15 @@
   font-family: "Geist", sans-serif;
 }
 
+:root {
+  --c-very-dark-blue: #121d3b;
+  --c-dark-blue: #1f2b47;
+  --c-blue: #82b4f1;
+}
+
 body {
   min-height: 100vh;
-  background: white;
+  background: var(--c-very-dark-blue);
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-rows: 72px 1fr 60px;
@@ -23,6 +29,21 @@ img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+}
+
+.icon-github-link {
+  transition: opacity 0.3s ease;
+}
+
+.icon-github-link:hover {
+  opacity: 0.6;
+}
+
+.icon-github {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  fill: white;
 }
 
 button {
@@ -41,14 +62,13 @@ h2 {
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 /* -- HEADER -- */
 
 header {
   grid-area: header;
-  border-bottom: 1px solid gray;
 }
 
 nav {
@@ -66,14 +86,16 @@ nav > form {
 nav > form > input {
   padding: 0 0.75em;
   border-radius: 8px;
-  border: 1px solid #dcdcdc;
-  color: gray;
+  border: 1px solid var(--c-dark-blue);
+  background: var(--c-dark-blue);
+  color: white;
 }
 
 nav > form > button,
 nav > .right > button.active {
-  background: black;
+  background: var(--c-dark-blue);
   color: white;
+  font-size: 0.8rem;
 }
 
 nav > .right {
@@ -102,8 +124,9 @@ nav > .right button {
 aside {
   padding: 1.5rem;
   grid-area: aside;
-  border-right: 1px solid gray;
   border-radius: 0 20px 20px 0;
+  background: var(--c-dark-blue);
+  color: white;
 }
 
 aside > h1 {
@@ -142,6 +165,7 @@ aside .location {
 
 aside > .container > .top > p.today-temp {
   font-size: 3.25rem;
+  color: var(--c-blue);
 }
 
 .date-and-time-container {
@@ -155,15 +179,13 @@ aside > .container > .top > p.today-temp {
 main {
   padding: 1.25rem;
   grid-area: main;
-  background: #ececec;
   display: flex;
   flex-direction: column;
-  /* justify-content: stretch; */
   gap: 1.5rem;
 }
 
-main > div.top {
-  /* height: 100%; */
+main h2 {
+  color: white;
 }
 
 main > div.bottom {
@@ -181,7 +203,8 @@ main > div.bottom {
 
 .day-container {
   padding: 1.25rem;
-  background: white;
+  background: var(--c-dark-blue);
+  color: white;
   border-radius: 20px;
   font-size: 0.875rem;
   display: flex;
@@ -189,6 +212,10 @@ main > div.bottom {
   justify-content: space-between;
   align-items: center;
   min-height: 150px;
+}
+
+.day-temp {
+  color: var(--c-blue);
 }
 
 .highlights-container {
@@ -201,7 +228,8 @@ main > div.bottom {
 
 .highlight-container {
   padding: 1.25rem;
-  background: white;
+  background: var(--c-dark-blue);
+  color: white;
   border-radius: 20px;
   font-size: 0.875rem;
   display: flex;
@@ -219,6 +247,7 @@ main > div.bottom {
 
 .highlight-value {
   font-size: 3rem;
+  color: var(--c-blue);
 }
 
 /* -- FOOTER -- */
@@ -228,18 +257,19 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid gray;
 }
 
 footer > p {
   font-size: 0.875rem;
+  color: white;
 }
 
 footer > p > a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 footer > p > a:hover {
   text-decoration: underline;
+  color: var(--c-blue);
 }
