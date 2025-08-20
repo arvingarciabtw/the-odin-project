@@ -1,2 +1,2 @@
 import "./styles.css";
-import "./js/displayUI.js";
+import "./js/submitLocation.js";

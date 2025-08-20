@@ -106,6 +106,49 @@ aside {
   border-radius: 0 20px 20px 0;
 }
 
+aside > h1 {
+  margin-bottom: 1rem;
+}
+
+aside .container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+aside .container p {
+  font-size: 0.875rem;
+}
+
+aside .top,
+aside .bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+aside .bottom {
+  gap: 0.5rem;
+}
+
+aside .today-img {
+  width: 250px;
+  height: 250px;
+}
+
+aside .location {
+  font-family: "Andada Pro", serif;
+}
+
+aside > .container > .top > p.today-temp {
+  font-size: 3.25rem;
+}
+
+.date-and-time-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
 /* -- MAIN -- */
 
 main {
