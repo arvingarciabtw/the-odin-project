@@ -10,3 +10,5 @@ const processedWeatherData = processWeatherData(weatherData);
 export default function initializeLocation() {
   displayUI(processedWeatherData);
 }
+
+export { processedWeatherData };

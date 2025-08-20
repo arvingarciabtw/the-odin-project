@@ -1,7 +1,24 @@
 import { Element, Image } from "./element.js";
 import { format, parse } from "date-fns";
+import setIcon from "./setIcon.js";
+import setIconsForWeek from "./setIconsForWeek.js";
 
 export default function displayUI(data) {
+  function getCurrentTempUnit() {
+    const celsiusButton = document.querySelector(".btn-celsius");
+    return celsiusButton && celsiusButton.classList.contains("active")
+      ? "celsius"
+      : "fahrenheit";
+  }
+
+  function formatTemp(tempF, unit = getCurrentTempUnit()) {
+    if (unit === "celsius") {
+      const tempC = ((5 / 9) * (tempF - 32)).toFixed(1);
+      return `${tempC} °C`;
+    }
+    return `${tempF} °F`;
+  }
+
   function displayTodayMain() {
     const topDiv = document.querySelector("aside div.top");
     const bottomDiv = document.querySelector("aside div.bottom");
@@ -15,12 +32,15 @@ export default function displayUI(data) {
       null,
     ).create();
 
-    const weatherImg = new Image("today-img", null).create();
+    const src = setIcon(data);
+
+    const weatherImg = new Image("today-img", src).create();
+
     const location = new Element("h3", "location", data.address).create();
     const temp = new Element(
       "p",
       "today-temp",
-      `${data.currentConditions.temp} °F`,
+      formatTemp(data.currentConditions.temp),
     ).create();
 
     const formattedDate = format(data.days[0].datetime, "EE, MMMM dd");
@@ -41,7 +61,7 @@ export default function displayUI(data) {
     const feelsLike = new Element(
       "p",
       "today-feels-like",
-      `Feels like ${data.currentConditions.feelslike} °F`,
+      `Feels like ${formatTemp(data.currentConditions.feelslike)}`,
     ).create();
     const humidity = new Element(
       "p",
@@ -64,16 +84,20 @@ export default function displayUI(data) {
 
   function displayNextSevenDays() {
     const daysContainer = document.querySelector(".days-container");
+    daysContainer.innerHTML = "";
 
     for (let i = 1; i <= 7; i++) {
       const dayContainer = new Element("div", "day-container", null).create();
       const formattedDate = format(data.days[i].datetime, "EEEE");
       const day = new Element("p", "day", formattedDate).create();
-      const icon = new Image("day-icon", null).create();
+
+      const src = setIconsForWeek(data, i);
+
+      const icon = new Image("day-icon", src).create();
       const temp = new Element(
         "p",
         "day-temp",
-        `${data.days[i].temp} °F`,
+        formatTemp(data.days[i].temp),
       ).create();
 
       dayContainer.appendChild(day);
@@ -86,6 +110,7 @@ export default function displayUI(data) {
 
   function displayTodayHighlights() {
     const highlightsContainer = document.querySelector(".highlights-container");
+    highlightsContainer.innerHTML = "";
 
     const titleNames = [
       "Dew",
@@ -96,12 +121,20 @@ export default function displayUI(data) {
       "Wind Speed",
     ];
     const highlightValues = [
-      `${data.currentConditions.dew} °F`,
+      formatTemp(data.currentConditions.dew),
       data.currentConditions.uvindex,
       `${data.currentConditions.visibility} mi`,
       `${data.currentConditions.winddir}°`,
       `${data.currentConditions.windgust} mph`,
       `${data.currentConditions.windspeed} mph`,
+    ];
+    const classNames = [
+      "dew",
+      "uv-index",
+      "visibility",
+      "wind-direction",
+      "wind-gust",
+      "wind-speed",
     ];
 
     for (let i = 0; i < 6; i++) {
@@ -117,9 +150,10 @@ export default function displayUI(data) {
       ).create();
       const value = new Element(
         "p",
-        "highlight-value",
+        classNames[i],
         highlightValues[i],
       ).create();
+      value.classList.add("highlight-value");
 
       highlightContainer.appendChild(title);
       highlightContainer.appendChild(value);

@@ -137,6 +137,7 @@ aside .today-img {
 
 aside .location {
   font-family: "Andada Pro", serif;
+  text-transform: capitalize;
 }
 
 aside > .container > .top > p.today-temp {
@@ -217,7 +218,7 @@ main > div.bottom {
 }
 
 .highlight-value {
-  font-size: 3.5rem;
+  font-size: 3rem;
 }
 
 /* -- FOOTER -- */
