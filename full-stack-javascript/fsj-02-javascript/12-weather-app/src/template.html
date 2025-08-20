@@ -4,17 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weathr</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/profile.jpg" />
   </head>
   <body>
-    <form class="form-location">
-      <input
-        class="input-location"
-        type="text"
-        id="location"
-        name="location"
-        placeholder="Enter a location here"
-      />
-      <button type="submit">Get Weather Data</button>
-    </form>
+    <header>
+      <nav>
+        <form class="form-location">
+          <input
+            class="input-location"
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Enter a location here"
+          />
+          <button type="submit">Get Weather Data</button>
+        </form>
+        <div class="right">
+          <button class="btn-fahrenheit active">°F</button>
+          <button class="btn-celsius">°C</button>
+          <img src="./assets/images/profile.jpg" alt="profile picture" />
+        </div>
+      </nav>
+    </header>
+    <aside>
+      <h1>Weathr.</h1>
+      <div class="top"></div>
+      <div class="bottom"></div>
+    </aside>
+    <main>
+      <div class="top">
+        <h2>Next 7 Days</h2>
+        <div class="days-container"></div>
+      </div>
+      <div class="bottom">
+        <h2>Today's Highlights</h2>
+        <div class="highlights-container"></div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        Made by
+        <a
+          href="https://github.com/arvingarciabtw"
+          target="_blank"
+          rel="noopener noreferrer"
+          >@arvingarciabtw</a
+        >
+      </p>
+    </footer>
   </body>
 </html>
