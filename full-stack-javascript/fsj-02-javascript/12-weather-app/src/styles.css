@@ -157,16 +157,67 @@ main {
   background: #ececec;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
+  /* justify-content: stretch; */
   gap: 1.5rem;
 }
 
 main > div.top {
-  height: 100%;
+  /* height: 100%; */
 }
 
 main > div.bottom {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.days-container {
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.day-container {
+  padding: 1.25rem;
+  background: white;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 150px;
+}
+
+.highlights-container {
+  flex: 1;
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.highlight-container {
+  padding: 1.25rem;
+  background: white;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  height: 100%;
+}
+
+.highlight-title {
+  padding-left: 2px;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.highlight-value {
+  font-size: 3.5rem;
 }
 
 /* -- FOOTER -- */
