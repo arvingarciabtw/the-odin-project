@@ -1,5 +1,6 @@
 import "./styles.css";
 import getWeatherData from "./js/getWeatherData";
+import processWeatherData from "./js/processWeatherData";
 
 const apiKey = process.env.API_KEY;
 
@@ -9,3 +10,7 @@ console.log("Weather data is:");
 console.log(weatherData);
 console.log("The address passed in is:");
 console.log(weatherData.address);
+
+const processedWeatherData = processWeatherData(weatherData);
+
+console.log(processedWeatherData);
