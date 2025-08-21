@@ -16,7 +16,7 @@
 
 ## 🚀 Live Site
 
-The live site can be viewed [here](https://to-do-list-arvingarciabtw.vercel.app/).
+The live site can be viewed [here](https://weather-app-arvingarciabtw.vercel.app/).
 
 ## 📝 Project Description
 
