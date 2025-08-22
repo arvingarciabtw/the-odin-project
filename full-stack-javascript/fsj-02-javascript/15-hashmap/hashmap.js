@@ -75,4 +75,92 @@ class HashMap {
     return this.get(key) !== null;
   }
 
+  remove(key) {
+    const index = this.hash(key);
+    const bucket = this.buckets[index];
+
+    if (!bucket) return false;
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        bucket.splice(i, 1);
+        this.size--;
+
+        if (bucket.length === 0) {
+          this.buckets[index] = undefined;
+        }
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  length() {
+    return this.size;
+  }
+
+  clear() {
+    this.buckets = new Array(this.capacity);
+    this.size = 0;
+  }
+
+  keys() {
+    const keysArray = [];
+
+    for (let bucket of this.buckets) {
+      if (bucket) {
+        for (let node of bucket) {
+          keysArray.push(node.key);
+        }
+      }
+    }
+
+    return keysArray;
+  }
+
+  values() {
+    const valuesArray = [];
+
+    for (let bucket of this.buckets) {
+      if (bucket) {
+        for (let node of bucket) {
+          valuesArray.push(node.value);
+        }
+      }
+    }
+
+    return valuesArray;
+  }
+
+  entries() {
+    const entriesArray = [];
+
+    for (let bucket of this.buckets) {
+      if (bucket) {
+        for (let node of bucket) {
+          entriesArray.push([node.key, node.value]);
+        }
+      }
+    }
+
+    return entriesArray;
+  }
+
+  _inspect() {
+    console.log(
+      `Capacity: ${this.capacity}, Size: ${this.size}, Load: ${(this.size / this.capacity).toFixed(3)}`,
+    );
+    console.log(
+      "Buckets:",
+      this.buckets
+        .map((bucket, i) =>
+          bucket ? `${i}: [${bucket.map((n) => n.key).join(", ")}]` : null,
+        )
+        .filter((x) => x),
+    );
+  }
 }
+
+export { HashMap };
