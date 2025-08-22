@@ -21,3 +21,23 @@ console.log(`Fibonacci, input 1: ${iterativeFibs(1)}`);
 console.log(`Fibonacci, input 2: ${iterativeFibs(2)}`);
 console.log(`Fibonacci, input 8: ${iterativeFibs(8)}`);
 
+// Recursive Fibonacci function
+function recursiveFibs(n) {
+  if (n < 2) {
+    return [0];
+  }
+
+  if (n < 3) {
+    return [0, 1];
+  }
+
+  let arr = recursiveFibs(n - 1);
+  arr.push(arr[n - 2] + arr[n - 3]);
+  return arr;
+}
+
+console.log("\n -- RECURSIVE FIBONACCI -- \n");
+console.log(`Fibonacci, input 1: ${recursiveFibs(1)}`);
+console.log(`Fibonacci, input 2: ${recursiveFibs(2)}`);
+console.log(`Fibonacci, input 8: ${recursiveFibs(8)}`);
+
