@@ -158,7 +158,11 @@ export default function displayUI(data) {
       highlightContainer.appendChild(title);
       highlightContainer.appendChild(value);
 
-      highlightsContainer.appendChild(highlightContainer);
+      console.log(highlightValues[i]);
+
+      if (highlightValues[i] !== "null mph") {
+        highlightsContainer.appendChild(highlightContainer);
+      }
     }
   }
 
