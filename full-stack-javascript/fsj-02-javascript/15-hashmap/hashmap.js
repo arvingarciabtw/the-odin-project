@@ -32,4 +32,47 @@ class HashMap {
     }
   }
 
+  set(key, value) {
+    if (this.size >= this.capacity * this.loadFactor) {
+      this._resize();
+    }
+
+    const index = this.hash(key);
+
+    if (!this.buckets[index]) {
+      this.buckets[index] = [];
+    }
+
+    const bucket = this.buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].key === key) {
+        bucket[i].value = value;
+        return; // Don't increment size for updates
+      }
+    }
+
+    bucket.push({ key, value });
+    this.size++;
+  }
+
+  get(key) {
+    const index = this.hash(key);
+    const bucket = this.buckets[index];
+
+    if (!bucket) return null;
+
+    for (let node of bucket) {
+      if (node.key === key) {
+        return node.value;
+      }
+    }
+
+    return null;
+  }
+
+  has(key) {
+    return this.get(key) !== null;
+  }
+
 }
