@@ -32,4 +32,12 @@ class Knight {
     return validMoves;
   }
 
+  positionToString(position) {
+    return `${position[0]},${position[1]}`;
+  }
+
+  stringToPosition(posStr) {
+    return posStr.split(",").map(Number);
+  }
+
 }
