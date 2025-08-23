@@ -256,3 +256,99 @@ class Tree {
   }
 }
 
+function generateRandomArray(size, max = 100) {
+  const array = [];
+  for (let i = 0; i < size; i++) {
+    array.push(Math.floor(Math.random() * max));
+  }
+  return array;
+}
+
+function driverScript() {
+  console.log("=== Binary Search Tree Driver Script ===\n");
+
+  console.log("1. Creating BST from random numbers < 100...");
+  const randomArray = generateRandomArray(15, 100);
+  console.log("Random array:", randomArray);
+
+  const bst = new Tree(randomArray);
+  console.log("\nInitial BST:");
+  bst.prettyPrint();
+
+  console.log("\n2. Checking if tree is balanced...");
+  console.log("Is balanced:", bst.isBalanced());
+
+  console.log("\n3. Tree traversals:");
+
+  const levelOrder = [];
+  const preOrder = [];
+  const postOrder = [];
+  const inOrder = [];
+
+  bst.levelOrderForEach((node) => levelOrder.push(node.data));
+  bst.preOrderForEach((node) => preOrder.push(node.data));
+  bst.postOrderForEach((node) => postOrder.push(node.data));
+  bst.inOrderForEach((node) => inOrder.push(node.data));
+
+  console.log("Level order:", levelOrder);
+  console.log("Pre order:", preOrder);
+  console.log("Post order:", postOrder);
+  console.log("In order:", inOrder);
+
+  console.log("\n4. Unbalancing tree by adding numbers > 100...");
+  const largeNumbers = [101, 102, 103, 104, 105, 106, 107];
+  largeNumbers.forEach((num) => bst.insert(num));
+
+  console.log("\nUnbalanced BST:");
+  bst.prettyPrint();
+
+  console.log("\n5. Checking if tree is balanced...");
+  console.log("Is balanced:", bst.isBalanced());
+
+  console.log("\n6. Rebalancing tree...");
+  bst.rebalance();
+
+  console.log("\nRebalanced BST:");
+  bst.prettyPrint();
+
+  console.log("\n7. Checking if tree is balanced...");
+  console.log("Is balanced:", bst.isBalanced());
+
+  console.log("\n8. Tree traversals after rebalancing:");
+
+  levelOrder.length = 0;
+  preOrder.length = 0;
+  postOrder.length = 0;
+  inOrder.length = 0;
+
+  bst.levelOrderForEach((node) => levelOrder.push(node.data));
+  bst.preOrderForEach((node) => preOrder.push(node.data));
+  bst.postOrderForEach((node) => postOrder.push(node.data));
+  bst.inOrderForEach((node) => inOrder.push(node.data));
+
+  console.log("Level order:", levelOrder);
+  console.log("Pre order:", preOrder);
+  console.log("Post order:", postOrder);
+  console.log("In order:", inOrder);
+
+  console.log("\n=== Additional Method Demonstrations ===");
+
+  console.log("\nFind operations:");
+  console.log("Find 5:", bst.find(5));
+  console.log("Find 999:", bst.find(999));
+
+  console.log("\nHeight and depth operations:");
+  const testValue = inOrder[Math.floor(inOrder.length / 2)];
+  console.log(`Height of ${testValue}:`, bst.height(testValue));
+  console.log(`Depth of ${testValue}:`, bst.depth(testValue));
+
+  console.log("\nDelete operations:");
+  console.log("Before deletion:");
+  bst.prettyPrint();
+
+  bst.deleteItem(testValue);
+  console.log(`After deleting ${testValue}:`);
+  bst.prettyPrint();
+}
+
+driverScript();
