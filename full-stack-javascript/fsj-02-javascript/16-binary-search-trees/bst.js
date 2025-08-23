@@ -188,4 +188,71 @@ class Tree {
     }
   }
 
+  height(value) {
+    const node = this.find(value);
+    if (node === null) {
+      return null;
+    }
+    return this._heightRec(node);
+  }
+
+  _heightRec(node) {
+    if (node === null) {
+      return -1;
+    }
+
+    const leftHeight = this._heightRec(node.left);
+    const rightHeight = this._heightRec(node.right);
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  depth(value) {
+    return this._depthRec(this.root, value, 0);
+  }
+
+  _depthRec(node, value, currentDepth) {
+    if (node === null) {
+      return null;
+    }
+
+    if (node.data === value) {
+      return currentDepth;
+    }
+
+    if (value < node.data) {
+      return this._depthRec(node.left, value, currentDepth + 1);
+    } else {
+      return this._depthRec(node.right, value, currentDepth + 1);
+    }
+  }
+
+  isBalanced() {
+    return this._isBalancedRec(this.root) !== -1;
+  }
+
+  _isBalancedRec(node) {
+    if (node === null) {
+      return 0;
+    }
+
+    const leftHeight = this._isBalancedRec(node.left);
+    if (leftHeight === -1) return -1;
+
+    const rightHeight = this._isBalancedRec(node.right);
+    if (rightHeight === -1) return -1;
+
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+      return -1;
+    }
+
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  rebalance() {
+    const values = [];
+    this.inOrderForEach((node) => values.push(node.data));
+    this.root = this.buildTree(values);
+  }
 }
+
