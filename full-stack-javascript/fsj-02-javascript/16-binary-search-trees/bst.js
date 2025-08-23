@@ -40,4 +40,85 @@ class Tree {
       this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
   }
+
+  insert(value) {
+    this.root = this._insertRec(this.root, value);
+  }
+
+  _insertRec(node, value) {
+    if (node === null) {
+      return new Node(value);
+    }
+
+    if (value === node.data) {
+      return node;
+    }
+
+    if (value < node.data) {
+      node.left = this._insertRec(node.left, value);
+    } else {
+      node.right = this._insertRec(node.right, value);
+    }
+
+    return node;
+  }
+
+  deleteItem(value) {
+    this.root = this._deleteRec(this.root, value);
+  }
+
+  _deleteRec(node, value) {
+    if (node === null) {
+      return node;
+    }
+
+    if (value < node.data) {
+      node.left = this._deleteRec(node.left, value);
+    } else if (value > node.data) {
+      node.right = this._deleteRec(node.right, value);
+    } else {
+      if (node.left === null && node.right === null) {
+        return null;
+      }
+
+      if (node.left === null) {
+        return node.right;
+      }
+      if (node.right === null) {
+        return node.left;
+      }
+
+      const successor = this._findMin(node.right);
+
+      node.data = successor.data;
+
+      node.right = this._deleteRec(node.right, successor.data);
+    }
+
+    return node;
+  }
+
+  _findMin(node) {
+    while (node.left !== null) {
+      node = node.left;
+    }
+    return node;
+  }
+
+  find(value) {
+    return this._findRec(this.root, value);
+  }
+
+  _findRec(node, value) {
+    if (node === null || node.data === value) {
+      return node;
+    }
+
+    if (value < node.data) {
+      return this._findRec(node.left, value);
+    } else {
+      return this._findRec(node.right, value);
+    }
+  }
+
 }
