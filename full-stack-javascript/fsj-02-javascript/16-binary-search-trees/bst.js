@@ -121,4 +121,71 @@ class Tree {
     }
   }
 
+  levelOrderForEach(callback) {
+    if (!callback) {
+      throw new Error("Callback function is required");
+    }
+
+    if (this.root === null) return;
+
+    const queue = [this.root];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      callback(node);
+
+      if (node.left !== null) {
+        queue.push(node.left);
+      }
+      if (node.right !== null) {
+        queue.push(node.right);
+      }
+    }
+  }
+
+  inOrderForEach(callback) {
+    if (!callback) {
+      throw new Error("Callback function is required");
+    }
+    this._inOrderRec(this.root, callback);
+  }
+
+  _inOrderRec(node, callback) {
+    if (node !== null) {
+      this._inOrderRec(node.left, callback);
+      callback(node);
+      this._inOrderRec(node.right, callback);
+    }
+  }
+
+  preOrderForEach(callback) {
+    if (!callback) {
+      throw new Error("Callback function is required");
+    }
+    this._preOrderRec(this.root, callback);
+  }
+
+  _preOrderRec(node, callback) {
+    if (node !== null) {
+      callback(node);
+      this._preOrderRec(node.left, callback);
+      this._preOrderRec(node.right, callback);
+    }
+  }
+
+  postOrderForEach(callback) {
+    if (!callback) {
+      throw new Error("Callback function is required");
+    }
+    this._postOrderRec(this.root, callback);
+  }
+
+  _postOrderRec(node, callback) {
+    if (node !== null) {
+      this._postOrderRec(node.left, callback);
+      this._postOrderRec(node.right, callback);
+      callback(node);
+    }
+  }
+
 }
