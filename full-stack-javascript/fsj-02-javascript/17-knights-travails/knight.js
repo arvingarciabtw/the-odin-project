@@ -86,4 +86,41 @@ class Knight {
     throw new Error("No path found");
   }
 
+  displayKnightMoves(start, end) {
+    const path = this.knightMoves(start, end);
+    const moves = path.length - 1;
+
+    console.log(
+      `You made it in ${moves} move${moves !== 1 ? "s" : ""}! Here's your path:`,
+    );
+    path.forEach((position) => {
+      console.log(`  [${position[0]},${position[1]}]`);
+    });
+
+    return path;
+  }
 }
+
+const knight = new Knight();
+
+function knightMoves(start, end) {
+  return knight.knightMoves(start, end);
+}
+
+console.log("-- KNIGHT'S TRAVAILS --\n");
+
+console.log("Example 1: [0,0] to [1,2]");
+console.log("Result:", knightMoves([0, 0], [1, 2]));
+knight.displayKnightMoves([0, 0], [1, 2]);
+
+console.log("\nExample 2: [0,0] to [3,3]");
+console.log("Result:", knightMoves([0, 0], [3, 3]));
+knight.displayKnightMoves([0, 0], [3, 3]);
+
+console.log("\nExample 3: [3,3] to [0,0]");
+console.log("Result:", knightMoves([3, 3], [0, 0]));
+knight.displayKnightMoves([3, 3], [0, 0]);
+
+console.log("\nExample 4: [0,0] to [7,7]");
+console.log("Result:", knightMoves([0, 0], [7, 7]));
+knight.displayKnightMoves([0, 0], [7, 7]);
