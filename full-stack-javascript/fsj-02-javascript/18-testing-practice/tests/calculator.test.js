@@ -62,3 +62,33 @@ describe("multiplication", () => {
     expect(calculator.multiply(undefined, null)).toBe("ERROR");
   });
 });
+
+describe("division", () => {
+  test("divide 10 by 2", () => {
+    expect(calculator.divide(10, 2)).toBe(5);
+  });
+  test("divide 69 and 69", () => {
+    expect(calculator.divide(69, 69)).toBe(1);
+  });
+  test("divide with first operand being 0", () => {
+    expect(calculator.divide(0, 69)).toBe(0);
+  });
+  test("divide with second operand being 0", () => {
+    expect(calculator.divide(69, 0)).toBe("ERROR");
+  });
+  test("divide a negative number", () => {
+    expect(calculator.divide(-10, 5)).toBe(-2);
+  });
+  test("divide two negative numbers", () => {
+    expect(calculator.divide(-10, -5)).toBe(2);
+  });
+  test("an operand is a string", () => {
+    expect(calculator.divide("2", 5)).toBe("ERROR");
+  });
+  test("an operand is null", () => {
+    expect(calculator.divide(6, null)).toBe("ERROR");
+  });
+  test("an operand is undefined", () => {
+    expect(calculator.divide(undefined, null)).toBe("ERROR");
+  });
+});
