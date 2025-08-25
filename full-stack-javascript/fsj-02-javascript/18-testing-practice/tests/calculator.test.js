@@ -35,3 +35,30 @@ describe("subtraction", () => {
     expect(calculator.subtract(undefined, null)).toBe("ERROR");
   });
 });
+
+describe("multiplication", () => {
+  test("multiply 1 and 2", () => {
+    expect(calculator.multiply(1, 2)).toBe(2);
+  });
+  test("multiply 69 and 69", () => {
+    expect(calculator.multiply(69, 69)).toBe(4761);
+  });
+  test("multiply with one operand being 0", () => {
+    expect(calculator.multiply(0, 69)).toBe(0);
+  });
+  test("multiply a negative number", () => {
+    expect(calculator.multiply(-4, 5)).toBe(-20);
+  });
+  test("multiply two negative numbers", () => {
+    expect(calculator.multiply(-4, -5)).toBe(20);
+  });
+  test("an operand is a string", () => {
+    expect(calculator.multiply("2", 5)).toBe("ERROR");
+  });
+  test("an operand is null", () => {
+    expect(calculator.multiply(6, null)).toBe("ERROR");
+  });
+  test("an operand is undefined", () => {
+    expect(calculator.multiply(undefined, null)).toBe("ERROR");
+  });
+});
