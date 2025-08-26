@@ -1,0 +1,24 @@
+{
+  "name": "19-battleship",
+  "version": "1.0.0",
+  "description": "The classic battleship game built with JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./configs/webpack.prod.js",
+    "dev": "webpack serve --open --config ./configs/webpack.dev.js",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^7.1.2",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.4",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
+  }
+}
