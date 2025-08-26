@@ -22,6 +22,7 @@ class Gameboard {
     this.length = 8;
     this.board = [];
     this.missedAttacks = [];
+    this.ships = [];
   }
 
   renderBoard() {
@@ -31,17 +32,33 @@ class Gameboard {
         this.board[i].push("O");
       }
     }
+
+    this.ships.forEach((coordinates) => {
+      coordinates.forEach(([x, y]) => {
+        this.board[x][y] = "S";
+      });
+    });
+
     return this.board;
   }
 
   placeShip(ship, xCoord, yCoord, orientation) {
     let coordinates = [];
 
+    this.renderBoard();
+
     if (orientation === "alongX") {
       for (let i = 0; i < ship.length; i++) {
         let shiftFactor = yCoord + i;
 
         if (shiftFactor >= this.length) {
+          coordinates = [];
+          return coordinates;
+        }
+
+        let cell = this.board[xCoord][shiftFactor];
+
+        if (cell === "S") {
           coordinates = [];
           return coordinates;
         }
@@ -59,9 +76,19 @@ class Gameboard {
           return coordinates;
         }
 
+        let cell = this.board[shiftFactor][yCoord];
+
+        if (cell === "S") {
+          coordinates = [];
+          return coordinates;
+        }
+
         coordinates.push([shiftFactor, yCoord]);
       }
     }
+
+    coordinates.length > 0;
+    this.ships.push(coordinates);
 
     return coordinates;
   }
