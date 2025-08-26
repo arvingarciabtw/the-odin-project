@@ -6,15 +6,30 @@
   "scripts": {
     "build": "webpack --config ./configs/webpack.prod.js",
     "dev": "webpack serve --open --config ./configs/webpack.dev.js",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": [
+        "babel-jest",
+        {
+          "configFile": "./configs/babel.config.js"
+        }
+      ]
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.28.3",
+    "@babel/preset-env": "^7.28.3",
+    "babel-jest": "^30.0.5",
     "css-loader": "^7.1.2",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.4",
+    "jest": "^30.0.5",
     "style-loader": "^4.0.0",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
