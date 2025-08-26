@@ -26,3 +26,19 @@ describe("hit()", () => {
     expect(ship2.hitCount).toBe(4);
   });
 });
+
+describe("isSunk()", () => {
+  const ship1 = new Ship(5, 4);
+  test("not sunken", () => {
+    expect(ship1.isSunken).toBe(false);
+  });
+  test("should sink after it gets hit and it matches the length", () => {
+    ship1.hit();
+    expect(ship1.isSunken).toBe(true);
+  });
+  test("should still be sank and hit count should still be the same as length", () => {
+    ship1.hit();
+    expect(ship1.isSunken).toBe(true);
+    expect(ship1.hitCount).toBe(5);
+  });
+});
