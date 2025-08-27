@@ -15,6 +15,11 @@
   --c-blue-3: #63ecef;
 }
 
+::selection {
+  background: var(--c-blue-3);
+  color: var(--c-very-dark-blue);
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -133,6 +138,7 @@ main > .bottom section {
   transition:
     color 0.3s ease,
     opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .btns-container button:hover {
@@ -202,7 +208,6 @@ main .right {
 main .grid-container,
 main .grid-container-enemy {
   flex: 1;
-  /* border: 1px solid var(--c-blue-3); */
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -216,11 +221,11 @@ main .grid-container-enemy {
   transition: border 0.2s ease;
 }
 
-.board-cell:hover {
+.board-cell.enemy-cell:hover {
   border: 1px solid var(--c-blue-3);
 }
 
-.board-cell:active {
+.board-cell.enemy-cell:active {
   border: 1px solid var(--c-blue-2);
 }
 
