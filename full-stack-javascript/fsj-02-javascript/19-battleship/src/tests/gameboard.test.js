@@ -4,14 +4,16 @@ describe("renderBoard()", () => {
   test("render empty board", () => {
     const gameboard = new Gameboard();
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 });
@@ -60,14 +62,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(fiveWideShip, 0, 0, "alongX");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -81,14 +85,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(fourWideShip, 0, 0, "alongY");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -102,14 +108,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(fourWideShip, 1, 0, "alongY");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -125,18 +133,20 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(threeWideShip, 3, 0, "alongX");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
-  test("render after invalidly placing another ship along X at [7, 7]", () => {
+  test("render after validly placing another ship along X at [7, 7]", () => {
     const fiveWideShip = new Ship(5);
     const fourWideShip = new Ship(4);
     const threeWideShip = new Ship(3);
@@ -148,14 +158,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(threeWideShip, 7, 7, "alongX");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "S", "S", "S"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -171,14 +183,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(threeWideShip, 6, 3, "alongX");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "S", "S", "S", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -196,14 +210,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(fourWideShipTwo, 4, 3, "alongY");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "S", "S", "S", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -221,14 +237,16 @@ describe("render the board after placing a/some ship/s", () => {
     gameboard.placeShip(fourWideShipTwo, 4, 3, "alongY");
 
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["S", "S", "S", "S", "S", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "S", "S", "S", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "S", "S", "S", "S", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 });
@@ -285,14 +303,16 @@ describe("receiveAttack()", () => {
 
   test("render board after a ship has sunk", () => {
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["H", "H", "H", "H", "H", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "S", "S", "S", "X", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "X"],
+      ["H", "H", "H", "H", "H", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "X", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "X", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -308,14 +328,16 @@ describe("receiveAttack()", () => {
     expect(resultThree.ship).toBe(null);
     expect(fourWideShip.hitCount).toBe(1);
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["H", "H", "H", "H", "H", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "X", "O"],
-      ["H", "O", "O", "O", "O", "O", "O", "O"],
-      ["S", "O", "X", "O", "O", "O", "O", "O"],
-      ["S", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "S", "S", "S", "X", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "X"],
+      ["H", "H", "H", "H", "H", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "X", "O", "O", "O"],
+      ["H", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "X", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "X", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "X", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
   });
 
@@ -327,14 +349,16 @@ describe("receiveAttack()", () => {
     gameboard.receiveAttack(6, 4);
     gameboard.receiveAttack(6, 5);
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["H", "H", "H", "H", "H", "O", "O", "O"],
-      ["H", "O", "O", "O", "O", "O", "X", "O"],
-      ["H", "O", "O", "O", "O", "O", "O", "O"],
-      ["H", "O", "X", "O", "O", "O", "O", "O"],
-      ["H", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "H", "H", "H", "X", "O"],
-      ["O", "O", "O", "O", "O", "O", "O", "X"],
+      ["H", "H", "H", "H", "H", "O", "O", "O", "O", "O"],
+      ["H", "O", "O", "O", "O", "O", "X", "O", "O", "O"],
+      ["H", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["H", "O", "X", "O", "O", "O", "O", "O", "O", "O"],
+      ["H", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "H", "H", "H", "X", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "X", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O", "O", "O"],
     ]);
     expect(gameboard.allShipsSunk()).toBe(true);
   });

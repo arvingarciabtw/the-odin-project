@@ -19,7 +19,7 @@ class Ship {
 
 class Gameboard {
   constructor() {
-    this.length = 8;
+    this.length = 10;
     this.board = [];
     this.missedAttacks = [];
     this.hitAttacks = [];
