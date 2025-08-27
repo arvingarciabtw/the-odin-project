@@ -47,10 +47,6 @@ ul {
   list-style-type: none;
 }
 
-button {
-  cursor: pointer;
-}
-
 .wrapper {
   margin: 0 auto;
   max-width: 1400px;
@@ -226,6 +222,28 @@ main .grid-container-enemy {
 
 .board-cell:active {
   border: 1px solid var(--c-blue-2);
+}
+
+.board-cell.ship {
+  background-color: var(--c-blue-3);
+}
+
+.board-cell.hit {
+  background-color: red;
+  border-color: red;
+}
+
+.board-cell.miss {
+  background: var(--c-dark-blue);
+  border-color: var(--c-dark-blue);
+}
+
+.board-cell.water {
+  background: transparent;
+}
+
+.enemy-cell {
+  cursor: pointer;
 }
 
 /* == FOOTER == */
