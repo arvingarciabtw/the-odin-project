@@ -318,4 +318,24 @@ describe("receiveAttack()", () => {
       ["O", "O", "O", "O", "O", "O", "O", "X"],
     ]);
   });
+
+  test("all ships sunken", () => {
+    gameboard.receiveAttack(1, 0);
+    gameboard.receiveAttack(3, 0);
+    gameboard.receiveAttack(4, 0);
+    gameboard.receiveAttack(6, 3);
+    gameboard.receiveAttack(6, 4);
+    gameboard.receiveAttack(6, 5);
+    expect(gameboard.renderBoard()).toStrictEqual([
+      ["H", "H", "H", "H", "H", "O", "O", "O"],
+      ["H", "O", "O", "O", "O", "O", "X", "O"],
+      ["H", "O", "O", "O", "O", "O", "O", "O"],
+      ["H", "O", "X", "O", "O", "O", "O", "O"],
+      ["H", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "H", "H", "H", "X", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "X"],
+    ]);
+    expect(gameboard.allShipsSunk()).toBe(true);
+  });
 });
