@@ -22,6 +22,7 @@ class Gameboard {
     this.length = 8;
     this.board = [];
     this.missedAttacks = [];
+    this.hitAttacks = [];
     this.ships = [];
   }
 
@@ -37,6 +38,14 @@ class Gameboard {
       shipData.coordinates.forEach(([x, y]) => {
         this.board[x][y] = "S";
       });
+    });
+
+    this.hitAttacks.forEach(([x, y]) => {
+      this.board[x][y] = "H";
+    });
+
+    this.missedAttacks.forEach(([x, y]) => {
+      this.board[x][y] = "X";
     });
 
     return this.board;
@@ -109,6 +118,7 @@ class Gameboard {
 
       if (hitShip) {
         hitShip.ship.hit();
+        this.hitAttacks.push([xCoord, yCoord]);
         return {
           message: "Hit a ship!",
           ship: hitShip.ship,

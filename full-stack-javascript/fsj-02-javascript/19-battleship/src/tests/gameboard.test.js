@@ -285,14 +285,37 @@ describe("receiveAttack()", () => {
 
   test("render board after a ship has sunk", () => {
     expect(gameboard.renderBoard()).toStrictEqual([
-      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["H", "H", "H", "H", "H", "O", "O", "O"],
       ["S", "O", "O", "O", "O", "O", "O", "O"],
       ["S", "O", "O", "O", "O", "O", "O", "O"],
       ["S", "O", "O", "O", "O", "O", "O", "O"],
       ["S", "O", "O", "O", "O", "O", "O", "O"],
       ["O", "O", "O", "O", "O", "O", "O", "O"],
-      ["O", "O", "O", "S", "S", "S", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "X", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "X"],
+    ]);
+  });
+
+  test("hit a ship on [2, 0], hit empty waters on [3, 2] and [1, 6]", () => {
+    const result = gameboard.receiveAttack(2, 0);
+    const resultTwo = gameboard.receiveAttack(3, 2);
+    const resultThree = gameboard.receiveAttack(1, 6);
+    expect(result.message).toBe("Hit a ship!");
+    expect(result.ship).toBe(fourWideShip);
+    expect(resultTwo.message).toBe("Hit empty water!");
+    expect(resultTwo.ship).toBe(null);
+    expect(resultThree.message).toBe("Hit empty water!");
+    expect(resultThree.ship).toBe(null);
+    expect(fourWideShip.hitCount).toBe(1);
+    expect(gameboard.renderBoard()).toStrictEqual([
+      ["H", "H", "H", "H", "H", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "X", "O"],
+      ["H", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "X", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O"],
       ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "X", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "X"],
     ]);
   });
 });
