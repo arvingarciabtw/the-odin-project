@@ -232,3 +232,67 @@ describe("render the board after placing a/some ship/s", () => {
     ]);
   });
 });
+
+describe("receiveAttack()", () => {
+  const fiveWideShip = new Ship(5);
+  const fourWideShip = new Ship(4);
+  const threeWideShip = new Ship(3);
+  const gameboard = new Gameboard();
+
+  gameboard.renderBoard();
+  gameboard.placeShip(fiveWideShip, 0, 0, "alongX");
+  gameboard.placeShip(fourWideShip, 1, 0, "alongY");
+  gameboard.placeShip(threeWideShip, 6, 3, "alongX");
+
+  test("hit empty water on [7, 7]", () => {
+    const result = gameboard.receiveAttack(7, 7);
+    expect(result.message).toBe("Hit empty water!");
+    expect(result.ship).toBe(null);
+    expect(result.coordinates).toStrictEqual([7, 7]);
+  });
+
+  test("hit empty water on [6, 6]", () => {
+    const result = gameboard.receiveAttack(6, 6);
+    expect(result.message).toBe("Hit empty water!");
+    expect(result.ship).toBe(null);
+    expect(result.coordinates).toStrictEqual([6, 6]);
+  });
+
+  test("hit a ship on [0, 0]", () => {
+    const result = gameboard.receiveAttack(0, 0);
+    expect(result.message).toBe("Hit a ship!");
+    expect(result.ship).toBe(fiveWideShip);
+    expect(fiveWideShip.hitCount).toBe(1);
+  });
+
+  test("hit the same ship multiple times", () => {
+    gameboard.receiveAttack(0, 1);
+    expect(fiveWideShip.hitCount).toBe(2);
+
+    gameboard.receiveAttack(0, 2);
+    gameboard.receiveAttack(0, 3);
+    gameboard.receiveAttack(0, 4);
+
+    expect(fiveWideShip.isSunken).toBe(true);
+  });
+
+  test("missedAttacks", () => {
+    expect(gameboard.missedAttacks).toStrictEqual([
+      [7, 7],
+      [6, 6],
+    ]);
+  });
+
+  test("render board after a ship has sunk", () => {
+    expect(gameboard.renderBoard()).toStrictEqual([
+      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O"],
+      ["S", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O"],
+      ["O", "O", "O", "S", "S", "S", "O", "O"],
+      ["O", "O", "O", "O", "O", "O", "O", "O"],
+    ]);
+  });
+});

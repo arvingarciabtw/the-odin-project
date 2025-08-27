@@ -33,8 +33,8 @@ class Gameboard {
       }
     }
 
-    this.ships.forEach((coordinates) => {
-      coordinates.forEach(([x, y]) => {
+    this.ships.forEach((shipData) => {
+      shipData.coordinates.forEach(([x, y]) => {
         this.board[x][y] = "S";
       });
     });
@@ -87,10 +87,46 @@ class Gameboard {
       }
     }
 
-    coordinates.length > 0;
-    this.ships.push(coordinates);
+    if (coordinates.length > 0) {
+      this.ships.push({
+        ship: ship,
+        coordinates: coordinates,
+      });
+    }
 
     return coordinates;
+  }
+
+  receiveAttack(xCoord, yCoord) {
+    this.renderBoard();
+
+    let cell = this.board[xCoord][yCoord];
+
+    if (cell === "S") {
+      const hitShip = this.ships.find((shipData) =>
+        shipData.coordinates.some(([x, y]) => x === xCoord && y === yCoord),
+      );
+
+      if (hitShip) {
+        hitShip.ship.hit();
+        return {
+          message: "Hit a ship!",
+          ship: hitShip.ship,
+          coordinates: [xCoord, yCoord],
+        };
+      }
+    } else if (cell === "O") {
+      this.missedAttacks.push([xCoord, yCoord]);
+      return {
+        message: "Hit empty water!",
+        ship: null,
+        coordinates: [xCoord, yCoord],
+      };
+    }
+  }
+
+  allShipsSunk() {
+    return this.ships.every((shipData) => shipData.ship.isSunken);
   }
 }
 
