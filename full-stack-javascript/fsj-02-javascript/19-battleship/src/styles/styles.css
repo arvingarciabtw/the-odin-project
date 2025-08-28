@@ -235,7 +235,7 @@ main .grid-container-enemy {
   border: 1px solid var(--c-blue-2);
 }
 
-.board-cell.ship {
+.board-cell.player-cell.ship {
   background: var(--c-blue-3);
 }
 
