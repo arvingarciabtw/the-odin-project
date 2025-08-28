@@ -2,6 +2,7 @@ import { Ship, Gameboard, Player } from "./classes";
 import userInterface, {
   renderBothBoards,
   setupRandomizeButton,
+  setupStartGameButton,
 } from "./interface";
 
 class Game {
@@ -18,6 +19,8 @@ class Game {
 
     this.humanShips = this.createShipSet();
     this.computerShips = this.createShipSet();
+
+    this.isPlayerTurn = false;
   }
 
   createShipSet() {
@@ -44,11 +47,7 @@ class Game {
       () => this.renderBoards(),
     );
 
-    console.log("Player's board: ");
-    console.log(this.humanPlayer.gameboard.renderBoard());
-
-    console.log("Computer's board: ");
-    console.log(this.computerPlayer.gameboard.renderBoard());
+    setupStartGameButton(this);
   }
 
   getHumanPlayer() {

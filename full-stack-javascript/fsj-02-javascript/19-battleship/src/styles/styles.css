@@ -129,7 +129,8 @@ main > .bottom section {
   gap: 0.75rem;
 }
 
-.btns-container button {
+.btns-container button,
+.btn-play-again {
   padding: 0.75em 1.25em;
   border: none;
   border-radius: 20px;
@@ -141,8 +142,13 @@ main > .bottom section {
   cursor: pointer;
 }
 
-.btns-container button:hover {
+.btns-container button:hover,
+.btn-play-again:hover {
   color: var(--c-blue-3);
+}
+
+.btn-play-again {
+  margin-top: 0.75rem;
 }
 
 .btns-container button:active {
@@ -230,11 +236,11 @@ main .grid-container-enemy {
 }
 
 .board-cell.ship {
-  background-color: var(--c-blue-3);
+  background: var(--c-blue-3);
 }
 
 .board-cell.hit {
-  background-color: red;
+  background: red;
   border-color: red;
 }
 
