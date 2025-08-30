@@ -1,3 +1,108 @@
-body {
-  background: coral;
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Geist", sans-serif;
 }
+
+:root {
+  --c-dark-red: #cb131a;
+  --c-red: #e83046;
+  --c-black: #121212;
+  --c-white: #faf9f6;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--c-white);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+p {
+  font-size: 0.875rem;
+  color: var(--c-black);
+}
+
+a {
+  color: var(--c-black);
+  transition: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* == SECTION == */
+div.slanted {
+  background: var(--c-red);
+  width: 100vw;
+  height: 300px;
+  transform: skewY(-8deg) scaleY(3) translateY(-40%);
+  position: absolute;
+  top: 0;
+}
+
+section.top {
+  padding: 4.25rem 3rem 3rem;
+  z-index: 1;
+  width: 100%;
+  /* background: lightyellow; */
+  min-height: 300px;
+  display: flex;
+}
+
+section.top > .left {
+  aspect-ratio: 1 / 1;
+  min-height: 100%;
+  background: pink;
+  background-image: url("../assets/images/silksong-1.webp");
+  background-position: 15% center;
+  background-size: cover;
+  transform: scale(1.25) translateX(1rem);
+  font-family: "Instrument Serif", serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+section.top > .right {
+  padding: 1rem 2rem 1.5rem 4.25rem;
+  background: var(--c-white);
+  color: var(--c-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+section.top > .right .social-media-container {
+  align-self: end;
+  display: flex;
+  gap: 1rem;
+}
+
+/* == MAIN == */
+main {
+  flex: 1;
+  /* background: coral; */
+}
+
+/* == FOOTER == */
