@@ -25,6 +25,7 @@ body {
 p {
   font-size: 0.875rem;
   color: var(--c-black);
+  line-height: 1.4;
 }
 
 a {
@@ -38,12 +39,27 @@ a:hover {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1600px;
+  max-width: 1200px;
 }
 
 svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
+}
+
+h1,
+section h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+:where(h1) {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.25rem;
 }
 
 /* == SECTION == */
@@ -67,6 +83,7 @@ section.top {
 
 section.top > .left {
   aspect-ratio: 1 / 1;
+  min-width: 230px;
   min-height: 100%;
   background: pink;
   background-image: url("../assets/images/silksong-1.webp");
@@ -89,14 +106,17 @@ section.top > .right {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
 }
 
 section.top > .right .social-media-container {
   align-self: end;
   display: flex;
+  justify-content: end;
+  align-items: end;
   gap: 1rem;
+  flex: 1;
 }
 
 /* == MAIN == */
@@ -152,3 +172,64 @@ main {
 }
 
 /* == FOOTER == */
+footer {
+  width: 100%;
+  background: var(--c-red);
+}
+
+footer > div {
+  padding: 2rem 3rem 2rem 2.5rem;
+  color: var(--c-white);
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+footer p,
+footer address {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-white);
+}
+
+footer > div > .left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+footer .contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+footer .phone-container,
+footer .email-container,
+footer .social-media-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+footer .social-media-container {
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+
+footer .social-media-container a {
+  padding: 0.4rem;
+  width: 40px;
+  height: 40px;
+  background: var(--c-white);
+  color: var(--c-dark-red);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer > div > .right img {
+  width: 100%;
+  max-width: 700px;
+  max-height: 320px;
+}
