@@ -90,13 +90,16 @@ section.top > .left {
   background-position: 15% center;
   background-size: cover;
   transform: scale(1.25) translateX(1rem);
-  font-family: "Instrument Serif", serif;
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: end;
+}
+
+section.top > .left p {
+  font-family: "Instrument Serif", serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
 }
 
 section.top > .right {
@@ -232,4 +235,73 @@ footer > div > .right img {
   width: 100%;
   max-width: 700px;
   max-height: 320px;
+}
+
+/* == MEDIA QUERIES == */
+/**/
+/* @media (max-width: 800px) { */
+/*   body { */
+/*     background: coral; */
+/*   } */
+/*   section.top { */
+/*     padding-top: 6rem; */
+/*   } */
+/*   section.top > .left { */
+/*     transform: translateY(-60px); */
+/*   } */
+/*   section.top > .left p { */
+/*     transform: translateX(200px) translateY(-260px); */
+/*   } */
+/* } */
+
+@media (max-width: 420px) {
+  section.top {
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  section.top > .left {
+    aspect-ration: none;
+    width: 100%;
+    max-height: 300px;
+    transform: scale(1) translateX(0rem);
+  }
+  section.top > .left p {
+    font-size: 3.5rem;
+  }
+  section.top > .right {
+    padding: 0;
+    box-shadow: none;
+  }
+  section.top > .right h1 {
+    text-align: center;
+  }
+  section.top > .right .social-media-container {
+    align-self: center;
+    margin-top: 1rem;
+    gap: 1.5rem;
+  }
+  section.top > .right .social-media-container svg {
+    width: 24px;
+    height: 24px;
+  }
+  main {
+    padding: 1.5rem;
+  }
+  main h1 {
+    text-align: center;
+  }
+  footer > div {
+    padding: 1.5rem;
+    flex-direction: column;
+  }
+  footer > div > .left h1 {
+    text-align: center;
+  }
+  footer > div > .left .social-media-container {
+    align-self: center;
+  }
+  footer > div > .right img {
+    transform: scale(1.4) translateY(20px);
+  }
 }
