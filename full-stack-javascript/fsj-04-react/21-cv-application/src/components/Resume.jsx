@@ -38,6 +38,62 @@ function Education() {
   );
 }
 
+function Experience() {
+  return (
+    <section className="experience-container">
+      <h2>EXPERIENCE</h2>
+      <div className="experience">
+        <div className="company-container">
+          <p>Google</p>
+          <p>Queens, NY</p>
+        </div>
+        <div className="position-container">
+          <p>Software Developer Intern</p>
+          <p>Apr 2026 - Jul 2026</p>
+        </div>
+        <ul className="contributions-container">
+          <li className="contribution">
+            Developed and optimized search algorithms that improved query
+            response time by 15% across multiple web services.
+          </li>
+          <li className="contribution">
+            Collaborated with cross-functional teams to implement new features
+            in Google's web crawling infrastructure using Python and C++.
+          </li>
+          <li className="contribution">
+            Built automated testing frameworks that reduced manual testing time
+            by 40% and improved code coverage to 95%.
+          </li>
+        </ul>
+      </div>
+      <div className="experience">
+        <div className="company-container">
+          <p>Apple</p>
+          <p>Queens, NY</p>
+        </div>
+        <div className="position-container">
+          <p>Software Developer Intern</p>
+          <p>Jan 2026 - Mar 2026</p>
+        </div>
+        <ul className="contributions-container">
+          <li className="contribution">
+            Designed and implemented iOS app features using Swift that enhanced
+            user engagement by 25% in beta testing.
+          </li>
+          <li className="contribution">
+            Optimized Core Data performance for large datasets, reducing app
+            launch time by 30% on older iPhone models.
+          </li>
+          <li className="contribution">
+            Participated in code reviews and contributed to best practices
+            documentation for mobile development standards.
+          </li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function Resume() {
   return (
     <>
@@ -46,6 +102,7 @@ function Resume() {
     <div className="resume-container">
       <GeneralInformation />
       <Education />
+      <Experience />
     </div>
   );
 }
