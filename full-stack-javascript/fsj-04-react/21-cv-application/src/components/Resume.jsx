@@ -94,6 +94,92 @@ function Experience() {
   );
 }
 
+function Projects() {
+  return (
+    <section className="projects-container">
+      <h2>PROJECTS</h2>
+      <div className="project">
+        <div className="project-container">
+          <p className="project-name">
+            <span>Memory Simulator</span> |
+          </p>
+          <ul className="technologies">
+            <li className="technology">HTML,</li>
+            <li className="technology">CSS,</li>
+            <li className="technology">JavaScript,</li>
+            <li className="technology">React</li>
+          </ul>
+          <p className="project-date">Jun 2026 - Sep 2026</p>
+        </div>
+        <ul className="project-descriptions">
+          <li className="description">
+            Built an interactive web application that simulates different memory
+            management algorithms including FIFO, LRU, and Optimal.
+          </li>
+          <li className="description">
+            Implemented real-time visualization of page replacement algorithms
+            with dynamic charts showing hit/miss ratios.
+          </li>
+          <li className="description">
+            Created responsive user interface allowing students to input custom
+            page reference strings and compare algorithm performance.
+          </li>
+        </ul>
+      </div>
+      <div className="project">
+        <div className="project-container">
+          <p className="project-name">
+            <span>Chess</span> |
+          </p>
+          <ul className="technologies">
+            <li className="technology">HTML,</li>
+            <li className="technology">CSS,</li>
+            <li className="technology">JavaScript,</li>
+            <li className="technology">React,</li>
+            <li className="technology">Jest</li>
+          </ul>
+          <p className="project-date">Jul 2026 - Sep 2026</p>
+        </div>
+        <ul className="project-descriptions">
+          <li className="description">
+            Developed a digital version of the classic game with multiplayer
+            functionality and AI opponents.
+          </li>
+          <li className="description">
+            Implemented game logic with comprehensive unit tests achieving 90%
+            code coverage using Jest testing framework.
+          </li>
+        </ul>
+      </div>
+      <div className="project">
+        <div className="project-container">
+          <p className="project-name">
+            <span>Task Management System</span> |
+          </p>
+          <ul className="technologies">
+            <li className="technology">HTML,</li>
+            <li className="technology">CSS,</li>
+            <li className="technology">JavaScript,</li>
+            <li className="technology">React,</li>
+            <li className="technology">Node.js</li>
+          </ul>
+          <p className="project-date">May 2026 - Aug 2026</p>
+        </div>
+        <ul className="project-descriptions">
+          <li className="description">
+            Created a full-stack productivity application with user
+            authentication, task categorization, and deadline tracking.
+          </li>
+          <li className="description">
+            Integrated RESTful API backend with Express.js and MongoDB for
+            persistent data storage.
+          </li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 function Resume() {
   return (
     <>
@@ -103,6 +189,7 @@ function Resume() {
       <GeneralInformation />
       <Education />
       <Experience />
+      <Projects />
     </div>
   );
 }
