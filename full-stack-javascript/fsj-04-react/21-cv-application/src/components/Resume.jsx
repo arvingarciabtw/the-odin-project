@@ -180,16 +180,34 @@ function Projects() {
   );
 }
 
+function Skills() {
+  return (
+    <section className="skills-container">
+      <h2>TECHNICAL SKILLS</h2>
+      <p className="languages">
+        <span>Languages:</span> HTML, CSS, JavaScript, TypeScript, PHP, Go
+      </p>
+      <p className="frameworks">
+        <span>Frameworks:</span> Next.js, Node.js, Vue, Nuxt, Laravel
+      </p>
+      <p className="libraries">
+        <span>Libraries:</span> React, jQuery, Three.js, GSAP
+      </p>
+      <p className="tools">
+        <span>Tools:</span> Git, Jest, AWS, Azure
+      </p>
+    </section>
+  );
+}
+
 function Resume() {
   return (
-    <>
-      <h1>Resume</h1>
-    </>
     <div className="resume-container">
       <GeneralInformation />
       <Education />
       <Experience />
       <Projects />
+      <Skills />
     </div>
   );
 }
