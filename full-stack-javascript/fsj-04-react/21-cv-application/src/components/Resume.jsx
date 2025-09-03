@@ -22,6 +22,22 @@ function GeneralInformation() {
   );
 }
 
+function Education() {
+  return (
+    <section className="education-container">
+      <h2>EDUCATION</h2>
+      <div className="university-container">
+        <p className="university">Spider University</p>
+        <p className="university-location">Queens, NY</p>
+      </div>
+      <div className="program-container">
+        <p className="program">Bachelor of Science in Computer Science</p>
+        <p className="university-location">2022 - 2026</p>
+      </div>
+    </section>
+  );
+}
+
 function Resume() {
   return (
     <>
@@ -29,6 +45,7 @@ function Resume() {
     </>
     <div className="resume-container">
       <GeneralInformation />
+      <Education />
     </div>
   );
 }
