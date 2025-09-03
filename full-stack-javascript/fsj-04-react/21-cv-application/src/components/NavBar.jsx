@@ -5,7 +5,7 @@ function NavBar() {
     <>
       <header>
         <nav className="wrapper">
-          <h1>Rezu</h1>
+          <h1>REZU</h1>
           <div className="right">
             <a
               href="https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-04-react/21-cv-application"

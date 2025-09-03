@@ -8,13 +8,11 @@ function App() {
   return (
     <>
       <NavBar />
-      <main>
+      <main className="wrapper">
         <div>
           <Section />
         </div>
-        <div>
-          <Resume />
-        </div>
+        <Resume />
       </main>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&family=Geist:wght@100..900&display=swap");
 
 /* == CSS RESET (Josh Comeau) == */
 
@@ -95,9 +95,19 @@ button {
   cursor: pointer;
 }
 
+p,
+address,
+li {
+  font-size: 0.875rem;
+}
+
+ul {
+  padding-left: 20px;
+}
+
 .wrapper {
   margin: 0 auto;
-  max-width: 1400px;
+  max-width: 1200px;
 }
 
 h1,
@@ -117,11 +127,13 @@ nav h1 {
 /* == MAIN == */
 
 main {
+  padding: 1rem;
   flex: 1;
   display: flex;
   gap: 2rem;
 }
 
 main > div {
+  background: var(--c-dark);
   color: var(--c-light-gray);
 }

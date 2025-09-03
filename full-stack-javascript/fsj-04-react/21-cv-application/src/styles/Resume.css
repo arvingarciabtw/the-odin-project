@@ -1,0 +1,135 @@
+/* == RESUME == */
+
+.resume-container {
+  padding: 2.25rem 3rem 3rem;
+  background: white;
+  color: black;
+  width: 595px;
+  min-height: 842px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.resume-container * {
+  font-family: "Times New Roman", serif;
+}
+
+.resume-container h1 {
+  font-weight: normal;
+}
+
+.resume-container h2 {
+  font-size: 13px;
+}
+
+.resume-container p,
+.resume-container li,
+.resume-container a,
+.resume-container address {
+  font-size: 12px;
+  font-style: normal;
+}
+
+.resume-container ul {
+  margin-top: -2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.resume-container li {
+  line-height: 1.2;
+}
+
+section h2 {
+  border-bottom: 1px solid black;
+}
+
+/* == GENERAL INFORMATION == */
+
+.general-information-container {
+  text-align: center;
+}
+
+.contacts-container,
+.socials-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: -4px;
+}
+
+/* == EDUCATION == */
+
+.university-container,
+.program-container {
+  display: flex;
+  justify-content: space-between;
+}
+.university-container {
+  font-weight: bold;
+}
+.program-container {
+  margin-top: -4px;
+}
+.program-container p {
+  font-style: italic;
+}
+
+/* == EXPERIENCE == */
+
+.company-container,
+.position-container {
+  display: flex;
+  justify-content: space-between;
+}
+.company-container {
+  font-weight: bold;
+}
+.position-container {
+  margin-top: -4px;
+}
+.position-container p {
+  font-style: italic;
+}
+
+/* == PROJECTS == */
+
+.project-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+}
+.project-name span {
+  font-weight: bold;
+}
+.resume-container ul.technologies {
+  flex: 1;
+  padding: 0;
+  padding-top: 2px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+.technologies > .technology,
+.project-container > .project-date {
+  font-style: italic;
+}
+.project-date {
+  padding-top: 2px;
+}
+
+/* == TECHNICAL SKILLS == */
+
+.skills-container span {
+  font-weight: bold;
+}
+.frameworks,
+.libraries,
+.tools {
+  margin-top: -4px;
+}
