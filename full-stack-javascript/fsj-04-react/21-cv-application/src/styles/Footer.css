@@ -1,0 +1,18 @@
+/* == FOOTER == */
+
+footer {
+  padding: 1rem;
+}
+
+footer p {
+  color: var(--c-light-gray);
+}
+
+footer a {
+  color: var(--c-purple);
+  transition: opacity 0.3s ease;
+}
+
+footer a:hover {
+  opacity: 0.8;
+}
