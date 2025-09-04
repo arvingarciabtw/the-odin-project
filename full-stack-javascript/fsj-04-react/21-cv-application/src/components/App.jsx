@@ -31,6 +31,17 @@ function App() {
   const [gitHub, setGitHub] = useState("github.com/peterparker");
   const [portfolio, setPortfolio] = useState("portfolio.peterparker.com");
 
+  // state variables for education
+  const [educationalInstitution, setEducationalInstitution] =
+    useState("Spider University");
+  const [educationalInstitutionLocation, setEducationalInstitutionLocation] =
+    useState("Queens, NY");
+  const [program, setProgram] = useState(
+    "Bachelor of Science in Computer Science",
+  );
+  const [educationStartDate, setEducationStartDate] = useState("2022");
+  const [educationEndDate, setEducationEndDate] = useState("2026");
+
   function handleChange(e, toBeChanged) {
     // change one of the general infos
     toBeChanged === "firstName" ? setFirstName(e.target.value) : null;
@@ -42,6 +53,20 @@ function App() {
     toBeChanged === "gitHub" ? setGitHub(e.target.value) : null;
     toBeChanged === "portfolio" ? setPortfolio(e.target.value) : null;
 
+    // change one of the education infos
+    toBeChanged === "educationalInstitution"
+      ? setEducationalInstitution(e.target.value)
+      : null;
+    toBeChanged === "educationalInstitutionLocation"
+      ? setEducationalInstitutionLocation(e.target.value)
+      : null;
+    toBeChanged === "program" ? setProgram(e.target.value) : null;
+    toBeChanged === "educationStartDate"
+      ? setEducationStartDate(e.target.value)
+      : null;
+    toBeChanged === "educationEndDate"
+      ? setEducationEndDate(e.target.value)
+      : null;
   }
 
   return (
@@ -111,8 +136,68 @@ function App() {
               />
             </div>
           </Section>
+          <Section heading="Education">
+            <div className="education-info-container">
+              <Field
+                name="Educational Institution"
+                id="educational-institution"
+                type="text"
+                placeholder="Spider University"
+                onChange={(e) => handleChange(e, "educationalInstitution")}
+              />
+              <Field
+                name="Location"
+                id="educational-institution-location"
+                type="text"
+                placeholder="Queens, NY"
+                onChange={(e) =>
+                  handleChange(e, "educationalInstitutionLocation")
+                }
+              />
+              <Field
+                name="Program"
+                id="program"
+                type="text"
+                placeholder="Bachelor of Science in Computer Science"
+                onChange={(e) => handleChange(e, "program")}
+              />
+              <Field
+                name="Start Date"
+                id="educational-institution-start-date"
+                type="date"
+                placeholder="2022"
+                onChange={(e) => handleChange(e, "educationStartDate")}
+              />
+              <Field
+                name="End Date"
+                id="educational-institution-end-date"
+                type="date"
+                placeholder="2026"
+                onChange={(e) => handleChange(e, "educationEndDate")}
+              />
+            </div>
+          </Section>
         </div>
         <Resume />
+        <Resume
+          generalInfo={{
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phoneNumber,
+            email: email,
+            location: location,
+            linkedIn: linkedIn,
+            gitHub: gitHub,
+            portfolio: portfolio,
+          }}
+          educationInfo={{
+            educationalInstitution: educationalInstitution,
+            educationalInstitutionLocation: educationalInstitutionLocation,
+            program: program,
+            educationStartDate: educationStartDate,
+            educationEndDate: educationEndDate,
+          }}
+        />
       </main>
       <Footer />
     </>
