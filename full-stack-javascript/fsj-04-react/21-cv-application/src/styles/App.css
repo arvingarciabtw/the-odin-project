@@ -1,0 +1,23 @@
+main {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+main > div {
+  color: var(--c-light-gray);
+}
+
+.sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  max-height: 842px;
+  overflow-y: scroll;
+  scrollbar-color: var(--c-purple) transparent;
+}

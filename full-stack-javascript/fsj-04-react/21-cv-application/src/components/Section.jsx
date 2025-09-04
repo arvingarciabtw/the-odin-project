@@ -1,8 +1,11 @@
-function Section() {
+import "../styles/Section.css";
+
+function Section({ heading, children }) {
   return (
-    <>
-      <h1>Section</h1>
-    </>
+    <div className="section">
+      <h1>{heading}</h1>
+      {children}
+    </div>
   );
 }
 

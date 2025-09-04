@@ -1,0 +1,86 @@
+/* == SECTION == */
+
+.section {
+  padding: 1.25rem 1.25rem 1.75rem;
+  background: var(--c-dark);
+  border-radius: 20px;
+}
+
+.section h1 {
+  font-size: 1rem;
+  color: var(--c-lightest-gray);
+}
+
+.section label,
+.section input {
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+
+.section input {
+  padding: 0.5em 0.75em;
+  background: var(--c-slightly-dark);
+  border: 1px solid var(--c-dark);
+  border-radius: 8px;
+  color: var(--c-light-gray);
+  color-scheme: dark;
+}
+
+.section input:focus {
+  border: 1px solid var(--c-purple);
+  outline: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.add-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.add-field .right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.add-field label {
+  flex: 1;
+}
+
+.add-field button {
+  background: var(--c-purple);
+  color: var(--c-dark);
+  border: 1px solid var(--c-purple);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  transition: opacity 0.3s ease;
+}
+
+.add-field button:hover {
+  opacity: 0.7;
+}
+
+.general-info-container,
+.education-info-container,
+.experience-info-container,
+.projects-info-container {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 1rem;
+}
+
+.skills-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

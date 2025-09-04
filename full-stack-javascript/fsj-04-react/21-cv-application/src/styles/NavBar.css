@@ -1,7 +1,6 @@
 /* == NAVBAR ==  */
 
 header {
-  padding: 1rem;
   border-bottom: 1px solid var(--c-gray);
 }
 
@@ -25,8 +24,8 @@ nav a {
 }
 
 nav svg {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   fill: var(--c-light-gray);
 }
 

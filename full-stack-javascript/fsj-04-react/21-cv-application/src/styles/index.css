@@ -75,10 +75,18 @@ h6 {
 :root {
   --c-darkest: #23242a;
   --c-dark: #323741;
+  --c-slightly-dark: #2a2d35;
   --c-purple: #7f7cff;
   --c-gray: #5a5d68;
   --c-light-gray: #8f94a5;
   --c-lightest-gray: #bababc;
+  scrollbar-color: var(--c-gray) transparent;
+  scrollbar-width: thin;
+}
+
+::selection {
+  background: var(--c-purple);
+  color: var(--c-darkest);
 }
 
 body {
@@ -107,7 +115,8 @@ ul {
 
 .wrapper {
   margin: 0 auto;
-  max-width: 1200px;
+  padding: 1rem;
+  max-width: 1100px;
 }
 
 h1,
@@ -122,18 +131,4 @@ nav h1 {
 :where(h1) {
   font-size: 1.75rem;
   line-height: 2rem;
-}
-
-/* == MAIN == */
-
-main {
-  padding: 1rem;
-  flex: 1;
-  display: flex;
-  gap: 2rem;
-}
-
-main > div {
-  background: var(--c-dark);
-  color: var(--c-light-gray);
 }

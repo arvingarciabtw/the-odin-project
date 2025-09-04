@@ -1,9 +1,5 @@
 /* == FOOTER == */
 
-footer {
-  padding: 1rem;
-}
-
 footer p {
   color: var(--c-light-gray);
 }
