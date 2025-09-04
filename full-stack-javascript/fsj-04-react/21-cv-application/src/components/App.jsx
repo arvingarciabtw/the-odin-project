@@ -177,6 +177,19 @@ function App() {
               />
             </div>
           </Section>
+          <Section heading="Experience">
+            <div className="experience-info-container">
+              <Field name="Company Name" type="text" placeholder="Google" />
+              <Field name="Location" type="text" placeholder="Queens, NY" />
+              <Field
+                name="Position"
+                type="text"
+                placeholder="Software Developer Intern"
+              />
+              <Field name="Start Date" type="date" placeholder="Apr 2026" />
+              <Field name="End Date" type="date" placeholder="Jul 2026" />
+            </div>
+          </Section>
         </div>
         <Resume />
         <Resume
