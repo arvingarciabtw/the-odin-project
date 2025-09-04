@@ -4,11 +4,12 @@
   padding: 2.25rem 3rem 3rem;
   background: white;
   color: black;
-  width: 595px;
-  min-height: 842px;
+  min-width: 595px;
+  height: 842px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow-y: hidden;
 }
 
 .resume-container * {

@@ -1,38 +1,69 @@
 import "../styles/Resume.css";
+import { format } from "date-fns";
 
-function GeneralInformation() {
+function GeneralInformation({ generalInfo }) {
   return (
     <section className="general-information-container">
-      <h1>Peter Parker</h1>
+      <h1>
+        {generalInfo.firstName} {generalInfo.lastName}
+      </h1>
       <div className="contacts-container">
-        <address>012-3456-789</address>
+        <address>{generalInfo.phoneNumber}</address>
         <p>|</p>
-        <address>peterparker@gmail.com</address>
+        <address>{generalInfo.email}</address>
         <p>|</p>
-        <p>Queens, New York</p>
+        <p>{generalInfo.location}</p>
       </div>
       <div className="socials-container">
-        <a href="">linkedin.com/in/peterparker</a>
+        <a
+          href={"https://www." + generalInfo.linkedIn}
+          // href="https://www.theodinproject.com/lessons/node-path-react-new-cv-application"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {generalInfo.linkedIn}
+        </a>
         <p>|</p>
-        <a href="">github.com/peterparker</a>
+        <a
+          href={"https://www." + generalInfo.gitHub}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {generalInfo.gitHub}
+        </a>
         <p>|</p>
-        <a href="">portfolio.peterparker.com</a>
+        <a
+          href={"https://" + generalInfo.portfolio}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {generalInfo.portfolio}
+        </a>
       </div>
     </section>
   );
 }
 
-function Education() {
+function Education({ educationInfo }) {
+  const formattedStartDate = format(
+    educationInfo.educationStartDate,
+    "MMM yyyy",
+  );
+  const formattedEndDate = format(educationInfo.educationEndDate, "MMM yyyy");
   return (
     <section className="education-container">
       <h2>EDUCATION</h2>
       <div className="university-container">
-        <p className="university">Spider University</p>
-        <p className="university-location">Queens, NY</p>
+        <p className="university">{educationInfo.educationalInstitution}</p>
+        <p className="university-location">
+          {educationInfo.educationalInstitutionLocation}
+        </p>
       </div>
       <div className="program-container">
-        <p className="program">Bachelor of Science in Computer Science</p>
-        <p className="university-location">2022 - 2026</p>
+        <p className="program">{educationInfo.program}</p>
+        <p className="university-location">
+          {formattedStartDate} - {formattedEndDate}
+        </p>
       </div>
     </section>
   );
@@ -200,11 +231,11 @@ function Skills() {
   );
 }
 
-function Resume() {
+function Resume(props) {
   return (
     <div className="resume-container">
-      <GeneralInformation />
-      <Education />
+      <GeneralInformation generalInfo={props.generalInfo} />
+      <Education educationInfo={props.educationInfo} />
       <Experience />
       <Projects />
       <Skills />
