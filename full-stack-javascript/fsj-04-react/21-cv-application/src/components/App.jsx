@@ -34,22 +34,22 @@ function AddField({ name, id = null, type, placeholder }) {
 
 function App() {
   // state variables for general information
-  const [firstName, setFirstName] = useState("Peter");
-  const [lastName, setLastName] = useState("Parker");
+  const [firstName, setFirstName] = useState("Arvin");
+  const [lastName, setLastName] = useState("Garcia");
   const [phoneNumber, setPhoneNumber] = useState("012-3456-789");
-  const [email, setEmail] = useState("peterparker@gmail.com");
-  const [location, setLocation] = useState("Queens, NY");
-  const [linkedIn, setLinkedIn] = useState("linkedin.com/in/peterparker");
-  const [gitHub, setGitHub] = useState("github.com/peterparker");
-  const [portfolio, setPortfolio] = useState("portfolio.peterparker.com");
+  const [email, setEmail] = useState("anamazingemail@gmail.com");
+  const [location, setLocation] = useState("City, Region");
+  const [linkedIn, setLinkedIn] = useState("linkedin.com/in/arvin-garcia");
+  const [gitHub, setGitHub] = useState("github.com/arvingarciabtw");
+  const [portfolio, setPortfolio] = useState("blog.arvingarcia.com");
 
   // state variables for education
   const [educationalInstitution, setEducationalInstitution] =
-    useState("Spider University");
+    useState("University Name");
   const [educationalInstitutionLocation, setEducationalInstitutionLocation] =
-    useState("Queens, NY");
+    useState("City, Region");
   const [program, setProgram] = useState(
-    "Bachelor of Science in Computer Science",
+    "Program (e.g. Bachelor of Science in ...)",
   );
   const [educationStartDate, setEducationStartDate] = useState("2022");
   const [educationEndDate, setEducationEndDate] = useState("2026");

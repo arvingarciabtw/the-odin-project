@@ -17,7 +17,6 @@ function GeneralInformation({ generalInfo }) {
       <div className="socials-container">
         <a
           href={"https://www." + generalInfo.linkedIn}
-          // href="https://www.theodinproject.com/lessons/node-path-react-new-cv-application"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -75,49 +74,55 @@ function Experience() {
       <h2>EXPERIENCE</h2>
       <div className="experience">
         <div className="company-container">
-          <p>Google</p>
-          <p>Queens, NY</p>
+          <p>Company Name</p>
+          <p>City, Region</p>
         </div>
         <div className="position-container">
-          <p>Software Developer Intern</p>
-          <p>Apr 2026 - Jul 2026</p>
+          <p>Position</p>
+          <p>Start Date - End Date</p>
         </div>
         <ul className="contributions-container">
           <li className="contribution">
-            Developed and optimized search algorithms that improved query
-            response time by 15% across multiple web services.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
           <li className="contribution">
-            Collaborated with cross-functional teams to implement new features
-            in Google's web crawling infrastructure using Python and C++.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
           <li className="contribution">
-            Built automated testing frameworks that reduced manual testing time
-            by 40% and improved code coverage to 95%.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
         </ul>
       </div>
       <div className="experience">
         <div className="company-container">
-          <p>Apple</p>
-          <p>Queens, NY</p>
+          <p>Company Name</p>
+          <p>City, Region</p>
         </div>
         <div className="position-container">
-          <p>Software Developer Intern</p>
-          <p>Jan 2026 - Mar 2026</p>
+          <p>Position</p>
+          <p>Start Date - End Date</p>
         </div>
         <ul className="contributions-container">
           <li className="contribution">
-            Designed and implemented iOS app features using Swift that enhanced
-            user engagement by 25% in beta testing.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
           <li className="contribution">
-            Optimized Core Data performance for large datasets, reducing app
-            launch time by 30% on older iPhone models.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
           <li className="contribution">
-            Participated in code reviews and contributed to best practices
-            documentation for mobile development standards.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
         </ul>
       </div>
@@ -132,15 +137,15 @@ function Projects() {
       <div className="project">
         <div className="project-container">
           <p className="project-name">
-            <span>Memory Simulator</span> |
+            <span>Project Name</span> |
           </p>
           <ul className="technologies">
-            <li className="technology">HTML,</li>
-            <li className="technology">CSS,</li>
-            <li className="technology">JavaScript,</li>
-            <li className="technology">React</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology</li>
           </ul>
-          <p className="project-date">Jun 2026 - Sep 2026</p>
+          <p className="project-date">Start Date - End Date</p>
         </div>
         <ul className="project-descriptions">
           <li className="description">
@@ -160,50 +165,51 @@ function Projects() {
       <div className="project">
         <div className="project-container">
           <p className="project-name">
-            <span>Chess</span> |
+            <span>Project Name</span> |
           </p>
           <ul className="technologies">
-            <li className="technology">HTML,</li>
-            <li className="technology">CSS,</li>
-            <li className="technology">JavaScript,</li>
-            <li className="technology">React,</li>
-            <li className="technology">Jest</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology</li>
           </ul>
-          <p className="project-date">Jul 2026 - Sep 2026</p>
+          <p className="project-date">Start Date - End Date</p>
         </div>
         <ul className="project-descriptions">
           <li className="description">
-            Developed a digital version of the classic game with multiplayer
-            functionality and AI opponents.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
           <li className="description">
-            Implemented game logic with comprehensive unit tests achieving 90%
-            code coverage using Jest testing framework.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
         </ul>
       </div>
       <div className="project">
         <div className="project-container">
           <p className="project-name">
-            <span>Task Management System</span> |
+            <span>Project Name</span> |
           </p>
           <ul className="technologies">
-            <li className="technology">HTML,</li>
-            <li className="technology">CSS,</li>
-            <li className="technology">JavaScript,</li>
-            <li className="technology">React,</li>
-            <li className="technology">Node.js</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology,</li>
+            <li className="technology">Technology</li>
           </ul>
-          <p className="project-date">May 2026 - Aug 2026</p>
+          <p className="project-date">Start Date - End Date</p>
         </div>
         <ul className="project-descriptions">
           <li className="description">
-            Created a full-stack productivity application with user
-            authentication, task categorization, and deadline tracking.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet repudiandae sapiente itaque tempora sint
+            dicta harum molestiae.
           </li>
           <li className="description">
-            Integrated RESTful API backend with Express.js and MongoDB for
-            persistent data storage.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+            beatae repellendus amet.
           </li>
         </ul>
       </div>
@@ -216,16 +222,16 @@ function Skills() {
     <section className="skills-container">
       <h2>TECHNICAL SKILLS</h2>
       <p className="languages">
-        <span>Languages:</span> HTML, CSS, JavaScript, TypeScript, PHP, Go
+        <span>Languages:</span> Language, Language, Language, Language
       </p>
       <p className="frameworks">
-        <span>Frameworks:</span> Next.js, Node.js, Vue, Nuxt, Laravel
+        <span>Frameworks:</span> Framework, Framework, Framework, Framework
       </p>
       <p className="libraries">
-        <span>Libraries:</span> React, jQuery, Three.js, GSAP
+        <span>Libraries:</span> Library, Library, Library, Library
       </p>
       <p className="tools">
-        <span>Tools:</span> Git, Jest, AWS, Azure
+        <span>Tools:</span> Tool, Tool, Tool, Tool
       </p>
     </section>
   );
