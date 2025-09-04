@@ -20,6 +20,18 @@ function Field({ name, id = null, type, placeholder, onChange }) {
   );
 }
 
+function AddField({ name, id = null, type, placeholder }) {
+  return (
+    <div className="add-field">
+      <label htmlFor={id}>{name}</label>
+      <div className="right">
+        <input type={type} id={id} name={id} placeholder={placeholder} />
+        <button type="button">+</button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   // state variables for general information
   const [firstName, setFirstName] = useState("Peter");
@@ -73,8 +85,6 @@ function App() {
     <>
       <NavBar />
       <main className="wrapper">
-        <div>
-          <Section />
         <div className="sections-container">
           <Section heading="General Information">
             <div className="general-info-container">
@@ -201,8 +211,36 @@ function App() {
               <Field name="End Date" type="date" placeholder="Sep 2026" />
             </div>
           </Section>
+          <Section heading="Technical Skills">
+            <div className="skills-info-container">
+              <AddField
+                name="Add a Language:"
+                id="language-input"
+                type="text"
+                placeholder="JavaScript"
+              />
+              <AddField
+                name="Add a Framework:"
+                id="framework-input"
+                type="text"
+                placeholder="Next.js"
+                variation="add-field"
+              />
+              <AddField
+                name="Add a Library:"
+                id="library-input"
+                type="text"
+                placeholder="React"
+              />
+              <AddField
+                name="Add a Tool:"
+                id="tool-input"
+                type="text"
+                placeholder="Git"
+              />
+            </div>
+          </Section>
         </div>
-        <Resume />
         <Resume
           generalInfo={{
             firstName: firstName,
