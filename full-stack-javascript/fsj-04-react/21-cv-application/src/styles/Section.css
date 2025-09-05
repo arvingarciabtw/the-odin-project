@@ -17,16 +17,19 @@
   line-height: 1.2;
 }
 
-.section input {
+.section input,
+.section textarea {
   padding: 0.5em 0.75em;
   background: var(--c-slightly-dark);
   border: 1px solid var(--c-dark);
   border-radius: 8px;
   color: var(--c-light-gray);
+  font-size: 0.875rem;
   color-scheme: dark;
 }
 
-.section input:focus {
+.section input:focus,
+.section textarea:focus {
   border: 1px solid var(--c-purple);
   outline: none;
 }
@@ -38,6 +41,13 @@
 }
 
 .add-field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.add-field .top {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -69,9 +79,45 @@
   opacity: 0.7;
 }
 
+.add-field .bottom {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.add-field .bottom li {
+  padding: 0.25em 0.5em 0.25em 1em;
+  background: var(--c-light-gray);
+  color: var(--c-darkest);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: default;
+}
+
+.add-field .bottom .btn-delete {
+  padding: 4px;
+  background: transparent;
+  color: var(--c-darkest);
+  width: 20px;
+  height: 20px;
+  border: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.add-field .bottom .btn-delete:hover {
+  background: var(--c-dark);
+  color: var(--c-purple);
+}
+
 .general-info-container,
 .education-info-container,
-.experience-info-container,
+.experience-info-inputs,
 .projects-info-container {
   margin-top: 8px;
   display: grid;
@@ -82,5 +128,108 @@
 .skills-info-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 32px;
+}
+
+/* == EXPERIENCE == */
+
+.experience-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.experience-info {
+  padding: 0.75rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--c-gray);
+  border-radius: 10px;
+}
+
+.experience-info .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-delete-experience {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--c-dark);
+  background: transparent;
+  color: var(--c-light-gray);
+  transition: color 0.3s ease;
+}
+
+.btn-delete-experience:hover {
+  color: var(--c-purple);
+}
+
+.experience-info .top svg {
+  width: 16px;
+  height: 16px;
+}
+
+.experience-info-inputs {
+  margin-top: 0;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.experience-descriptions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.textarea-container textarea {
+  width: 100%;
+}
+
+.textarea-container button {
+  padding: 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--c-slightly-dark);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--c-light-gray);
+  transition: color 0.3s ease;
+}
+
+.textarea-container button:hover {
+  color: var(--c-purple);
+}
+
+.btn-add-experience,
+.btn-add-experience-description {
+  padding: 0.5em 1em;
+  font-size: 0.875rem;
+  align-self: flex-start;
+  background: var(--c-purple);
+  color: var(--c-darkest);
+  border: none;
+  border-radius: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.btn-add-experience-description {
+  margin-top: 8px;
+  background: var(--c-light-gray);
+  color: var(--c-darkest);
+}
+
+.btn-add-experience:hover,
+.btn-add-experience-description:hover {
+  opacity: 0.8;
 }

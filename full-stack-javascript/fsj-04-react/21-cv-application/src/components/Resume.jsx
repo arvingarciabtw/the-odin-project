@@ -99,33 +99,6 @@ function Experience() {
           </li>
         </ul>
       </div>
-      <div className="experience">
-        <div className="company-container">
-          <p>Company Name</p>
-          <p>City, Region</p>
-        </div>
-        <div className="position-container">
-          <p>Position</p>
-          <p>Start Date - End Date</p>
-        </div>
-        <ul className="contributions-container">
-          <li className="contribution">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-          <li className="contribution">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-          <li className="contribution">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-        </ul>
-      </div>
     </section>
   );
 }
@@ -162,76 +135,25 @@ function Projects() {
           </li>
         </ul>
       </div>
-      <div className="project">
-        <div className="project-container">
-          <p className="project-name">
-            <span>Project Name</span> |
-          </p>
-          <ul className="technologies">
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology</li>
-          </ul>
-          <p className="project-date">Start Date - End Date</p>
-        </div>
-        <ul className="project-descriptions">
-          <li className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-          <li className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-        </ul>
-      </div>
-      <div className="project">
-        <div className="project-container">
-          <p className="project-name">
-            <span>Project Name</span> |
-          </p>
-          <ul className="technologies">
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology</li>
-          </ul>
-          <p className="project-date">Start Date - End Date</p>
-        </div>
-        <ul className="project-descriptions">
-          <li className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-          <li className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet.
-          </li>
-        </ul>
-      </div>
     </section>
   );
 }
 
-function Skills() {
+function Skills({ technicalSkillsInfo }) {
   return (
     <section className="skills-container">
       <h2>TECHNICAL SKILLS</h2>
       <p className="languages">
-        <span>Languages:</span> Language, Language, Language, Language
+        <span>Languages:</span> {technicalSkillsInfo.languages.join(", ")}
       </p>
       <p className="frameworks">
-        <span>Frameworks:</span> Framework, Framework, Framework, Framework
+        <span>Frameworks:</span> {technicalSkillsInfo.frameworks.join(", ")}
       </p>
       <p className="libraries">
-        <span>Libraries:</span> Library, Library, Library, Library
+        <span>Libraries:</span> {technicalSkillsInfo.libraries.join(", ")}
       </p>
       <p className="tools">
-        <span>Tools:</span> Tool, Tool, Tool, Tool
+        <span>Tools:</span> {technicalSkillsInfo.tools.join(", ")}
       </p>
     </section>
   );
@@ -244,7 +166,7 @@ function Resume(props) {
       <Education educationInfo={props.educationInfo} />
       <Experience />
       <Projects />
-      <Skills />
+      <Skills technicalSkillsInfo={props.technicalSkillsInfo} />
     </div>
   );
 }

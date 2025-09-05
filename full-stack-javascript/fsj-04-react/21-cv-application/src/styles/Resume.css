@@ -6,6 +6,7 @@
   color: black;
   min-width: 595px;
   height: 842px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
