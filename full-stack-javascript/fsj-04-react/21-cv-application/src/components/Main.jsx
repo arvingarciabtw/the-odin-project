@@ -6,7 +6,7 @@ import ExperienceInfo from "./ExperienceInfo.jsx";
 import ProjectsInfo from "./ProjectsInfo.jsx";
 import TechnicalSkillsInfo from "./TechnicalSkillsInfo.jsx";
 
-function Main() {
+function Main({ experienceInfo, setExperienceInfo }) {
   // state variables for general information
   const [firstName, setFirstName] = useState("Arvin");
   const [lastName, setLastName] = useState("Garcia");
@@ -25,8 +25,8 @@ function Main() {
   const [program, setProgram] = useState(
     "Program (e.g. Bachelor of Science in ...)",
   );
-  const [educationStartDate, setEducationStartDate] = useState("2022");
-  const [educationEndDate, setEducationEndDate] = useState("2026");
+  const [educationStartDate, setEducationStartDate] = useState("2022-01-01");
+  const [educationEndDate, setEducationEndDate] = useState("2026-01-01");
 
   // state variables for technical skills
   const [language, setLanguage] = useState("");
@@ -75,11 +75,11 @@ function Main() {
     const inputs = document.querySelectorAll(".skills-info-container input");
 
     toBeAdded === "language" ? setLanguages([...languages, language]) : null;
-    toBeAdded === "framework"
+    toBeChanged === "framework"
       ? setFrameworks([...frameworks, framework])
       : null;
-    toBeAdded === "library" ? setLibraries([...libraries, library]) : null;
-    toBeAdded === "tool" ? setTools([...tools, tool]) : null;
+    toBeChanged === "library" ? setLibraries([...libraries, library]) : null;
+    toBeChanged === "tool" ? setTools([...tools, tool]) : null;
 
     inputs.forEach((input) => {
       input.value = "";
@@ -91,7 +91,10 @@ function Main() {
       <div className="sections-container">
         <GeneralInfo handleChange={handleChange} />
         <EducationInfo handleChange={handleChange} />
-        <ExperienceInfo handleChange={handleChange} />
+        <ExperienceInfo
+          experienceInfo={experienceInfo}
+          setExperienceInfo={setExperienceInfo}
+        />
         <ProjectsInfo handleChange={handleChange} />
         <TechnicalSkillsInfo
           technicalSkills={{
@@ -130,6 +133,7 @@ function Main() {
           educationStartDate: educationStartDate,
           educationEndDate: educationEndDate,
         }}
+        experienceInfo={experienceInfo}
         technicalSkillsInfo={{
           languages: languages,
           frameworks: frameworks,
@@ -142,3 +146,4 @@ function Main() {
 }
 
 export default Main;
+

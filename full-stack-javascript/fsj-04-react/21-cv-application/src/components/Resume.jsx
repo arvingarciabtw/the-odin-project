@@ -68,37 +68,36 @@ function Education({ educationInfo }) {
   );
 }
 
-function Experience() {
+function Experience({ experienceInfo }) {
   return (
     <section className="experience-container">
       <h2>EXPERIENCE</h2>
-      <div className="experience">
-        <div className="company-container">
-          <p>Company Name</p>
-          <p>City, Region</p>
-        </div>
-        <div className="position-container">
-          <p>Position</p>
-          <p>Start Date - End Date</p>
-        </div>
-        <ul className="contributions-container">
-          <li className="contribution">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-          <li className="contribution">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-          <li className="contribution">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-            beatae repellendus amet repudiandae sapiente itaque tempora sint
-            dicta harum molestiae.
-          </li>
-        </ul>
-      </div>
+      {experienceInfo.map((experience) => {
+        const formattedStartDate = format(experience.startDate, "MMM yyyy");
+        const formattedEndDate = format(experience.endDate, "MMM yyyy");
+
+        return (
+          <div className="experience" key={experience.id}>
+            <div className="company-container">
+              <p>{experience.companyName}</p>
+              <p>{experience.location}</p>
+            </div>
+            <div className="position-container">
+              <p>{experience.position}</p>
+              <p>
+                {formattedStartDate} - {formattedEndDate}
+              </p>
+            </div>
+            <ul className="contributions-container">
+              {experience.descriptions.map((description) => (
+                <li className="contribution" key={description.id}>
+                  {description.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </section>
   );
 }
@@ -164,7 +163,7 @@ function Resume(props) {
     <div className="resume-container">
       <GeneralInformation generalInfo={props.generalInfo} />
       <Education educationInfo={props.educationInfo} />
-      <Experience />
+      <Experience experienceInfo={props.experienceInfo} />
       <Projects />
       <Skills technicalSkillsInfo={props.technicalSkillsInfo} />
     </div>
