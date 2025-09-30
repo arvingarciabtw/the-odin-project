@@ -102,38 +102,42 @@ function Experience({ experienceInfo }) {
   );
 }
 
-function Projects() {
+function Projects({ projectsInfo }) {
   return (
     <section className="projects-container">
       <h2>PROJECTS</h2>
-      <div className="project">
-        <div className="project-container">
-          <p className="project-name">
-            <span>Project Name</span> |
-          </p>
-          <ul className="technologies">
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology,</li>
-            <li className="technology">Technology</li>
-          </ul>
-          <p className="project-date">Start Date - End Date</p>
-        </div>
-        <ul className="project-descriptions">
-          <li className="description">
-            Built an interactive web application that simulates different memory
-            management algorithms including FIFO, LRU, and Optimal.
-          </li>
-          <li className="description">
-            Implemented real-time visualization of page replacement algorithms
-            with dynamic charts showing hit/miss ratios.
-          </li>
-          <li className="description">
-            Created responsive user interface allowing students to input custom
-            page reference strings and compare algorithm performance.
-          </li>
-        </ul>
-      </div>
+      {projectsInfo.map((project) => {
+        const formattedStartDate = format(project.startDate, "MMM yyyy");
+        const formattedEndDate = format(project.endDate, "MMM yyyy");
+
+        return (
+          <div className="project" key={project.id}>
+            <div className="project-container">
+              <p className="project-name">
+                <span>{project.projectName}</span> |
+              </p>
+              <ul className="technologies">
+                {project.technologies.map((technology, index) => (
+                  <li className="technology" key={index}>
+                    {technology}
+                    {index !== project.technologies.length - 1 && ","}
+                  </li>
+                ))}
+              </ul>
+              <p className="project-date">
+                {formattedStartDate} - {formattedEndDate}
+              </p>
+            </div>
+            <ul className="project-descriptions">
+              {project.descriptions.map((description) => (
+                <li className="description" key={description.id}>
+                  {description.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </section>
   );
 }
@@ -164,7 +168,7 @@ function Resume(props) {
       <GeneralInformation generalInfo={props.generalInfo} />
       <Education educationInfo={props.educationInfo} />
       <Experience experienceInfo={props.experienceInfo} />
-      <Projects />
+      <Projects projectsInfo={props.projectsInfo} />
       <Skills technicalSkillsInfo={props.technicalSkillsInfo} />
     </div>
   );

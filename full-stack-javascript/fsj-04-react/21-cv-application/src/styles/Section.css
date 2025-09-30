@@ -118,6 +118,7 @@
 .general-info-container,
 .education-info-container,
 .experience-info-inputs,
+.project-info-inputs,
 .projects-info-container {
   margin-top: 8px;
   display: grid;
@@ -133,13 +134,15 @@
 
 /* == EXPERIENCE == */
 
-.experience-info-container {
+.experience-info-container,
+.projects-info-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.experience-info {
+.experience-info,
+.project-info {
   padding: 0.75rem 1rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -148,13 +151,15 @@
   border-radius: 10px;
 }
 
-.experience-info .top {
+.experience-info .top,
+.project-info .top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.btn-delete-experience {
+.btn-delete-experience,
+.btn-delete-project {
   padding: 0;
   width: 20px;
   height: 20px;
@@ -165,21 +170,25 @@
   transition: color 0.3s ease;
 }
 
-.btn-delete-experience:hover {
+.btn-delete-experience:hover,
+.btn-delete-project:hover {
   color: var(--c-purple);
 }
 
-.experience-info .top svg {
+.experience-info .top svg,
+.project-info .top svg {
   width: 16px;
   height: 16px;
 }
 
-.experience-info-inputs {
+.experience-info-inputs,
+.project-info-inputs {
   margin-top: 0;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
 
-.experience-descriptions-container {
+.experience-descriptions-container,
+.project-descriptions-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -212,7 +221,9 @@
 }
 
 .btn-add-experience,
-.btn-add-experience-description {
+.btn-add-project,
+.btn-add-experience-description,
+.btn-add-project-description {
   padding: 0.5em 1em;
   font-size: 0.875rem;
   align-self: flex-start;
@@ -223,13 +234,16 @@
   transition: opacity 0.3s ease;
 }
 
-.btn-add-experience-description {
+.btn-add-experience-description,
+.btn-add-project-description {
   margin-top: 8px;
   background: var(--c-light-gray);
   color: var(--c-darkest);
 }
 
 .btn-add-experience:hover,
+.btn-add-project:hover,
 .btn-add-experience-description:hover {
+.btn-add-project-description:hover {
   opacity: 0.8;
 }

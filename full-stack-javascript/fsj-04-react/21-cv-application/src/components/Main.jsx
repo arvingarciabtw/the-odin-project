@@ -6,7 +6,7 @@ import ExperienceInfo from "./ExperienceInfo.jsx";
 import ProjectsInfo from "./ProjectsInfo.jsx";
 import TechnicalSkillsInfo from "./TechnicalSkillsInfo.jsx";
 
-function Main({ experienceInfo, setExperienceInfo }) {
+function Main({ experienceInfo, setExperienceInfo, projectsInfo, setProjectsInfo }) {
   // state variables for general information
   const [firstName, setFirstName] = useState("Arvin");
   const [lastName, setLastName] = useState("Garcia");
@@ -95,7 +95,10 @@ function Main({ experienceInfo, setExperienceInfo }) {
           experienceInfo={experienceInfo}
           setExperienceInfo={setExperienceInfo}
         />
-        <ProjectsInfo handleChange={handleChange} />
+        <ProjectsInfo
+          projectsInfo={projectsInfo}
+          setProjectsInfo={setProjectsInfo}
+        />
         <TechnicalSkillsInfo
           technicalSkills={{
             handleChange: handleChange,
@@ -134,6 +137,7 @@ function Main({ experienceInfo, setExperienceInfo }) {
           educationEndDate: educationEndDate,
         }}
         experienceInfo={experienceInfo}
+        projectsInfo={projectsInfo}
         technicalSkillsInfo={{
           languages: languages,
           frameworks: frameworks,
