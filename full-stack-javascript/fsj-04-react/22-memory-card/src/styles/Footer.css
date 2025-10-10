@@ -1,0 +1,15 @@
+.footer-app {
+  padding: 2rem;
+
+  text-align: center;
+
+  color: white;
+}
+
+.developer {
+  color: beige;
+}
+
+.developer:hover {
+  color: lightblue;
+}

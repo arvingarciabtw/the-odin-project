@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './components/NavBar'
+import Footer from './components/Footer.jsx'
 
 function App() {
   return (
@@ -20,6 +18,7 @@ function App() {
       <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_011.png" alt="heartshtone" />
       <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_012.png" alt="heartshtone" />
       <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_014.png" alt="heartshtone" />
+      <Footer />
     </>
   )
 }
