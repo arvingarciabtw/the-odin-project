@@ -2,13 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import NavBar from './components/NavBar'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>Sample images</h1>
+      <NavBar />
       <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_001.png" alt="heartshtone" />
       <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_002.png" alt="heartshtone" />
       <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/EX1_004.png" alt="heartshtone" />

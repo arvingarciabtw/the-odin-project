@@ -1,0 +1,27 @@
+.header-app {
+  padding: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: white;
+}
+
+.btn-github {
+  background-color: transparent;
+  border: none;
+
+  transition: opacity 0.3s ease;
+}
+
+.btn-github:hover {
+  opacity: 0.6;
+}
+
+.icon-github {
+  width: 36px;
+  height: 36px;
+
+  fill: white;
+}
