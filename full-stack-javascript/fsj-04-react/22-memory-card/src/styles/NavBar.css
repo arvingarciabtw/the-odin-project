@@ -8,14 +8,14 @@
   color: white;
 }
 
-.btn-github {
+.anc-github {
   background-color: transparent;
   border: none;
 
   transition: opacity 0.3s ease;
 }
 
-.btn-github:hover {
+.anc-github:hover {
   opacity: 0.6;
 }
 
