@@ -1,0 +1,10 @@
+.card {
+  cursor: pointer;
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  opacity: 0.6;
+  transform: scale(1.05);
+}

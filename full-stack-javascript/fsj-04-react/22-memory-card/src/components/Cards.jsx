@@ -1,3 +1,4 @@
+import "../styles/Cards.css"
 import { useEffect, useState } from "react"
 
 function Cards() {
@@ -9,6 +10,7 @@ function Cards() {
         key={card.id}
         src={card.url}
         alt={card.name}
+        className="card"
       />
     ) 
   })
@@ -54,8 +56,6 @@ function Cards() {
     }
     getCards()
   }, [])
-
-  console.log(cards)
 
   return (
     <>
