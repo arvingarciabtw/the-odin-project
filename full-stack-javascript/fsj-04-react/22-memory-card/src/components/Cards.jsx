@@ -5,9 +5,24 @@ import Card from "./Card"
 function Cards() {
   const [cards, setCards] = useState([])
 
+  function shuffleCards(array) {
+    let arr = array.slice()
+
+    let currentIndex = arr.length;
+
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
+    }
+
+    setCards(arr)
+  }
+
   const cardItems = cards.map(card => {
     return (
-      <Card key={card.id} card={card} cards={cards}/>
+      <Card key={card.id} card={card} handleClick={() => shuffleCards(cards)}/>
     ) 
   })
 
@@ -45,7 +60,8 @@ function Cards() {
           }
         })
 
-        setCards(filteredCards)
+        // setCards(filteredCards)
+        shuffleCards(filteredCards)
       } catch (err) {
         console.log(err)
       }
