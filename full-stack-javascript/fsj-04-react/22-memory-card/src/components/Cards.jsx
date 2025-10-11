@@ -2,8 +2,9 @@ import "../styles/Cards.css"
 import { useEffect, useState } from "react"
 import Card from "./Card"
 
-function Cards() {
+function Cards({ scores }) {
   const [cards, setCards] = useState([])
+  const [tempArray, setTempArray] = useState([])
 
   function shuffleCards(array) {
     let arr = array.slice()
@@ -22,7 +23,7 @@ function Cards() {
 
   const cardItems = cards.map(card => {
     return (
-      <Card key={card.id} card={card} handleClick={() => shuffleCards(cards)}/>
+      <Card key={card.id} card={card} scores={scores} shuffleCards={() => shuffleCards(cards)} tempArray={tempArray} setTempArray={setTempArray}/>
     ) 
   })
 
