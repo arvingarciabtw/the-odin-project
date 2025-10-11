@@ -1,0 +1,21 @@
+.container-instructions {
+  padding: 0 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  color: white;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.instructions {
+  max-width: 1200px;
+}
+
+.container-scores {
+  display: flex;
+  gap: 2rem;
+}

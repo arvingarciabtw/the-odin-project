@@ -1,3 +1,10 @@
+.container-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .card {
   cursor: pointer;
 
@@ -6,5 +13,5 @@
 
 .card:hover {
   opacity: 0.6;
-  transform: scale(1.05);
+  transform: scale(1.05) rotate(2deg);
 }

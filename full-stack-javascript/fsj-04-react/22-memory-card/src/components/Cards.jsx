@@ -1,17 +1,13 @@
 import "../styles/Cards.css"
 import { useEffect, useState } from "react"
+import Card from "./Card"
 
 function Cards() {
   const [cards, setCards] = useState([])
 
   const cardItems = cards.map(card => {
     return (
-      <img 
-        key={card.id}
-        src={card.url}
-        alt={card.name}
-        className="card"
-      />
+      <Card key={card.id} card={card} cards={cards}/>
     ) 
   })
 
@@ -59,7 +55,9 @@ function Cards() {
 
   return (
     <>
-      {cardItems}
+      <section className="container-cards"> 
+        {cardItems}
+      </section>
     </>
   );
 }
