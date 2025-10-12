@@ -6,9 +6,9 @@ function Score({ scoreType, scores }) {
   return (
     <>
     {scoreType === "current" ? (
-      <p className="current-score-label">Current score: <span className="current-score">{scores.currentScore}</span></p>
+      <p className="current-score-label">Current score: <span className="current-score score">{scores.currentScore}</span></p>
     ) : (
-      <p className="best-score-label">Best score: <span className="best-score">{scores.bestScore}</span></p> 
+      <p className="best-score-label">Best score: <span className="best-score score">{scores.bestScore}</span></p> 
     )}
     </>
   );

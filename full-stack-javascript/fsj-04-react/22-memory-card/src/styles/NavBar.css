@@ -1,11 +1,15 @@
 .header-app {
-  padding: 2rem;
+  padding: 0 2rem;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 
   color: white;
+}
+
+.img-logo-hearthstone {
+  height: 100px;
 }
 
 .anc-github {
@@ -20,8 +24,9 @@
 }
 
 .icon-github {
+  margin-top: 20px;
   width: 36px;
   height: 36px;
 
-  fill: white;
+  fill: var(--c-text);
 }

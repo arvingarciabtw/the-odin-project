@@ -1,5 +1,29 @@
+@font-face {
+  font-family: "Belwe Bold";
+  src: url("/belwe/BelweBoldBT.ttf")
+}
+
 :root {
-  background-color: #242424;
+  --c-bg: #C1A472;
+  --c-text: #1E1710;
+
+  background-color: var(--c-bg);
+}
+
+body {
+  background-image: url("/background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
 }
 
 * {

@@ -6,10 +6,18 @@
   color: white;
 }
 
+.made-by {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  color: var(--c-text);
+}
+
 .developer {
-  color: beige;
+  color: var(--c-text);
+
+  transition: opacity 0.2s ease;
 }
 
 .developer:hover {
-  color: lightblue;
+  opacity: 0.7;
 }

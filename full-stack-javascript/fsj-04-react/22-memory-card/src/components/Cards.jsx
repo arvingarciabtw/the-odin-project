@@ -23,7 +23,14 @@ function Cards({ scores }) {
 
   const cardItems = cards.map(card => {
     return (
-      <Card key={card.id} card={card} scores={scores} shuffleCards={() => shuffleCards(cards)} tempArray={tempArray} setTempArray={setTempArray}/>
+      <Card 
+        key={card.id} 
+        card={card} 
+        scores={scores} 
+        shuffleCards={() => shuffleCards(cards)} 
+        tempArray={tempArray} 
+        setTempArray={setTempArray}
+      />
     ) 
   })
 
@@ -61,7 +68,6 @@ function Cards({ scores }) {
           }
         })
 
-        // setCards(filteredCards)
         shuffleCards(filteredCards)
       } catch (err) {
         console.log(err)

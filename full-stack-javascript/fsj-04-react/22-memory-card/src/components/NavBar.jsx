@@ -3,7 +3,7 @@ import "../styles/NavBar.css"
 function NavBar() {
   return (
     <header className="header-app">
-      <h1 className="heading-app">Hearthstone</h1>
+      <img className="img-logo-hearthstone" src="/logo-hearthstone.png" alt="Hearthstone logo" />
       <nav>
         <a className="anc-github" href="https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-04-react/22-memory-card" target="_blank" rel="noopener noreferrer" aria-label="Redirect to GitHub repository">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="icon-github bi bi-github" viewBox="0 0 16 16">
