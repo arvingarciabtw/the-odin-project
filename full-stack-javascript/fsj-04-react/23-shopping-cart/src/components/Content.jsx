@@ -1,10 +1,11 @@
 import styles from '../styles/Content.module.css';
+import Hero from './Hero';
 
 function Content({ type }) {
   return (
     <main className={styles.containerContent}>
       {type === 'home' ? (
-        <p>Where the home page content will live</p>
+        <Hero />
       ) : type === 'shop' ? (
         <p>Where the shop page content will live</p>
       ) : (
