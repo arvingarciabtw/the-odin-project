@@ -13,7 +13,11 @@ function Product({ product, cartIcon }) {
   }
 
   function handleChange(e) {
-    setQuantity(Number(e.target.value));
+    const re = /^[0-9\b]+$/;
+
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setQuantity(Number(e.target.value));
+    }
   }
 
   function handleClickAddCart() {
