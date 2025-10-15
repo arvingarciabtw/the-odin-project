@@ -6,7 +6,7 @@ function NavBar() {
     <header className={styles.headerApp}>
       <div className={styles.wrapper}>
         <Link to="/">
-          <h1 className="heading-app">Inkwell</h1>
+          <h1 className="heading-app">Nexus</h1>
         </Link>
         <nav className={styles.containerNavLinks}>
           <Link to="/">Home</Link>

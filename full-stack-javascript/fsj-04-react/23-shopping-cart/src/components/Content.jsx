@@ -1,5 +1,6 @@
 import styles from '../styles/Content.module.css';
 import Hero from './Hero';
+import Products from './Products';
 
 function Content({ type }) {
   return (
@@ -7,7 +8,7 @@ function Content({ type }) {
       {type === 'home' ? (
         <Hero />
       ) : type === 'shop' ? (
-        <p>Where the shop page content will live</p>
+        <Products />
       ) : (
         <p>Where the cart page content will live</p>
       )}
