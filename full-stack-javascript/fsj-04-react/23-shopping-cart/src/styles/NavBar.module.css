@@ -34,10 +34,10 @@ a {
 }
 
 .containerCartQuantity {
-  width: 20px;
+  min-width: 22px;
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: -8px;
+  right: -8px;
   aspect-ratio: 1 / 1;
 
   display: flex;

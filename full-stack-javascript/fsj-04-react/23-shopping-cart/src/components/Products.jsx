@@ -21,13 +21,8 @@ function Product({ product, cartIcon }) {
   }
 
   function handleClickAddCart() {
-    const hasProduct = cartIcon.cartIconArray.some(
-      (item) => item.id === product.id,
-    );
-
-    if (quantity !== 0 && !hasProduct) {
-      cartIcon.setCartQuantity(cartIcon.cartQuantity + 1);
-      cartIcon.setCartIconArray([...cartIcon.cartIconArray, product]);
+    if (quantity !== 0) {
+      cartIcon.setCartQuantity(cartIcon.cartQuantity + quantity);
     }
   }
 

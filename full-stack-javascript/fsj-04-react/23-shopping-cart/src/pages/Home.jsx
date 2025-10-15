@@ -5,8 +5,7 @@ import Footer from '../components/Footer';
 import Content from '../components/Content';
 
 function Home() {
-  const { cartQuantity, setCartQuantity, cartIconArray, setCartIconArray } =
-    useContext(AppContext);
+  const { cartQuantity, setCartQuantity } = useContext(AppContext);
 
   return (
     <>
@@ -16,8 +15,6 @@ function Home() {
         cartIcon={{
           cartQuantity: cartQuantity,
           setCartQuantity: setCartQuantity,
-          cartIconArray: cartIconArray,
-          setCartIconArray: setCartIconArray,
         }}
       />
       <Footer />
