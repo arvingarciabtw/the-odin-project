@@ -1,5 +1,5 @@
 import styles from '../styles/Products.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Product({ product, cartIcon }) {
   const [quantity, setQuantity] = useState(0);
@@ -70,42 +70,8 @@ function Product({ product, cartIcon }) {
   );
 }
 
-function Products({ cartIcon }) {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [cartIconArray, setCartIconArray] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('https://dummyjson.com/products?limit=0', {
-          mode: 'cors',
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error: Status ${response.status}`);
-        }
-
-        const data = await response.json();
-        const unFilteredProducts = data.products;
-        const techProducts = unFilteredProducts.filter(
-          (product) =>
-            product.category === 'laptops' ||
-            product.category === 'smartphones' ||
-            product.category === 'tablets',
-        );
-
-        setProducts(techProducts);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
+function Products({ cartIcon, data }) {
+  const { products, error, isLoading } = data;
 
   return (
     <section className={styles.sectionProducts}>

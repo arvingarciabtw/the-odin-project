@@ -5,8 +5,15 @@ import Footer from '../components/Footer';
 import Content from '../components/Content';
 
 function Shop() {
-  const { cartQuantity, setCartQuantity, cartIconArray, setCartIconArray } =
-    useContext(AppContext);
+  const {
+    cartQuantity,
+    setCartQuantity,
+    cartIconArray,
+    setCartIconArray,
+    products,
+    error,
+    isLoading,
+  } = useContext(AppContext);
 
   return (
     <>
@@ -18,6 +25,11 @@ function Shop() {
           setCartQuantity: setCartQuantity,
           cartIconArray: cartIconArray,
           setCartIconArray: setCartIconArray,
+        }}
+        data={{
+          products: products,
+          error: error,
+          isLoading: isLoading,
         }}
       />
       <Footer />
