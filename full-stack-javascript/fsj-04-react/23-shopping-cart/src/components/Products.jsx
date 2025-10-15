@@ -17,9 +17,11 @@ function Product({ product, cartIcon }) {
   }
 
   function handleClickAddCart() {
-    const notYetAdded = !cartIcon.cartIconArray.includes(product);
+    const hasProduct = cartIcon.cartIconArray.some(
+      (item) => item.id === product.id,
+    );
 
-    if (quantity !== 0 && notYetAdded) {
+    if (quantity !== 0 && !hasProduct) {
       cartIcon.setCartQuantity(cartIcon.cartQuantity + 1);
       cartIcon.setCartIconArray([...cartIcon.cartIconArray, product]);
     }
@@ -113,15 +115,7 @@ function Products({ cartIcon }) {
       ) : (
         <>
           {products.map((product) => (
-            <Product
-              key={product.id}
-              product={product}
-              cartIcon={{
-                ...cartIcon,
-                cartIconArray: cartIconArray,
-                setCartIconArray: setCartIconArray,
-              }}
-            />
+            <Product key={product.id} product={product} cartIcon={cartIcon} />
           ))}
         </>
       )}
