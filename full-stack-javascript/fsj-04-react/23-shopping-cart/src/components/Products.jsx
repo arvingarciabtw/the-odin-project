@@ -1,4 +1,24 @@
+import styles from '../styles/Products.module.css';
 import { useState, useEffect } from 'react';
+
+function Product({ product }) {
+  return (
+    <div className={styles.containerProduct}>
+      <img
+        src={product.images[0]}
+        alt={product.title}
+        className={styles.imgProduct}
+      />
+      <div className={styles.containerProductDetails}>
+        <h3 className={styles.headingProduct}>{product.title}</h3>
+        <div className={styles.bottom}>
+          <p>${product.price}</p>
+          <p>Rating: {product.rating}/5</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -36,19 +56,21 @@ function Products() {
     fetchData();
   }, []);
 
+  console.log(products[0]);
+
   return (
-    <>
+    <section className={styles.sectionProducts}>
       {error && <p>{error}</p>}
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <>
           {products.map((product) => (
-            <p key={product.id}>{product.title}</p>
+            <Product key={product.id} product={product} />
           ))}
-        </ul>
+        </>
       )}
-    </>
+    </section>
   );
 }
 
