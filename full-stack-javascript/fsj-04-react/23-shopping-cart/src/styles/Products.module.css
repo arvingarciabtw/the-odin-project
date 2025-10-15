@@ -43,3 +43,52 @@
   justify-content: space-between;
   align-items: end;
 }
+
+.containerInteractions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerQuantity {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.containerQuantity > button {
+  padding: 0.25em;
+  aspect-ratio: 1 / 1;
+
+  font-size: 1rem;
+  border: none;
+  border-radius: 50%;
+
+  transition: background 0.3s ease;
+}
+
+.containerQuantity > button:hover {
+  background: #dadada;
+}
+
+.containerQuantity > input {
+  max-width: 40px;
+
+  background: #e9e9ed;
+  text-align: center;
+  border: none;
+  border-radius: 12px;
+}
+
+.btnAddCart {
+  padding: 0.5em 1em;
+
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 20px;
+
+  transition: opacity 0.3s ease;
+}
+
+.btnAddCart:hover {
+  opacity: 0.7;
+}

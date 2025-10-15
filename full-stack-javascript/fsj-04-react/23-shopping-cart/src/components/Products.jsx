@@ -2,6 +2,20 @@ import styles from '../styles/Products.module.css';
 import { useState, useEffect } from 'react';
 
 function Product({ product }) {
+  const [quantity, setQuantity] = useState(0);
+
+  function handleClick(type) {
+    type === 'increment'
+      ? setQuantity((quantity) => quantity + 1)
+      : quantity === 0
+        ? setQuantity(0)
+        : setQuantity(quantity - 1);
+  }
+
+  function handleChange(e) {
+    setQuantity(Number(e.target.value));
+  }
+
   return (
     <div className={styles.containerProduct}>
       <img
@@ -14,6 +28,29 @@ function Product({ product }) {
         <div className={styles.bottom}>
           <p>${product.price}</p>
           <p>Rating: {product.rating}/5</p>
+        </div>
+        <div className={styles.containerInteractions}>
+          <div className={styles.containerQuantity}>
+            <button
+              className={styles.btnDecrementQuantity}
+              onClick={() => handleClick('decrement')}
+            >
+              -
+            </button>
+            <input
+              type="text"
+              className={styles.inputQuantity}
+              value={quantity}
+              onChange={handleChange}
+            />
+            <button
+              className={styles.btnIncrementQuantity}
+              onClick={() => handleClick('increment')}
+            >
+              +
+            </button>
+          </div>
+          <button className={styles.btnAddCart}>Add to Cart</button>
         </div>
       </div>
     </div>
@@ -55,8 +92,6 @@ function Products() {
 
     fetchData();
   }, []);
-
-  console.log(products[0]);
 
   return (
     <section className={styles.sectionProducts}>
