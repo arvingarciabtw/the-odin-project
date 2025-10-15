@@ -15,10 +15,37 @@
 
 .containerNavLinks {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
 a {
   color: black;
   text-decoration: none;
+}
+
+.containerCart {
+  position: relative;
+}
+
+.iconCart {
+  width: 28px;
+  height: 28px;
+}
+
+.containerCartQuantity {
+  width: 20px;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
 }

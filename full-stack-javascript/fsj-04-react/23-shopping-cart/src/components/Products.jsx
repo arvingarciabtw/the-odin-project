@@ -1,7 +1,7 @@
 import styles from '../styles/Products.module.css';
 import { useState, useEffect } from 'react';
 
-function Product({ product }) {
+function Product({ product, cartIcon }) {
   const [quantity, setQuantity] = useState(0);
 
   function handleClick(type) {
@@ -14,6 +14,15 @@ function Product({ product }) {
 
   function handleChange(e) {
     setQuantity(Number(e.target.value));
+  }
+
+  function handleClickAddCart() {
+    const notYetAdded = !cartIcon.cartIconArray.includes(product);
+
+    if (quantity !== 0 && notYetAdded) {
+      cartIcon.setCartQuantity(cartIcon.cartQuantity + 1);
+      cartIcon.setCartIconArray([...cartIcon.cartIconArray, product]);
+    }
   }
 
   return (
@@ -50,17 +59,20 @@ function Product({ product }) {
               +
             </button>
           </div>
-          <button className={styles.btnAddCart}>Add to Cart</button>
+          <button className={styles.btnAddCart} onClick={handleClickAddCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-function Products() {
+function Products({ cartIcon }) {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [cartIconArray, setCartIconArray] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -101,7 +113,15 @@ function Products() {
       ) : (
         <>
           {products.map((product) => (
-            <Product key={product.id} product={product} />
+            <Product
+              key={product.id}
+              product={product}
+              cartIcon={{
+                ...cartIcon,
+                cartIconArray: cartIconArray,
+                setCartIconArray: setCartIconArray,
+              }}
+            />
           ))}
         </>
       )}
