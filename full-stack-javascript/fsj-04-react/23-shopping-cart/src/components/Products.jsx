@@ -26,8 +26,6 @@ function Product({ product, cart }) {
     );
 
     if (quantity !== 0) {
-      cart.setCartQuantity(cart.cartQuantity + quantity);
-
       if (!hasCartProduct) {
         cart.setCartProducts([
           ...cart.cartProducts,

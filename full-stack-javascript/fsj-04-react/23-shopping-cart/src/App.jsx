@@ -4,7 +4,6 @@ import { useState, useEffect, createContext } from 'react';
 const AppContext = createContext();
 
 function App() {
-  const [cartQuantity, setCartQuantity] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
 
   const [products, setProducts] = useState([]);
@@ -45,8 +44,6 @@ function App() {
   return (
     <AppContext.Provider
       value={{
-        cartQuantity,
-        setCartQuantity,
         cartProducts,
         setCartProducts,
         products,

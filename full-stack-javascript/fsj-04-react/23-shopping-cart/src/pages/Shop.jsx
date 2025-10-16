@@ -5,24 +5,20 @@ import Footer from '../components/Footer';
 import Content from '../components/Content';
 
 function Shop() {
-  const {
-    cartQuantity,
-    setCartQuantity,
-    cartProducts,
-    setCartProducts,
-    products,
-    error,
-    isLoading,
-  } = useContext(AppContext);
+  const { cartProducts, setCartProducts, products, error, isLoading } =
+    useContext(AppContext);
 
   return (
     <>
-      <NavBar cartQuantity={cartQuantity} />
+      <NavBar
+        cart={{
+          cartProducts,
+          setCartProducts,
+        }}
+      />
       <Content
         type="shop"
         cart={{
-          cartQuantity: cartQuantity,
-          setCartQuantity: setCartQuantity,
           cartProducts: cartProducts,
           setCartProducts: setCartProducts,
         }}

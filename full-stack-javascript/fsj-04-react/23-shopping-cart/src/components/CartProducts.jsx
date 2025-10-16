@@ -10,7 +10,6 @@ function CartProduct({ cartProduct, cart }) {
       );
 
       cart.setCartProducts(updatedCartProducts);
-      cart.setCartQuantity(cart.cartQuantity + 1);
     } else if (type === 'decrement') {
       const updatedCartProducts = cart.cartProducts.map((item) =>
         item.product.id === cartProduct.product.id
@@ -19,7 +18,6 @@ function CartProduct({ cartProduct, cart }) {
       );
 
       cart.setCartProducts(updatedCartProducts);
-      cart.setCartQuantity(cart.cartQuantity - 1);
     }
   }
 
