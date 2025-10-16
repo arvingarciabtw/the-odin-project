@@ -20,3 +20,13 @@
 button {
   cursor: pointer;
 }
+
+body {
+  overscroll-behavior-y: none;
+}
+
+html {
+  /* keeps the scrollbar on the side, so it prevents the ui from  */
+  /* shifting slightly when navigating pages (Chromium browsers) */
+  overflow-y: scroll;
+}

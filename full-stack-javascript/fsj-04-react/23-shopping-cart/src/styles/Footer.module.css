@@ -1,9 +1,12 @@
 footer {
-  padding: 1.5rem 2rem;
+  padding: 2rem;
 
+  background: black;
+  color: white;
   text-align: center;
 }
 
 .developer {
+  color: white;
   text-decoration: underline;
 }

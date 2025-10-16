@@ -1,21 +1,31 @@
-.containerCartProducts {
-  padding: 2rem 0 0;
-  width: 100%;
-  min-height: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  gap: 2rem;
+}
 
+.containerCartProducts {
+  width: 100%;
+  max-height: calc(100vh - 288px);
+
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-self: start;
   gap: 2rem;
 
   text-align: center;
+  overflow-y: auto;
 }
 
 .containerCartProduct {
   padding: 0 1.5rem;
 
   display: grid;
-  grid-template-columns: 1fr 2fr 4fr 1fr 2fr;
+  grid-template-columns: 1fr 2fr 4fr 2fr 1fr;
   align-items: center;
   gap: 1rem;
 
@@ -32,6 +42,8 @@
 .containerCartProduct > .details {
   display: flex;
   flex-direction: column;
+  justify-self: start;
+  text-align: initial;
   gap: 0.5rem;
 }
 

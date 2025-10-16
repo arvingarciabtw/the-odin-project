@@ -69,7 +69,7 @@ function CartProduct({ cartProduct, cart }) {
         </button>
       </div>
       <p className={styles.price}>
-        Total: ${cartProduct.product.price * cartProduct.count}
+        Total: ${(cartProduct.product.price * cartProduct.count).toFixed(2)}
       </p>
       <button className={styles.btnRemoveCartProduct} onClick={openModal}>
         &times;
@@ -94,20 +94,32 @@ function CartProduct({ cartProduct, cart }) {
 }
 
 function CartProducts({ cart }) {
+  const subtotal = cart.cartProducts.reduce(
+    (total, item) => total + item.product.price * item.count,
+    0,
+  );
+
   return (
-    <section className={styles.containerCartProducts}>
+    <div className={styles.container}>
       {cart.cartProducts.length === 0 ? (
         <p>Your cart is empty. Go to our shop and check some goodies out!</p>
       ) : (
-        cart.cartProducts.map((cartProduct) => (
-          <CartProduct
-            key={cartProduct.product.id}
-            cartProduct={cartProduct}
-            cart={cart}
-          />
-        ))
+        <>
+          <section className={styles.containerCartProducts}>
+            <>
+              {cart.cartProducts.map((cartProduct) => (
+                <CartProduct
+                  key={cartProduct.product.id}
+                  cartProduct={cartProduct}
+                  cart={cart}
+                />
+              ))}
+            </>
+          </section>
+          <p className={styles.subtotal}>Subtotal: ${subtotal.toFixed(2)}</p>
+        </>
       )}
-    </section>
+    </div>
   );
 }
 
