@@ -1,16 +1,17 @@
 import styles from '../styles/Content.module.css';
 import Hero from './Hero';
 import Products from './Products';
+import CartProducts from './CartProducts';
 
-function Content({ type, cartIcon, data }) {
+function Content({ type, cart, data }) {
   return (
     <main className={styles.containerContent}>
       {type === 'home' ? (
         <Hero />
       ) : type === 'shop' ? (
-        <Products cartIcon={cartIcon} data={data} />
+        <Products cart={cart} data={data} />
       ) : (
-        <p>Where the cart page content will live</p>
+        <CartProducts cart={cart} />
       )}
     </main>
   );

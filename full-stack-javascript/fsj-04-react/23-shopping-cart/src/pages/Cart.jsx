@@ -5,16 +5,19 @@ import Footer from '../components/Footer';
 import Content from '../components/Content';
 
 function Cart() {
-  const { cartQuantity, setCartQuantity } = useContext(AppContext);
+  const { cartQuantity, setCartQuantity, cartProducts, setCartProducts } =
+    useContext(AppContext);
 
   return (
     <>
       <NavBar cartQuantity={cartQuantity} />
       <Content
         type="cart"
-        cartIcon={{
+        cart={{
           cartQuantity: cartQuantity,
           setCartQuantity: setCartQuantity,
+          cartProducts: cartProducts,
+          setCartProducts: setCartProducts,
         }}
       />
       <Footer />

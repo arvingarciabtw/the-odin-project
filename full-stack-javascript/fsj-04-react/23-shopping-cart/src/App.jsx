@@ -5,6 +5,7 @@ const AppContext = createContext();
 
 function App() {
   const [cartQuantity, setCartQuantity] = useState(0);
+  const [cartProducts, setCartProducts] = useState([]);
 
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -46,6 +47,8 @@ function App() {
       value={{
         cartQuantity,
         setCartQuantity,
+        cartProducts,
+        setCartProducts,
         products,
         error,
         isLoading,

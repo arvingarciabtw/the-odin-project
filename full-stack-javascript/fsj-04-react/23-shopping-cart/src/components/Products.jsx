@@ -1,7 +1,7 @@
 import styles from '../styles/Products.module.css';
 import { useState } from 'react';
 
-function Product({ product, cartIcon }) {
+function Product({ product, cart }) {
   const [quantity, setQuantity] = useState(0);
 
   function handleClick(type) {
@@ -21,8 +21,27 @@ function Product({ product, cartIcon }) {
   }
 
   function handleClickAddCart() {
+    const hasCartProduct = cart.cartProducts.some(
+      (item) => item.product.id === product.id,
+    );
+
     if (quantity !== 0) {
-      cartIcon.setCartQuantity(cartIcon.cartQuantity + quantity);
+      cart.setCartQuantity(cart.cartQuantity + quantity);
+
+      if (!hasCartProduct) {
+        cart.setCartProducts([
+          ...cart.cartProducts,
+          { product, count: quantity },
+        ]);
+      } else {
+        const updatedCartProducts = cart.cartProducts.map((item) =>
+          item.product.id === product.id
+            ? { ...item, count: item.count + quantity }
+            : item,
+        );
+
+        cart.setCartProducts(updatedCartProducts);
+      }
     }
   }
 
@@ -69,7 +88,7 @@ function Product({ product, cartIcon }) {
   );
 }
 
-function Products({ cartIcon, data }) {
+function Products({ cart, data }) {
   const { products, error, isLoading } = data;
 
   return (
@@ -80,7 +99,7 @@ function Products({ cartIcon, data }) {
       ) : (
         <>
           {products.map((product) => (
-            <Product key={product.id} product={product} cartIcon={cartIcon} />
+            <Product key={product.id} product={product} cart={cart} />
           ))}
         </>
       )}
