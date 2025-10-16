@@ -5,6 +5,10 @@
   gap: 1rem;
 }
 
+.headingHero {
+  text-align: center;
+}
+
 .descriptionHero {
   max-width: 540px;
   text-align: center;

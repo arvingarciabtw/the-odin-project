@@ -1,6 +1,5 @@
 .containerContent {
-  padding: 2rem 0;
-
+  padding: 2rem;
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
@@ -9,4 +8,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }

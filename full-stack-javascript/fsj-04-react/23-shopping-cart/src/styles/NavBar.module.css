@@ -1,10 +1,14 @@
 .headerApp {
-  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
 
+  background: white;
   border-bottom: 1px solid #dadada;
 }
 
 .wrapper {
+  padding: 1.5rem 2rem;
+
   margin: 0 auto;
   max-width: 1200px;
 
@@ -13,15 +17,37 @@
   align-items: center;
 }
 
+.wrapper > a {
+  color: black;
+  text-decoration: none;
+}
+
 .containerNavLinks {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-a {
+.containerNavLinks > a {
+  padding: 0.5rem 1rem;
+
   color: black;
   text-decoration: none;
+  border-radius: 12px;
+
+  transition: background 0.3s ease;
+}
+
+.containerNavLinks > a:last-child {
+  padding: 0;
+}
+
+.containerNavLinks > a:hover {
+  background: #efefef;
+}
+
+.containerNavLinks > a:last-child:hover {
+  background: none;
 }
 
 .containerCart {
@@ -48,4 +74,10 @@ a {
   color: white;
   border-radius: 50%;
   font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .containerNavLinks > a:first-child {
+    display: none;
+  }
 }
