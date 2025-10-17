@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router';
-import { useState, useEffect, createContext } from 'react';
-
-const AppContext = createContext();
+import NavBar from './components/NavBar.jsx';
+import Footer from './components/Footer.jsx';
 
 function App() {
   const [cartProducts, setCartProducts] = useState([]);
@@ -42,19 +42,14 @@ function App() {
   }, []);
 
   return (
-    <AppContext.Provider
-      value={{
-        cartProducts,
-        setCartProducts,
-        products,
-        error,
-        isLoading,
-      }}
-    >
-      <Outlet />
-    </AppContext.Provider>
+    <>
+      <NavBar cart={{ cartProducts, setCartProducts }} />
+      <Outlet
+        context={[cartProducts, setCartProducts, products, error, isLoading]}
+      />
+      <Footer />
+    </>
   );
 }
 
 export default App;
-export { AppContext };

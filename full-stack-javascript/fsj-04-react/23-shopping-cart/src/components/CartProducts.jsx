@@ -1,8 +1,9 @@
 import styles from '../styles/CartProducts.module.css';
 import { useState } from 'react';
 import Modal from './Modal';
+import { useOutletContext } from 'react-router';
 
-function CartProduct({ cartProduct, cart }) {
+function CartProduct({ cartProduct, cartProducts, setCartProducts }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -15,32 +16,32 @@ function CartProduct({ cartProduct, cart }) {
 
   function handleClick(type) {
     if (type === 'increment') {
-      const updatedCartProducts = cart.cartProducts.map((item) =>
+      const updatedCartProducts = cartProducts.map((item) =>
         item.product.id === cartProduct.product.id
           ? { ...item, count: item.count + 1 }
           : item,
       );
 
-      cart.setCartProducts(updatedCartProducts);
+      setCartProducts(updatedCartProducts);
     } else if (type === 'decrement') {
       if (cartProduct.count !== 1) {
-        const updatedCartProducts = cart.cartProducts.map((item) =>
+        const updatedCartProducts = cartProducts.map((item) =>
           item.product.id === cartProduct.product.id
             ? { ...item, count: item.count - 1 }
             : item,
         );
 
-        cart.setCartProducts(updatedCartProducts);
+        setCartProducts(updatedCartProducts);
       }
     }
   }
 
   function removeProduct() {
-    const updatedCartProducts = cart.cartProducts.filter(
+    const updatedCartProducts = cartProducts.filter(
       (item) => item.product.id !== cartProduct.product.id,
     );
 
-    cart.setCartProducts(updatedCartProducts);
+    setCartProducts(updatedCartProducts);
   }
 
   return (
@@ -93,25 +94,28 @@ function CartProduct({ cartProduct, cart }) {
   );
 }
 
-function CartProducts({ cart }) {
-  const subtotal = cart.cartProducts.reduce(
+function CartProducts() {
+  const [cartProducts, setCartProducts] = useOutletContext();
+
+  const subtotal = cartProducts.reduce(
     (total, item) => total + item.product.price * item.count,
     0,
   );
 
   return (
     <div className={styles.container}>
-      {cart.cartProducts.length === 0 ? (
+      {cartProducts.length === 0 ? (
         <p>Your cart is empty. Go to our shop and check some goodies out!</p>
       ) : (
         <>
           <section className={styles.containerCartProducts}>
             <>
-              {cart.cartProducts.map((cartProduct) => (
+              {cartProducts.map((cartProduct) => (
                 <CartProduct
                   key={cartProduct.product.id}
                   cartProduct={cartProduct}
-                  cart={cart}
+                  cartProducts={cartProducts}
+                  setCartProducts={setCartProducts}
                 />
               ))}
             </>

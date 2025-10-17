@@ -1,7 +1,8 @@
 import styles from '../styles/Products.module.css';
 import { useState } from 'react';
+import { useOutletContext } from 'react-router';
 
-function Product({ product, cart }) {
+function Product({ product, cartProducts, setCartProducts }) {
   const [quantity, setQuantity] = useState(0);
 
   function handleClick(type) {
@@ -21,24 +22,21 @@ function Product({ product, cart }) {
   }
 
   function handleClickAddCart() {
-    const hasCartProduct = cart.cartProducts.some(
+    const hasCartProduct = cartProducts.some(
       (item) => item.product.id === product.id,
     );
 
     if (quantity !== 0) {
       if (!hasCartProduct) {
-        cart.setCartProducts([
-          ...cart.cartProducts,
-          { product, count: quantity },
-        ]);
+        setCartProducts([...cartProducts, { product, count: quantity }]);
       } else {
-        const updatedCartProducts = cart.cartProducts.map((item) =>
+        const updatedCartProducts = cartProducts.map((item) =>
           item.product.id === product.id
             ? { ...item, count: item.count + quantity }
             : item,
         );
 
-        cart.setCartProducts(updatedCartProducts);
+        setCartProducts(updatedCartProducts);
       }
     }
   }
@@ -86,8 +84,9 @@ function Product({ product, cart }) {
   );
 }
 
-function Products({ cart, data }) {
-  const { products, error, isLoading } = data;
+function Products() {
+  const [cartProducts, setCartProducts, products, error, isLoading] =
+    useOutletContext();
 
   return (
     <section className={styles.sectionProducts}>
@@ -97,7 +96,12 @@ function Products({ cart, data }) {
       ) : (
         <>
           {products.map((product) => (
-            <Product key={product.id} product={product} cart={cart} />
+            <Product
+              key={product.id}
+              product={product}
+              cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
+            />
           ))}
         </>
       )}

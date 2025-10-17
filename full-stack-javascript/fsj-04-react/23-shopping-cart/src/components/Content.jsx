@@ -3,15 +3,15 @@ import Hero from './Hero';
 import Products from './Products';
 import CartProducts from './CartProducts';
 
-function Content({ type, cart, data }) {
+function Content({ type }) {
   return (
     <main className={styles.containerContent}>
       {type === 'home' ? (
         <Hero />
       ) : type === 'shop' ? (
-        <Products cart={cart} data={data} />
+        <Products />
       ) : (
-        <CartProducts cart={cart} />
+        <CartProducts />
       )}
     </main>
   );
