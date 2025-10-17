@@ -36,6 +36,35 @@ function CartProduct({ cartProduct, cartProducts, setCartProducts }) {
     }
   }
 
+  function handleChange(e) {
+    const re = /^[1-9][0-9]*$|^$/;
+
+    if (e.target.value === '' || re.test(e.target.value)) {
+      const updatedCartProducts = cartProducts.map((item) =>
+        item.product.id === cartProduct.product.id
+          ? {
+              ...item,
+              count: e.target.value === '' ? '' : Number(e.target.value),
+            }
+          : item,
+      );
+
+      setCartProducts(updatedCartProducts);
+    }
+  }
+
+  function handleBlur() {
+    if (cartProduct.count === '') {
+      const updatedCartProducts = cartProducts.map((item) =>
+        item.product.id === cartProduct.product.id
+          ? { ...item, count: 1 }
+          : item,
+      );
+
+      setCartProducts(updatedCartProducts);
+    }
+  }
+
   function removeProduct() {
     const updatedCartProducts = cartProducts.filter(
       (item) => item.product.id !== cartProduct.product.id,
@@ -61,7 +90,13 @@ function CartProduct({ cartProduct, cartProducts, setCartProducts }) {
         >
           -
         </button>
-        <p className={styles.count}>{cartProduct.count}</p>
+        <input
+          className={styles.inputCount}
+          type="text"
+          value={cartProduct.count}
+          onChange={(e) => handleChange(e)}
+          onBlur={handleBlur}
+        />
         <button
           className={styles.btnIncrementQuantity}
           onClick={() => handleClick('increment')}

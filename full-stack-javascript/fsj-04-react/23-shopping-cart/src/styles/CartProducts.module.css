@@ -81,6 +81,16 @@
   background: #dadada;
 }
 
+.inputCount {
+  max-width: 40px;
+  min-height: 28px;
+
+  background: #e9e9ed;
+  text-align: center;
+  border: none;
+  border-radius: 12px;
+}
+
 .btnRemoveCartProduct {
   width: 28px;
   height: 28px;
@@ -132,7 +142,7 @@
 
 @media (max-width: 900px) {
   .containerCartProduct {
-    padding: 0 1.5rem 1.5rem;
+    padding: 1.5rem;
 
     position: relative;
     display: flex;
