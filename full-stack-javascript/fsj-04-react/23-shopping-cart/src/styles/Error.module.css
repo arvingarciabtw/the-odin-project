@@ -5,14 +5,28 @@
 }
 
 .containerError {
+  padding: 2rem;
+
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+
+  text-align: center;
 }
 
 .headingError {
   font-size: 3rem;
+}
+
+.errorMessage {
+  margin-top: 0.5rem;
+  padding: 0.5em 1em;
+
+  border-radius: 16px;
+  background: red;
+  color: white;
+  font-weight: bolder;
 }

@@ -9,7 +9,7 @@ function Error() {
     <div className={styles.containerError}>
       <h1 className={styles.headingError}>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
-      <p>
+      <p className={styles.errorMessage}>
         <i>
           Status {error.status}: {error.statusText || error.message}
         </i>
