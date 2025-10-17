@@ -4,6 +4,8 @@
 
   background: white;
   border-bottom: 1px solid #dadada;
+
+  z-index: 1;
 }
 
 .wrapper {
