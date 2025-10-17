@@ -44,7 +44,7 @@ function CartProduct({ cartProduct, cartProducts, setCartProducts }) {
         item.product.id === cartProduct.product.id
           ? {
               ...item,
-              count: e.target.value === '' ? '' : Number(e.target.value),
+              count: e.target.value === '' ? 0 : Number(e.target.value),
             }
           : item,
       );
@@ -93,7 +93,7 @@ function CartProduct({ cartProduct, cartProducts, setCartProducts }) {
         <input
           className={styles.inputCount}
           type="text"
-          value={cartProduct.count}
+          value={cartProduct.count === 0 ? '' : cartProduct.count}
           onChange={(e) => handleChange(e)}
           onBlur={handleBlur}
         />
