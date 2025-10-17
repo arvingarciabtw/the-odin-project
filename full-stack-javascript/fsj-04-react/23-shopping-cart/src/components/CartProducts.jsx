@@ -54,7 +54,7 @@ function CartProduct({ cartProduct, cartProducts, setCartProducts }) {
   }
 
   function handleBlur() {
-    if (cartProduct.count === '') {
+    if (cartProduct.count === 0) {
       const updatedCartProducts = cartProducts.map((item) =>
         item.product.id === cartProduct.product.id
           ? { ...item, count: 1 }
