@@ -4,11 +4,27 @@ import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 
 function App() {
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState(() => {
+    try {
+      const saved = localStorage.getItem('cartProducts');
+      return saved ? JSON.parse(saved) : [];
+    } catch (error) {
+      console.error('Failed to load cart from localStorage:', error);
+      return [];
+    }
+  });
 
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+    } catch (error) {
+      console.error('Failed to save cart to localStorage:', error);
+    }
+  }, [cartProducts]);
 
   useEffect(() => {
     async function fetchData() {
