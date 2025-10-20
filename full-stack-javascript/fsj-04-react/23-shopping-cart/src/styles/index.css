@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Wotfard';
-  src: url('../assets/fonts/wotfard-regular-webfont.woff2');
+  font-family: 'Atkinson Hyperlegible Next Regular';
+  src: url('../assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf');
 }
 
 * {
@@ -8,7 +8,7 @@
   padding: 0;
   box-sizing: border-box;
 
-  font-family: 'Wotfard', sans-serif;
+  font-family: 'Atkinson Hyperlegible Next Regular', sans-serif;
 }
 
 #root {
