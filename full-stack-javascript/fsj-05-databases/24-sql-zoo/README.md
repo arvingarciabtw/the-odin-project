@@ -679,6 +679,158 @@ SELECT
 
 ### 7 More JOIN Operations
 
+<span>1.</span> List the films where the yr is 1962 and the budget is over 2000000.
+
+```sql
+SELECT id, title
+  FROM movie
+  WHERE yr = 1962 AND budget > 2000000;
+```
+
+<span>2.</span> Give year of 'Citizen Kane'.
+
+```sql
+SELECT yr
+  FROM movie
+  WHERE title = 'Citizen Kane';
+```
+
+<span>3.</span> List all of the Star Trek movies, include the id, title and yr (all of these movies start with the words Star Trek in the title). Order results by year.
+
+```sql
+SELECT id, title, yr
+  FROM movie
+  WHERE title LIKE ('Star Trek%')
+  ORDER BY yr;
+```
+
+<span>4.</span> What id number does the actor 'Glenn Close' have?
+
+```sql
+SELECT id
+  FROM actor
+  WHERE name = 'Glenn Close';
+```
+
+<span>5.</span> What is the id of the 1942 film 'Casablanca'
+
+```sql
+SELECT id
+  FROM movie
+  WHERE title = 'Casablanca' AND yr = 1942;
+```
+
+<span>6.</span> Obtain the cast list for 1942's 'Casablanca'.
+
+```sql
+SELECT actor.name
+  FROM movie
+  JOIN casting ON casting.movieid = movie.id
+  JOIN actor ON casting.actorid = actor.id
+  WHERE yr = 1942 AND title = 'Casablanca';
+```
+
+<span>7.</span> Obtain the cast list for the film 'Alien'
+
+```sql
+SELECT actor.name
+  FROM movie
+  JOIN casting ON casting.movieid = movie.id
+  JOIN actor ON casting.actorid = actor.id
+  WHERE title = 'Alien';
+```
+
+<span>8.</span> List the films in which 'Harrison Ford' has appeared.
+
+```sql
+SELECT title
+  FROM movie
+  JOIN casting ON casting.movieid = movie.id
+  JOIN actor ON casting.actorid = actor.id
+  WHERE actor.name = 'Harrison Ford';
+```
+
+<span>9.</span> List the films where 'Harrison Ford' has appeared - but not in the starring role.
+
+```sql
+SELECT title
+  FROM movie
+  JOIN casting ON casting.movieid = movie.id
+  JOIN actor ON casting.actorid = actor.id
+  WHERE actor.name = 'Harrison Ford' AND ord != 1;
+```
+
+<span>10.</span> List the films together with the leading star for all 1962 films.
+
+```sql
+SELECT title, name
+  FROM movie
+  JOIN casting ON casting.movieid = movie.id
+  JOIN actor ON casting.actorid = actor.id
+  WHERE yr = 1962 AND ord = 1;
+```
+
+<span>11.</span> Which were the busiest years for 'Rock Hudson', show the year and the number of movies he made each year for any year in which he made more than 2 movies.
+
+```sql
+SELECT yr, COUNT(title) AS num_of_movies_he_made
+  FROM movie
+    JOIN casting ON movie.id=movieid
+    JOIN actor   ON actorid=actor.id
+  WHERE name='Rock Hudson'
+  GROUP BY yr
+  HAVING COUNT(title) > 2;
+```
+
+<span>12.</span> List the film title and the leading actor for all of the films 'Julie Andrews' played in.
+
+```sql
+SELECT title, name FROM movie
+JOIN casting ON (casting.movieid = movie.id AND ord = 1)
+JOIN actor ON casting.actorid = actor.id
+WHERE movie.id
+  IN (SELECT movieid FROM casting
+      WHERE actorid IN (
+        SELECT id FROM actor
+        WHERE name = 'Julie Andrews'));
+```
+
+<span>13.</span> Obtain a list, in alphabetical order, of actors who've had at least 15 starring roles.
+
+```sql
+SELECT actor.name
+  FROM actor
+  JOIN casting ON casting.actorid = actor.id
+  WHERE ord = 1
+  GROUP BY name
+  HAVING COUNT(actor.id) >= 15
+  ORDER BY name;
+```
+
+<span>14.</span> List the films released in the year 1978 ordered by the number of actors in the cast, then by title.
+
+```sql
+SELECT title, COUNT(casting.actorid) AS num_of_actors
+  FROM movie
+  JOIN casting ON casting.movieid = movie.id
+  WHERE yr = '1978'
+  GROUP BY movie.id, movie.title
+  ORDER BY COUNT(casting.actorid) DESC, movie.title;
+```
+
+<span>15.</span> List all the people who have worked with 'Art Garfunkel'.
+
+```sql
+SELECT DISTINCT actor.name
+  FROM movie
+    JOIN casting ON casting.movieid = movie.id
+    JOIN actor ON casting.actorid = actor.id
+  WHERE movie.id IN (SELECT movieid FROM casting
+                     JOIN actor ON id = actorid
+                     WHERE actor.name = 'Art Garfunkel')
+  AND actor.name != 'Art Garfunkel';
+```
+
 ### 8 Using NULL
 
 ### 8+ Numeric Examples
