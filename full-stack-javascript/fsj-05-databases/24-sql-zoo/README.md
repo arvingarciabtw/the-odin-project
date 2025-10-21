@@ -217,7 +217,7 @@ SELECT name, population, area
     (area < 3000000 AND population > 250000000);
 ```
 
-<span>9.</span> Show the `name` and `population` in millions and the GDP in billions for the countries of the `continent` 'South America'. Use the ROUND function to show the values to two decimal places. For Americas show population in millions and GDP in billions both to 2 decimal places.
+<span>9.</span> Show the `name` and `population` in millions and the GDP in billions for the countries of the `continent` 'South America'. Use the `ROUND` function to show the values to two decimal places. For Americas show population in millions and GDP in billions both to 2 decimal places.
 
 ```sql
 SELECT
@@ -568,15 +568,13 @@ SELECT matchid, player FROM goal
   WHERE teamid = 'GER';
 ```
 
-````
-
 <span>2.</span> From the previous query you can see that Lars Bender's scored a goal in game 1012. Now we want to know what teams were playing in that match.
 
 ```sql
 SELECT id, stadium, team1, team2
   FROM game
   WHERE id = 1012;
-````
+```
 
 <span>3.</span> Modify it to show the player, teamid, stadium and mdate for every German goal.
 
@@ -832,6 +830,65 @@ SELECT DISTINCT actor.name
 ```
 
 ### 8 Using NULL
+
+<span>1.</span> List the teachers who have `NULL` for their department.
+
+```sql
+SELECT name FROM teacher WHERE dept IS NULL;
+```
+
+<span>2.</span> Note the `INNER JOIN` misses the teachers with no department and the departments with no teacher.
+
+```sql
+SELECT teacher.name, dept.name
+  FROM teacher
+    INNER JOIN dept ON (teacher.dept = dept.id);
+```
+
+<span>3.</span> Use a different `JOIN` so that all teachers are listed.
+
+```sql
+SELECT teacher.name, dept.name
+  FROM teacher
+    LEFT JOIN dept ON (teacher.dept = dept.id);
+```
+
+<span>4.</span> Use a different `JOIN` so that all departments are listed.
+
+```sql
+SELECT teacher.name, dept.name
+  FROM teacher
+    RIGHT JOIN dept ON (teacher.dept = dept.id);
+```
+
+<span>5.</span> Use `COALESCE` to print the mobile number. Use the number '07986 444 2266' if there is no number given. Show teacher name and mobile number or '07986 444 2266'.
+
+```sql
+SELECT name, COALESCE(mobile, '07986 444 2266') FROM teacher;
+```
+
+<span>6.</span> Use the `COALESCE` function and a `LEFT JOIN` to print the teacher name and department name. Use the string 'None' where there is no department.
+
+```sql
+SELECT teacher.name, COALESCE(dept.name, 'None')
+  FROM teacher
+    LEFT JOIN dept ON dept.id = dept;
+```
+
+<span>7.</span> Use `COUNT` to show the number of teachers and the number of mobile phones.
+
+```sql
+SELECT COUNT(name), COUNT(mobile) FROM teacher;
+```
+
+<span>8.</span> Use `COUNT` and `GROUP BY` dept.name to show each department and the number of staff. Use a `RIGHT JOIN` to ensure that the Engineering department is listed.
+
+```sql
+SELECT dept.name, COUNT(teacher.name) AS num_of_staff
+  FROM teacher
+    RIGHT JOIN dept ON dept.id = dept
+    GROUP BY dept.name;
+```
 
 ### 8+ Numeric Examples
 
