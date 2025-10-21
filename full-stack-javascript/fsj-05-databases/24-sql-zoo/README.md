@@ -429,7 +429,9 @@ SELECT name, continent
 ```sql
 SELECT name, population
   FROM world
-  WHERE population > (SELECT population FROM world WHERE name = 'United Kingdom') AND population < (SELECT population FROM world WHERE name = 'Germany');
+  WHERE population > (SELECT population FROM world WHERE name = 'United Kingdom')
+                      AND population <
+                     (SELECT population FROM world WHERE name = 'Germany');
 ```
 
 <span>5.</span> Germany (population roughly 80 million) has the largest population of the countries in Europe. Austria (population 8.5 million) has 11% of the population of Germany. Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.
@@ -494,6 +496,68 @@ SELECT name, continent
 ```
 
 ### 5 SUM and COUNT
+
+<span>1.</span> Show the total population of the world.
+
+```sql
+SELECT SUM(population) FROM world;
+```
+
+<span>2.</span> List all the continents - just once each.
+
+```sql
+SELECT DISTINCT continent FROM world;
+```
+
+<span>3.</span> Give the total GDP of Africa.
+
+```sql
+SELECT SUM(gdp)
+  FROM world
+  WHERE continent = 'AFrica';
+```
+
+<span>4.</span> How many countries have an area of at least 1000000?
+
+```sql
+SELECT COUNT(name)
+  FROM world
+  WHERE area >= 1000000;
+```
+
+<span>5.</span> What is the total population of ('Estonia', 'Latvia', 'Lithuania')?
+
+```sql
+SELECT SUM(population)
+  FROM world
+  WHERE name IN ('Estonia', 'Latvia', 'Lithuania');
+```
+
+<span>6.</span> For each continent show the continent and number of countries.
+
+```sql
+SELECT DISTINCT continent, COUNT(name)
+  FROM world
+  GROUP BY continent;
+```
+
+<span>7.</span> For each continent show the continent and number of countries with populations of at least 10 million.
+
+```sql
+SELECT DISTINCT continent, COUNT(name)
+  FROM world
+  WHERE population >= 10000000
+  GROUP BY continent;
+```
+
+<span>8.</span> List the continents that have a total population of at least 100 million.
+
+```sql
+SELECT DISTINCT continent
+  FROM world
+  GROUP BY continent
+  HAVING SUM(population) >= 100000000;
+```
 
 ### 6 JOIN
 
