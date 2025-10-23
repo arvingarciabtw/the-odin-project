@@ -11,14 +11,14 @@ const server = http.createServer((req, res) => {
   let filename = "";
 
   if (myUrl.pathname === "/") {
-    filename = "." + "/index.html";
+    filename = "./pages" + "/index.html";
   } else {
-    filename = "." + myUrl.pathname + ".html";
+    filename = "./pages" + myUrl.pathname + ".html";
   }
 
   fs.readFile(filename, "utf-8", (err, data) => {
     if (err) {
-      fs.readFile("./404.html", "utf-8", (err, data) => {
+      fs.readFile("./pages/404.html", "utf-8", (err, data) => {
         if (err) {
           console.error(err);
           res.writeHead(500, { "Content-Type": "text/plain" });
