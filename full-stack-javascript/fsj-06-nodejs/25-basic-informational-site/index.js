@@ -29,9 +29,9 @@ const server = http.createServer((req, res) => {
     const htmlUrl = new URL(input, base);
 
     if (htmlUrl.pathname === "/") {
-      filename = "./pages/index.html";
+      filename = "./index.html";
     } else {
-      filename = "./pages" + htmlUrl.pathname + ".html";
+      filename = "." + htmlUrl.pathname + ".html";
     }
   }
 
@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
     ext === ".css" || ext === ".js" ? "utf-8" : null,
     (err, data) => {
       if (err) {
-        fs.readFile("./pages/404.html", "utf-8", (err, data) => {
+        fs.readFile("./404.html", "utf-8", (err, data) => {
           if (err) {
             console.error(err);
             res.writeHead(500, { "Content-Type": "text/plain" });
