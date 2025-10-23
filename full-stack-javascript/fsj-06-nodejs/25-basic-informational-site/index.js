@@ -1,61 +1,35 @@
-import http from "node:http";
-import fs from "node:fs";
-import path from "node:path";
-import { URL } from "node:url";
+import express from "express";
+import "dotenv/config";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
-const server = http.createServer((req, res) => {
-  const base = `http://${req.headers.host}${path.dirname(req.url)}`;
+const app = express();
 
-  const ext = path.extname(req.url);
-  let filename = "";
-  let contentType = "text/html";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-  if (ext && ext !== ".html") {
-    filename = "." + req.url;
+app.use("/styles", express.static(join(__dirname, "styles")));
+app.use("/assets", express.static(join(__dirname, "assets")));
 
-    const contentTypes = {
-      ".css": "text/css",
-      ".js": "text/javascript",
-      ".png": "image/png",
-      ".jpg": "image/jpeg",
-      ".jpeg": "image/jpeg",
-      ".webp": "image/webp",
-      ".gif": "image/gif",
-      ".svg": "image/svg+xml",
-    };
-    contentType = contentTypes[ext] || "text/plain";
-  } else {
-    const input = path.basename(req.url, ".html");
-    const htmlUrl = new URL(input, base);
-
-    if (htmlUrl.pathname === "/") {
-      filename = "./index.html";
-    } else {
-      filename = "." + htmlUrl.pathname + ".html";
-    }
-  }
-
-  fs.readFile(
-    filename,
-    ext === ".css" || ext === ".js" ? "utf-8" : null,
-    (err, data) => {
-      if (err) {
-        fs.readFile("./404.html", "utf-8", (err, data) => {
-          if (err) {
-            console.error(err);
-            res.writeHead(500, { "Content-Type": "text/plain" });
-            res.end("Server Error");
-          } else {
-            res.writeHead(404, { "Content-Type": "text/html" });
-            res.end(data);
-          }
-        });
-      } else {
-        res.writeHead(200, { "Content-Type": contentType });
-        res.end(data);
-      }
-    },
-  );
+app.get("/", (_req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
-server.listen(8080);
+app.get("/about", (_req, res) => {
+  res.sendFile(__dirname + "/about.html");
+});
+
+app.get("/contact-me", (_req, res) => {
+  res.sendFile(__dirname + "/contact-me.html");
+});
+
+app.use((_req, res) => {
+  res.status(404).sendFile(join(__dirname, "404.html"));
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, (err) => {
+  if (err) throw err;
+
+  console.log(`My first Express app. Listening on ${PORT}...`);
+});
