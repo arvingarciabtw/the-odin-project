@@ -4,36 +4,58 @@ import path from "node:path";
 import { URL } from "node:url";
 
 const server = http.createServer((req, res) => {
-  const input = path.basename(req.url, ".html");
   const base = `http://${req.headers.host}${path.dirname(req.url)}`;
-  const myUrl = new URL(input, base);
 
+  const ext = path.extname(req.url);
   let filename = "";
+  let contentType = "text/html";
 
-  if (myUrl.pathname === "/") {
-    filename = "./pages" + "/index.html";
+  if (ext && ext !== ".html") {
+    filename = "." + req.url;
+
+    const contentTypes = {
+      ".css": "text/css",
+      ".js": "text/javascript",
+      ".png": "image/png",
+      ".jpg": "image/jpeg",
+      ".jpeg": "image/jpeg",
+      ".webp": "image/webp",
+      ".gif": "image/gif",
+      ".svg": "image/svg+xml",
+    };
+    contentType = contentTypes[ext] || "text/plain";
   } else {
-    filename = "./pages" + myUrl.pathname + ".html";
+    const input = path.basename(req.url, ".html");
+    const htmlUrl = new URL(input, base);
+
+    if (htmlUrl.pathname === "/") {
+      filename = "./pages/index.html";
+    } else {
+      filename = "./pages" + htmlUrl.pathname + ".html";
+    }
   }
 
-  fs.readFile(filename, "utf-8", (err, data) => {
-    if (err) {
-      fs.readFile("./pages/404.html", "utf-8", (err, data) => {
-        if (err) {
-          console.error(err);
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Server Error");
-        } else {
-          res.writeHead(404, { "Content-Type": "text/html" });
-          res.end(data);
-        }
-      });
-    } else {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(data);
-      return res.end();
-    }
-  });
+  fs.readFile(
+    filename,
+    ext === ".css" || ext === ".js" ? "utf-8" : null,
+    (err, data) => {
+      if (err) {
+        fs.readFile("./pages/404.html", "utf-8", (err, data) => {
+          if (err) {
+            console.error(err);
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end("Server Error");
+          } else {
+            res.writeHead(404, { "Content-Type": "text/html" });
+            res.end(data);
+          }
+        });
+      } else {
+        res.writeHead(200, { "Content-Type": contentType });
+        res.end(data);
+      }
+    },
+  );
 });
 
 server.listen(8080);
