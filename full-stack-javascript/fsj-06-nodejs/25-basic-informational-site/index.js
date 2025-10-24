@@ -33,3 +33,5 @@ app.listen(PORT, (err) => {
 
   console.log(`My first Express app. Listening on ${PORT}...`);
 });
+
+export default app;
