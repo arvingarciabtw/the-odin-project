@@ -13,7 +13,7 @@ newRouter.post("/", (req, res) => {
   messages.unshift({
     text: messageText,
     user: messageUser,
-    added: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+    added: `${new Date().toLocaleDateString()}`,
   });
   res.redirect("/");
 });
