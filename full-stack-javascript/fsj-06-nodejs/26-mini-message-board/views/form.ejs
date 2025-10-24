@@ -1,6 +1,33 @@
-<form method="POST" action="/new">
-  <h1>add a msg</h1>
-  <input type='text' name='messageUser' placeholder='name here'/>
-  <textarea name='messageText'></textarea>
-  <button type='submit'>submit</button>
-</form>
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Message</title>
+  </head>
+  <body>
+    <header class="header-app">
+      <nav>
+        <a href="/">
+          <img
+            src="/images/logo_optimized.webp"
+            alt="Arvin Garcia logo"
+          >
+        </a>
+      </nav>
+    </header>
+    <main>
+      <form method="POST" action="/new">
+        <h1>Add a Message</h1>
+        <input type='text' name='messageUser' placeholder='Your name here'/>
+        <textarea name='messageText' placeholder='Your message here'></textarea>
+        <button type='submit'>Submit</button>
+      </form>
+    </main>
+    <footer class="footer-app">
+      <p>Made by <a class="developer" href="https://github.com/arvingarciabtw" target="_blank" rel="noopener noreferrer">@arvingarciabtw</a></p>
+    </footer>
+  </body>
+</html>
+

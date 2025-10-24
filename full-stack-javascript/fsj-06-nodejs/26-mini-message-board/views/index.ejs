@@ -1,14 +1,35 @@
+<!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="/styles.css">
-    <title>Homepage</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message Board</title>
   </head>
   <body>
-      <% messages.forEach((message) => { %>
-        <%- include('message', {text: message.text, user: message.user, added: message.added}); %>
-      <% }); %>
-      <a href="/new">
-        <button>+</button>
-      </a>
+      <header class="header-app">
+        <nav>
+          <a href="/">
+            <img
+              src="/images/logo_optimized.webp"
+              alt="Arvin Garcia logo"
+            >
+          </a>
+        </nav>
+      </header>
+      <main>
+        <h1>Message Board</h1>
+        <section class="messages">
+          <% messages.forEach((message) => { %>
+            <%- include('message', {text: message.text, user: message.user, added: message.added}); %>
+          <% }); %>
+        </section>
+        <a href="/new">
+          <button class="btn-add-message">+</button>
+        </a>
+      </main>
+      <footer class="footer-app">
+        <p>Made by <a class="developer" href="https://github.com/arvingarciabtw" target="_blank" rel="noopener noreferrer">@arvingarciabtw</a></p>
+      </footer>
   </body>
 </html>

@@ -34,7 +34,7 @@ app.get("/new", (req, res) => {
 app.post("/new", (req, res) => {
   const messageUser = req.body.messageUser;
   const messageText = req.body.messageText;
-  messages.push({
+  messages.unshift({
     text: messageText,
     user: messageUser,
     added: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
