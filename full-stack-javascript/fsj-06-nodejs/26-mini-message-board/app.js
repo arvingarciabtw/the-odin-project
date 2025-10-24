@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const indexRouter = require("./routers/indexRouter");
 const newRouter = require("./routers/newRouter");
 const express = require("express");
@@ -6,10 +8,7 @@ const path = require("node:path");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
-const assetsPath = path.join(__dirname, "public");
-app.use(express.static(assetsPath));
-
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);

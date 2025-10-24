@@ -21,7 +21,15 @@
         <h1>Message Board</h1>
         <section class="messages">
           <% messages.forEach((message) => { %>
-            <%- include('message', {text: message.text, user: message.user, added: message.added}); %>
+            <%- include('message', {
+              text: message.text_message, 
+              user: message.username, 
+              added: new Date(message.date_added).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+              })
+            }); %>
           <% }); %>
         </section>
         <a href="/new">
