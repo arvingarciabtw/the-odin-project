@@ -12,13 +12,13 @@ app.use(express.urlencoded({ extended: true }));
 
 const messages = [
   {
-    text: "Hi there!",
-    user: "Amando",
+    text: "For a man to conquer himself is the first and noblest of all victories.",
+    user: "Plato",
     added: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
   },
   {
-    text: "Hello World!",
-    user: "Charles",
+    text: "He who is not satisfied with a little, is satisfied with nothing.",
+    user: "Epicurus",
     added: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
   },
 ];
