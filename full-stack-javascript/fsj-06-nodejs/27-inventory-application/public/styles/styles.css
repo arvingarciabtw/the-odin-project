@@ -68,13 +68,19 @@ main {
   color: var(--gray);
 }
 
-.platforms {
+.platforms,
+.platforms-crud {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.btn-platform {
+.platforms {
+  margin-top: -0.75rem;
+}
+
+.btn-platform,
+.platforms-crud > a {
   padding: 0.5em 1.25em;
 
   background: var(--bg-alt);
@@ -87,7 +93,8 @@ main {
   transition: color 0.3s ease;
 }
 
-.btn-platform:hover {
+.btn-platform:hover,
+.platforms-crud > a:hover {
   color: var(--accent);
 }
 
@@ -161,6 +168,54 @@ main {
 
 .games .btn-add-game:hover {
   opacity: 0.6;
+}
+
+form {
+  margin: 1rem 0 0;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form > label {
+  color: var(--gray);
+}
+
+form > input,
+form > select {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+
+  background: var(--bg-alt);
+  color: var(--fg);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+form > select {
+  border-right: 12px solid transparent; /* add padding to the right of arrow */
+  cursor: pointer;
+}
+
+form > button {
+  padding: 0.5em 1em;
+  margin-top: 0.5rem;
+  align-self: flex-start;
+
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+
+  transition: opacity 0.3s ease;
+}
+
+form > button:hover {
+  opacity: 0.75;
 }
 
 /* == NAVBAR == */
