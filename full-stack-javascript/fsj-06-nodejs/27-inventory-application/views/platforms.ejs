@@ -1,0 +1,8 @@
+<section class="platforms">
+  <a href="/" class="btn-platform">All</a>
+  <% platforms.forEach((platform) => { %>      
+    <a href="/platforms/<%= platform.name.toLowerCase().split(' ').join('-') %>" class="btn-platform">
+      <%= platform.name %>
+    </a>
+  <% }) %>
+</section>

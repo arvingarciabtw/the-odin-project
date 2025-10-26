@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const indexRouter = Router();
+const { getGames } = require('../controllers/gamesController');
 
-indexRouter.get('/', (req, res) => {
-  res.render('index');
-});
+indexRouter.get('/', getGames);
 
 module.exports = indexRouter;
