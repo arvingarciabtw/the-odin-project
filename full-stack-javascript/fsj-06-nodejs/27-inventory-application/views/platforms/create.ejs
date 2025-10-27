@@ -10,9 +10,10 @@
     <%- include('../navbar') %>
     <main>
       <%- include('../description', { heading: 'Create a New Platform', description: 'Type your new platform in the input field below, and click on submit when finished!'}) %>
-      <form action="/create" method="POST">
-        <label for="create-platform">Platform Name</label>
-        <input type="text" id="create-platform" name="create-platform" placeholder="e.g. Nintendo Switch 2" required>
+      <form action="/platforms/create" method="POST">
+        <label for="createPlatform">Platform Name</label>
+        <input type="text" id="createPlatform" name="createPlatform" placeholder="e.g. Nintendo Switch 2" required>
+        <%- include("../partials/errors.ejs") %>
         <button>Submit</button>
       </form>
     </main>

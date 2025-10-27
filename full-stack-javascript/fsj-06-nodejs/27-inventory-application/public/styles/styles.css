@@ -233,6 +233,12 @@ form > button:hover {
   opacity: 0.75;
 }
 
+.error-msg {
+  margin-top: -1rem;
+  color: #ff7f7f;
+  font-size: 0.875rem;
+}
+
 /* == NAVBAR == */
 
 .header-app > nav {
