@@ -10,9 +10,11 @@ CREATE TABLE IF NOT EXISTS messages (
   date_added DATE NOT NULL
 );
 
+DELETE FROM messages;
+
 INSERT INTO messages (text_message, username, date_added) 
 VALUES
-  ('No great thing is created suddenly.', 'Epictetus', '2024-10-25')
+  ('No great thing is created suddenly.', 'Epictetus', '2025-10-25')
 `;
 
 async function main() {
