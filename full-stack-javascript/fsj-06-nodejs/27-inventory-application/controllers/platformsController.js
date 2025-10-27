@@ -1,4 +1,5 @@
 const { body, validationResult, matchedData } = require('express-validator');
+const db = require('../models/queries');
 
 // == VALIDATION AND SANITIZATION ==
 
@@ -38,7 +39,7 @@ const createPlatformPost = [
     }
 
     const { createPlatform } = matchedData(req);
-    // otherwise, then have some sql stuff to add the input to the database
+    db.createPlatform(createPlatform);
     res.redirect('/');
   },
 ];

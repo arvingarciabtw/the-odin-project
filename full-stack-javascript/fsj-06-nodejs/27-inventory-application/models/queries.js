@@ -9,6 +9,15 @@ function urlToName(url) {
     .join(' ');
 }
 
+function capitalizeWords(str) {
+  return str
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
+// == READ ==
+
 async function getAllGames() {
   const { rows } = await pool.query(
     'SELECT games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id;',
@@ -34,8 +43,22 @@ async function getGamesByPlatform(passedPlatform) {
   return rows;
 }
 
+// == CREATE ==
+
+async function createPlatform(passedPlatform) {
+  const cleanedPlatform = capitalizeWords(passedPlatform);
+
+  const { rows } = await pool.query(
+    'INSERT INTO platforms (name) VALUES ($1);',
+    [cleanedPlatform],
+  );
+  console.log(rows);
+  return rows;
+}
+
 module.exports = {
   getAllGames,
   getAllPlatforms,
   getGamesByPlatform,
+  createPlatform,
 };
