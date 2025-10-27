@@ -4,15 +4,15 @@
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index</title>
+    <title>Create a New Platform</title>
   </head>
   <body>
     <%- include('../navbar') %>
     <main>
       <%- include('../description', { heading: 'Create a New Platform', description: 'Type your new platform in the input field below, and click on submit when finished!'}) %>
-      <form>
+      <form action="/create" method="POST">
         <label for="create-platform">Platform Name</label>
-        <input type="text" id="create-platform" name="create-platform" placeholder="e.g. Nintendo Switch 2">
+        <input type="text" id="create-platform" name="create-platform" placeholder="e.g. Nintendo Switch 2" required>
         <button>Submit</button>
       </form>
     </main>

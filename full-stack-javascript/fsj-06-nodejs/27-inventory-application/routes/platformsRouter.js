@@ -1,18 +1,11 @@
 const { Router } = require('express');
 const platformsRouter = Router();
 const { getGamesByPlatform } = require('../controllers/gamesController');
+const platformsController = require('../controllers/platformsController');
 
-platformsRouter.get('/create', (_req, res) => {
-  res.render('./platforms/create');
-});
-
-platformsRouter.get('/update', (_req, res) => {
-  res.render('./platforms/update');
-});
-
-platformsRouter.get('/delete', (_req, res) => {
-  res.render('./platforms/delete');
-});
+platformsRouter.get('/create', platformsController.createPlatformGet);
+platformsRouter.get('/update', platformsController.updatePlatformGet);
+platformsRouter.get('/delete', platformsController.deletePlatformGet);
 
 platformsRouter.get('/:name', getGamesByPlatform);
 

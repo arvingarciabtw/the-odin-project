@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index</title>
+    <title>Delete a Platform</title>
   </head>
   <body>
     <%- include('../navbar') %>
@@ -12,7 +12,7 @@
       <%- include('../description', { heading: 'Delete a Platform', description: 'Choose an existing platform from the dropdown and click on submit when finished!'}) %>
       <form>
         <label for="delete-platform-choose">Choose a Platform</label>
-        <select name="delete-platform-choose" id="delete-platform-choose">
+        <select name="delete-platform-choose" id="delete-platform-choose" required>
           <option value="volvo">Volvo</option>
           <option value="saab">Saab</option>
           <option value="mercedes">Mercedes</option>
