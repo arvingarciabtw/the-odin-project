@@ -6,6 +6,7 @@ const platformsController = require('../controllers/platformsController');
 platformsRouter.get('/create', platformsController.createPlatformGet);
 platformsRouter.post('/create', platformsController.createPlatformPost);
 platformsRouter.get('/update', platformsController.updatePlatformGet);
+platformsRouter.post('/update', platformsController.updatePlatformPost);
 platformsRouter.get('/delete', platformsController.deletePlatformGet);
 platformsRouter.post('/delete', platformsController.deletePlatformPost);
 

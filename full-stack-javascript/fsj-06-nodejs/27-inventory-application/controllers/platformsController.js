@@ -12,6 +12,19 @@ const validateCreatePlatform = [
     .withMessage('The field must not be empty.'),
 ];
 
+const validateUpdatePlatform = [
+  body('updatePlatformSelect')
+    .trim()
+    .notEmpty()
+    .withMessage('The field must not be empty.'),
+  body('updatePlatformText')
+    .trim()
+    .matches(/^[a-zA-Z0-9\s]+$/)
+    .withMessage('The field must only have letters and numbers.')
+    .notEmpty()
+    .withMessage('The field must not be empty.'),
+];
+
 const validateDeletePlatform = [
   body('deletePlatform')
     .trim()
@@ -55,22 +68,39 @@ const createPlatformPost = [
   },
 ];
 
+const updatePlatformPost = [
+  validateUpdatePlatform,
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const platforms = await db.getAllPlatforms();
+      return res.status(400).render('./platforms/update', {
+        platforms: platforms,
+        errors: errors.array(),
+      });
+    }
+
+    const { updatePlatformSelect, updatePlatformText } = matchedData(req);
+    await db.updatePlatform(updatePlatformSelect, updatePlatformText);
+    res.redirect('/');
+  },
+];
+
 const deletePlatformPost = [
   validateDeletePlatform,
   async (req, res) => {
-    console.log('deletePlatformPost function called');
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
-      console.log('error block is called');
       const platforms = await db.getAllPlatforms();
       return res.status(400).render('./platforms/delete', {
         platforms: platforms,
         errors: errors.array(),
       });
     }
+
     const { deletePlatform } = matchedData(req);
-    console.log('deletePlatform is:');
-    console.log(deletePlatform);
     await db.deletePlatform(deletePlatform);
     res.redirect('/');
   },
@@ -81,5 +111,6 @@ module.exports = {
   updatePlatformGet,
   deletePlatformGet,
   createPlatformPost,
+  updatePlatformPost,
   deletePlatformPost,
 };

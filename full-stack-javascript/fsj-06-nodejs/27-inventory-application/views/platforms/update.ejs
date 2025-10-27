@@ -10,13 +10,14 @@
     <%- include('../navbar') %>
     <main>
       <%- include('../description', { heading: 'Update a Platform', description: 'Choose an existing platform from the dropdown, type in the new name for that selected platform, and click on submit when finished!'}) %>
-      <form>
-        <label for="edit-platform-choose">Choose a Platform</label>
-        <select name="edit-platform-choose" id="edit-platform-choose" required>
+      <form action="/platforms/update" method="POST">
+        <label for="updatePlatformSelect">Choose a Platform</label>
+        <select name="updatePlatformSelect" id="updatePlatformSelect" required>
           <%- include('../partials/options') %>
         </select>
-        <label for="edit-platform">New Platform Name</label>
-        <input type="text" id="edit-platform" name="edit-platform" placeholder="e.g. Nintendo Switch 2" required>
+        <label for="updatePlatformText">New Platform Name</label>
+        <input type="text" id="updatePlatformText" name="updatePlatformText" placeholder="e.g. Nintendo Switch 2" required>
+        <%- include('../partials/errors') %>
         <button>Submit</button>
       </form>
     </main>

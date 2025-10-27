@@ -56,6 +56,20 @@ async function createPlatform(passedPlatform) {
   return rows;
 }
 
+// == UPDATE ==
+
+async function updatePlatform(oldPlatform, newPlatform) {
+  const cleanedOldPlatform = urlToName(oldPlatform);
+  const cleanedNewPlatform = capitalizeWords(newPlatform);
+
+  const { rows } = await pool.query(
+    'UPDATE platforms SET name = $1 WHERE LOWER(name) = LOWER($2) RETURNING *;',
+    [cleanedNewPlatform, cleanedOldPlatform],
+  );
+  console.log(rows);
+  return rows;
+}
+
 // == DELETE ==
 
 async function deletePlatform(passedPlatform) {
@@ -74,5 +88,6 @@ module.exports = {
   getAllPlatforms,
   getGamesByPlatform,
   createPlatform,
+  updatePlatform,
   deletePlatform,
 };
