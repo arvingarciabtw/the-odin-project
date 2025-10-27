@@ -56,6 +56,25 @@ async function createPlatform(passedPlatform) {
   return rows;
 }
 
+async function createGame(gameName, gamePlatform) {
+  const cleanedGame = capitalizeWords(gameName);
+
+  console.log('Cleaned game:', cleanedGame);
+  console.log('Uncleaned platform:', gamePlatform);
+
+  const { rows } = await pool.query(
+    `INSERT INTO games (name, platform_id)
+     SELECT $1, id 
+     FROM platforms 
+     WHERE name = $2
+     RETURNING *;`,
+    [cleanedGame, gamePlatform],
+  );
+
+  console.log(rows);
+  return rows;
+}
+
 // == UPDATE ==
 
 async function updatePlatform(oldPlatform, newPlatform) {
@@ -90,4 +109,5 @@ module.exports = {
   createPlatform,
   updatePlatform,
   deletePlatform,
+  createGame,
 };

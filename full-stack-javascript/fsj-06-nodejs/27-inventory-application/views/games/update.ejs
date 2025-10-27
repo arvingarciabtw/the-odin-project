@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update a Game</title>
+  </head>
+  <body>
+    <%- include('../navbar') %>
+    <main>
+      <%- include('../description', { heading: 'Update a Game', description: 'Type the new name of the game you want to update, choose its new platform, and submit when finished!'}) %>
+      <form action="/games/update/:id" method="POST">
+        <label for="createGameText">New Game Name</label>
+        <input type="text" id="createGameText" name="createGameText" placeholder="e.g. Dead Cells" required>
+        <label for="createGamePlatform">Platform</label>
+        <select name="createGamePlatform" id="createGamePlatform" required>
+          <%- include('../partials/options') %>
+        </select>
+        <%- include("../partials/errors.ejs") %>
+        <button>Submit</button>
+      </form>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>

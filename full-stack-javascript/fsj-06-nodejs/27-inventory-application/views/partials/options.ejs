@@ -1,9 +1,3 @@
-<%
-function toKebabCase(str) {
-  return str.toLowerCase().trim().replace(/\s+/g, '-');
-}
-%>
-
 <% platforms.forEach(platform => { %>
-  <option value="<%= toKebabCase(platform.name) %>"><%= platform.name %></option>
+  <option value="<%= platform.name %>"><%= platform.name %></option>
 <% }); %>

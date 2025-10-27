@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a New Game</title>
+  </head>
+  <body>
+    <%- include('../navbar') %>
+    <main>
+      <%- include('../description', { heading: 'Create a New Game', description: 'Type the name of the game you want to create, choose its platform, and submit when finished!'}) %>
+      <form action="/games/create" method="POST">
+        <label for="createGameText">Game Name</label>
+        <input type="text" id="createGameText" name="createGameText" placeholder="e.g. Dead Cells" required>
+        <label for="createGamePlatform">Platform</label>
+        <select name="createGamePlatform" id="createGamePlatform" required>
+          <%- include('../partials/options') %>
+        </select>
+        <%- include("../partials/errors.ejs") %>
+        <button>Submit</button>
+      </form>
+    </main>
+    <%- include('../footer') %>
+  </body>
+</html>
