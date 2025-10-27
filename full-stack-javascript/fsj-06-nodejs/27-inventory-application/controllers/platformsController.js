@@ -14,23 +14,27 @@ const validatePlatform = [
 
 // == GET REQUESTS ==
 
-function createPlatformGet(_req, res) {
+async function createPlatformGet(_req, res) {
   res.render('./platforms/create');
 }
 
-function updatePlatformGet(_req, res) {
-  res.render('./platforms/update');
+async function updatePlatformGet(_req, res) {
+  const platforms = await db.getAllPlatforms();
+
+  res.render('./platforms/update', { platforms: platforms });
 }
 
-function deletePlatformGet(_req, res) {
-  res.render('./platforms/delete');
+async function deletePlatformGet(_req, res) {
+  const platforms = await db.getAllPlatforms();
+
+  res.render('./platforms/delete', { platforms: platforms });
 }
 
 // == POST REQUESTS ==
 
 const createPlatformPost = [
   validatePlatform,
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render('./platforms/create', {
@@ -39,7 +43,7 @@ const createPlatformPost = [
     }
 
     const { createPlatform } = matchedData(req);
-    db.createPlatform(createPlatform);
+    await db.createPlatform(createPlatform);
     res.redirect('/');
   },
 ];

@@ -13,10 +13,7 @@
       <form>
         <label for="edit-platform-choose">Choose a Platform</label>
         <select name="edit-platform-choose" id="edit-platform-choose" required>
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+          <%- include('../partials/options') %>
         </select>
         <label for="edit-platform">New Platform Name</label>
         <input type="text" id="edit-platform" name="edit-platform" placeholder="e.g. Nintendo Switch 2" required>
