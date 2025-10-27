@@ -3,6 +3,9 @@
 const { Client } = require('pg');
 
 const SQL = `
+DROP TABLE IF EXISTS games CASCADE;
+DROP TABLE IF EXISTS platforms CASCADE;
+
 CREATE TABLE IF NOT EXISTS platforms (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255)
@@ -12,7 +15,7 @@ CREATE TABLE IF NOT EXISTS games (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255),
   platform_id INTEGER NOT NULL,
-  FOREIGN KEY (platform_id) REFERENCES platforms (id)
+  FOREIGN KEY (platform_id) REFERENCES platforms (id) ON DELETE CASCADE
 );
 
 INSERT INTO platforms (name) 
@@ -24,26 +27,28 @@ VALUES
 
 INSERT INTO games (name, platform_id)
 VALUES
-  ('Hollow Knight: Silksong', 4),
-  ('The Legend of Zelda: Tears of the Kingdom', 4),
-  ('Super Mario Bros. Wonder', 4),
-  ('Metroid Prime 4', 4),
-  ('Animal Crossing: New Horizons', 4),
   ('Elden Ring', 1),
-  ('Baldur''s Gate 3', 1),
-  ('Cyberpunk 2077', 1),
-  ('Counter-Strike 2', 1),
-  ('Dota 2', 1),
   ('God of War Ragnarök', 2),
-  ('Spider-Man 2', 2),
-  ('Final Fantasy XVI', 2),
-  ('Horizon Forbidden West', 2),
-  ('The Last of Us Part II', 2),
+  ('Hollow Knight: Silksong', 4),
   ('Starfield', 3),
+  ('Baldur''s Gate 3', 1),
+  ('The Legend of Zelda: Tears of the Kingdom', 4),
+  ('Spider-Man 2', 2),
+  ('Cyberpunk 2077', 1),
   ('Forza Motorsport', 3),
+  ('Final Fantasy XVI', 2),
+  ('Super Mario Bros. Wonder', 4),
+  ('Counter-Strike 2', 1),
+  ('Demon''s Souls', 2),
   ('Halo Infinite', 3),
+  ('Metroid Prime 4', 4),
+  ('Dota 2', 1),
+  ('Horizon Forbidden West', 2),
+  ('Splatoon 3', 4),
+  ('Ratchet & Clank: Rift Apart', 2),
+  ('Animal Crossing: New Horizons', 4),
   ('Gears 5', 3),
-  ('Sea of Thieves', 3);
+  ('The Last of Us Part II', 2);
 `;
 
 async function main() {
