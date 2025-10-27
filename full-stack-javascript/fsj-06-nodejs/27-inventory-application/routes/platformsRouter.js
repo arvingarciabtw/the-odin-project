@@ -7,6 +7,7 @@ platformsRouter.get('/create', platformsController.createPlatformGet);
 platformsRouter.post('/create', platformsController.createPlatformPost);
 platformsRouter.get('/update', platformsController.updatePlatformGet);
 platformsRouter.get('/delete', platformsController.deletePlatformGet);
+platformsRouter.post('/delete', platformsController.deletePlatformPost);
 
 platformsRouter.get('/:name', getGamesByPlatform);
 

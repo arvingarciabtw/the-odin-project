@@ -3,11 +3,18 @@ const db = require('../models/queries');
 
 // == VALIDATION AND SANITIZATION ==
 
-const validatePlatform = [
+const validateCreatePlatform = [
   body('createPlatform')
     .trim()
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('The field must only have letters and numbers.')
+    .notEmpty()
+    .withMessage('The field must not be empty.'),
+];
+
+const validateDeletePlatform = [
+  body('deletePlatform')
+    .trim()
     .notEmpty()
     .withMessage('The field must not be empty.'),
 ];
@@ -33,7 +40,7 @@ async function deletePlatformGet(_req, res) {
 // == POST REQUESTS ==
 
 const createPlatformPost = [
-  validatePlatform,
+  validateCreatePlatform,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -48,9 +55,31 @@ const createPlatformPost = [
   },
 ];
 
+const deletePlatformPost = [
+  validateDeletePlatform,
+  async (req, res) => {
+    console.log('deletePlatformPost function called');
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log('error block is called');
+      const platforms = await db.getAllPlatforms();
+      return res.status(400).render('./platforms/delete', {
+        platforms: platforms,
+        errors: errors.array(),
+      });
+    }
+    const { deletePlatform } = matchedData(req);
+    console.log('deletePlatform is:');
+    console.log(deletePlatform);
+    await db.deletePlatform(deletePlatform);
+    res.redirect('/');
+  },
+];
+
 module.exports = {
   createPlatformGet,
   updatePlatformGet,
   deletePlatformGet,
   createPlatformPost,
+  deletePlatformPost,
 };

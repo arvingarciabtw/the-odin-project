@@ -12,7 +12,7 @@ function urlToName(url) {
 function capitalizeWords(str) {
   return str
     .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 }
 
@@ -56,9 +56,23 @@ async function createPlatform(passedPlatform) {
   return rows;
 }
 
+// == DELETE ==
+
+async function deletePlatform(passedPlatform) {
+  const cleanedPlatform = urlToName(passedPlatform);
+
+  const { rows } = await pool.query(
+    'DELETE FROM platforms WHERE LOWER(name) = LOWER($1);',
+    [cleanedPlatform],
+  );
+  console.log(rows);
+  return rows;
+}
+
 module.exports = {
   getAllGames,
   getAllPlatforms,
   getGamesByPlatform,
   createPlatform,
+  deletePlatform,
 };

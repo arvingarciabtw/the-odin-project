@@ -10,10 +10,11 @@
     <%- include('../navbar') %>
     <main>
       <%- include('../description', { heading: 'Delete a Platform', description: 'Choose an existing platform from the dropdown and click on submit when finished!'}) %>
-      <form>
-        <label for="delete-platform-choose">Choose a Platform</label>
-        <select name="delete-platform-choose" id="delete-platform-choose" required>
+      <form action="/platforms/delete" method="POST">
+        <label for="deletePlatform">Choose a Platform</label>
+        <select name="deletePlatform" id="deletePlatform" required>
           <%- include('../partials/options') %>
+          <%- include('../partials/errors') %>
         </select>
         <button>Submit</button>
       </form>
