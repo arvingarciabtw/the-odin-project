@@ -9,7 +9,19 @@ const validateCreatePlatform = [
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('The field must only have letters and numbers.')
     .notEmpty()
-    .withMessage('The field must not be empty.'),
+    .withMessage('The field must not be empty.')
+    .custom(async (value) => {
+      const platforms = await db.getAllPlatforms();
+      const isDuplicate = platforms.some(
+        (platform) => platform.name.toLowerCase() === value.toLowerCase(),
+      );
+      if (isDuplicate) {
+        throw new Error(
+          'A platform with this name already exists. Please enter a unique platform name.',
+        );
+      }
+      return true;
+    }),
 ];
 
 const validateUpdatePlatform = [
@@ -22,7 +34,24 @@ const validateUpdatePlatform = [
     .matches(/^[a-zA-Z0-9\s]+$/)
     .withMessage('The field must only have letters and numbers.')
     .notEmpty()
-    .withMessage('The field must not be empty.'),
+    .withMessage('The field must not be empty.')
+    .custom(async (value, { req }) => {
+      const platforms = await db.getAllPlatforms();
+      const selectedPlatform = req.body.updatePlatformSelect;
+
+      const isDuplicate = platforms.some(
+        (platform) =>
+          platform.name.toLowerCase() === value.toLowerCase() &&
+          platform.name.toLowerCase() !== selectedPlatform.toLowerCase(),
+      );
+
+      if (isDuplicate) {
+        throw new Error(
+          'A platform with this name already exists. Please enter a unique platform name.',
+        );
+      }
+      return true;
+    }),
 ];
 
 const validateDeletePlatform = [
