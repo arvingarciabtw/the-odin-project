@@ -49,10 +49,10 @@ async function createGameGet(_req, res) {
 
 async function updateGameGet(req, res) {
   const { id } = req.params;
-  const games = await db.getAllGames();
+  const game = await db.getGameById(id);
   const platforms = await db.getAllPlatforms();
 
-  res.render('./games/update', { id: id, games: games, platforms: platforms });
+  res.render('./games/update', { id: id, game: game, platforms: platforms });
 }
 
 // == POST REQUESTS ==

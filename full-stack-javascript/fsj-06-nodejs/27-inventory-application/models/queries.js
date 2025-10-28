@@ -36,11 +36,20 @@ async function getGamesByPlatform(passedPlatform) {
   const cleanedPlatform = urlToName(passedPlatform);
 
   const { rows } = await pool.query(
-    'SELECT games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id WHERE LOWER(platforms.name) = LOWER($1) ORDER BY games.id DESC;',
+    'SELECT games.id, games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id WHERE LOWER(platforms.name) = LOWER($1) ORDER BY games.id DESC;',
     [cleanedPlatform],
   );
   console.log(rows);
   return rows;
+}
+
+async function getGameById(gameId) {
+  const { rows } = await pool.query(
+    'SELECT games.id, games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id WHERE games.id = $1;',
+    [gameId],
+  );
+  console.log(rows);
+  return rows[0];
 }
 
 // == CREATE ==
@@ -128,6 +137,7 @@ module.exports = {
   getAllGames,
   getAllPlatforms,
   getGamesByPlatform,
+  getGameById,
   createPlatform,
   updatePlatform,
   deletePlatform,

@@ -9,7 +9,10 @@
   <body>
     <%- include('../navbar') %>
     <main>
-      <%- include('../description', { heading: 'Update a Game', description: 'Type the new name of the game you want to update, choose its new platform, and submit when finished!'}) %>
+      <%- include('../description', { 
+        heading: 'Update a Game', 
+        description: `Currently editing ${game.game_name}, on the platform ${game.platform_name}. Type the new name you want it to have, choose its new platform, and submit when finished!`
+      }) %>
       <form action="/games/update/<%= id %>" method="POST">
         <label for="updateGameText">New Game Name</label>
         <input type="text" id="updateGameText" name="updateGameText" placeholder="e.g. Dead Cells" required>
