@@ -95,6 +95,12 @@ const updateGamePost = [
   },
 ];
 
+const deleteGamePost = async (req, res) => {
+  const { id } = req.params;
+  await db.deleteGame(id);
+  res.redirect('/');
+};
+
 module.exports = {
   getGames,
   getGamesByPlatform,
@@ -102,4 +108,5 @@ module.exports = {
   updateGameGet,
   createGamePost,
   updateGamePost,
+  deleteGamePost,
 };

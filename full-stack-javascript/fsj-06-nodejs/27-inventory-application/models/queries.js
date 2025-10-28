@@ -133,6 +133,12 @@ async function deletePlatform(passedPlatform) {
   return rows;
 }
 
+async function deleteGame(id) {
+  const { rows } = await pool.query('DELETE FROM games WHERE id = ($1);', [id]);
+  console.log(rows);
+  return rows;
+}
+
 module.exports = {
   getAllGames,
   getAllPlatforms,
@@ -143,4 +149,5 @@ module.exports = {
   deletePlatform,
   createGame,
   updateGame,
+  deleteGame,
 };

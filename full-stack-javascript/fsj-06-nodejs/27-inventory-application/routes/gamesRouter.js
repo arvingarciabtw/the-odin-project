@@ -6,5 +6,6 @@ gamesRouter.get('/create', gamesController.createGameGet);
 gamesRouter.post('/create', gamesController.createGamePost);
 gamesRouter.get('/update/:id', gamesController.updateGameGet);
 gamesRouter.post('/update/:id', gamesController.updateGamePost);
+gamesRouter.post('/delete/:id', gamesController.deleteGamePost);
 
 module.exports = gamesRouter;
