@@ -14,6 +14,17 @@ const validateCreateGame = [
     .withMessage('The field must not be empty.'),
 ];
 
+const validateUpdateGame = [
+  body('updateGameText')
+    .trim()
+    .notEmpty()
+    .withMessage('The field must not be empty.'),
+  body('updateGamePlatform')
+    .trim()
+    .notEmpty()
+    .withMessage('The field must not be empty.'),
+];
+
 async function getGames(_req, res) {
   const games = await db.getAllGames();
   const platforms = await db.getAllPlatforms();
@@ -36,10 +47,12 @@ async function createGameGet(_req, res) {
   res.render('./games/create', { platforms: platforms });
 }
 
-async function updateGameGet(_req, res) {
+async function updateGameGet(req, res) {
+  const { id } = req.params;
+  const games = await db.getAllGames();
   const platforms = await db.getAllPlatforms();
 
-  res.render('./games/update', { platforms: platforms });
+  res.render('./games/update', { id: id, games: games, platforms: platforms });
 }
 
 // == POST REQUESTS ==
@@ -60,10 +73,33 @@ const createGamePost = [
   },
 ];
 
+const updateGamePost = [
+  validateUpdateGame,
+  async (req, res) => {
+    const { id } = req.params;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const games = await db.getAllGames();
+      const platforms = await db.getAllPlatforms();
+      return res.status(400).render('./games/update', {
+        id: id,
+        games: games,
+        platforms: platforms,
+        errors: errors.array(),
+      });
+    }
+
+    const { updateGameText, updateGamePlatform } = matchedData(req);
+    await db.updateGame(id, updateGameText, updateGamePlatform);
+    res.redirect('/');
+  },
+];
+
 module.exports = {
   getGames,
   getGamesByPlatform,
   createGameGet,
   updateGameGet,
   createGamePost,
+  updateGamePost,
 };

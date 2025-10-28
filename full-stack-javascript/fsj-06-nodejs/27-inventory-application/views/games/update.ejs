@@ -10,11 +10,11 @@
     <%- include('../navbar') %>
     <main>
       <%- include('../description', { heading: 'Update a Game', description: 'Type the new name of the game you want to update, choose its new platform, and submit when finished!'}) %>
-      <form action="/games/update/:id" method="POST">
-        <label for="createGameText">New Game Name</label>
-        <input type="text" id="createGameText" name="createGameText" placeholder="e.g. Dead Cells" required>
-        <label for="createGamePlatform">Platform</label>
-        <select name="createGamePlatform" id="createGamePlatform" required>
+      <form action="/games/update/<%= id %>" method="POST">
+        <label for="updateGameText">New Game Name</label>
+        <input type="text" id="updateGameText" name="updateGameText" placeholder="e.g. Dead Cells" required>
+        <label for="updateGamePlatform">Platform</label>
+        <select name="updateGamePlatform" id="updateGamePlatform" required>
           <%- include('../partials/options') %>
         </select>
         <%- include("../partials/errors.ejs") %>

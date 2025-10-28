@@ -20,7 +20,7 @@ function capitalizeWords(str) {
 
 async function getAllGames() {
   const { rows } = await pool.query(
-    'SELECT games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id;',
+    'SELECT games.id, games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id ORDER BY games.id DESC;',
   );
   console.log(rows);
   return rows;
@@ -36,7 +36,7 @@ async function getGamesByPlatform(passedPlatform) {
   const cleanedPlatform = urlToName(passedPlatform);
 
   const { rows } = await pool.query(
-    'SELECT games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id WHERE LOWER(platforms.name) = LOWER($1);',
+    'SELECT games.name AS game_name, platforms.name AS platform_name FROM games JOIN platforms ON platforms.id = games.platform_id WHERE LOWER(platforms.name) = LOWER($1) ORDER BY games.id DESC;',
     [cleanedPlatform],
   );
   console.log(rows);
@@ -89,6 +89,28 @@ async function updatePlatform(oldPlatform, newPlatform) {
   return rows;
 }
 
+async function updateGame(gameId, newName, newPlatform) {
+  const cleanedNewName = capitalizeWords(newName);
+
+  const platformResult = await pool.query(
+    'SELECT id FROM platforms WHERE LOWER(name) = LOWER($1);',
+    [newPlatform],
+  );
+
+  if (platformResult.rows.length === 0) {
+    throw new Error('Platform not found');
+  }
+
+  const platformId = platformResult.rows[0].id;
+
+  const { rows } = await pool.query(
+    'UPDATE games SET name = $1, platform_id = $2 WHERE id = $3 RETURNING *;',
+    [cleanedNewName, platformId, gameId],
+  );
+  console.log(rows);
+  return rows;
+}
+
 // == DELETE ==
 
 async function deletePlatform(passedPlatform) {
@@ -110,4 +132,5 @@ module.exports = {
   updatePlatform,
   deletePlatform,
   createGame,
+  updateGame,
 };
