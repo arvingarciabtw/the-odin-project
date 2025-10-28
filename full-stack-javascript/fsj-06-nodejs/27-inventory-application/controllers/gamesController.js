@@ -7,7 +7,24 @@ const validateCreateGame = [
   body('createGameText')
     .trim()
     .notEmpty()
-    .withMessage('The field must not be empty.'),
+    .withMessage('The field must not be empty.')
+    .custom(async (value, { req }) => {
+      const games = await db.getAllGames();
+      const selectedPlatform = req.body.createGamePlatform;
+
+      const isDuplicate = games.some(
+        (game) =>
+          game.game_name.toLowerCase() === value.toLowerCase() &&
+          game.platform_name.toLowerCase() === selectedPlatform.toLowerCase(),
+      );
+
+      if (isDuplicate) {
+        throw new Error(
+          'This game already exists on the selected platform. Please enter a unique game-platform combination.',
+        );
+      }
+      return true;
+    }),
   body('createGamePlatform')
     .trim()
     .notEmpty()
@@ -18,7 +35,26 @@ const validateUpdateGame = [
   body('updateGameText')
     .trim()
     .notEmpty()
-    .withMessage('The field must not be empty.'),
+    .withMessage('The field must not be empty.')
+    .custom(async (value, { req }) => {
+      const games = await db.getAllGames();
+      const selectedPlatform = req.body.updateGamePlatform;
+      const currentGameId = parseInt(req.params.id);
+
+      const isDuplicate = games.some(
+        (game) =>
+          game.game_name.toLowerCase() === value.toLowerCase() &&
+          game.platform_name.toLowerCase() === selectedPlatform.toLowerCase() &&
+          game.id !== currentGameId,
+      );
+
+      if (isDuplicate) {
+        throw new Error(
+          'This game already exists on the selected platform. Please enter a unique game-platform combination.',
+        );
+      }
+      return true;
+    }),
   body('updateGamePlatform')
     .trim()
     .notEmpty()
@@ -62,7 +98,9 @@ const createGamePost = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      const platforms = await db.getAllPlatforms();
       return res.status(400).render('./games/create', {
+        platforms: platforms,
         errors: errors.array(),
       });
     }
