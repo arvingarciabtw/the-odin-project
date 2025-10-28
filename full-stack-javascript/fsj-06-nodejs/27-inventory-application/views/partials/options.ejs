@@ -1,3 +1,6 @@
 <% platforms.forEach(platform => { %>
-  <option value="<%= platform.name %>"><%= platform.name %></option>
+  <option value="<%= platform.name %>" 
+    <%= (typeof selectedPlatform !== 'undefined' && platform.name === selectedPlatform) ? 'selected' : '' %>>
+    <%= platform.name %>
+  </option>
 <% }); %>

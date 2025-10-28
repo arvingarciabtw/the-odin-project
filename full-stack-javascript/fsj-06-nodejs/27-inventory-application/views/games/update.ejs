@@ -15,10 +15,10 @@
       }) %>
       <form action="/games/update/<%= id %>" method="POST">
         <label for="updateGameText">New Game Name</label>
-        <input type="text" id="updateGameText" name="updateGameText" placeholder="e.g. Dead Cells" required>
+        <input type="text" id="updateGameText" name="updateGameText" value="<%= game.game_name %>" placeholder="e.g. Dead Cells" required>
         <label for="updateGamePlatform">Platform</label>
         <select name="updateGamePlatform" id="updateGamePlatform" required>
-          <%- include('../partials/options') %>
+          <%- include('../partials/options', { selectedPlatform: game.platform_name }) %>
         </select>
         <%- include("../partials/errors.ejs") %>
         <button>Submit</button>
