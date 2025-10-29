@@ -18,7 +18,14 @@
           <% if (user.membership_status === true) { %>
             <%- include('message', {
               title: message.title,
-              message_timestamp: message.message_timestamp, 
+              message_timestamp: new Date(message.message_timestamp).toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+              }),
               message_text: message.message_text, 
               first_name: message.first_name,
               last_name: message.last_name
@@ -27,7 +34,14 @@
             <% if (user.first_name === message.first_name && user.last_name === message.last_name) { %>
               <%- include('message', {
                 title: message.title,
-                message_timestamp: message.message_timestamp, 
+                message_timestamp: new Date(message.message_timestamp).toLocaleString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                  hour: 'numeric',
+                  minute: '2-digit',
+                  hour12: true
+                }),
                 message_text: message.message_text, 
                 first_name: message.first_name,
                 last_name: message.last_name
@@ -35,10 +49,10 @@
             <% } else {%>
               <%- include('message', {
                 title: message.title,
-                message_timestamp: '', 
+                message_timestamp: 'Date unavailable', 
                 message_text: message.message_text, 
                 first_name: 'Anonymous',
-                last_name: '' 
+                last_name: null 
               }); %>  
             <% } %>
           <% } %>
