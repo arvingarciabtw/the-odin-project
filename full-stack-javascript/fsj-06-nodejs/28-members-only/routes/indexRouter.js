@@ -13,8 +13,9 @@ const validateMembership = [
     .withMessage('The field must not be empty.'),
 ];
 
-indexRouter.get('/', (req, res) => {
-  res.render('index', { user: req.user });
+indexRouter.get('/', async (req, res) => {
+  const messages = await db.getAllMessages();
+  res.render('index', { user: req.user, messages: messages.reverse() });
 });
 indexRouter.get('/sign-up', (req, res) => {
   res.render('sign-up-form');

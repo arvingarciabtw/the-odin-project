@@ -24,7 +24,8 @@
   --fg: #faf9f6;
   --accent: #c6fbbb;
   --gray: #979797;
-  --dark-gray: #393939;
+  --gray-alt: #797979;
+  --dark-gray: #303030;
   --light-gray: #b2b2b2;
 }
 
@@ -70,130 +71,6 @@ main {
   justify-content: baseline;
   align-items: start;
   gap: 1.25rem;
-}
-
-.description {
-  margin-top: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.description > p {
-  color: var(--gray);
-}
-
-.platforms,
-.platforms-crud {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.platforms {
-  margin-top: -0.75rem;
-}
-
-.btn-platform,
-.platforms-crud > a {
-  padding: 0.5em 1.25em;
-
-  background: var(--bg-alt);
-  color: var(--gray);
-  border: 1px solid var(--bg);
-  border-radius: 16px;
-  font-size: 0.875rem;
-  text-decoration: none;
-
-  transition: color 0.3s ease;
-}
-
-.btn-platform:hover,
-.platforms-crud > a:hover {
-  color: var(--accent);
-}
-
-.games {
-  padding: 1.5rem;
-  width: 100%;
-  height: calc(100vh - 400px);
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  overflow-y: auto;
-
-  background: var(--bg-alt);
-  border-radius: 20px;
-}
-
-.games > .game-heading,
-.games > .game {
-  display: grid;
-  grid-template-columns: 1fr 1fr repeat(2, 30px);
-  align-items: center;
-  gap: 1rem;
-
-  color: var(--gray);
-}
-
-.games > .game-heading > h2 {
-  font-size: 1rem;
-  color: var(--fg);
-}
-
-.games > .game > a,
-.games > .game > button {
-  padding: 0;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: var(--dark-gray);
-  color: var(--fg);
-  border: none;
-  border-radius: 50%;
-
-  transition: opacity 0.3s ease;
-}
-
-.games > .game > a:hover,
-.games > .game > button:hover {
-  opacity: 0.6;
-}
-
-.games > .game > a > svg,
-.games > .game > button > svg {
-  width: 14px;
-  aspect-ratio: 1 / 1;
-  stroke: var(--accent);
-}
-
-.games > .game > button:focus {
-  outline: 1px solid var(--gray);
-}
-
-.games .btn-add-game {
-  aspect-ratio: 1 / 1;
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: var(--dark-gray);
-  color: var(--accent);
-  border: none;
-  border-radius: 50%;
-  font-size: 1rem;
-  text-decoration: none;
-
-  transition: opacity 0.3s ease;
-}
-
-.games .btn-add-game:hover {
-  opacity: 0.6;
 }
 
 form {
@@ -270,9 +147,49 @@ button:focus {
 }
 
 input[type='password'] {
-  padding: 0.875rem 1rem;
-  font: small-caption;
-  font-size: 10px;
+  padding: 0 1rem;
+  height: 40px;
+
+  font-family: 'Verdana'; /* setting the font to Verdana makes password circles consistent for Chrome and Firefox */
+  font-size: 1rem;
+}
+
+.messages {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 260px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+.message {
+  padding: 1.5rem;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  background: var(--bg-alt);
+  border-radius: 20px;
+}
+
+.message > .top {
+  margin-top: -0.25rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.message > .top > .user,
+.message > .top > .timestamp {
+  padding: 0.4rem 1rem;
+
+  background: var(--dark-gray);
+  color: var(--accent);
+  font-size: 0.875rem;
+  border-radius: 12px;
 }
 
 /* == NAVBAR == */

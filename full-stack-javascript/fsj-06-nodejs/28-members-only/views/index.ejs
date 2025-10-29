@@ -13,6 +13,37 @@
     <% if (locals.user) {%>
       <h1>Welcome back, <%= user.first_name %> <%= user.last_name %>!</h1>
       <p style="margin-top: -1rem; color: var(--gray);">Take a look at the most recent messages below.</p>
+      <section class="messages">
+        <% messages.forEach((message) => { %>
+          <% if (user.membership_status === true) { %>
+            <%- include('message', {
+              title: message.title,
+              message_timestamp: message.message_timestamp, 
+              message_text: message.message_text, 
+              first_name: message.first_name,
+              last_name: message.last_name
+            }); %>  
+          <% } else { %>
+            <% if (user.first_name === message.first_name && user.last_name === message.last_name) { %>
+              <%- include('message', {
+                title: message.title,
+                message_timestamp: message.message_timestamp, 
+                message_text: message.message_text, 
+                first_name: message.first_name,
+                last_name: message.last_name
+              }); %>  
+            <% } else {%>
+              <%- include('message', {
+                title: message.title,
+                message_timestamp: '', 
+                message_text: message.message_text, 
+                first_name: 'Anonymous',
+                last_name: '' 
+              }); %>  
+            <% } %>
+          <% } %>
+        <% }); %>
+      </section>
     <% } else { %>
       <%- include('log-in-form') %>
     <%}%>
