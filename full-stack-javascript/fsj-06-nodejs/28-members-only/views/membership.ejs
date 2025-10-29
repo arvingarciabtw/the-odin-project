@@ -10,12 +10,17 @@
 <body>
   <%- include('navbar') %>
   <main>
-    <h1>Get a Membership</h1>
-    <form action="/membership" method="POST">
-      <label for="membership">Secret Code</label>
-      <input type="text" id="membership" name="membership" placeholder="Type in the secret code!" required>
-      <button type="submit">Submit</button>
-    </form>
+    <% if (user.membership_status === true) {%>
+      <h1>You already have a membership!</h1>
+      <a href="/" style="color: var(--accent); margin-top: -1rem;">Go back</a>
+    <% } else { %>
+      <h1>Get a Membership</h1>
+      <form action="/membership/<%= user.id %>" method="POST">
+        <label for="membership">Secret Code</label>
+        <input type="text" id="membership" name="membership" placeholder="Type in the secret code!" required>
+        <button type="submit">Submit</button>
+      </form>
+    <%}%>
   </main>
   <%- include('footer') %>
 </body>
