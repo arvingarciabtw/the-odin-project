@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+</head>
+<body>
+  <% if (locals.user) {%>
+    <h1>WELCOME BACK <%= user.first_name %> <%= user.last_name %></h1>
+    <a href="/log-out">LOG OUT</a>
+  <% } else { %>
+    <h1>please log in</h1>
+    <form action="/log-in" method="POST">
+      <label for="username">Username</label>
+      <input id="username" name="username" placeholder="username" type="text" required/>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required/>
+      <button type="submit">Log In</button>
+    </form>
+  <%}%>
+</body>
+</html>
