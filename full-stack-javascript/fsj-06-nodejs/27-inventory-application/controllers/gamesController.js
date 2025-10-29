@@ -115,6 +115,7 @@ const updateGamePost = [
   validateUpdateGame,
   async (req, res) => {
     const { id } = req.params;
+    const game = await db.getGameById(id);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const games = await db.getAllGames();
@@ -122,6 +123,7 @@ const updateGamePost = [
       return res.status(400).render('./games/update', {
         id: id,
         games: games,
+        game: game,
         platforms: platforms,
         errors: errors.array(),
       });
