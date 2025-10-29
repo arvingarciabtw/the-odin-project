@@ -2,21 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
   <title>Log In</title>
 </head>
 <body>
-  <% if (locals.user) {%>
-    <h1>WELCOME BACK <%= user.first_name %> <%= user.last_name %></h1>
-    <a href="/log-out">LOG OUT</a>
-  <% } else { %>
-    <h1>please log in</h1>
-    <form action="/log-in" method="POST">
-      <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" required/>
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" required/>
-      <button type="submit">Log In</button>
-    </form>
-  <%}%>
+  <%- include('navbar') %>
+  <main>
+    <% if (locals.user) {%>
+      <h1>Welcome back, <%= user.first_name %> <%= user.last_name %>!</h1>
+      <a href="/log-out">LOG OUT</a>
+    <% } else { %>
+      <h1>Log In</h1>
+      <form action="/log-in" method="POST">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required/>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required/>
+        <p class="no-account">Don't have an account? <a href="/sign-up">Sign up</a></p>
+        <button type="submit">Log In</button>
+      </form> 
+    <%}%>
+  </main>
+  <%- include('footer') %>
 </body>
 </html>

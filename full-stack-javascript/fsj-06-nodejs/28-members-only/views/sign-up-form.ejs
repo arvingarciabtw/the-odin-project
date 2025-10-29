@@ -2,20 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
   <title>Sign Up</title>
 </head>
 <body>
-  <h1>Sign Up</h1>
-  <form action="/sign-up" method="POST">
-    <label for="firstName">First Name</label>
-    <input id="firstName" name="firstName" placeholder="firstName" type="text" required/>
-    <label for="lastName">Last Name</label>
-    <input id="lastName" name="lastName" placeholder="lastName" type="text" required/>
-    <label for="username">Username</label>
-    <input id="username" name="username" placeholder="username" type="text" required/>
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" required/>
-    <button type="submit">Sign Up</button>
-  </form>
+  <%- include('navbar') %>
+  <main>
+    <h1>Sign Up</h1>
+    <form action="/sign-up" method="POST">
+      <label for="firstName">First Name</label>
+      <input id="firstName" name="firstName" type="text" required/>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" name="lastName" type="text" required/>
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" required/>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required/>
+      <p class="has-account">Already have an account? <a href="/">Log in</a></p>
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+  <%- include('footer') %>
 </body>
 </html>
