@@ -44,5 +44,8 @@ indexRouter.get('/log-out', (req, res, next) => {
     res.redirect('/');
   });
 });
+indexRouter.get('/membership', (req, res) => {
+  res.render('membership');
+});
 
 module.exports = indexRouter;

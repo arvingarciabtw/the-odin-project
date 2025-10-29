@@ -6,5 +6,11 @@
         alt="Arvin Garcia logo"
       >
     </a>
+    <div>
+      <% if (locals.user) {%>
+        <a href="/membership">Membership</a>
+        <a href="/log-out">Log out</a>
+      <%}%>
+    </div>
   </nav>
 </header>

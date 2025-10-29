@@ -303,6 +303,7 @@ input[type='password'] {
   gap: 2rem;
 }
 
+.header-app > nav > div > p,
 .header-app > nav > div > a {
   color: var(--gray);
   text-decoration: none;
@@ -310,6 +311,7 @@ input[type='password'] {
   transition: color 0.3s ease;
 }
 
+.header-app > nav > div > p:hover,
 .header-app > nav > div > a:hover {
   color: var(--accent);
 }
