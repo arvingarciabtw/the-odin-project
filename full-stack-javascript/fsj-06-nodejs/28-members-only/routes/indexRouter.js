@@ -11,9 +11,34 @@ const validateMembership = [
     .trim()
     .notEmpty()
     .withMessage('The field must not be empty.')
-    .custom(async (value, { req }) => {
+    .custom(async (value) => {
       if (value !== process.env.SECRET_CODE) {
         throw new Error('Incorrect secret code. Try again.');
+      }
+      return true;
+    }),
+];
+
+const validateSignUp = [
+  body('firstName').trim().notEmpty().withMessage('First name is required.'),
+  body('lastName').trim().notEmpty().withMessage('Last name is required.'),
+  body('username')
+    .trim()
+    .notEmpty()
+    .withMessage('Username is required.')
+    .isLength({ min: 3 })
+    .withMessage('Username must be at least 3 characters long.'),
+  body('password')
+    .notEmpty()
+    .withMessage('Password is required.')
+    .isLength({ min: 6 })
+    .withMessage('Password must be at least 6 characters long.'),
+  body('confirmPassword')
+    .notEmpty()
+    .withMessage('Please confirm your password.')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Passwords do not match.');
       }
       return true;
     }),
@@ -26,25 +51,33 @@ indexRouter.get('/', async (req, res) => {
 indexRouter.get('/sign-up', (req, res) => {
   res.render('sign-up-form');
 });
-indexRouter.post('/sign-up', async (req, res, next) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    await pool.query(
-      'INSERT INTO users (first_name, last_name, username, password, membership_status) VALUES ($1, $2, $3, $4, $5)',
-      [
-        req.body.firstName,
-        req.body.lastName,
-        req.body.username,
-        hashedPassword,
-        'false',
-      ],
-    );
-    res.redirect('/');
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-});
+indexRouter.post('/sign-up', [
+  validateSignUp,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render('sign-up-form', {
+        errors: errors.array(),
+        formData: req.body,
+      });
+    }
+
+    try {
+      const { firstName, lastName, username, password } = matchedData(req);
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      await pool.query(
+        'INSERT INTO users (first_name, last_name, username, password, membership_status) VALUES ($1, $2, $3, $4, $5)',
+        [firstName, lastName, username, hashedPassword, 'false'],
+      );
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+]);
 indexRouter.post(
   '/log-in',
   passport.authenticate('local', {
