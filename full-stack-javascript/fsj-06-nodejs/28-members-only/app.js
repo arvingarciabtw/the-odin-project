@@ -9,6 +9,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { pool } = require('./models/pool');
 const indexRouter = require('./routes/indexRouter');
+const membershipRouter = require('./routes/membershipRouter');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -50,9 +51,11 @@ passport.use(
     }
   }),
 );
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
+
 passport.deserializeUser(async (id, done) => {
   try {
     const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [
@@ -69,6 +72,7 @@ passport.deserializeUser(async (id, done) => {
 // == ROUTES ==
 
 app.use('/', indexRouter);
+app.use('membership', membershipRouter);
 
 const PORT = process.env.PORT || 3000;
 

@@ -17,9 +17,9 @@
       <h1>Get a Membership</h1>
       <form action="/membership/<%= user.id %>" method="POST">
         <label for="membership">Secret Code</label>
-        <input type="text" id="membership" name="membership" placeholder="Type in the secret code!" required>
+        <input style="margin-bottom: 0;" type="text" id="membership" name="membership" placeholder="Type in the secret code!" required>
         <%- include('./partials/errors') %>
-        <button type="submit">Submit</button>
+        <button style="margin-top: 1rem;" type="submit">Submit</button>
       </form>
     <%}%>
   </main>
