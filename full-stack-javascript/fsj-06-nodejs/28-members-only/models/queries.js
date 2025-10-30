@@ -12,7 +12,7 @@ async function getUserById(id) {
 
 async function getAllMessages() {
   const { rows } = await pool.query(
-    'SELECT *, users.first_name, users.last_name FROM messages JOIN users ON users.id = messages.user_id;',
+    'SELECT *, users.first_name, users.last_name, messages.id AS message_id FROM messages JOIN users ON users.id = messages.user_id;',
   );
   console.log(rows);
   return rows;
@@ -40,9 +40,20 @@ async function updateUserMembership(id) {
   return rows[0];
 }
 
+// == DELETE ==
+
+async function deleteMessage(id) {
+  const { rows } = await pool.query('DELETE FROM messages WHERE id = ($1)', [
+    id,
+  ]);
+  console.log(rows);
+  return rows;
+}
+
 module.exports = {
   getUserById,
   getAllMessages,
   updateUserMembership,
   createMessage,
+  deleteMessage,
 };

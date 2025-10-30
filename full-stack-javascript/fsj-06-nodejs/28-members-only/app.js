@@ -72,7 +72,7 @@ passport.deserializeUser(async (id, done) => {
 // == ROUTES ==
 
 app.use('/', indexRouter);
-app.use('membership', membershipRouter);
+app.use('/membership', membershipRouter);
 
 const PORT = process.env.PORT || 3000;
 

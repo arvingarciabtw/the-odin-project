@@ -5,4 +5,9 @@
     <p class="timestamp"><%= message_timestamp %></p> 
   </div>
   <p class="text"><%= message_text %></p> 
+  <% if (user.is_admin) { %>
+    <form action="/delete-message/<%= id %>" method="POST">
+      <button type="submit">X</button>
+    </form>
+  <% } %>
 </div>

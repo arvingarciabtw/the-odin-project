@@ -172,6 +172,7 @@ input[type='password'] {
 .message {
   padding: 1.5rem;
   width: 100%;
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -195,6 +196,24 @@ input[type='password'] {
   color: var(--accent);
   font-size: 0.875rem;
   border-radius: 12px;
+}
+
+.message > form {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+}
+
+.message > form > button {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 12px;
 }
 
 .error-msg {

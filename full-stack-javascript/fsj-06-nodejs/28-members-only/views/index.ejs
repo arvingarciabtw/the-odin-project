@@ -17,6 +17,7 @@
         <% messages.forEach((message) => { %>
           <% if (user.membership_status === true) { %>
             <%- include('message', {
+              id: message.message_id,
               title: message.title,
               message_timestamp: new Date(message.message_timestamp).toLocaleString('en-US', {
                 month: 'short',
@@ -33,6 +34,7 @@
           <% } else { %>
             <% if (user.first_name === message.first_name && user.last_name === message.last_name) { %>
               <%- include('message', {
+                id: message.message_id,
                 title: message.title,
                 message_timestamp: new Date(message.message_timestamp).toLocaleString('en-US', {
                   month: 'short',
@@ -48,6 +50,7 @@
               }); %>  
             <% } else {%>
               <%- include('message', {
+                id: message.message_id,
                 title: message.title,
                 message_timestamp: 'Date unavailable', 
                 message_text: message.message_text, 

@@ -39,8 +39,15 @@ const postAddMessage = [
   },
 ];
 
+async function postDeleteMessage(req, res) {
+  const { id } = req.params;
+  await db.deleteMessage(id);
+  res.redirect('/');
+}
+
 module.exports = {
   getIndex,
   getAddMessage,
   postAddMessage,
+  postDeleteMessage,
 };
