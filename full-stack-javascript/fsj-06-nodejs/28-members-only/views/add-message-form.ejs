@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Message</title>
+  </head>
+  <body>
+    <%- include('navbar') %>
+    <main>
+      <form method="POST" action="/add-message/<%= user.id %>">
+        <h1>Add a Message</h1>
+        <label for="title">Title</label>
+        <input type='text' id='title' name='title' required/>
+        <label for="messageText">Message</label>
+        <textarea name='messageText' id="messageText" placeholder='Your message here...' required></textarea>
+        <button type='submit'>Submit</button>
+      </form>
+    </main>
+    <%- include('footer') %>
+  </body>
+</html>
+

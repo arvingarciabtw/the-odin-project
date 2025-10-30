@@ -18,6 +18,17 @@ async function getAllMessages() {
   return rows;
 }
 
+// == CREATE ==
+
+async function createMessage(title, messageText, userId) {
+  const { rows } = await pool.query(
+    'INSERT INTO messages (title, message_timestamp, message_text, user_id) VALUES ($1, $2, $3, $4);',
+    [title, new Date(), messageText, userId],
+  );
+  console.log(rows);
+  return rows;
+}
+
 // == UPDATE ==
 
 async function updateUserMembership(id) {
@@ -33,4 +44,5 @@ module.exports = {
   getUserById,
   getAllMessages,
   updateUserMembership,
+  createMessage,
 };

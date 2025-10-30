@@ -58,6 +58,9 @@
           <% } %>
         <% }); %>
       </section>
+      <a href="/add-message/<%= user.id %>">
+        <button class="btn-add-message">+</button>
+      </a>
     <% } else { %>
       <%- include('log-in-form') %>
     <%}%>
