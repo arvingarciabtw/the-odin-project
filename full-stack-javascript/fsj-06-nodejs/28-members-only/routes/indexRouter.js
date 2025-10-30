@@ -44,6 +44,41 @@ const validateSignUp = [
     }),
 ];
 
+const validateLogin = [
+  body('username')
+    .trim()
+    .notEmpty()
+    .withMessage('Username is required.')
+    .custom(async (value) => {
+      const { rows } = await pool.query(
+        'SELECT * FROM users WHERE username = $1',
+        [value],
+      );
+      if (rows.length === 0) {
+        throw new Error('No username found.');
+      }
+      return true;
+    }),
+  body('password')
+    .notEmpty()
+    .withMessage('Password is required.')
+    .custom(async (value, { req }) => {
+      const { rows } = await pool.query(
+        'SELECT * FROM users WHERE username = $1',
+        [req.body.username],
+      );
+
+      if (rows.length > 0) {
+        const user = rows[0];
+        const match = await bcrypt.compare(value, user.password);
+        if (!match) {
+          throw new Error('Incorrect password.');
+        }
+      }
+      return true;
+    }),
+];
+
 indexRouter.get('/', async (req, res) => {
   const messages = await db.getAllMessages();
   res.render('index', { user: req.user, messages: messages.reverse() });
@@ -78,13 +113,27 @@ indexRouter.post('/sign-up', [
     }
   },
 ]);
-indexRouter.post(
-  '/log-in',
+indexRouter.post('/log-in', [
+  validateLogin,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const messages = await db.getAllMessages();
+      return res.status(400).render('index', {
+        errors: errors.array(),
+        user: req.user,
+        messages: messages.reverse(),
+      });
+    }
+
+    next();
+  },
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/',
   }),
-);
+]);
 indexRouter.get('/log-out', (req, res, next) => {
   req.logout((err) => {
     if (err) {

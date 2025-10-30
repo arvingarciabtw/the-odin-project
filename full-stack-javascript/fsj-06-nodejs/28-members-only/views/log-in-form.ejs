@@ -3,7 +3,8 @@
   <label for="username">Username</label>
   <input id="username" name="username" type="text" required/>
   <label for="password">Password</label>
-  <input id="password" name="password" type="password" required/>
-  <p class="no-account">Don't have an account? <a href="/sign-up">Sign up</a></p>
+  <input style="margin-bottom: 0;" id="password" name="password" type="password" required/>
+  <%- include('./partials/errors') %>
+  <p class="no-account" style="margin-top: 1rem;">Don't have an account? <a href="/sign-up">Sign up</a></p>
   <button type="submit">Log In</button>
 </form> 
