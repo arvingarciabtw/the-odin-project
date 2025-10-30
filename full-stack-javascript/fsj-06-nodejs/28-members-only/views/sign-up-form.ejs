@@ -14,11 +14,11 @@
     <h1>Sign Up</h1>
     <form action="/sign-up" method="POST">
       <label for="firstName">First Name</label>
-      <input id="firstName" name="firstName" type="text" required/>
+      <input id="firstName" name="firstName" type="text" value="<%- locals.formData ? formData.firstName : '' %>" required/>
       <label for="lastName">Last Name</label>
-      <input id="lastName" name="lastName" type="text" required/>
+      <input id="lastName" name="lastName" type="text" value="<%- locals.formData ? formData.lastName : '' %>" required/>
       <label for="username">Username</label>
-      <input id="username" name="username" type="text" required/>
+      <input id="username" name="username" type="text" value="<%- locals.formData ? formData.username : '' %>" required/>
       <label for="password">Password</label>
       <input id="password" name="password" type="password" required/>
       <label for="confirmPassword">Confirm Password</label>

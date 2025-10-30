@@ -1,7 +1,7 @@
 <h1>Log In</h1>
 <form action="/log-in" method="POST">
   <label for="username">Username</label>
-  <input id="username" name="username" type="text" required/>
+  <input id="username" name="username" type="text" value="<%- locals.formData ? formData.username : '' %>" required/>
   <label for="password">Password</label>
   <input style="margin-bottom: 0;" id="password" name="password" type="password" required/>
   <%- include('./partials/errors') %>

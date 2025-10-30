@@ -124,6 +124,7 @@ indexRouter.post('/log-in', [
         errors: errors.array(),
         user: req.user,
         messages: messages.reverse(),
+        formData: req.body,
       });
     }
 
