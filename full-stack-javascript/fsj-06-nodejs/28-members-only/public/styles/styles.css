@@ -192,6 +192,12 @@ input[type='password'] {
   border-radius: 12px;
 }
 
+.error-msg {
+  margin-top: -1rem;
+  color: #ff7f7f;
+  font-size: 0.875rem;
+}
+
 /* == NAVBAR == */
 
 .header-app > nav {

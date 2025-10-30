@@ -18,6 +18,7 @@
       <form action="/membership/<%= user.id %>" method="POST">
         <label for="membership">Secret Code</label>
         <input type="text" id="membership" name="membership" placeholder="Type in the secret code!" required>
+        <%- include('./partials/errors') %>
         <button type="submit">Submit</button>
       </form>
     <%}%>

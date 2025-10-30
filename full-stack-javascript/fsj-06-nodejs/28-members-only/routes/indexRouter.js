@@ -10,7 +10,13 @@ const validateMembership = [
   body('membership')
     .trim()
     .notEmpty()
-    .withMessage('The field must not be empty.'),
+    .withMessage('The field must not be empty.')
+    .custom(async (value, { req }) => {
+      if (value !== process.env.SECRET_CODE) {
+        throw new Error('Incorrect secret code. Try again.');
+      }
+      return true;
+    }),
 ];
 
 indexRouter.get('/', async (req, res) => {
@@ -68,7 +74,7 @@ indexRouter.post('/membership/:id', [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).render('./membership/:id', {
+      return res.status(400).render('membership', {
         user: user,
         errors: errors.array(),
       });
