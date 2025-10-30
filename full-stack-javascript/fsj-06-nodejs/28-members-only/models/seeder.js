@@ -3,7 +3,7 @@
 const { Client } = require('pg');
 
 const SQL = `
-CREATE TABLE users (
+CREATE TABLE members_users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
@@ -13,13 +13,13 @@ CREATE TABLE users (
   is_admin BOOLEAN
 );
 
-CREATE TABLE messages (
+CREATE TABLE members_messages (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   title VARCHAR(255) NOT NULL,
   message_timestamp TIMESTAMP NOT NULL,
   message_text TEXT NOT NULL,
   user_id INTEGER NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users (id) 
+  FOREIGN KEY (user_id) REFERENCES members_users (id) 
 );
 `;
 

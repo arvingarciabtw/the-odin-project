@@ -15,7 +15,7 @@ const validateSignUp = [
     .withMessage('Username must be at least 3 characters long.')
     .custom(async (value) => {
       const existingUser = await pool.query(
-        'SELECT * FROM users WHERE username = $1',
+        'SELECT * FROM members_users WHERE username = $1',
         [value],
       );
 
@@ -48,7 +48,7 @@ const validateLogin = [
     .withMessage('Username is required.')
     .custom(async (value) => {
       const { rows } = await pool.query(
-        'SELECT * FROM users WHERE username = $1',
+        'SELECT * FROM members_users WHERE username = $1',
         [value],
       );
       if (rows.length === 0) {
@@ -61,7 +61,7 @@ const validateLogin = [
     .withMessage('Password is required.')
     .custom(async (value, { req }) => {
       const { rows } = await pool.query(
-        'SELECT * FROM users WHERE username = $1',
+        'SELECT * FROM members_users WHERE username = $1',
         [req.body.username],
       );
 
@@ -106,7 +106,7 @@ const postSignUp = [
       const hashedPassword = await bcrypt.hash(password, 10);
 
       await pool.query(
-        'INSERT INTO users (first_name, last_name, username, password, membership_status) VALUES ($1, $2, $3, $4, $5)',
+        'INSERT INTO members_users (first_name, last_name, username, password, membership_status) VALUES ($1, $2, $3, $4, $5)',
         [firstName, lastName, username, hashedPassword, 'false'],
       );
       res.redirect('/');

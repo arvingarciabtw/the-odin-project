@@ -3,16 +3,17 @@ const { pool } = require('./pool');
 // == READ ==
 
 async function getUserById(id) {
-  const { rows } = await pool.query('SELECT * FROM users WHERE id = ($1)', [
-    id,
-  ]);
+  const { rows } = await pool.query(
+    'SELECT * FROM members_users WHERE id = ($1)',
+    [id],
+  );
   console.log(rows);
   return rows[0];
 }
 
 async function getAllMessages() {
   const { rows } = await pool.query(
-    'SELECT *, users.first_name, users.last_name, messages.id AS message_id FROM messages JOIN users ON users.id = messages.user_id;',
+    'SELECT *, members_users.first_name, members_users.last_name, members_messages.id AS message_id FROM members_messages JOIN members_users ON members_users.id = members_messages.user_id;',
   );
   console.log(rows);
   return rows;
@@ -22,7 +23,7 @@ async function getAllMessages() {
 
 async function createMessage(title, messageText, userId) {
   const { rows } = await pool.query(
-    'INSERT INTO messages (title, message_timestamp, message_text, user_id) VALUES ($1, $2, $3, $4);',
+    'INSERT INTO members_messages (title, message_timestamp, message_text, user_id) VALUES ($1, $2, $3, $4);',
     [title, new Date(), messageText, userId],
   );
   console.log(rows);
@@ -33,7 +34,7 @@ async function createMessage(title, messageText, userId) {
 
 async function updateUserMembership(id) {
   const { rows } = await pool.query(
-    `UPDATE users SET membership_status = 'true' WHERE id = ($1)`,
+    `UPDATE members_users SET membership_status = 'true' WHERE id = ($1)`,
     [id],
   );
   console.log(rows);
@@ -43,9 +44,10 @@ async function updateUserMembership(id) {
 // == DELETE ==
 
 async function deleteMessage(id) {
-  const { rows } = await pool.query('DELETE FROM messages WHERE id = ($1)', [
-    id,
-  ]);
+  const { rows } = await pool.query(
+    'DELETE FROM members_messages WHERE id = ($1)',
+    [id],
+  );
   console.log(rows);
   return rows;
 }
