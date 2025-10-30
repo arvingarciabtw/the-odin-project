@@ -12,7 +12,19 @@ const validateSignUp = [
     .notEmpty()
     .withMessage('Username is required.')
     .isLength({ min: 3 })
-    .withMessage('Username must be at least 3 characters long.'),
+    .withMessage('Username must be at least 3 characters long.')
+    .custom(async (value) => {
+      const existingUser = await pool.query(
+        'SELECT * FROM users WHERE username = $1',
+        [value],
+      );
+
+      if (existingUser.rows.length > 0) {
+        throw new Error('Username already exists.');
+      }
+
+      return true;
+    }),
   body('password')
     .notEmpty()
     .withMessage('Password is required.')
