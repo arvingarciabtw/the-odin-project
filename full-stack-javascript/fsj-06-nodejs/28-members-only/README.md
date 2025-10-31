@@ -22,3 +22,5 @@ The live site can be viewed [here](https://members-only-h6bg.onrender.com/).
 ## 📝 Project Description
 
 The [project specification](https://www.theodinproject.com/lessons/node-path-nodejs-members-only) describes the general instructions in doing the project. This project primarily served as practice for understanding Node, Express, EJS, PostgreSQL, `express-validator` for validation and sanitization, and Passport.js for authentication.
+
+If you want to test out the membership functionality, the secret code is `bananas`!
