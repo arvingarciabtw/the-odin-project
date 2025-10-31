@@ -1,0 +1,16 @@
+<header class="header-app">
+  <nav>
+    <a href="/">
+      <img
+        src="/images/logo_optimized.webp"
+        alt="Arvin Garcia logo"
+      >
+    </a>
+    <div>
+      <% if (locals.user) {%>
+        <a href="/membership/<%= user.id %>">Membership</a>
+        <a href="/log-out">Log out</a>
+      <%}%>
+    </div>
+  </nav>
+</header>
