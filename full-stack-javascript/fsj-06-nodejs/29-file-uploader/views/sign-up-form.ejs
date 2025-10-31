@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+  <title>Sign Up</title>
+</head>
+<body>
+  <%- include('navbar') %>
+  <main>
+    <h1>Sign Up</h1>
+    <form action="/sign-up" method="POST">
+      <label for="firstName">First Name</label>
+      <input id="firstName" name="firstName" type="text" value="<%- locals.formData ? formData.firstName : '' %>" required/>
+      <label for="lastName">Last Name</label>
+      <input id="lastName" name="lastName" type="text" value="<%- locals.formData ? formData.lastName : '' %>" required/>
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" value="<%- locals.formData ? formData.username : '' %>" required/>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required/>
+      <label for="confirmPassword">Confirm Password</label>
+      <input style="margin-bottom: 0;" id="confirmPassword" name="confirmPassword" type="password" required/>
+      <%- include('./partials/errors') %>
+      <p class="has-account" style="margin-top: 1rem;">Already have an account? <a href="/">Log in</a></p>
+      <button type="submit">Sign Up</button>
+    </form>
+  </main>
+  <%- include('footer') %>
+</body>
+</html>

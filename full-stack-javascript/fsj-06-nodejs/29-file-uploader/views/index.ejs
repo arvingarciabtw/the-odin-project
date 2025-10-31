@@ -10,7 +10,11 @@
 <body>
   <%- include('navbar') %>
   <main>
-    <p>Hello world.</p> 
+    <% if (locals.user) {%>
+      <p>Should be logged in, <%= user.username %></p>
+    <% } else { %>
+      <%- include('log-in-form') %>
+    <%}%>
   </main>
   <%- include('footer') %>
 </body>
