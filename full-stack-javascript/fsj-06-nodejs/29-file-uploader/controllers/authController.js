@@ -43,6 +43,42 @@ const validateSignUp = [
     }),
 ];
 
+const validateLogin = [
+  body('username')
+    .trim()
+    .notEmpty()
+    .withMessage('Username is required.')
+    .custom(async (value) => {
+      const user = await prisma.user.findUnique({
+        where: {
+          username: value,
+        },
+      });
+      if (!user) {
+        throw new Error('No username found.');
+      }
+      return true;
+    }),
+  body('password')
+    .notEmpty()
+    .withMessage('Password is required.')
+    .custom(async (value, { req }) => {
+      const user = await prisma.user.findUnique({
+        where: {
+          username: req.body.username,
+        },
+      });
+
+      if (user) {
+        const match = await bcrypt.compare(value, user.password);
+        if (!match) {
+          throw new Error('Incorrect password.');
+        }
+      }
+      return true;
+    }),
+];
+
 function getSignUp(_req, res) {
   res.render('sign-up-form');
 }
@@ -89,28 +125,26 @@ const postSignUp = [
   },
 ];
 
-const postLogIn = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
+const postLogIn = [
+  validateLogin,
+  async (req, res, next) => {
+    const errors = validationResult(req);
 
-    if (!user) {
-      return res.status(401).render('index', {
-        errors: [{ msg: info.message }],
+    if (!errors.isEmpty()) {
+      return res.status(400).render('index', {
+        errors: errors.array(),
+        user: req.user,
         formData: req.body,
       });
     }
 
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      console.log('should be logged in...', user);
-      return res.render('index', { user });
-    });
-  })(req, res, next);
-};
+    next();
+  },
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/',
+  }),
+];
 
 module.exports = {
   getSignUp,

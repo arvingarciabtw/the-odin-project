@@ -11,7 +11,7 @@
   <%- include('navbar') %>
   <main>
     <% if (locals.user) {%>
-      <p>Should be logged in, <%= user.username %></p>
+      <h1>Welcome back, <%= user.firstName %> <%= user.lastName %>!</h1>
     <% } else { %>
       <%- include('log-in-form') %>
     <%}%>
