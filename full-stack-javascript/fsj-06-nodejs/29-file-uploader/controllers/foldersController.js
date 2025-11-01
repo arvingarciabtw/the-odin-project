@@ -22,8 +22,24 @@ const validateCreateFolder = [
     }),
 ];
 
+const validateDeleteFolder = [
+  body('deleteFolder')
+    .trim()
+    .notEmpty()
+    .withMessage('Folder name is required.'),
+];
+
 async function getCreateFolder(_req, res) {
   res.render('./folders/create');
+}
+
+async function getDeleteFolder(req, res) {
+  const folders = await prisma.folder.findMany({
+    where: {
+      userId: req.user.id,
+    },
+  });
+  res.render('./folders/delete', { folders: folders });
 }
 
 const postCreateFolder = [
@@ -56,7 +72,41 @@ const postCreateFolder = [
   },
 ];
 
+const postDeleteFolder = [
+  validateDeleteFolder,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render('./folders/delete', {
+        errors: errors.array(),
+        formData: req.body,
+      });
+    }
+
+    try {
+      const { deleteFolder } = matchedData(req);
+
+      await prisma.folder.delete({
+        where: {
+          name_userId: {
+            name: deleteFolder,
+            userId: req.user.id,
+          },
+        },
+      });
+
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+];
+
 module.exports = {
   getCreateFolder,
+  getDeleteFolder,
   postCreateFolder,
+  postDeleteFolder,
 };
