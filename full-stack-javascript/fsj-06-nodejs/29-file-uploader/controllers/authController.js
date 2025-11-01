@@ -115,7 +115,7 @@ const postSignUp = [
           username: username,
           password: hashedPassword,
           folders: {
-            create: [{ name: 'Root' }],
+            create: [{ name: 'root' }],
           },
         },
       });

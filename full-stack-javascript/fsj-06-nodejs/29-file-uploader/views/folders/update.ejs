@@ -16,7 +16,7 @@
       <label for="updateFolderSelect">Choose a Folder</label>
       <select name="updateFolderSelect" id="updateFolderSelect" required>
           <% folders.forEach((folder) => { %>
-            <% if (folder.name !== 'Root') { %>
+            <% if (folder.name !== 'root') { %>
                 <option value="<%= folder.name %>"><%= folder.name %></option> 
             <% } %>
           <% }) %>

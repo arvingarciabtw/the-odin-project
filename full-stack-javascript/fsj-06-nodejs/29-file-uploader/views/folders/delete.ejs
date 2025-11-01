@@ -12,11 +12,11 @@
   <main>
     <form action="/folders/delete" method="POST">
       <h1>Delete a Folder</h1>
-      <p class="description">Delete a folder from one of your folders. Take note that you cannot delete the Root folder, as you need a default folder to upload files if you do not have any other folders.</p>
+      <p class="description">Delete a folder from one of your folders. Take note that you cannot delete the root folder, as you need a default folder to upload files if you do not have any other folders.</p>
       <label for="deleteFolder">Folder Name</label>
       <select style="margin-bottom: 0;" name="deleteFolder" id="deleteFolder" required>
           <% folders.forEach((folder) => { %>
-            <% if (folder.name !== 'Root') { %>
+            <% if (folder.name !== 'root') { %>
                 <option value="<%= folder.name %>"><%= folder.name %></option> 
             <% } %>
           <% }) %>

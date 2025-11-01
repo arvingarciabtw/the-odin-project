@@ -12,7 +12,7 @@
   <main>
     <% if (locals.user) {%>
       <h1>Welcome back, <%= user.firstName %> <%= user.lastName %>!</h1>
-      <p class="description">You are currently at the Root folder. Take a look at your folders below.</p>
+      <p class="description">You are currently at the root folder. Take a look at your folders below.</p>
       <section class="folders-crud">
         <a href="/folders/create">Create Folder</a>
         <a href="/folders/update">Update Folder</a>
@@ -20,7 +20,7 @@
       </section>
       <section class="folders">
         <% folders.forEach((folder) => { %>
-          <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
+          <a href="/folders/<%= folder.id %>"><%= folder.name %>/</a>
         <% }) %>
       </section>
     <% } else { %>
