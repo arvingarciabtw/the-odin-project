@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const indexRouter = require('./routes/indexRouter');
 const foldersRouter = require('./routes/foldersRouter');
+const filesRouter = require('./routes/filesRouter');
 const path = require('node:path');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
@@ -84,6 +85,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.use('/', indexRouter);
 app.use('/folders', foldersRouter);
+app.use('/files', filesRouter);
 
 const PORT = process.env.PORT || 3000;
 

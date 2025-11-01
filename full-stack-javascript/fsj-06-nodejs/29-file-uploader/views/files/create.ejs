@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+  <title>File Uploader</title>
+</head>
+<body>
+  <%- include('../navbar') %>
+  <main>
+    <form action="/files/create" method="POST" enctype="multipart/form-data">
+      <h1>Create a File</h1>
+      <p class="description">Upload a file and choose which folder it goes into. The only accepted file extensions are as follows:</p>
+      <div class="file-extensions">
+        <code>.jpg</code>        
+        <code>.png</code>        
+        <code>.webp</code>        
+      </div>
+      <label for="createFile">Upload File</label>
+      <input type="file" name="createFile" id="createFile" accept=".jpg,.png,.webp" required>
+      <label for="createFileFolder">Choose a Folder</label>
+      <select name="createFileFolder" id="createFileFolder" required>
+          <% folders.forEach((folder) => { %>
+              <option value="<%= folder.name %>"><%= folder.name %></option> 
+          <% }) %>
+      </select>
+      <button type="submit">Create</button>
+    </form>
+  </main>
+  <%- include('../footer') %>
+</body>
+</html>

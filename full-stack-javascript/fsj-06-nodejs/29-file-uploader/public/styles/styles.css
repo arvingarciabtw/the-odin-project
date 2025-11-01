@@ -170,6 +170,7 @@ input[type='password'] {
 }
 
 .description {
+  max-width: 660px;
   margin-top: -1rem;
   color: var(--gray);
 }
@@ -201,6 +202,104 @@ input[type='password'] {
 .folders-crud > a:hover,
 .folders > a:hover {
   color: var(--accent);
+}
+
+.anchor-create-file {
+  position: absolute;
+  bottom: 0;
+  right: 1.5rem;
+  width: 36px;
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 50%;
+  font-size: 1.5rem;
+
+  transition: opacity 0.3s ease;
+}
+
+.anchor-create-file:hover {
+  opacity: 0.75;
+}
+
+.file-extensions {
+  margin: -1rem 0 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+code {
+  padding: 0.3rem 0.85rem 0.5rem;
+  background: var(--bg-alt);
+  color: var(--accent);
+  border-radius: 16px;
+  font-size: 0.875rem;
+}
+
+input[type='file']::file-selector-button {
+  margin: 8px 1rem 8px 0;
+  padding: 0.5em 1em;
+  background: var(--dark-gray);
+  color: var(--gray);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-family: 'Atkinson Hyperlegible Next Regular', sans-serif;
+
+  transition: opacity 0.3s ease;
+}
+
+input[type='file']::file-selector-button:hover {
+  opacity: 0.75;
+}
+
+.files {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.file,
+.file-heading {
+  padding: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 88px;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.file-heading {
+  margin: -1.5rem 0;
+  color: var(--gray);
+}
+
+.file {
+  background: var(--bg-alt);
+  color: var(--gray);
+  border-radius: 12px;
+}
+
+.file > button {
+  padding: 0.5em 1em;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+
+  transition: opacity 0.3s ease;
+}
+
+.file > button:hover {
+  opacity: 0.75;
 }
 
 /* == NAVBAR == */

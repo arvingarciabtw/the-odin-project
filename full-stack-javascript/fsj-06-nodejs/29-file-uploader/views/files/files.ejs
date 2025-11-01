@@ -1,0 +1,24 @@
+<h2>Files</h2>
+<section class="files">
+  <div class="file-heading">
+    <p>File Name</p>
+    <p>File Size (bytes)</p>
+    <p>Uploaded At</p>
+  </div>
+  <% files.forEach((file) => { %>
+      <% const formattedDate = new Date(file.createdAt).toLocaleString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+      }); %>
+      <div class="file">
+        <p><%= file.name %></p>
+        <p><%= file.size %> B</p>
+        <p><%= formattedDate %></p>
+        <button>Download</button>
+      </div>
+  <% }) %>
+</section>
