@@ -164,6 +164,40 @@ input[type='password'] {
   opacity: 0.75;
 }
 
+.description {
+  margin-top: -1rem;
+  color: var(--gray);
+}
+
+.folders-crud,
+.folders {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.folders {
+  margin-top: -0.5rem;
+}
+
+.folders-crud > a,
+.folders > a {
+  padding: 0.5rem 1rem;
+
+  background: var(--bg-alt);
+  color: var(--gray);
+  text-decoration: none;
+  border-radius: 16px;
+  font-size: 0.875rem;
+
+  transition: color 0.3s ease;
+}
+
+.folders-crud > a:hover,
+.folders > a:hover {
+  color: var(--accent);
+}
+
 /* == NAVBAR == */
 
 .header-app > nav {
