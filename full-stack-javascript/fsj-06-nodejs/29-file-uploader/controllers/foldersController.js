@@ -9,10 +9,13 @@ const validateCreateFolder = [
     .trim()
     .notEmpty()
     .withMessage('Folder name is required.')
-    .custom(async (value) => {
-      const folder = await prisma.folder.findFirst({
+    .custom(async (value, { req }) => {
+      const folder = await prisma.folder.findUnique({
         where: {
-          name: value,
+          name_userId: {
+            name: value,
+            userId: req.user.id,
+          },
         },
       });
 
@@ -81,6 +84,41 @@ async function getDeleteFolder(req, res) {
   });
   res.render('./folders/delete', { folders: folders });
 }
+
+async function getFolderId(req, res) {
+  if (req.user) {
+    const folders = await prisma.folder.findMany({
+      where: {
+        userId: req.user.id,
+      },
+    });
+
+    let { id } = req.params;
+    id = Number(id);
+
+    const files = await prisma.file.findMany({
+      where: {
+        folderId: id,
+      },
+    });
+
+    const currentFolder = await prisma.folder.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    return res.render('index', {
+      user: req.user,
+      folders: folders,
+      currentFolder: currentFolder.name,
+      files: files,
+    });
+  }
+  res.render('index', { user: null, folders: [] });
+}
+
+// == POST REQUESTS ==
 
 const postCreateFolder = [
   validateCreateFolder,
@@ -189,6 +227,7 @@ module.exports = {
   getCreateFolder,
   getUpdateFolder,
   getDeleteFolder,
+  getFolderId,
   postCreateFolder,
   postUpdateFolder,
   postDeleteFolder,
