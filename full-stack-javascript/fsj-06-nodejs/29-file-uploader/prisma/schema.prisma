@@ -26,6 +26,7 @@ model Folder {
   userId Int
   files  File[]
 
+  @@unique([name, userId])
   @@map("file_uploader_folders")
 }
 
