@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+  <title>File Uploader</title>
+</head>
+<body>
+  <%- include('../navbar') %>
+  <main>
+    <form action="/folders/create" method="POST">
+      <h1>Create a Folder</h1>
+      <label for="folderName">Folder Name</label>
+      <input type="text" id="folderName" name="folderName" required>
+      <button type="submit">Create</button>
+    </form>
+  </main>
+  <%- include('../footer') %>
+</body>
+</html>
