@@ -2,7 +2,7 @@
 <section class="files">
   <div class="file-heading">
     <p>File Name</p>
-    <p>File Size (bytes)</p>
+    <p>File Size</p>
     <p>Uploaded At</p>
   </div>
   <% files.forEach((file) => { %>
@@ -14,9 +14,15 @@
           minute: '2-digit',
           hour12: true
       }); %>
+      <% let formattedSize = null %>
+      <% if (file.size <= 999999) { %> 
+          <% formattedSize = ((file.size / 1000).toFixed(2)) + ' KB' %>
+      <% } else { %> 
+          <% formattedSize = ((file.size / 1000000).toFixed(2)) + ' MB' %>
+      <% } %> 
       <div class="file">
         <p><%= file.name %></p>
-        <p><%= file.size %> B</p>
+        <p><%= formattedSize %></p>
         <p><%= formattedDate %></p>
         <button>Download</button>
       </div>

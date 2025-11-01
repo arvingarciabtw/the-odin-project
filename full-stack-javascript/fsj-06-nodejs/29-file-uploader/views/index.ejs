@@ -12,7 +12,7 @@
   <main>
     <% if (locals.user) {%>
       <h1 style="margin-top: 1rem;">Welcome back, <%= user.firstName %> <%= user.lastName %>!</h1>
-      <p class="description">You can create, update, and delete folders with the buttons below. Under these, you can see all of your folders. Click on a folder to see its files. To create a file, you can click on the button on the lower right. You are currently at the <i><%= currentFolder %></i> folder.</p>
+      <p class="description">You can create, update, and delete folders with the buttons below. Under these, you can see all of your folders. Click on a folder to see its files. To create a file, you can click on the button on the lower right. You are currently at the <i style="color: var(--accent);"><%= currentFolder %></i> folder.</p>
       <section class="folders-crud">
         <a href="/folders/create">Create Folder</a>
         <a href="/folders/update">Update Folder</a>
