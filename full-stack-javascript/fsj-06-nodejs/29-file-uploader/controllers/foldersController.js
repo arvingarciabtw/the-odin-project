@@ -3,7 +3,23 @@ const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 
 const validateCreateFolder = [
-  body('folderName').trim().notEmpty().withMessage('Folder name is required.'),
+  body('folderName')
+    .trim()
+    .notEmpty()
+    .withMessage('Folder name is required.')
+    .custom(async (value) => {
+      const folder = await prisma.folder.findFirst({
+        where: {
+          name: value,
+        },
+      });
+
+      if (folder) {
+        throw new Error('Folder already exists. Enter a unique name.');
+      }
+
+      return true;
+    }),
 ];
 
 async function getCreateFolder(_req, res) {
