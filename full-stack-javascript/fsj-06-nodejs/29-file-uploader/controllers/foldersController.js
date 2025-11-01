@@ -2,6 +2,8 @@ const { body, validationResult, matchedData } = require('express-validator');
 const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 
+// == VALIDATION AND SANITIZATION ==
+
 const validateCreateFolder = [
   body('folderName')
     .trim()
@@ -29,8 +31,46 @@ const validateDeleteFolder = [
     .withMessage('Folder name is required.'),
 ];
 
+const validateUpdateFolder = [
+  body('updateFolderSelect')
+    .trim()
+    .notEmpty()
+    .withMessage('Folder name is required.'),
+  body('updateFolderText')
+    .trim()
+    .notEmpty()
+    .withMessage('Folder name is required.')
+    .custom(async (value, { req }) => {
+      const folder = await prisma.folder.findUnique({
+        where: {
+          name_userId: {
+            name: value,
+            userId: req.user.id,
+          },
+        },
+      });
+
+      if (folder) {
+        throw new Error('Folder already exists. Enter a unique name.');
+      }
+
+      return true;
+    }),
+];
+
+// == GET REQUESTS ==
+
 async function getCreateFolder(_req, res) {
   res.render('./folders/create');
+}
+
+async function getUpdateFolder(req, res) {
+  const folders = await prisma.folder.findMany({
+    where: {
+      userId: req.user.id,
+    },
+  });
+  res.render('./folders/update', { folders: folders });
 }
 
 async function getDeleteFolder(req, res) {
@@ -61,6 +101,47 @@ const postCreateFolder = [
         data: {
           name: folderName,
           userId: req.user.id,
+        },
+      });
+
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+];
+
+const postUpdateFolder = [
+  validateUpdateFolder,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const folders = await prisma.folder.findMany({
+        where: {
+          userId: req.user.id,
+        },
+      });
+      return res.status(400).render('./folders/update', {
+        errors: errors.array(),
+        formData: req.body,
+        folders: folders,
+      });
+    }
+
+    try {
+      const { updateFolderSelect, updateFolderText } = matchedData(req);
+
+      await prisma.folder.update({
+        where: {
+          name_userId: {
+            name: updateFolderSelect,
+            userId: req.user.id,
+          },
+        },
+        data: {
+          name: updateFolderText,
         },
       });
 
@@ -106,7 +187,9 @@ const postDeleteFolder = [
 
 module.exports = {
   getCreateFolder,
+  getUpdateFolder,
   getDeleteFolder,
   postCreateFolder,
+  postUpdateFolder,
   postDeleteFolder,
 };

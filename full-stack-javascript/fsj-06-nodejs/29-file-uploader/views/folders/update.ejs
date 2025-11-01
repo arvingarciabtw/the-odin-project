@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="icon" type="image/webp" href="/images/logo_optimized.webp">
+  <title>File Uploader</title>
+</head>
+<body>
+  <%- include('../navbar') %>
+  <main>
+    <form action="/folders/update" method="POST">
+      <h1>Update a Folder</h1>
+      <p class="description">Choose a folder to update, and type in its new name. Take note that you cannot rename your chosen folder to another existing folder. The root folder cannot be renamed.</p>
+      <label for="updateFolderSelect">Choose a Folder</label>
+      <select name="updateFolderSelect" id="updateFolderSelect" required>
+          <% folders.forEach((folder) => { %>
+            <% if (folder.name !== 'Root') { %>
+                <option value="<%= folder.name %>"><%= folder.name %></option> 
+            <% } %>
+          <% }) %>
+      </select>
+      <label for="updateFolderText">New Folder Name</label>
+      <input style="margin-bottom: 0;" type="text" id="updateFolderText" name="updateFolderText" required>
+      <%- include('../partials/errors') %>
+      <button type="submit">Update</button>
+    </form>
+  </main>
+  <%- include('../footer') %>
+</body>
+</html>
