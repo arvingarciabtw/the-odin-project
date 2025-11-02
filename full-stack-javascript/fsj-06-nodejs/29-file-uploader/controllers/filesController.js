@@ -1,5 +1,6 @@
 const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
+const path = require('node:path');
 
 async function getCreateFile(req, res) {
   const folders = await prisma.folder.findMany({
@@ -36,7 +37,29 @@ async function postCreateFile(req, res) {
   res.redirect('/');
 }
 
+async function postDownloadFile(req, res) {
+  let { id } = req.params;
+  id = Number(id);
+
+  const file = await prisma.file.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  const filename = file.name;
+  const filepath = path.join(__dirname, '../uploads', filename);
+
+  res.download(filepath, (err) => {
+    if (err) {
+      console.error('Download error:', err);
+      res.status(404).send('File not found');
+    }
+  });
+}
+
 module.exports = {
   getCreateFile,
   postCreateFile,
+  postDownloadFile,
 };

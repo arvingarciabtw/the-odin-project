@@ -24,7 +24,9 @@
         <p><%= file.name %></p>
         <p><%= formattedSize %></p>
         <p><%= formattedDate %></p>
-        <button>Download</button>
+        <form action="/files/download/<%= file.id %>" method="POST">
+          <button type="submit">Download</button>
+        </form>
       </div>
   <% }) %>
 </section>

@@ -269,7 +269,7 @@ input[type='file']::file-selector-button:hover {
 
 .file,
 .file-heading {
-  padding: 1rem;
+  padding: 0.6rem 1rem;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 88px;
@@ -288,17 +288,23 @@ input[type='file']::file-selector-button:hover {
   border-radius: 12px;
 }
 
-.file > button {
+.file > form {
+  height: 35px;
+}
+
+.file > form > button {
+  margin-top: -0.5rem;
   padding: 0.5em 1em;
   background: var(--accent);
   color: var(--bg);
   border: none;
   border-radius: 8px;
+  font-size: 0.875rem;
 
   transition: opacity 0.3s ease;
 }
 
-.file > button:hover {
+.file > form > button:hover {
   opacity: 0.75;
 }
 

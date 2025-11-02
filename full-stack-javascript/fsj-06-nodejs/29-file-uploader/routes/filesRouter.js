@@ -18,5 +18,6 @@ filesRouter.post(
   upload.single('createFile'),
   filesController.postCreateFile,
 );
+filesRouter.post('/download/:id', filesController.postDownloadFile);
 
 module.exports = filesRouter;
