@@ -1,6 +1,5 @@
 const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
-const path = require('node:path');
 
 const { createClient } = require('@supabase/supabase-js');
 
@@ -69,17 +68,32 @@ async function postDownloadFile(req, res) {
     where: {
       id: id,
     },
+    include: {
+      folder: true,
+    },
   });
 
-  const filename = file.name;
-  const filepath = path.join(__dirname, '../uploads', filename);
+  if (!file) {
+    return res.status(404).send('File not found');
+  }
 
-  res.download(filepath, (err) => {
-    if (err) {
-      console.error('Download error:', err);
-      res.status(404).send('File not found');
-    }
-  });
+  const supabasePath = `${file.folder.userId}/${file.folder.name}/${file.name}`;
+
+  const { data, error } = await supabase.storage
+    .from('file-uploader-files')
+    .download(supabasePath);
+
+  if (error) {
+    console.error('Download error:', error);
+    return res.status(404).send('File not found');
+  }
+
+  const buffer = Buffer.from(await data.arrayBuffer());
+
+  res.setHeader('Content-Disposition', `attachment; filename="${file.name}"`);
+  res.setHeader('Content-Type', file.mimeType);
+
+  res.send(buffer);
 }
 
 module.exports = {
