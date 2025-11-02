@@ -6,6 +6,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  schemas  = ["file_uploader"]
 }
 
 model User {
@@ -17,6 +18,7 @@ model User {
   folders   Folder[]
 
   @@map("file_uploader_users")
+  @@schema("file_uploader")
 }
 
 model Folder {
@@ -28,6 +30,7 @@ model Folder {
 
   @@unique([name, userId])
   @@map("file_uploader_folders")
+  @@schema("file_uploader")
 }
 
 model File {
@@ -41,6 +44,7 @@ model File {
   folderId     Int
 
   @@map("file_uploader_files")
+  @@schema("file_uploader")
 }
 
 model Session {
@@ -48,4 +52,6 @@ model Session {
   sid       String   @unique
   data      String
   expiresAt DateTime
+
+  @@schema("file_uploader")
 }
