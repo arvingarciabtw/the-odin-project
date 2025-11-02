@@ -31,12 +31,14 @@ model Folder {
 }
 
 model File {
-  id        Int      @id @default(autoincrement())
-  name      String
-  size      Int
-  createdAt DateTime @default(now())
-  folder    Folder   @relation(fields: [folderId], references: [id])
-  folderId  Int
+  id           Int      @id @default(autoincrement())
+  name         String
+  size         Int
+  supabasePath String
+  mimeType     String?
+  createdAt    DateTime @default(now())
+  folder       Folder   @relation(fields: [folderId], references: [id])
+  folderId     Int
 
   @@map("file_uploader_files")
 }

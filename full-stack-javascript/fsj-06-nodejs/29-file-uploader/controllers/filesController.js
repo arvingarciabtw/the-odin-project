@@ -2,6 +2,12 @@ const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const path = require('node:path');
 
+const { createClient } = require('@supabase/supabase-js');
+
+const supabaseUrl = 'https://geuegkemyeauflwlylnf.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 async function getCreateFile(req, res) {
   const folders = await prisma.folder.findMany({
     where: {
@@ -24,16 +30,34 @@ async function postCreateFile(req, res) {
     },
   });
 
-  const folderId = folder.id;
+  const supabasePath = `${req.user.id}/${createFileFolder}/${req.file.originalname}`;
+
+  const { data, error } = await supabase.storage
+    .from('file-uploader-files')
+    .upload(supabasePath, req.file.buffer, {
+      contentType: req.file.mimetype,
+      cacheControl: '3600',
+      upsert: false,
+    });
 
   await prisma.file.create({
     data: {
-      name: req.file.filename,
+      name: req.file.originalname,
       size: req.file.size,
+      supabasePath: supabasePath,
+      mimeType: req.file.mimetype,
       createdAt: new Date(),
-      folderId: folderId,
+      folderId: folder.id,
     },
   });
+
+  if (error) {
+    console.error('Supabase upload error:', error);
+    res.redirect('/');
+  }
+
+  console.log('Upload successful:', data);
+
   res.redirect('/');
 }
 
