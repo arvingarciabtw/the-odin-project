@@ -10,11 +10,9 @@ authRouter.post('/register', authController.postRegister);
 authRouter.post('/login', authController.postLogin);
 
 authRouter.get(
-  '/profile',
+  '/logged-user',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    res.json({ user: req.user });
-  },
+  authController.getLoggedUser,
 );
 
 export default authRouter;

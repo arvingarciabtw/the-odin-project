@@ -150,3 +150,9 @@ input[type='password'] {
   font-family: 'Verdana'; /* setting the font to Verdana makes password circles consistent for Chrome and Firefox */
   font-size: 1rem;
 }
+
+.error-message {
+  margin: -1rem 0 2rem;
+  color: #ff7f7f;
+  font-size: 0.875rem;
+}

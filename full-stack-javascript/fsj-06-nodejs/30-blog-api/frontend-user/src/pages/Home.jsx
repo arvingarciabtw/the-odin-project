@@ -1,14 +1,13 @@
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import { useAuth } from '../contexts/AuthContext';
 
 function Home() {
+  const { isLoggedIn, user, loading } = useAuth();
+
+  if (loading) return <p>Loading...</p>;
+
   return (
     <>
-      <NavBar />
-      <main>
-        <p>Hello, world! (user)</p>
-      </main>
-      <Footer />
+      <p>Hello, {isLoggedIn && user ? user.firstName : 'Guest'}!</p>
     </>
   );
 }

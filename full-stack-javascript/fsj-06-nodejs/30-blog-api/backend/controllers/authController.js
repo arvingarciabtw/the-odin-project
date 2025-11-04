@@ -13,7 +13,7 @@ async function postRegister(req, res) {
         username: username,
       },
     });
-    if (user) return res.status(400).json({ msg: 'User already exists' });
+    if (user) return res.status(400).json({ msg: 'Username already exists.' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -41,10 +41,10 @@ async function postLogin(req, res) {
         username,
       },
     });
-    if (!user) return res.status(400).json({ msg: 'User not found' });
+    if (!user) return res.status(400).json({ msg: 'User not found.' });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials.' });
+    if (!isMatch) return res.status(400).json({ msg: 'Invalid password.' });
 
     const payload = { id: user.id, username: user.username };
 
@@ -58,11 +58,32 @@ async function postLogin(req, res) {
       },
     );
   } catch (err) {
-    res.status(500).json({ msg: 'Server error.' });
+    res.status(500).json({ msg: 'Server error.', error: err.message });
+  }
+}
+
+async function getLoggedUser(req, res) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        username: true,
+      },
+    });
+
+    if (!user) return res.status(404).json({ msg: 'User not found.' });
+
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ msg: 'Server error.', error: err.message });
   }
 }
 
 export default {
   postRegister,
   postLogin,
+  getLoggedUser,
 };

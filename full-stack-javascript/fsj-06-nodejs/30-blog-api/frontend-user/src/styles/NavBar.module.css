@@ -36,3 +36,16 @@
 .headerApp > nav > div > a:hover {
   color: var(--accent);
 }
+
+.btnLogout {
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--gray);
+
+  transition: color 0.3s ease;
+}
+
+.btnLogout:hover {
+  color: var(--accent);
+}

@@ -4,27 +4,26 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import Error from './pages/Error';
 
-const router = [
+const routes = [
   {
     path: '/',
     element: <App />,
     errorElement: <Error />,
-  },
-  {
-    path: '/home',
-    element: <Home />,
-    errorElement: <Error />,
-  },
-  {
-    path: '/log-in',
-    element: <LoginPage />,
-    errorElement: <Error />,
-  },
-  {
-    path: '/sign-up',
-    element: <SignUpPage />,
-    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/log-in',
+        element: <LoginPage />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUpPage />,
+      },
+    ],
   },
 ];
 
-export default router;
+export default routes;
