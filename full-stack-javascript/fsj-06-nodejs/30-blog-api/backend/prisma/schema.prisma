@@ -24,13 +24,14 @@ model User {
 }
 
 model Post {
-  id        Int       @id @default(autoincrement())
-  user      User      @relation(fields: [userId], references: [id])
-  userId    Int
-  title     String
-  content   String    @db.Text()
-  postedAt  DateTime
-  comments  Comment[]
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      Int
+  title       String
+  content     String    @db.Text()
+  postedAt    DateTime
+  isPublished Boolean   @default(true)
+  comments    Comment[]
 
   @@map("blog_api_posts")
   @@schema("blog_api")
