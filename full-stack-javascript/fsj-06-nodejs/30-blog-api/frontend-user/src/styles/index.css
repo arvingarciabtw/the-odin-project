@@ -70,3 +70,83 @@ main {
   align-items: start;
   gap: 1.25rem;
 }
+
+form {
+  margin: 1rem 0 0;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form > label {
+  color: var(--gray);
+}
+
+form > input,
+form > select,
+form > textarea {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+
+  background: var(--bg-alt);
+  color: var(--fg);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+form > select {
+  border-right: 12px solid transparent; /* add padding to the right of arrow */
+  cursor: pointer;
+}
+
+form > textarea {
+  padding: 1rem 1rem;
+}
+
+form > button {
+  padding: 0.5em 1em;
+  margin-top: 1rem;
+  align-self: flex-start;
+
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+
+  transition: opacity 0.3s ease;
+}
+
+form > button:hover {
+  opacity: 0.75;
+}
+
+form > .description {
+  margin: 0 0 1.5rem;
+  color: var(--gray);
+}
+
+form > .switch {
+  margin-top: -1rem;
+  color: var(--gray);
+}
+
+form > .switch > a {
+  color: var(--accent);
+  transition: opacity 0.3s ease;
+}
+
+form > .switch > a:hover {
+  opacity: 0.7;
+}
+
+input[type='password'] {
+  padding: 0 1rem;
+  height: 40px;
+
+  font-family: 'Verdana'; /* setting the font to Verdana makes password circles consistent for Chrome and Firefox */
+  font-size: 1rem;
+}
