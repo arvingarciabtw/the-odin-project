@@ -1,7 +1,9 @@
+import Home from './pages/Home';
+
 function App() {
   return (
     <>
-      <h1>At frontend admin.</h1>
+      <Home />
     </>
   );
 }
