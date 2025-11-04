@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["blog_api"]
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String
+  username  String    @unique
+  password  String
+  isAdmin   Boolean   @default(false)
+  posts     Post[]
+  comments  Comment[]
+
+  @@map("blog_api_users")
+  @@schema("blog_api")
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  title     String
+  content   String    @db.Text()
+  postedAt  DateTime
+  comments  Comment[]
+
+  @@map("blog_api_posts")
+  @@schema("blog_api")
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  post        Post     @relation(fields: [postId], references: [id])
+  postId      Int
+  commentText String   @db.Text()
+  commentedAt DateTime
+
+  @@map("blog_api_comments")
+  @@schema("blog_api")
+}
