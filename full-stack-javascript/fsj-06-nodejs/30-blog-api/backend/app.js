@@ -13,6 +13,7 @@ app.use(passport.initialize());
 passportConfig(passport);
 
 app.use('/api/auth', routes.auth);
+app.use('/api/blogs', routes.blogs);
 
 app.get('/', (_req, res) => {
   res.send('Backend running!');
