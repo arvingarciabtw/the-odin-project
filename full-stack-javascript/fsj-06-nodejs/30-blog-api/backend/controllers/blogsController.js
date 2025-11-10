@@ -20,4 +20,20 @@ async function getBlogById(req, res) {
   res.json(blog);
 }
 
-export default { getBlogs, getBlogById };
+async function createBlog(req, res) {
+  const { title, content, userId } = req.body;
+
+  const blog = await prisma.post.create({
+    data: {
+      userId,
+      title,
+      content,
+      postedAt: new Date(),
+      isPublished: true,
+    },
+  });
+
+  res.json(blog);
+}
+
+export default { getBlogs, getBlogById, createBlog };
