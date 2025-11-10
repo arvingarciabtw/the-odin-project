@@ -4,6 +4,7 @@ import { Router } from 'express';
 const commentsRouter = Router();
 
 commentsRouter.get('/:id', commentsController.getComments);
+commentsRouter.post('/:id/delete', commentsController.deleteComment);
 commentsRouter.post('/:id', commentsController.createComment);
 
 export default commentsRouter;

@@ -29,4 +29,19 @@ async function createComment(req, res) {
   res.json(comment);
 }
 
-export default { getComments, createComment };
+async function deleteComment(req, res) {
+  const { id } = req.params;
+
+  await prisma.comment.delete({
+    where: { id: Number(id) },
+  });
+
+  const comments = await prisma.comment.findMany();
+
+  res.send({
+    message: 'Comment deleted!',
+    comments: comments,
+  });
+}
+
+export default { getComments, createComment, deleteComment };
