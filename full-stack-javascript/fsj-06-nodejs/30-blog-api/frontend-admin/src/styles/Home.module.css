@@ -1,0 +1,23 @@
+.description {
+  color: var(--gray);
+  margin-top: -1rem;
+}
+
+.btnAddPost {
+  position: absolute;
+  bottom: 0;
+  right: 1.5rem;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+
+  background: var(--accent);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+
+  transition: opacity 0.3s ease;
+}
+
+.btnAddPost:hover {
+  opacity: 0.7;
+}
