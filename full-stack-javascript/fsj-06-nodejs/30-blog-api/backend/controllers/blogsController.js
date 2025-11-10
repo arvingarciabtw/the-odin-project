@@ -36,4 +36,38 @@ async function createBlog(req, res) {
   res.json(blog);
 }
 
-export default { getBlogs, getBlogById, createBlog };
+async function toggleIsPublished(req, res) {
+  const { id } = req.params;
+
+  const postToUpdate = await prisma.post.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  let updatedPost;
+
+  if (postToUpdate.isPublished) {
+    updatedPost = await prisma.post.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        isPublished: false,
+      },
+    });
+  } else {
+    updatedPost = await prisma.post.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        isPublished: true,
+      },
+    });
+  }
+
+  res.json(updatedPost);
+}
+
+export default { getBlogs, getBlogById, createBlog, toggleIsPublished };
