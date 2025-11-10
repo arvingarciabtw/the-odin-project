@@ -45,14 +45,17 @@ function Blogs() {
   return (
     <section className={styles.blogs}>
       {blogs
-        .map((blog) => (
-          <Blog
-            key={blog.id}
-            title={blog.title}
-            date={blog.postedAt}
-            id={blog.id}
-          />
-        ))
+        .map(
+          (blog) =>
+            blog.isPublished && (
+              <Blog
+                key={blog.id}
+                title={blog.title}
+                date={blog.postedAt}
+                id={blog.id}
+              />
+            ),
+        )
         .reverse()}
     </section>
   );
