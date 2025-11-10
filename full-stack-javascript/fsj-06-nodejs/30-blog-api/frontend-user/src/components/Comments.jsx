@@ -3,6 +3,18 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 
+function formatDate(dateString) {
+  if (!dateString) return '';
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  }).format(new Date(dateString));
+}
+
 function Comment({ text, date, userId }) {
   const [user, setUser] = useState({});
 
@@ -31,7 +43,7 @@ function Comment({ text, date, userId }) {
         <p className={styles.name}>
           {user.firstName} {user.lastName}
         </p>
-        <p className={styles.date}>{date}</p>
+        <p className={styles.date}>{formatDate(date)}</p>
       </div>
       <p className={styles.commentText}>{text}</p>
     </div>

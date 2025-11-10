@@ -1,10 +1,20 @@
-import { useAuth } from '../contexts/AuthContext';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Comments from '../components/Comments.jsx';
 
+function formatDate(dateString) {
+  if (!dateString) return '';
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  }).format(new Date(dateString));
+}
+
 function BlogPost() {
-  const { isLoggedIn, user } = useAuth();
   const [blog, setBlog] = useState({});
   const { id } = useParams();
 
@@ -27,7 +37,7 @@ function BlogPost() {
   return (
     <main>
       <h1>{blog.title}</h1>
-      <p>{blog.postedAt}</p>
+      <p>{formatDate(blog.postedAt)}</p>
       <p>{blog.content}</p>
       <Comments />
     </main>
