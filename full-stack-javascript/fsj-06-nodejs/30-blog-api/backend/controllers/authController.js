@@ -48,13 +48,16 @@ async function postLogin(req, res) {
 
     const payload = { id: user.id, username: user.username };
 
+    // a userWithoutPassword variable, which is essentially just the user but the password is excluded
+    const { password: _, ...userWithoutPassword } = user;
+
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
       { expiresIn: '1h' },
       (err, token) => {
         if (err) throw new Error(err);
-        res.json({ token });
+        res.json({ token, user: userWithoutPassword });
       },
     );
   } catch (err) {
