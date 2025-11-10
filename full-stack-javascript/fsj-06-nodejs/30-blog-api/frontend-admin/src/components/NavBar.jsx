@@ -1,18 +1,33 @@
 import styles from '../styles/NavBar.module.css';
+import { Link } from 'react-router';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router';
 
 function NavBar() {
+  const navigate = useNavigate();
+  const { isLoggedIn, logout } = useAuth();
+
+  function handleLogout() {
+    logout();
+    navigate('/');
+  }
+
   return (
     <>
       <header className={styles.headerApp}>
         <nav>
-          <a href="/">
+          <Link to="/">
             <img
               src="../src/assets/images/logo_optimized.webp"
               alt="Arvin Garcia logo"
             />
-          </a>
+          </Link>
           <div>
-            <a href="/log-in">Log In</a>
+            {isLoggedIn && (
+              <button onClick={handleLogout} className={styles.btnLogout}>
+                Log Out
+              </button>
+            )}
           </div>
         </nav>
       </header>

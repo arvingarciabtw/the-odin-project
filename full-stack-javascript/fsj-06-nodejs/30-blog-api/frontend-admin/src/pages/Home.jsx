@@ -1,14 +1,12 @@
-import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
+import { useAuth } from '../contexts/AuthContext.jsx';
+import LoginForm from '../components/LoginForm.jsx';
 
 function Home() {
+  const { user } = useAuth();
+
   return (
     <>
-      <NavBar />
-      <main>
-        <p>Hello, world! (admin)</p>
-      </main>
-      <Footer />
+      <main>{user ? <p>there is a user logged in.</p> : <LoginForm />}</main>
     </>
   );
 }
