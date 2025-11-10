@@ -1,0 +1,49 @@
+.commentsContainer > h1 {
+  margin-top: 1rem;
+}
+
+.description {
+  color: var(--gray);
+}
+
+.formComment {
+  position: relative;
+  min-width: 100%;
+}
+
+.formComment > input {
+  padding: 1.25rem;
+  border-radius: 16px;
+}
+
+.formComment > button {
+  margin: 0;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+.comments {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.comment > .top {
+  display: flex;
+  gap: 1rem;
+}
+
+.comment .date {
+  color: var(--gray);
+}

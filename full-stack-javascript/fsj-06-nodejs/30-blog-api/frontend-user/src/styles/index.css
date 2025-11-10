@@ -38,6 +38,10 @@
   font-display: swap;
 }
 
+body {
+  background: var(--bg);
+}
+
 #root {
   min-height: 100vh;
   display: flex;

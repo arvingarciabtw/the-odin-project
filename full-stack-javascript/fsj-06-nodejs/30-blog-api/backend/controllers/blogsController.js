@@ -8,4 +8,16 @@ async function getBlogs(req, res) {
   res.json(blogs);
 }
 
-export default { getBlogs };
+async function getBlogById(req, res) {
+  const { id } = req.params;
+
+  const blog = await prisma.post.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  res.json(blog);
+}
+
+export default { getBlogs, getBlogById };

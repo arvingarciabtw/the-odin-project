@@ -1,12 +1,13 @@
 import styles from '../styles/Blogs.module.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 function Blog({ title, date, id }) {
   return (
-    <a className={styles.blog} href={`/blog/${id}`}>
+    <Link className={styles.blog} to={`/blogs/${id}`}>
       <p className={styles.title}>{title}</p>
       <p className={styles.date}>{date}</p>
-    </a>
+    </Link>
   );
 }
 
@@ -28,7 +29,6 @@ function Blogs() {
     };
     fetchBlogs();
   }, []);
-  console.log(blogs);
 
   return (
     <section className={styles.blogs}>
