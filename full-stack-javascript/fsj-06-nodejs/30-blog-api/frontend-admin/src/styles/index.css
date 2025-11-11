@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Atkinson Hyperlegible Next Regular';
-  src: url('../src/assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf');
+  src: url('../assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf');
 }
 
 ::-webkit-scrollbar {

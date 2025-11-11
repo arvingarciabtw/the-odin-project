@@ -1,7 +1,8 @@
 import styles from '../styles/NavBar.module.css';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/images/logo_optimized.webp';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -17,10 +18,7 @@ function NavBar() {
       <header className={styles.headerApp}>
         <nav>
           <Link to="/">
-            <img
-              src="../src/assets/images/logo_optimized.webp"
-              alt="Arvin Garcia logo"
-            />
+            <img src={logo} alt="Arvin Garcia logo" />
           </Link>
           <div>
             {isLoggedIn ? (
