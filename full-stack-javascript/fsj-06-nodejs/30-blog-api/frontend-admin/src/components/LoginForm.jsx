@@ -1,6 +1,7 @@
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { api } from '../utils/api';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -24,13 +25,7 @@ function LoginForm() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await api.post('/api/auth/login', formData);
 
       const data = await response.json();
 
@@ -78,10 +73,6 @@ function LoginForm() {
       />
 
       {error && <p className="error-message">{error}</p>}
-
-      <p className="switch">
-        Don't have an account? <Link to="/sign-up">Sign up</Link>
-      </p>
 
       <button type="submit">Log In</button>
     </form>

@@ -1,19 +1,12 @@
 import styles from '../styles/Blogs.module.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { api } from '../utils/api';
 
 function Blog({ title, id, isPublished, onTogglePublish }) {
   async function handleClick() {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/blogs/${id}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      );
+      const response = await api.post(`/api/blogs/${id}`);
 
       if (response.ok) {
         const updatedBlog = await response.json();
@@ -45,7 +38,7 @@ function Blogs() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/blogs');
+        const response = await api.get('/api/blogs');
 
         if (response.ok) {
           const blogs = await response.json();

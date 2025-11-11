@@ -2,6 +2,7 @@ import styles from '../styles/AddPostForm.module.css';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router';
+import { api } from '../utils/api';
 
 function AddPostForm() {
   const navigate = useNavigate();
@@ -19,13 +20,7 @@ function AddPostForm() {
     e.preventDefault();
 
     try {
-      await fetch('http://localhost:3000/api/blogs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...post, userId: user.id }),
-      });
+      await api.post('/api/blogs', { ...post, userId: user.id });
 
       setPost({});
       navigate('/');
@@ -42,7 +37,7 @@ function AddPostForm() {
         button when finished.
       </p>
       <form onSubmit={handleSubmit}>
-        <label for="title">Title</label>
+        <label htmlFor="title">Title</label>
         <input
           type="text"
           id="title"
@@ -50,7 +45,7 @@ function AddPostForm() {
           onChange={handleChange}
           required
         />
-        <label for="content">Blog Post Content</label>
+        <label htmlFor="content">Blog Post Content</label>
         <textarea
           className={styles.content}
           name="content"

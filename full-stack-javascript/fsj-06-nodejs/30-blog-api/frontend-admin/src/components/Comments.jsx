@@ -1,7 +1,8 @@
 import styles from '../styles/Comments.module.css';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { api } from '../utils/api';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -21,9 +22,7 @@ function Comment({ text, date, userId, id, onDelete }) {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/users/${userId}`,
-        );
+        const response = await api.get(`/api/users/${userId}`);
 
         if (response.ok) {
           const user = await response.json();
@@ -39,9 +38,7 @@ function Comment({ text, date, userId, id, onDelete }) {
 
   async function handleClick() {
     try {
-      await fetch(`http://localhost:3000/api/comments/${id}/delete`, {
-        method: 'POST',
-      });
+      await api.post(`/api/comments/${id}/delete`, {});
       onDelete(id);
     } catch (err) {
       throw new Error(err.message);
@@ -76,9 +73,7 @@ function Comments() {
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/comments/${id}`,
-        );
+        const response = await api.get(`/api/comments/${id}`);
 
         if (!response.ok) {
           throw new Error(await response.json());
@@ -116,12 +111,9 @@ function Comments() {
     setComment({ commentText: '' });
 
     try {
-      const response = await fetch(`http://localhost:3000/api/comments/${id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...comment, userId: user.id }),
+      const response = await api.post(`/api/comments/${id}`, {
+        ...comment,
+        userId: user.id,
       });
 
       const data = await response.json();
