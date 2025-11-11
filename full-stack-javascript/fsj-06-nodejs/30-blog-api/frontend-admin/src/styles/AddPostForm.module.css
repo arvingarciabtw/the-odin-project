@@ -1,0 +1,8 @@
+.description {
+  margin-top: -1rem;
+  color: var(--gray);
+}
+
+.content {
+  min-height: 300px;
+}
