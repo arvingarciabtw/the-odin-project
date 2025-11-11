@@ -15,7 +15,7 @@ function formatDate(dateString) {
   }).format(new Date(dateString));
 }
 
-function Comment({ text, date, userId }) {
+function Comment({ text, date, userId, id, onDelete }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -37,6 +37,17 @@ function Comment({ text, date, userId }) {
     fetchUser();
   }, [userId]);
 
+  async function handleClick() {
+    try {
+      await fetch(`http://localhost:3000/api/comments/${id}/delete`, {
+        method: 'POST',
+      });
+      onDelete(id);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
   return (
     <div className={styles.comment}>
       <div className={styles.top}>
@@ -46,6 +57,9 @@ function Comment({ text, date, userId }) {
         <p className={styles.date}>{formatDate(date)}</p>
       </div>
       <p className={styles.commentText}>{text}</p>
+      <button className={styles.btnDelete} onClick={handleClick}>
+        ×
+      </button>
     </div>
   );
 }
@@ -92,6 +106,15 @@ function Comments() {
 
     if (!user) return;
 
+    const newComment = {
+      ...comment,
+      userId: user.id,
+      commentedAt: new Date().toISOString(),
+    };
+
+    setComments([...comments, newComment]);
+    setComment({ commentText: '' });
+
     try {
       const response = await fetch(`http://localhost:3000/api/comments/${id}`, {
         method: 'POST',
@@ -104,14 +127,19 @@ function Comments() {
       const data = await response.json();
 
       if (!response.ok) {
+        setComments(comments.filter((c) => c !== newComment));
         throw new Error('Failed to post comment');
       }
 
       setComments([...comments, data]);
-      setComment({ commentText: '' });
     } catch (err) {
+      setComments(comments.filter((c) => c !== newComment));
       throw new Error(err.message);
     }
+  }
+
+  function handleDeleteComment(commentId) {
+    setComments(comments.filter((comment) => comment.id !== commentId));
   }
 
   return (
@@ -143,6 +171,8 @@ function Comments() {
               text={comment.commentText}
               date={comment.commentedAt}
               userId={comment.userId}
+              id={comment.id}
+              onDelete={handleDeleteComment}
             />
           ))
           .reverse()}

@@ -34,6 +34,7 @@
 }
 
 .comment {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -46,4 +47,21 @@
 
 .comment .date {
   color: var(--gray);
+}
+
+.btnDelete {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background: transparent;
+  color: var(--fg);
+  border: none;
+  font-size: 1.5rem;
+
+  transition: color 0.3s ease;
+}
+
+.btnDelete:hover {
+  color: var(--accent);
 }
