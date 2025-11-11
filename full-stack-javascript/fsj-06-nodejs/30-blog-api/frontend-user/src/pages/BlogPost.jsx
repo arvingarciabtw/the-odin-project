@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import Comments from '../components/Comments.jsx';
+import { api } from '../utils/api.js';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -21,7 +22,7 @@ function BlogPost() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/blogs/${id}`);
+        const response = await api.get(`/api/blogs/${id}`);
 
         if (response.ok) {
           const blog = await response.json();

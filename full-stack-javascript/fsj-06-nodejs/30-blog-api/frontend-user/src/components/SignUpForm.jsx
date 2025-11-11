@@ -1,5 +1,6 @@
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { api } from '../utils/api';
 
 function SignUpForm() {
   const navigate = useNavigate();
@@ -30,17 +31,11 @@ function SignUpForm() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          username: formData.username,
-          password: formData.password,
-        }),
+      const response = await api.post('/api/auth/register', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        username: formData.username,
+        password: formData.password,
       });
 
       const data = await response.json();

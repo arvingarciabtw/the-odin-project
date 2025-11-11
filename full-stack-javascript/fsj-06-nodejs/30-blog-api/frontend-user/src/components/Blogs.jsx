@@ -1,6 +1,7 @@
 import styles from '../styles/Blogs.module.css';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+import { api } from '../utils/api';
 
 function formatDate(dateString) {
   if (!dateString) return '';
@@ -29,7 +30,7 @@ function Blogs() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/blogs');
+        const response = await api.get('/api/blogs');
 
         if (response.ok) {
           const blogs = await response.json();
