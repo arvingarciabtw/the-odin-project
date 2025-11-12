@@ -14,3 +14,24 @@
 
   border: 4px solid transparent;
 }
+
+.featuresContainer {
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgsPokemon {
+  display: flex;
+  gap: 1rem;
+}
+
+.imgsPokemon > img {
+  border-radius: 50%;
+}
+
+.time {
+  color: var(--gray);
+}
