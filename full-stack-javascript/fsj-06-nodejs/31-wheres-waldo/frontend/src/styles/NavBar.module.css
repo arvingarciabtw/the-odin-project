@@ -1,0 +1,51 @@
+.headerApp > nav {
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 0.75rem;
+  max-width: 800px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerApp > nav img {
+  max-width: 36px;
+  border-radius: 50%;
+
+  transition: opacity 0.3s ease;
+}
+
+.headerApp > nav img:hover {
+  opacity: 0.8;
+}
+
+.headerApp > nav > div {
+  display: flex;
+  gap: 2rem;
+}
+
+.headerApp > nav > div > p,
+.headerApp > nav > div > a {
+  color: var(--gray);
+  text-decoration: none;
+
+  transition: color 0.3s ease;
+}
+
+.headerApp > nav > div > p:hover,
+.headerApp > nav > div > a:hover {
+  color: var(--accent);
+}
+
+.btnLogout {
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--gray);
+
+  transition: color 0.3s ease;
+}
+
+.btnLogout:hover {
+  color: var(--accent);
+}

@@ -1,7 +1,13 @@
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import { Outlet } from 'react-router';
+
 function App() {
   return (
     <>
-      <h1>Hello!</h1>
+      <NavBar />
+      <Outlet />
+      <Footer />
     </>
   );
 }
