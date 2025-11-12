@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
+import Description from '../components/Description';
 
 function Game() {
   return (
     <main>
-      <h1>Game Page</h1>
-      <Link to="/">Give Up</Link>
+      <Description
+        title="Catch them!"
+        description="Find the three Pokémon indicated. Go on and catch them!"
+      />
+      <Link to="/">
+        <button>Give Up</button>
+      </Link>
     </main>
   );
 }

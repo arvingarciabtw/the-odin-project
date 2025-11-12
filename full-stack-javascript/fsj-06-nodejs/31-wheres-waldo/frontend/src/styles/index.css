@@ -160,3 +160,18 @@ input[type='password'] {
   color: #ff7f7f;
   font-size: 0.875rem;
 }
+
+button {
+  padding: 0.4em 1em;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+
+  transition: opacity 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.7;
+}

@@ -1,7 +1,12 @@
+import Description from '../components/Description';
+
 function Leaderboard() {
   return (
     <main>
-      <h1>Leaderboard Page</h1>
+      <Description
+        title="Leaderboard"
+        description="Below is the list of trainers who caught all three Pokémon the fastest!"
+      />
     </main>
   );
 }
