@@ -48,4 +48,34 @@ describe('POST /api/coordinates', () => {
         .expect(400, done);
     });
   });
+
+  describe('Minun coordinates', () => {
+    test('should return 200 if x & y is correct', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 1075, y: 760 })
+        .expect(200, done);
+    });
+
+    test('should return 200 if x & y is correct (within +tolerance)', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 1090, y: 775 })
+        .expect(200, done);
+    });
+
+    test('should return 200 if x & y is correct (within -tolerance)', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 1060, y: 750 })
+        .expect(200, done);
+    });
+
+    test('should return 400 if x & y is incorrect', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 1200, y: 500 })
+        .expect(400, done);
+    });
+  });
 });
