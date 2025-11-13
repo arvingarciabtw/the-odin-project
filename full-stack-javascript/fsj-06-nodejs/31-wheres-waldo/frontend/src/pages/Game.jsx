@@ -9,6 +9,8 @@ function Game() {
   const [open, setOpen] = useState(false);
 
   function handleClick(e) {
+    console.log(e.pageX - 20, e.pageY - 20);
+    // if no x/y coords
     setBoxStyle({
       borderColor: 'red',
       left: `${e.pageX - 20}px`,
