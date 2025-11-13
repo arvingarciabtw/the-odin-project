@@ -8,17 +8,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/coordinates', coordinatesRouter);
 
-// test suite for POST /api/check
 describe('POST /api/coordinates', () => {
-  // test for no coordinates
   test('should return 400 if x/y is missing', (done) => {
     request(app).post('/api/coordinates').send({}).expect(400, done);
   });
 
-  // charmander ~ 1120 470
-  // minun ~ 1075 760
-  // roselia ~ 775 775
-  // allow tolerance of +- 20?
   describe('Charmander coordinates', () => {
     test('should return 200 if x & y is correct', (done) => {
       request(app)
@@ -75,6 +69,36 @@ describe('POST /api/coordinates', () => {
       request(app)
         .post('/api/coordinates')
         .send({ x: 1200, y: 500 })
+        .expect(400, done);
+    });
+  });
+
+  describe('Roselia coordinates', () => {
+    test('should return 200 if x & y is correct', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 775, y: 775 })
+        .expect(200, done);
+    });
+
+    test('should return 200 if x & y is correct (within +tolerance)', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 790, y: 785 })
+        .expect(200, done);
+    });
+
+    test('should return 200 if x & y is correct (within -tolerance)', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 760, y: 765 })
+        .expect(200, done);
+    });
+
+    test('should return 400 if x & y is incorrect', (done) => {
+      request(app)
+        .post('/api/coordinates')
+        .send({ x: 600, y: 900 })
         .expect(400, done);
     });
   });
