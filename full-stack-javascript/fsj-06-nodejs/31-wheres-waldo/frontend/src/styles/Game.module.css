@@ -7,14 +7,6 @@
   cursor: pointer;
 }
 
-.redBox {
-  width: 40px;
-  aspect-ratio: 1 / 1;
-  position: absolute;
-
-  border: 4px solid transparent;
-}
-
 .featuresContainer {
   margin: 0 auto;
   display: flex;
@@ -34,4 +26,45 @@
 
 .time {
   color: var(--gray);
+}
+
+.redBox {
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+
+  border: 4px solid transparent;
+}
+
+.charmander {
+  display: none;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 470px;
+  left: 1120px;
+
+  border: 4px solid blue;
+}
+
+.minun {
+  display: none;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 760px;
+  left: 1075px;
+
+  border: 4px solid blue;
+}
+
+.roselia {
+  display: none;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 775px;
+  left: 775px;
+
+  border: 4px solid blue;
 }

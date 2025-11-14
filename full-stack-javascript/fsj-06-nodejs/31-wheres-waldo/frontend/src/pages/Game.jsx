@@ -6,6 +6,9 @@ import Modal from '../components/Modal';
 
 function Game() {
   const [boxStyle, setBoxStyle] = useState({});
+  const [boxCharmander, setBoxCharmander] = useState({});
+  const [boxMinun, setBoxMinun] = useState({});
+  const [boxRoselia, setBoxRoselia] = useState({});
   const [open, setOpen] = useState(false);
 
   async function handleClick(e) {
@@ -17,12 +20,29 @@ function Game() {
 
     const coordinates = await response.json();
 
+    console.log(coordinates);
+
     if (coordinates.isCorrect) {
-      setBoxStyle({
-        borderColor: 'green',
-        left: `${e.pageX - 20}px`,
-        top: `${e.pageY - 20}px`,
-      });
+      if (coordinates.isCharmander) {
+        setBoxCharmander({ display: 'block' });
+        setBoxStyle({
+          borderColor: 'transparent',
+        });
+      }
+
+      if (coordinates.isMinun) {
+        setBoxMinun({ display: 'block' });
+        setBoxStyle({
+          borderColor: 'transparent',
+        });
+      }
+
+      if (coordinates.isRoselia) {
+        setBoxRoselia({ display: 'block' });
+        setBoxStyle({
+          borderColor: 'transparent',
+        });
+      }
     } else {
       setBoxStyle({
         borderColor: 'red',
@@ -56,6 +76,9 @@ function Game() {
         <button onClick={handleOpen}>Give Up</button>
       </div>
       <div className={styles.redBox} style={boxStyle}></div>
+      <div className={styles.charmander} style={boxCharmander}></div>
+      <div className={styles.minun} style={boxMinun}></div>
+      <div className={styles.roselia} style={boxRoselia}></div>
       <img
         src="/pokemon-wheres-waldo.webp"
         alt="Pokemon Where's Waldo version"

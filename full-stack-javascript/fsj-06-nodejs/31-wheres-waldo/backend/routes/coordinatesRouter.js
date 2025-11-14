@@ -11,31 +11,58 @@ coordinatesRouter.post('/', (req, res) => {
 
   try {
     let isCorrect = false;
+    let isCharmander = false;
+    let isMinun = false;
+    let isRoselia = false;
+
     const tolerance = 20;
     const charmanderCoords = [1120, 470];
     const minunCoords = [1075, 760];
     const roseliaCoords = [775, 775];
 
-    if (
-      // matches charmanderCoords
-      (x > charmanderCoords[0] - tolerance &&
+    if (x && y) {
+      if (
+        x > charmanderCoords[0] - tolerance &&
         x < charmanderCoords[0] + tolerance &&
         y > charmanderCoords[1] - tolerance &&
-        y < charmanderCoords[1] + tolerance) ||
-      // matches minunCoords
-      (x > minunCoords[0] - tolerance &&
+        y < charmanderCoords[1] + tolerance
+      ) {
+        isCorrect = true;
+        isCharmander = true;
+
+        res
+          .status(200)
+          .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
+      }
+
+      if (
+        x > minunCoords[0] - tolerance &&
         x < minunCoords[0] + tolerance &&
         y > minunCoords[1] - tolerance &&
-        y < minunCoords[1] + tolerance) ||
-      // matches roseliaCoords
-      (x > roseliaCoords[0] - tolerance &&
+        y < minunCoords[1] + tolerance
+      ) {
+        isCorrect = true;
+        isMinun = true;
+
+        res
+          .status(200)
+          .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
+      }
+
+      if (
+        x > roseliaCoords[0] - tolerance &&
         x < roseliaCoords[0] + tolerance &&
         y > roseliaCoords[1] - tolerance &&
-        y < roseliaCoords[1] + tolerance)
-    ) {
-      isCorrect = true;
-      res.status(200).json({ x, y, isCorrect });
-    } else {
+        y < roseliaCoords[1] + tolerance
+      ) {
+        isCorrect = true;
+        isRoselia = true;
+
+        res
+          .status(200)
+          .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
+      }
+
       res.status(400).json({ x, y, isCorrect });
     }
   } catch (err) {
