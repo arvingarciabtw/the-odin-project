@@ -1,15 +1,16 @@
 import styles from '../styles/Game.module.css';
 import Description from '../components/Description';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
 
 function Game() {
+  const [open, setOpen] = useState(false);
+  const [openWin, setOpenWin] = useState(false);
   const [boxStyle, setBoxStyle] = useState({});
   const [boxCharmander, setBoxCharmander] = useState({});
   const [boxMinun, setBoxMinun] = useState({});
   const [boxRoselia, setBoxRoselia] = useState({});
-  const [open, setOpen] = useState(false);
 
   async function handleClick(e) {
     const response = await fetch('http://localhost:3000/api/coordinates', {
@@ -60,6 +61,24 @@ function Game() {
     setOpen(false);
   }
 
+  function handleOpenWin() {
+    setOpenWin(true);
+  }
+
+  function handleCloseWin() {
+    setOpenWin(false);
+  }
+
+  useEffect(() => {
+    if (
+      Object.keys(boxCharmander).length > 0 &&
+      Object.keys(boxMinun).length > 0 &&
+      Object.keys(boxRoselia).length > 0
+    ) {
+      handleOpenWin();
+    }
+  }, [boxCharmander, boxMinun, boxRoselia]);
+
   return (
     <main className={styles.game}>
       <Description
@@ -107,6 +126,48 @@ function Game() {
               <button>Give Up</button>
             </Link>
           </div>
+        </>
+      </Modal>
+      <Modal isOpen={openWin} onClose={handleCloseWin}>
+        <>
+          <h2>You caught them all!</h2>
+          <p
+            style={{
+              marginTop: '-0.5rem',
+              color: 'var(--gray)',
+            }}
+          >
+            You found them in 04:20! Feel free to enter your name below to
+            include your time in the leaderboard.
+          </p>
+          <form
+            style={{
+              display: 'flex',
+              gap: '1rem',
+            }}
+          >
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your name here"
+              required
+            />
+            <div
+              style={{
+                display: 'flex',
+                gap: '1rem',
+              }}
+            >
+              <Link to="/">
+                <button type="button">Go to Home</button>
+              </Link>
+              {/* <Link to="/"> */}
+              <button type="submit">Submit</button>
+              {/* </Link> */}
+            </div>
+          </form>
         </>
       </Modal>
     </main>

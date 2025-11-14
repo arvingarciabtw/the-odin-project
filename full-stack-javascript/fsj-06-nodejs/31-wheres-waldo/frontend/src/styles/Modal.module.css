@@ -19,8 +19,8 @@
   gap: 1rem;
   background: var(--bg);
   min-height: 150px;
-  max-width: 300px;
-  border: 2px solid black;
+  max-width: 320px;
+  border: 2px solid var(--bg-alt);
   border-radius: 12px;
-  box-shadow: 2px solid black;
+  box-shadow: 2px solid var(--bg-alt);
 }
