@@ -34,9 +34,9 @@ coordinatesRouter.post('/', (req, res) => {
         y < roseliaCoords[1] + tolerance)
     ) {
       isCorrect = true;
-      res.status(200).json({ x, y });
+      res.status(200).json({ x, y, isCorrect });
     } else {
-      res.status(400).json({ x, y });
+      res.status(400).json({ x, y, isCorrect });
     }
   } catch (err) {
     res.status(500).json({ error: err.message });

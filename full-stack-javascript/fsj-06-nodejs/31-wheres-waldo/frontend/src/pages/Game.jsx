@@ -8,14 +8,28 @@ function Game() {
   const [boxStyle, setBoxStyle] = useState({});
   const [open, setOpen] = useState(false);
 
-  function handleClick(e) {
-    console.log(e.pageX - 20, e.pageY - 20);
-    // if no x/y coords
-    setBoxStyle({
-      borderColor: 'red',
-      left: `${e.pageX - 20}px`,
-      top: `${e.pageY - 20}px`,
+  async function handleClick(e) {
+    const response = await fetch('http://localhost:3000/api/coordinates', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ x: e.pageX - 20, y: e.pageY - 20 }),
     });
+
+    const coordinates = await response.json();
+
+    if (coordinates.isCorrect) {
+      setBoxStyle({
+        borderColor: 'green',
+        left: `${e.pageX - 20}px`,
+        top: `${e.pageY - 20}px`,
+      });
+    } else {
+      setBoxStyle({
+        borderColor: 'red',
+        left: `${e.pageX - 20}px`,
+        top: `${e.pageY - 20}px`,
+      });
+    }
   }
 
   function handleOpen() {
