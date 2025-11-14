@@ -8,9 +8,21 @@ function Game() {
   const [open, setOpen] = useState(false);
   const [openWin, setOpenWin] = useState(false);
   const [boxStyle, setBoxStyle] = useState({});
-  const [boxCharmander, setBoxCharmander] = useState({});
-  const [boxMinun, setBoxMinun] = useState({});
-  const [boxRoselia, setBoxRoselia] = useState({});
+  const [found, setFound] = useState({
+    charmander: false,
+    minun: false,
+    roselia: false,
+  });
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(true);
+
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+      .toString()
+      .padStart(2, '0')}`;
+  }
 
   async function handleClick(e) {
     const response = await fetch('http://localhost:3000/api/coordinates', {
@@ -21,25 +33,23 @@ function Game() {
 
     const coordinates = await response.json();
 
-    console.log(coordinates);
-
     if (coordinates.isCorrect) {
       if (coordinates.isCharmander) {
-        setBoxCharmander({ display: 'block' });
+        setFound((prevState) => ({ ...prevState, charmander: true }));
         setBoxStyle({
           borderColor: 'transparent',
         });
       }
 
       if (coordinates.isMinun) {
-        setBoxMinun({ display: 'block' });
+        setFound((prevState) => ({ ...prevState, minun: true }));
         setBoxStyle({
           borderColor: 'transparent',
         });
       }
 
       if (coordinates.isRoselia) {
-        setBoxRoselia({ display: 'block' });
+        setFound((prevState) => ({ ...prevState, roselia: true }));
         setBoxStyle({
           borderColor: 'transparent',
         });
@@ -61,23 +71,26 @@ function Game() {
     setOpen(false);
   }
 
-  function handleOpenWin() {
-    setOpenWin(true);
-  }
+  useEffect(() => {
+    let interval;
+    if (isRunning) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (found.charmander && found.minun && found.roselia) {
+      setIsRunning(false);
+      setOpenWin(true);
+    }
+  }, [found, time]);
 
   function handleCloseWin() {
     setOpenWin(false);
   }
-
-  useEffect(() => {
-    if (
-      Object.keys(boxCharmander).length > 0 &&
-      Object.keys(boxMinun).length > 0 &&
-      Object.keys(boxRoselia).length > 0
-    ) {
-      handleOpenWin();
-    }
-  }, [boxCharmander, boxMinun, boxRoselia]);
 
   return (
     <main className={styles.game}>
@@ -86,7 +99,7 @@ function Game() {
         description="Find the three Pokémon indicated. Go on and catch them!"
       />
       <div className={styles.featuresContainer}>
-        <p className={styles.time}>04:20</p>
+        <p className={styles.time}>{formatTime(time)}</p>
         <div className={styles.imgsPokemon}>
           <img src="/charmander.png" alt="" />
           <img src="/minun.png" alt="" />
@@ -95,9 +108,18 @@ function Game() {
         <button onClick={handleOpen}>Give Up</button>
       </div>
       <div className={styles.redBox} style={boxStyle}></div>
-      <div className={styles.charmander} style={boxCharmander}></div>
-      <div className={styles.minun} style={boxMinun}></div>
-      <div className={styles.roselia} style={boxRoselia}></div>
+      <div
+        className={styles.charmander}
+        style={{ display: found.charmander ? 'block' : 'none' }}
+      ></div>
+      <div
+        className={styles.minun}
+        style={{ display: found.minun ? 'block' : 'none' }}
+      ></div>
+      <div
+        className={styles.roselia}
+        style={{ display: found.roselia ? 'block' : 'none' }}
+      ></div>
       <img
         src="/pokemon-wheres-waldo.webp"
         alt="Pokemon Where's Waldo version"
@@ -137,8 +159,8 @@ function Game() {
               color: 'var(--gray)',
             }}
           >
-            You found them in 04:20! Feel free to enter your name below to
-            include your time in the leaderboard.
+            You found them in {formatTime(time)}! Feel free to enter your name
+            below to include your time in the leaderboard.
           </p>
           <form
             style={{
@@ -163,9 +185,7 @@ function Game() {
               <Link to="/">
                 <button type="button">Go to Home</button>
               </Link>
-              {/* <Link to="/"> */}
               <button type="submit">Submit</button>
-              {/* </Link> */}
             </div>
           </form>
         </>
