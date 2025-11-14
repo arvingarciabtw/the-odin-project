@@ -1,10 +1,14 @@
 import styles from '../styles/Game.module.css';
 import Description from '../components/Description';
+import Modal from '../components/Modal';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Modal from '../components/Modal';
+import { useNavigate } from 'react-router-dom';
+import { api } from '../utils/api.js';
 
 function Game() {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
   const [openWin, setOpenWin] = useState(false);
   const [boxStyle, setBoxStyle] = useState({});
@@ -15,6 +19,7 @@ function Game() {
   });
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
+  const [name, setName] = useState('');
 
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -25,10 +30,9 @@ function Game() {
   }
 
   async function handleClick(e) {
-    const response = await fetch('http://localhost:3000/api/coordinates', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ x: e.pageX - 20, y: e.pageY - 20 }),
+    const response = await api.post('/api/coordinates', {
+      x: e.pageX - 20,
+      y: e.pageY - 20,
     });
 
     const coordinates = await response.json();
@@ -90,6 +94,18 @@ function Game() {
 
   function handleCloseWin() {
     setOpenWin(false);
+  }
+
+  function handleName(e) {
+    setName(e.target.value);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    await api.post('/api/users', { name, time });
+
+    navigate('/');
   }
 
   return (
@@ -167,6 +183,7 @@ function Game() {
               display: 'flex',
               gap: '1rem',
             }}
+            onSubmit={handleSubmit}
           >
             <label htmlFor="name">Name</label>
             <input
@@ -174,6 +191,7 @@ function Game() {
               id="name"
               name="name"
               placeholder="Your name here"
+              onChange={handleName}
               required
             />
             <div

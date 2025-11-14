@@ -1,0 +1,11 @@
+.leaderboardHeader,
+.user {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+}
+
+.user {
+  color: var(--gray);
+}
