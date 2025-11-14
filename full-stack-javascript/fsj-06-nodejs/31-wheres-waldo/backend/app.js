@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import coordinatesRouter from './routes/coordinatesRouter.js';
+import usersRouter from './routes/usersRouter.js';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use('/api/coordinates', coordinatesRouter);
+app.use('/api/users', usersRouter);
 
 app.get('/', (req, res) => {
   res.send("Backend for Where's Waldo running!");

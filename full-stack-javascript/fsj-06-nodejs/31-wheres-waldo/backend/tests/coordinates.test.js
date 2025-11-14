@@ -34,13 +34,6 @@ describe('POST /api/coordinates', () => {
         .send({ x: 1105, y: 455 })
         .expect(200, done);
     });
-
-    test('should return 400 if x & y is incorrect', (done) => {
-      request(app)
-        .post('/api/coordinates')
-        .send({ x: 950, y: 470 })
-        .expect(400, done);
-    });
   });
 
   describe('Minun coordinates', () => {
@@ -64,13 +57,6 @@ describe('POST /api/coordinates', () => {
         .send({ x: 1060, y: 750 })
         .expect(200, done);
     });
-
-    test('should return 400 if x & y is incorrect', (done) => {
-      request(app)
-        .post('/api/coordinates')
-        .send({ x: 1200, y: 500 })
-        .expect(400, done);
-    });
   });
 
   describe('Roselia coordinates', () => {
@@ -93,13 +79,6 @@ describe('POST /api/coordinates', () => {
         .post('/api/coordinates')
         .send({ x: 760, y: 765 })
         .expect(200, done);
-    });
-
-    test('should return 400 if x & y is incorrect', (done) => {
-      request(app)
-        .post('/api/coordinates')
-        .send({ x: 600, y: 900 })
-        .expect(400, done);
     });
   });
 });

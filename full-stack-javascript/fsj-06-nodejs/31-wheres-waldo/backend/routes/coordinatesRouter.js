@@ -20,50 +20,41 @@ coordinatesRouter.post('/', (req, res) => {
     const minunCoords = [1075, 760];
     const roseliaCoords = [775, 775];
 
-    if (x && y) {
-      if (
-        x > charmanderCoords[0] - tolerance &&
-        x < charmanderCoords[0] + tolerance &&
-        y > charmanderCoords[1] - tolerance &&
-        y < charmanderCoords[1] + tolerance
-      ) {
-        isCorrect = true;
-        isCharmander = true;
-
-        res
-          .status(200)
-          .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
-      }
-
-      if (
-        x > minunCoords[0] - tolerance &&
-        x < minunCoords[0] + tolerance &&
-        y > minunCoords[1] - tolerance &&
-        y < minunCoords[1] + tolerance
-      ) {
-        isCorrect = true;
-        isMinun = true;
-
-        res
-          .status(200)
-          .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
-      }
-
-      if (
-        x > roseliaCoords[0] - tolerance &&
-        x < roseliaCoords[0] + tolerance &&
-        y > roseliaCoords[1] - tolerance &&
-        y < roseliaCoords[1] + tolerance
-      ) {
-        isCorrect = true;
-        isRoselia = true;
-
-        res
-          .status(200)
-          .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
-      }
-
-      res.status(400).json({ x, y, isCorrect });
+    if (
+      x > charmanderCoords[0] - tolerance &&
+      x < charmanderCoords[0] + tolerance &&
+      y > charmanderCoords[1] - tolerance &&
+      y < charmanderCoords[1] + tolerance
+    ) {
+      isCorrect = true;
+      isCharmander = true;
+      return res
+        .status(200)
+        .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
+    } else if (
+      x > minunCoords[0] - tolerance &&
+      x < minunCoords[0] + tolerance &&
+      y > minunCoords[1] - tolerance &&
+      y < minunCoords[1] + tolerance
+    ) {
+      isCorrect = true;
+      isMinun = true;
+      return res
+        .status(200)
+        .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
+    } else if (
+      x > roseliaCoords[0] - tolerance &&
+      x < roseliaCoords[0] + tolerance &&
+      y > roseliaCoords[1] - tolerance &&
+      y < roseliaCoords[1] + tolerance
+    ) {
+      isCorrect = true;
+      isRoselia = true;
+      return res
+        .status(200)
+        .json({ x, y, isCorrect, isCharmander, isMinun, isRoselia });
+    } else {
+      return res.status(200).json({ x, y, isCorrect });
     }
   } catch (err) {
     res.status(500).json({ error: err.message });
