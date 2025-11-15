@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["messaging_app"]
+}
+
+model User {
+  id                   Int       @id @default(autoincrement())
+  first_name           String
+  last_name            String
+  username             String    @unique
+  password             String
+  chats_as_first_user  Chat[]    @relation("FirstUser")
+  chats_as_second_user Chat[]    @relation("SecondUser")
+  messages             Message[]
+
+  @@map("users")
+  @@schema("messaging_app")
+}
+
+model Chat {
+  id             Int       @id @default(autoincrement())
+  first_user_id  Int
+  second_user_id Int
+  created_at     DateTime  @default(now())
+  first_user     User      @relation("FirstUser", fields: [first_user_id], references: [id])
+  second_user    User      @relation("SecondUser", fields: [second_user_id], references: [id])
+  messages       Message[]
+
+  @@unique([first_user_id, second_user_id])
+  @@map("chats")
+  @@schema("messaging_app")
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  chat_id    Int
+  sent_by_id Int
+  content    String
+  sent_at    DateTime @default(now())
+  chat       Chat     @relation(fields: [chat_id], references: [id])
+  sent_by    User     @relation(fields: [sent_by_id], references: [id])
+
+  @@index([chat_id, sent_at])
+  @@map("messages")
+  @@schema("messaging_app")
+}
