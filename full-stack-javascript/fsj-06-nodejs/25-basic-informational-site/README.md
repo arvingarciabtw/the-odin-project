@@ -13,6 +13,8 @@
 
 </div>
 
+<img src="./public/images/project.png" alt="Screenshot of project page" align="center" style="width: 100%;">
+
 ## 🚀 Live Site
 
 The live site can be viewed [here](https://top-25-basic-informational-site.vercel.app/).
