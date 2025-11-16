@@ -2,6 +2,7 @@ import { useAuth } from '../contexts/AuthContext';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import LoginForm from '../components/LoginForm';
+import Chats from '../components/Chats';
 
 function Home() {
   const { user } = useAuth();
@@ -12,9 +13,7 @@ function Home() {
         <>
           <NavBar />
           <main>
-            <p>At home page...</p>
-            <p>{user.first_name}</p>
-            <p>{user.username}</p>
+            <Chats />
           </main>
           <Footer />
         </>
