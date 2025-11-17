@@ -17,7 +17,7 @@ async function postRegister(req, res) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: {
         first_name: firstName,
         last_name: lastName,
@@ -25,6 +25,26 @@ async function postRegister(req, res) {
         password: hashedPassword,
       },
     });
+
+    const otherUsers = await prisma.user.findMany({
+      where: {
+        id: {
+          not: newUser.id,
+        },
+      },
+    });
+
+    if (otherUsers.length > 0) {
+      const chatData = otherUsers.map((user) => ({
+        first_user_id: Math.min(newUser.id, user.id),
+        second_user_id: Math.max(newUser.id, user.id),
+      }));
+
+      await prisma.chat.createMany({
+        data: chatData,
+        skipDuplicates: true,
+      });
+    }
 
     res.json({ msg: 'User created successfully.' });
   } catch (err) {
