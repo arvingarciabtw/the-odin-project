@@ -7,46 +7,38 @@ import { Link } from 'react-router-dom';
 function Chats() {
   const { user } = useAuth();
 
-  const [users, setUsers] = useState([]);
+  const [chats, setChats] = useState([]);
 
   useEffect(() => {
-    async function fetchUsers() {
-      const response = await api.get(`/api/users?exclude=${user.id}`);
-      const users = await response.json();
+    async function fetchChats() {
+      const response = await api.get(`/api/users/${user.id}/chats`);
+      const chats = await response.json();
 
-      setUsers(users);
+      setChats(chats);
     }
 
-    fetchUsers();
+    fetchChats();
   }, [user.id]);
 
   return (
     <section className={styles.chats}>
-      {users.map((user) => (
-        <Chat
-          key={user.id}
-          id={user.id}
-          firstName={user.first_name}
-          lastName={user.last_name}
-        />
-      ))}
+      {chats.map((chat) => {
+        const otherUser =
+          chat.first_user.id === user.id ? chat.second_user : chat.first_user;
+
+        return <Chat key={chat.id} chat={chat} otherUser={otherUser} />;
+      })}
     </section>
   );
 }
 
-function Chat({ id, firstName, lastName }) {
+function Chat({ chat, otherUser }) {
   return (
-    <Link to={`/chats/${id}`} className={styles.chat}>
+    <Link to={`/chats/${chat.id}`} className={styles.chat}>
       <div className={styles.chatDetails}>
         <div className={styles.top}>
           <p>
-            {firstName} {lastName}
-          </p>
-          <p className={styles.time}>02:30 AM</p>
-        </div>
-        <div className={styles.bottom}>
-          <p className={styles.latestMessage}>
-            An appropriately sized message here.
+            {otherUser.first_name} {otherUser.last_name}
           </p>
         </div>
       </div>
