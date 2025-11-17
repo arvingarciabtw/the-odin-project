@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import { useAuth } from '../contexts/AuthContext';
 import { useState } from 'react';
+import { api } from '../utils/api';
 
 function Profile() {
   const { user } = useAuth();
@@ -21,11 +22,14 @@ function Profile() {
     });
   }
 
-  function handleSubmit(type, e) {
+  async function handleSubmit(type, e) {
     e.preventDefault();
 
     if (type === 'firstName') {
-      console.log('The first name should be updated');
+      await api.post(`/api/users/${user.id}/first-name`, {
+        id: user.id,
+        newFirstName: formData.firstName,
+      });
     }
 
     if (type === 'lastName') {
