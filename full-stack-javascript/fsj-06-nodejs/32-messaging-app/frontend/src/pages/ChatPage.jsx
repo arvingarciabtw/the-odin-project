@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/ChatPage.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { api } from '../utils/api';
-import { useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function RecipientMessage({ message }) {
@@ -30,6 +29,7 @@ function SenderMessage({ message }) {
 function ChatPage() {
   const { user } = useAuth();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
@@ -38,6 +38,12 @@ function ChatPage() {
   useEffect(() => {
     async function fetchMessages() {
       const response = await api.get(`/api/messages/${id}`);
+
+      if (!response.ok) {
+        navigate('/');
+        return;
+      }
+
       const data = await response.json();
 
       if (data.chat.first_user.id === user.id) {
@@ -49,8 +55,10 @@ function ChatPage() {
       setMessages(data.messages);
     }
 
-    fetchMessages();
-  }, [id, user.id]);
+    if (user) {
+      fetchMessages();
+    }
+  }, [id, user, navigate]);
 
   function handleChange(e) {
     setMessage(e.target.value);
@@ -61,9 +69,14 @@ function ChatPage() {
 
     const response = await api.post('/api/messages', {
       chatId: id,
-      sentById: user.id,
       content: message,
     });
+
+    if (!response.ok) {
+      console.error('Failed to send message');
+      return;
+    }
+
     const newMessage = await response.json();
     setMessages([...messages, newMessage]);
     setMessage('');
