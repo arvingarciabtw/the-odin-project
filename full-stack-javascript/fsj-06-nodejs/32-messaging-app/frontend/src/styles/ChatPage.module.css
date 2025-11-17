@@ -27,6 +27,7 @@
 }
 
 .chatWindow {
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -36,8 +37,9 @@
 }
 
 .messageInput {
-  width: 100%;
+  min-width: 100%;
   display: flex;
+  flex-direction: row;
   gap: 1rem;
 }
 
@@ -53,6 +55,8 @@
 }
 
 .messageInput > button {
+  margin-top: 0;
+  height: 44px;
   padding: 0 1.5em;
   border: none;
   border-radius: 10px;
@@ -78,7 +82,7 @@
 
 .recipientMessage,
 .senderMessage {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   background: var(--bg-alt);
   color: var(--gray);
   border-radius: 12px;
@@ -91,8 +95,8 @@
 
 .recipientProfilePicture,
 .senderProfilePicture {
-  min-width: 48px;
-  min-height: 48px;
+  min-width: 40px;
+  min-height: 40px;
   background: var(--bg-alt);
   border-radius: 50%;
   align-self: flex-start;

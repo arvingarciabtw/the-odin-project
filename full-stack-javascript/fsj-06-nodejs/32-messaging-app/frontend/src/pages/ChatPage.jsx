@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
 import styles from '../styles/ChatPage.module.css';
 import { Link } from 'react-router-dom';
+import { api } from '../utils/api';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function RecipientMessage({ message }) {
   return (
@@ -24,6 +28,47 @@ function SenderMessage({ message }) {
 }
 
 function ChatPage() {
+  const { user } = useAuth();
+  const { id } = useParams();
+
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('');
+  const [recipient, setRecipient] = useState({});
+
+  useEffect(() => {
+    async function fetchMessages() {
+      const response = await api.get(`/api/messages/${id}`);
+      const data = await response.json();
+
+      if (data.chat.first_user.id === user.id) {
+        setRecipient(data.chat.second_user);
+      } else {
+        setRecipient(data.chat.first_user);
+      }
+
+      setMessages(data.messages);
+    }
+
+    fetchMessages();
+  }, [id, user.id]);
+
+  function handleChange(e) {
+    setMessage(e.target.value);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const response = await api.post('/api/messages', {
+      chatId: id,
+      sentById: user.id,
+      content: message,
+    });
+    const newMessage = await response.json();
+    setMessages([...messages, newMessage]);
+    setMessage('');
+  }
+
   return (
     <>
       <main className={styles.chat}>
@@ -44,25 +89,30 @@ function ChatPage() {
               />
             </svg>
           </Link>
-          <p className={styles.recipientName}>Name of Recipient</p>
+          <p className={styles.recipientName}>
+            {recipient.first_name} {recipient.last_name}
+          </p>
         </div>
         <section className={styles.chatWindow}>
-          <RecipientMessage message="Hi" />
-          <RecipientMessage message="You alright?" />
-          <RecipientMessage message="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor." />
-          <SenderMessage message="Hey" />
-          <SenderMessage message="I'm doing good" />
-          <RecipientMessage message="Cool" />
-          <SenderMessage message="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor." />
-          <SenderMessage message="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor." />
-          <SenderMessage message="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor." />
-          <SenderMessage message="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor." />
-          <SenderMessage message="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor." />
+          {messages.map((message) =>
+            message.sent_by_id === user.id ? (
+              <SenderMessage key={message.id} message={message.content} />
+            ) : (
+              <RecipientMessage key={message.id} message={message.content} />
+            ),
+          )}
         </section>
-        <div className={styles.messageInput}>
-          <input type="text" />
+        <form onSubmit={handleSubmit} className={styles.messageInput}>
+          <input
+            type="text"
+            name="message"
+            id="message"
+            onChange={handleChange}
+            value={message}
+            required
+          />
           <button>Send</button>
-        </div>
+        </form>
       </main>
     </>
   );
