@@ -16,6 +16,7 @@ passportConfig(passport);
 app.use('/api/auth', routes.auth);
 app.use('/api/users', routes.users);
 app.use('/api/chats', routes.chats);
+app.use('/api/messages', routes.messages);
 
 app.get('/', (_req, res) => {
   res.send('Backend running for messaging app!');
