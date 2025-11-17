@@ -44,10 +44,25 @@ async function updateFirstName(req, res) {
   }
 }
 
-// update last name
+async function updateLastName(req, res) {
+  try {
+    const { id, newLastName } = req.body;
+    const user = await prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        last_name: newLastName,
+      },
+    });
 
-// update username
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
 // update password
 
 export default { getUsers, updateFirstName };
+export default { getUsers, updateFirstName, updateLastName, updateUsername };

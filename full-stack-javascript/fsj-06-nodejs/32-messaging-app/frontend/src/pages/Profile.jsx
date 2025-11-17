@@ -33,7 +33,10 @@ function Profile() {
     }
 
     if (type === 'lastName') {
-      console.log('The last name should be updated');
+      await api.post(`/api/users/${user.id}/last-name`, {
+        id: user.id,
+        newLastName: formData.lastName,
+      });
     }
 
     if (type === 'username') {
