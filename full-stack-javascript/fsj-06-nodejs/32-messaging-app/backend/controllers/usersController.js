@@ -1,4 +1,5 @@
 import { PrismaClient } from '../generated/prisma/client.js';
+import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
@@ -95,6 +96,29 @@ async function updateUsername(req, res) {
   }
 }
 
-// update password
+async function updatePassword(req, res) {
+  try {
+    const { id, newPassword } = req.body;
 
-export default { getUsers, updateFirstName, updateLastName, updateUsername };
+    const user = await prisma.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        password: await bcrypt.hash(newPassword, 10),
+      },
+    });
+
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export default {
+  getUsers,
+  updateFirstName,
+  updateLastName,
+  updateUsername,
+  updatePassword,
+};

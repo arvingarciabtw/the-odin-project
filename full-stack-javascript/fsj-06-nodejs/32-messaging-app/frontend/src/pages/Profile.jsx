@@ -56,7 +56,10 @@ function Profile() {
     }
 
     if (type === 'password') {
-      console.log('The password should be updated');
+      await api.post(`/api/users/${user.id}/password`, {
+        id: user.id,
+        newPassword: formData.password,
+      });
     }
   }
 
