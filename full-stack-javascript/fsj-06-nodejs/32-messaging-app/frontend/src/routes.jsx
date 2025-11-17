@@ -1,9 +1,9 @@
 import App from './App';
 import Error from './pages/Error';
 import Home from './pages/Home';
-import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import Profile from './pages/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const routes = [
   {
@@ -12,9 +12,11 @@ const routes = [
     errorElement: <Error />,
     children: [
       { index: true, element: <Home /> },
-      { path: '/login', element: <LoginForm /> },
       { path: '/sign-up', element: <SignUpForm /> },
-      { path: '/profile', element: <Profile /> },
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: '/profile', element: <Profile /> }],
+      },
     ],
   },
 ];
