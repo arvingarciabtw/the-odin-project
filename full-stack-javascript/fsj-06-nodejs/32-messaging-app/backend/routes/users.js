@@ -6,5 +6,6 @@ const users = Router();
 users.get('/', usersController.getUsers);
 users.post('/:id/first-name', usersController.updateFirstName);
 users.post('/:id/last-name', usersController.updateLastName);
+users.post('/:id/username', usersController.updateUsername);
 
 export default users;

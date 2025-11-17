@@ -14,6 +14,7 @@ function Profile() {
     username: user.username,
     password: '',
   });
+  const [error, setError] = useState('');
 
   function handleChange(e) {
     setFormData({
@@ -40,7 +41,18 @@ function Profile() {
     }
 
     if (type === 'username') {
-      console.log('The username should be updated');
+      try {
+        const response = await api.post(`/api/users/${user.id}/username`, {
+          id: user.id,
+          newUsername: formData.username,
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.msg);
+      } catch (err) {
+        setError(err.message);
+      }
     }
 
     if (type === 'password') {
@@ -124,6 +136,7 @@ function Profile() {
           </div>
           <button type="submit">Update</button>
         </form>
+        {error && <p className="error-message">{error}</p>}
       </main>
       <Footer />
     </>

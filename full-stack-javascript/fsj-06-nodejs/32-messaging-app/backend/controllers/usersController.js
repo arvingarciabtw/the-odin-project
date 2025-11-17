@@ -62,7 +62,39 @@ async function updateLastName(req, res) {
   }
 }
 
+async function updateUsername(req, res) {
+  try {
+    const { id, newUsername } = req.body;
+
+    let user = await prisma.user.findUnique({
+      where: { username: newUsername },
+    });
+
+    if (user) {
+      if (user.id === id) {
+        return res
+          .status(400)
+          .json({ msg: 'This is your old username. Choose a new one.' });
+      } else {
+        return res.status(400).json({ msg: 'Username already exists.' });
+      }
+    } else {
+      user = await prisma.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          username: newUsername,
+        },
+      });
+
+      res.status(200).json(user);
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // update password
 
-export default { getUsers, updateFirstName };
 export default { getUsers, updateFirstName, updateLastName, updateUsername };
