@@ -1,0 +1,103 @@
+.chat {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goBack {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  text-decoration: none;
+  color: var(--gray);
+  width: 28px;
+}
+
+.recipientName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.chatWindow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: scroll;
+  max-height: calc(100vh - calc(80px + 5rem));
+}
+
+.messageInput {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.messageInput > input {
+  padding: 0 1rem;
+  width: 100%;
+  height: 44px;
+  background: var(--bg-alt);
+  color: var(--gray);
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+.messageInput > button {
+  padding: 0 1.5em;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--bg);
+
+  transition: opacity 0.3s ease;
+}
+
+.messageInput > button:hover {
+  opacity: 0.7;
+}
+
+.recipientMessageContainer,
+.senderMessageContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.senderMessageContainer {
+  justify-content: end;
+}
+
+.recipientMessage,
+.senderMessage {
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-alt);
+  color: var(--gray);
+  border-radius: 12px;
+}
+
+.senderMessage {
+  background: var(--gray);
+  color: var(--bg);
+}
+
+.recipientProfilePicture,
+.senderProfilePicture {
+  min-width: 48px;
+  min-height: 48px;
+  background: var(--bg-alt);
+  border-radius: 50%;
+  align-self: flex-start;
+}
+
+.senderProfilePicture {
+  background: var(--gray);
+}

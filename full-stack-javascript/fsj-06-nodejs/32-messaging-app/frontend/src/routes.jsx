@@ -1,9 +1,10 @@
 import App from './App';
 import Error from './pages/Error';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import SignUpForm from './components/SignUpForm';
 import Profile from './pages/Profile';
-import ProtectedRoute from './components/ProtectedRoute';
+import ChatPage from './pages/ChatPage';
 
 const routes = [
   {
@@ -15,7 +16,10 @@ const routes = [
       { path: '/sign-up', element: <SignUpForm /> },
       {
         element: <ProtectedRoute />,
-        children: [{ path: '/profile', element: <Profile /> }],
+        children: [
+          { path: '/profile', element: <Profile /> },
+          { path: '/chats/:id', element: <ChatPage /> },
+        ],
       },
     ],
   },
