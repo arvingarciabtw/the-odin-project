@@ -15,6 +15,7 @@ passportConfig(passport);
 
 app.use("/api/auth", routes.auth);
 app.use("/api/posts", routes.posts);
+app.use("/api/comments", routes.comments);
 
 app.get("/", (_req, res) => {
 	res.send("Backend for Yappr running!");
