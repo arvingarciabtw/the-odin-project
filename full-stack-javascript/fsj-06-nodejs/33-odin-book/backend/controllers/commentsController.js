@@ -36,4 +36,42 @@ async function createComment(req, res) {
 	}
 }
 
-export default { getComments, createComment };
+async function getCommentLikes(req, res) {
+	const { commentId } = req.params;
+
+	try {
+		const commentLikes = await prisma.commentLike.findMany({
+			where: {
+				comment_id: +commentId,
+			},
+		});
+
+		res.status(200).json(commentLikes);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+async function createCommentLike(req, res) {
+	const { userId, commentId } = req.body;
+
+	try {
+		const commentLike = await prisma.commentLike.create({
+			data: {
+				user_id: userId,
+				comment_id: commentId,
+			},
+		});
+
+		res.status(200).json(commentLike);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+export default {
+	getComments,
+	createComment,
+	getCommentLikes,
+	createCommentLike,
+};
