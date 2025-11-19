@@ -1,0 +1,32 @@
+.footerApp {
+  padding: 1.5rem;
+  margin: 0 auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  color: var(--gray);
+}
+
+.footerApp > .containerSocials {
+  display: flex;
+  gap: 2rem;
+}
+
+.footerApp > .containerSocials svg {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.footerApp a {
+  color: var(--gray);
+
+  transition: color 0.3s ease;
+}
+
+.footerApp a:hover {
+  color: var(--accent);
+}
