@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["odin_book"]
+}
+
+model User {
+  id            Int           @id @default(autoincrement())
+  first_name    String
+  last_name     String
+  username      String        @unique
+  password      String
+  picture       String?
+  created_at    DateTime      @default(now())
+  followers     Follower[]    @relation("UserFollowers")
+  following     Follower[]    @relation("UserFollowing")
+  posts         Post[]
+  comments      Comment[]
+  post_likes    PostLike[]
+  comment_likes CommentLike[]
+
+  @@map("users")
+  @@schema("odin_book")
+}
+
+model Follower {
+  id           Int          @id @default(autoincrement())
+  follower_id  Int
+  follower     User         @relation("UserFollowers", fields: [follower_id], references: [id], onDelete: Cascade)
+  following_id Int
+  following    User         @relation("UserFollowing", fields: [following_id], references: [id], onDelete: Cascade)
+  status       FollowStatus @default(PENDING)
+  created_at   DateTime     @default(now())
+
+  @@unique([follower_id, following_id])
+  @@map("followers")
+  @@schema("odin_book")
+}
+
+enum FollowStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+
+  @@schema("odin_book")
+}
+
+model Post {
+  id         Int        @id @default(autoincrement())
+  content    String     @db.Text
+  author_id  Int
+  author     User       @relation(fields: [author_id], references: [id], onDelete: Cascade)
+  created_at DateTime   @default(now())
+  comments   Comment[]
+  likes      PostLike[]
+
+  @@map("posts")
+  @@schema("odin_book")
+}
+
+model PostLike {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  post_id    Int
+  post       Post     @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+
+  @@unique([user_id, post_id])
+  @@map("post_likes")
+  @@schema("odin_book")
+}
+
+model Comment {
+  id         Int           @id @default(autoincrement())
+  author_id  Int
+  author     User          @relation(fields: [author_id], references: [id], onDelete: Cascade)
+  post_id    Int
+  post       Post          @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  content    String        @db.Text
+  created_at DateTime      @default(now())
+  likes      CommentLike[]
+
+  @@map("comments")
+  @@schema("odin_book")
+}
+
+model CommentLike {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  comment_id Int
+  comment    Comment  @relation(fields: [comment_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+
+  @@unique([user_id, comment_id])
+  @@map("comment_likes")
+  @@schema("odin_book")
+}
