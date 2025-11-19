@@ -2,7 +2,7 @@ import { PrismaClient } from "../generated/prisma/client.js";
 
 const prisma = new PrismaClient();
 
-async function getPosts(req, res) {
+async function getPosts(_req, res) {
 	try {
 		const posts = await prisma.post.findMany();
 
@@ -28,4 +28,37 @@ async function createPost(req, res) {
 	}
 }
 
-export default { getPosts, createPost };
+async function getPostLikes(req, res) {
+	const { postId } = req.params;
+
+	try {
+		const postLikes = await prisma.postLike.findMany({
+			where: {
+				post_id: +postId,
+			},
+		});
+
+		res.status(200).json(postLikes);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+async function createPostLike(req, res) {
+	const { userId, postId } = req.body;
+
+	try {
+		const postLike = await prisma.postLike.create({
+			data: {
+				user_id: userId,
+				post_id: postId,
+			},
+		});
+
+		res.status(200).json(postLike);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+export default { getPosts, createPost, getPostLikes, createPostLike };
