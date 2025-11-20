@@ -99,7 +99,9 @@ function Sidebar() {
 					</Link>
 				</li>
 			</ul>
-			<button className={styles.btnNewPost}>New Post</button>
+			<Link to="/create-post">
+				<button className={styles.btnNewPost}>New Post</button>
+			</Link>
 			<button className={styles.btnLogout} onClick={handleLogout}>
 				Log out
 			</button>

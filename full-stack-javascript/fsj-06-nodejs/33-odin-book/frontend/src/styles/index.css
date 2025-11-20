@@ -165,7 +165,9 @@ input[type='password'] {
   color: #ff7f7f;
   font-size: 0.875rem;
 }
-input:focus {
+
+input:focus,
+textarea:focus {
   outline: 1px solid var(--gray);
 }
 

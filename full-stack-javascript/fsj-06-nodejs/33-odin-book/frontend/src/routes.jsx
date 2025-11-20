@@ -6,6 +6,7 @@ import SignUpForm from "./components/SignUpForm";
 import PostsPage from "./components/PostsPage";
 import UsersPage from "./components/UsersPage";
 import ProfilePage from "./components/ProfilePage";
+import CreatePost from "./components/CreatePost";
 
 const routes = [
 	{
@@ -21,6 +22,7 @@ const routes = [
 					{ path: "/posts", element: <PostsPage /> },
 					{ path: "/users", element: <UsersPage /> },
 					{ path: "/profile", element: <ProfilePage /> },
+					{ path: "/create-post", element: <CreatePost /> },
 				],
 			},
 		],
