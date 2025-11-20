@@ -1,7 +1,17 @@
 import styles from "../styles/Sidebar.module.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+	const { navigate } = useNavigate();
+	const { logout } = useAuth();
+
+	function handleLogout() {
+		logout();
+		navigate("/");
+	}
+
 	return (
 		<aside className={styles.sidebar}>
 			<Link to="/">
@@ -90,6 +100,9 @@ function Sidebar() {
 				</li>
 			</ul>
 			<button className={styles.btnNewPost}>New Post</button>
+			<button className={styles.btnLogout} onClick={handleLogout}>
+				Log out
+			</button>
 		</aside>
 	);
 }

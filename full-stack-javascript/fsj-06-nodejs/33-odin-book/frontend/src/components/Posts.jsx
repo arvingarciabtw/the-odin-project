@@ -77,3 +77,4 @@ function Post() {
 }
 
 export default Posts;
+export { Post };

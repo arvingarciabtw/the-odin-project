@@ -1,8 +1,11 @@
+import Hamburger from "../components/Hamburger";
+
 function PostsPage() {
 	return (
-		<main>
+		<>
+			<Hamburger />
 			<p>At the posts index page...</p>
-		</main>
+		</>
 	);
 }
 

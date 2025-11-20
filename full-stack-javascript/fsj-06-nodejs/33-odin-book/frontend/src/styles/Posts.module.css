@@ -1,9 +1,11 @@
 .posts {
   padding: 0;
   height: 100%;
+  max-height: 100svh;
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--dark-gray);
+  overflow-y: auto;
 }
 
 .post {

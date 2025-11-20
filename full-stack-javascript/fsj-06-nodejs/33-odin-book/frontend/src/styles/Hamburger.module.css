@@ -7,6 +7,7 @@
   gap: 1.5rem;
   border-right: 1px solid var(--dark-gray);
   background: var(--bg);
+  z-index: 1;
 }
 
 .profilePicture {

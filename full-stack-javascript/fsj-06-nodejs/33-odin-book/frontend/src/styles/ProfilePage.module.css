@@ -1,0 +1,49 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+}
+
+.profile {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--dark-gray);
+  border-right: 1px solid var(--dark-gray);
+}
+
+.profilePicture > img {
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.username {
+  color: var(--gray);
+}
+
+.profileDetails {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  color: var(--gray);
+}
+
+.profileDetails span {
+  color: var(--accent);
+}
+
+.right {
+  height: 100%;
+}
+
+.myPosts {
+  height: calc(100svh - 240px);
+  overflow-y: auto;
+  border-right: 1px solid var(--dark-gray);
+}
+
+@media (max-width: 600px) {
+  .mainContainer {
+    padding: 0;
+    grid-template-columns: 1fr;
+  }
+}
