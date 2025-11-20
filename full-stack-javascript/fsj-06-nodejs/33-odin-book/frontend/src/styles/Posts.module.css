@@ -71,6 +71,8 @@
   gap: 0.25rem;
   color: var(--gray);
   cursor: pointer;
+  background: transparent;
+  border: none;
 
   transition: opacity 0.3s ease;
 }

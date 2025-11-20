@@ -70,4 +70,32 @@ async function createPostLike(req, res) {
 	}
 }
 
-export default { getPosts, createPost, getPostLikes, createPostLike };
+async function deletePostLike(req, res) {
+	const { likeId } = req.params;
+
+	try {
+		const postLike = await prisma.postLike.delete({
+			where: {
+				id: +likeId,
+			},
+		});
+
+		const postLikes = await prisma.postLike.findMany();
+
+		res.status(200).json({
+			message: "Deleted successfully.",
+			deleted: postLike,
+			postLikes: postLikes,
+		});
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+export default {
+	getPosts,
+	createPost,
+	getPostLikes,
+	createPostLike,
+	deletePostLike,
+};
