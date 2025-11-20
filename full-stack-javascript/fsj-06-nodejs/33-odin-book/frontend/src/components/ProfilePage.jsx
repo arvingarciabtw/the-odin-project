@@ -1,7 +1,6 @@
 import styles from "../styles/ProfilePage.module.css";
 import Sidebar from "./Sidebar";
 import Hamburger from "./Hamburger";
-import { Post } from "./Posts";
 
 function ProfilePage() {
 	return (
@@ -36,9 +35,7 @@ function ProfilePage() {
 function MyPosts() {
 	return (
 		<section className={styles.myPosts}>
-			<Post />
-			<Post />
-			<Post />
+			<p>My posts here...</p>
 		</section>
 	);
 }

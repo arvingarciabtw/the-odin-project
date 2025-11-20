@@ -4,7 +4,16 @@ const prisma = new PrismaClient();
 
 async function getPosts(_req, res) {
 	try {
-		const posts = await prisma.post.findMany();
+		const posts = await prisma.post.findMany({
+			include: {
+				author: true,
+				comments: true,
+				likes: true,
+			},
+			orderBy: {
+				created_at: "desc",
+			},
+		});
 
 		res.status(200).json(posts);
 	} catch (err) {

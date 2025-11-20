@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
-	const { navigate } = useNavigate();
+	const navigate = useNavigate();
 	const { logout } = useAuth();
 
 	function handleLogout() {
