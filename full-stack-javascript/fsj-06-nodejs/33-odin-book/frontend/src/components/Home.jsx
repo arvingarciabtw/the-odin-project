@@ -1,6 +1,8 @@
+import styles from "../styles/Home.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import LoginForm from "../components/LoginForm";
 import Sidebar from "../components/Sidebar";
+import Posts from "../components/Posts";
 
 function Home() {
 	const { user } = useAuth();
@@ -9,18 +11,9 @@ function Home() {
 		<>
 			{user ? (
 				<>
-					<main
-						style={{
-							display: "grid",
-							gridTemplateColumns: "200px 1fr",
-						}}
-					>
+					<main className={styles.mainContainer}>
 						<Sidebar />
-						<section>
-							<h1>
-								Welcome, {user.first_name} {user.last_name}!
-							</h1>
-						</section>
+						<Posts />
 					</main>
 				</>
 			) : (

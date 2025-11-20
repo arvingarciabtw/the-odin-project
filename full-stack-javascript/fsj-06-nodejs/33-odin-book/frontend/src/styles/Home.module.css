@@ -1,0 +1,11 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+@media (max-width: 600px) {
+  .mainContainer {
+    padding: 0;
+    grid-template-columns: 1fr;
+  }
+}

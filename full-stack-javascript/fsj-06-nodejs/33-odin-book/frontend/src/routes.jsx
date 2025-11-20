@@ -3,6 +3,9 @@ import Error from "./components/Error";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import SignUpForm from "./components/SignUpForm";
+import PostsPage from "./components/PostsPage";
+import UsersPage from "./components/UsersPage";
+import ProfilePage from "./components/ProfilePage";
 
 const routes = [
 	{
@@ -14,7 +17,11 @@ const routes = [
 			{ path: "/sign-up", element: <SignUpForm /> },
 			{
 				element: <ProtectedRoute />,
-				children: [],
+				children: [
+					{ path: "/posts", element: <PostsPage /> },
+					{ path: "/users", element: <UsersPage /> },
+					{ path: "/profile", element: <ProfilePage /> },
+				],
 			},
 		],
 	},
