@@ -1,0 +1,65 @@
+.users {
+  height: 100svh;
+  border-right: 1px solid var(--dark-gray);
+}
+
+.user {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 44px 1fr 88px;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--dark-gray);
+}
+
+.user > img {
+  width: 44px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.userDetails > .bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.5rem;
+  color: var(--gray);
+}
+
+.fullname {
+  font-weight: bold;
+}
+
+.separator {
+  width: 3px;
+  height: 3px;
+  background: var(--gray);
+  border-radius: 50%;
+}
+
+.followButton {
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  background: var(--dark-gray);
+  color: var(--fg);
+  transition: opacity 0.3s ease;
+}
+
+.followButton:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 800px) {
+  .user {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .followButton {
+    padding: 0.5em 1.5em;
+    border-radius: 20px;
+  }
+}
