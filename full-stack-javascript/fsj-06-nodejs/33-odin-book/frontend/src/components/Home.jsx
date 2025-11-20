@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import LoginForm from "../components/LoginForm";
 import Sidebar from "../components/Sidebar";
 import Posts from "../components/Posts";
+import Hamburger from "../components/Hamburger";
 
 function Home() {
 	const { user } = useAuth();
@@ -12,6 +13,7 @@ function Home() {
 			{user ? (
 				<>
 					<main className={styles.mainContainer}>
+						<Hamburger />
 						<Sidebar />
 						<Posts />
 					</main>

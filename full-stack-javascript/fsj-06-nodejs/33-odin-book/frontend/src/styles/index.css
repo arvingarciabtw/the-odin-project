@@ -66,7 +66,7 @@ ul {
 
 main {
   margin: 0 auto;
-  padding: 0 0 0 1.5rem;
+  padding: 0 1.5rem;
   width: 100%;
   max-width: 1000px;
   position: relative;
@@ -95,6 +95,7 @@ form > label {
 form > input,
 form > select,
 form > textarea {
+  width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
 
@@ -166,4 +167,33 @@ input[type='password'] {
 }
 input:focus {
   outline: 1px solid var(--gray);
+}
+
+.btn-hamburger {
+  display: none;
+  margin: 1.5rem 0 0 1.5rem;
+  width: 36px;
+  background: transparent;
+  border: none;
+}
+
+.icon-hamburger {
+  width: 32px;
+  aspect-ratio: 1 / 1;
+  color: var(--gray);
+  transition: opacity 0.3s ease;
+}
+
+.icon-hamburger:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .btn-hamburger {
+    display: block;
+  }
+
+  main {
+    gap: 0;
+  }
 }
