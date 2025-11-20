@@ -1,9 +1,19 @@
 import styles from "../styles/Hamburger.module.css";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Hamburger() {
+	const { navigate } = useNavigate();
+	const { logout } = useAuth();
+
 	const [open, setOpen] = useState(false);
+
+	function handleLogout() {
+		logout();
+		navigate("/");
+	}
 
 	const handleClose = () => {
 		setOpen(false);
@@ -117,6 +127,9 @@ function Hamburger() {
 					</li>
 				</ul>
 				<button className={styles.btnNewPost}>New Post</button>
+				<button className={styles.btnLogout} onClick={handleLogout}>
+					Log out
+				</button>
 			</Menu>
 		</>
 	);

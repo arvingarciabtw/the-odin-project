@@ -1,0 +1,12 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+}
+
+@media (max-width: 600px) {
+  .mainContainer {
+    padding: 0;
+    grid-template-columns: 1fr;
+  }
+}

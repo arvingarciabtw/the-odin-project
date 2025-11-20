@@ -63,6 +63,20 @@
   opacity: 0.7;
 }
 
+.btnLogout {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  color: var(--gray);
+  transition: opacity 0.3s ease;
+}
+
+.btnLogout:hover {
+  opacity: 0.7;
+}
+
 @media (max-width: 600px) {
   .sidebar {
     display: none;
