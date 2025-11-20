@@ -60,11 +60,15 @@ button {
   cursor: pointer;
 }
 
+ul {
+  list-style-type: none;
+}
+
 main {
   margin: 0 auto;
   padding: 0 1.5rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   position: relative;
 
   flex: 1;

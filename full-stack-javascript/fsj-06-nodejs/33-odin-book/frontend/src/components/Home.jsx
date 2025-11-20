@@ -1,7 +1,6 @@
 import { useAuth } from "../contexts/AuthContext";
 import LoginForm from "../components/LoginForm";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
 
 function Home() {
 	const { user } = useAuth();
@@ -10,13 +9,19 @@ function Home() {
 		<>
 			{user ? (
 				<>
-					<NavBar />
-					<main>
-						<h1>
-							Welcome, {user.first_name} {user.last_name}!
-						</h1>
+					<main
+						style={{
+							display: "grid",
+							gridTemplateColumns: "200px 1fr",
+						}}
+					>
+						<Sidebar />
+						<section>
+							<h1>
+								Welcome, {user.first_name} {user.last_name}!
+							</h1>
+						</section>
 					</main>
-					<Footer />
 				</>
 			) : (
 				<main

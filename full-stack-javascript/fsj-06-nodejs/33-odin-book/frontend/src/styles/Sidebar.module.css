@@ -1,0 +1,61 @@
+.sidebar {
+  height: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-right: 1px solid var(--dark-gray);
+}
+
+.profilePicture {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
+
+.profilePicture:hover {
+  opacity: 0.7;
+}
+
+.sidebarLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.sidebarLinks > li > a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--fg);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.sidebarLinks > li > a:hover {
+  opacity: 0.6;
+}
+
+.sidebarLinks > li > a > svg {
+  width: 24px;
+  aspect-ratio: 1 / 1;
+}
+
+.btnNewPost {
+  margin-top: 0.5rem;
+  padding: 0.5em 1.5em;
+  align-self: flex-start;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 24px;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.btnNewPost:hover {
+  opacity: 0.7;
+}
