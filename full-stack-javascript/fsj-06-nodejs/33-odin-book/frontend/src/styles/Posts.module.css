@@ -42,8 +42,9 @@
 
 .post .top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0 0.5rem;
 }
 
 .fullname {
