@@ -41,6 +41,9 @@ async function getPostById(req, res) {
 						author: true,
 						likes: true,
 					},
+					orderBy: {
+						created_at: "desc",
+					},
 				},
 				likes: true,
 			},
