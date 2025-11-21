@@ -1,0 +1,64 @@
+.comment {
+  padding: 1.5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1rem;
+  border-bottom: 1px solid var(--dark-gray);
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.commentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.userProfilePicture {
+  width: 44px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.comment .top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fullname {
+  font-weight: bold;
+}
+
+.username,
+.datePosted {
+  color: var(--gray);
+}
+
+.separator {
+  width: 3px;
+  height: 3px;
+  background: var(--gray);
+  border-radius: 50%;
+}
+
+.commentInteractions {
+  margin-top: 0.25rem;
+  display: flex;
+  gap: 4rem;
+}
+
+.commentInteractions svg {
+  width: 20px;
+  aspect-ratio: 1 / 1;
+}
+
+.likes {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--gray);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}

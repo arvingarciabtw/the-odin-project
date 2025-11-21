@@ -7,7 +7,12 @@ async function getPosts(_req, res) {
 		const posts = await prisma.post.findMany({
 			include: {
 				author: true,
-				comments: true,
+				comments: {
+					include: {
+						author: true,
+						likes: true,
+					},
+				},
 				likes: true,
 			},
 			orderBy: {
@@ -31,7 +36,12 @@ async function getPostById(req, res) {
 			},
 			include: {
 				author: true,
-				comments: true,
+				comments: {
+					include: {
+						author: true,
+						likes: true,
+					},
+				},
 				likes: true,
 			},
 		});

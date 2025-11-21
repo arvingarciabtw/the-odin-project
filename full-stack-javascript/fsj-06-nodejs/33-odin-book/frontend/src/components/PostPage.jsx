@@ -1,6 +1,7 @@
 import styles from "../styles/PostPage.module.css";
 import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
+import Comment from "../components/Comment";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
@@ -63,7 +64,6 @@ function PostPage() {
 		return (
 			<main className={styles.mainContainer}>
 				<Sidebar />
-				<p>Loading...</p>
 			</main>
 		);
 	}
@@ -84,6 +84,18 @@ function PostPage() {
 						addSuffix: false,
 					})}
 				/>
+				{post.comments.map((comment) => (
+					<Comment
+						key={comment.id}
+						id={comment.id}
+						author={comment.author}
+						content={comment.content}
+						likes={comment.likes}
+						commentedAt={formatDistanceToNow(new Date(comment.created_at), {
+							addSuffix: false,
+						})}
+					/>
+				))}
 			</section>
 		</main>
 	);
