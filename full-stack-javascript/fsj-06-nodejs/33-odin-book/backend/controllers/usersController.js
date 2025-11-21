@@ -26,13 +26,33 @@ async function getUserById(req, res) {
 				id: +userId,
 			},
 			include: {
-				followers: true,
+				followers: {
+					include: {
+						following: {
+							include: {
+								posts: {
+									orderBy: {
+										created_at: "desc",
+									},
+									include: {
+										author: true,
+										comments: true,
+										likes: true,
+									},
+								},
+							},
+						},
+					},
+				},
 				following: true,
 				posts: {
 					include: {
 						author: true,
 						comments: true,
 						likes: true,
+					},
+					orderBy: {
+						created_at: "desc",
 					},
 				},
 			},
