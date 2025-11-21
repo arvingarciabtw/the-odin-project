@@ -22,4 +22,15 @@ export const api = {
 			body: JSON.stringify(data),
 		});
 	},
+	delete: (endpoint, data) => {
+		const headers = {
+			"Content-Type": "application/json",
+			...getAuthHeaders(),
+		};
+		return fetch(`${API_URL}${endpoint}`, {
+			method: "DELETE",
+			headers,
+			body: JSON.stringify(data),
+		});
+	},
 };
