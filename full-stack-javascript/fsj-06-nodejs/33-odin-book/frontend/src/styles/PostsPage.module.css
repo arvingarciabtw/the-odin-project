@@ -5,6 +5,12 @@
   gap: 0;
 }
 
+.posts {
+  height: 100svh;
+  overflow-y: auto;
+  border-right: 1px solid var(--dark-gray);
+}
+
 @media (max-width: 600px) {
   .mainContainer {
     padding: 0;
