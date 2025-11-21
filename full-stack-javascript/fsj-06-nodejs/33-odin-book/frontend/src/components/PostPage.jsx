@@ -12,6 +12,7 @@ function PostPage() {
 	const { user } = useAuth();
 	const { postId } = useParams();
 	const [post, setPost] = useState(null);
+	const [comment, setComment] = useState();
 
 	useEffect(() => {
 		async function fetchPostById() {
@@ -116,6 +117,42 @@ function PostPage() {
 		}
 	}
 
+	function handleChange(e) {
+		setComment(e.target.value);
+	}
+
+	async function handleSubmit(e) {
+		e.preventDefault();
+
+		try {
+			const response = await api.post("/api/comments", {
+				authorId: user.id,
+				postId: +postId,
+				content: comment,
+			});
+			const newCommentData = await response.json();
+
+			const newComment = {
+				...newCommentData,
+				author: {
+					id: user.id,
+					first_name: user.first_name,
+					last_name: user.last_name,
+					username: user.username,
+				},
+				likes: [],
+			};
+
+			setPost((prevPost) => ({
+				...prevPost,
+				comments: [newComment, ...prevPost.comments],
+			}));
+			setComment("");
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	}
+
 	if (!post) {
 		return (
 			<main className={styles.mainContainer}>
@@ -140,6 +177,17 @@ function PostPage() {
 						addSuffix: false,
 					})}
 				/>
+				<form className={styles.createComment} onSubmit={handleSubmit}>
+					<input
+						type="text"
+						name="comment"
+						id="comment"
+						onChange={handleChange}
+						value={comment || ""}
+						required
+					/>
+					<button type="submit">Comment</button>
+				</form>
 				{post.comments.map((comment) => (
 					<Comment
 						key={comment.id}
