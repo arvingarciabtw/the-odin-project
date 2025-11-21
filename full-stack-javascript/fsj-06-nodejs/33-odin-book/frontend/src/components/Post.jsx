@@ -1,6 +1,7 @@
 import styles from "../styles/Posts.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { shortenTimeFormat } from "../utils/shortenTimeFormat";
+import { Link } from "react-router-dom";
 
 function Post({
 	id,
@@ -16,7 +17,8 @@ function Post({
 
 	const isLiked = likes.some((like) => like.user_id === user.id);
 
-	function handleLikeClick() {
+	function handleLikeClick(e) {
+		e.preventDefault();
 		if (isLiked) {
 			handleDislike(user.id, id);
 		} else {
@@ -25,7 +27,7 @@ function Post({
 	}
 
 	return (
-		<div className={styles.post}>
+		<Link className={styles.post} to={`/posts/${id}`}>
 			<div>
 				<img
 					className={styles.userProfilePicture}
@@ -61,7 +63,7 @@ function Post({
 						</svg>
 						<p>{comments.length}</p>
 					</button>
-					<button className={styles.likes} onClick={handleLikeClick}>
+					<button className={styles.likes} onClick={(e) => handleLikeClick(e)}>
 						<svg
 							className={styles.likeIcon}
 							xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +94,7 @@ function Post({
 					</button>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 

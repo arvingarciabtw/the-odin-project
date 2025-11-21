@@ -18,6 +18,14 @@
   grid-template-columns: 44px 1fr;
   gap: 1rem;
   border-bottom: 1px solid var(--dark-gray);
+  text-decoration: none;
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.post:hover {
+  background: var(--bg-alt);
 }
 
 .postDetails {

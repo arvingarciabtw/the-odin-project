@@ -21,6 +21,27 @@ async function getPosts(_req, res) {
 	}
 }
 
+async function getPostById(req, res) {
+	const { postId } = req.params;
+
+	try {
+		const post = await prisma.post.findUnique({
+			where: {
+				id: +postId,
+			},
+			include: {
+				author: true,
+				comments: true,
+				likes: true,
+			},
+		});
+
+		res.status(200).json(post);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
 async function createPost(req, res) {
 	const { content, authorId } = req.body;
 	try {
@@ -97,6 +118,7 @@ async function deletePostLike(req, res) {
 
 export default {
 	getPosts,
+	getPostById,
 	createPost,
 	getPostLikes,
 	createPostLike,

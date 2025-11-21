@@ -1,0 +1,27 @@
+.mainContainer {
+  padding-right: 0;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+}
+
+.postPage {
+  padding: 0;
+  height: 100%;
+  max-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  align-content: start;
+  border-right: 1px solid var(--dark-gray);
+  overflow-y: auto;
+}
+
+@media (max-width: 600px) {
+  .mainContainer {
+    padding: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr;
+  }
+}

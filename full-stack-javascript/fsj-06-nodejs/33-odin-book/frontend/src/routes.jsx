@@ -7,6 +7,7 @@ import PostsPage from "./components/PostsPage";
 import UsersPage from "./components/UsersPage";
 import ProfilePage from "./components/ProfilePage";
 import CreatePost from "./components/CreatePost";
+import PostPage from "./components/PostPage";
 
 const routes = [
 	{
@@ -23,6 +24,7 @@ const routes = [
 					{ path: "/users", element: <UsersPage /> },
 					{ path: "/profile", element: <ProfilePage /> },
 					{ path: "/create-post", element: <CreatePost /> },
+					{ path: "/posts/:postId", element: <PostPage /> },
 				],
 			},
 		],
