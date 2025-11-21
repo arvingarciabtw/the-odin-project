@@ -17,4 +17,31 @@ async function getUsers(req, res) {
 	}
 }
 
-export default { getUsers };
+async function getUserById(req, res) {
+	const { userId } = req.params;
+
+	try {
+		const user = await prisma.user.findUnique({
+			where: {
+				id: +userId,
+			},
+			include: {
+				followers: true,
+				following: true,
+				posts: {
+					include: {
+						author: true,
+						comments: true,
+						likes: true,
+					},
+				},
+			},
+		});
+
+		res.status(200).json(user);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+export default { getUsers, getUserById };

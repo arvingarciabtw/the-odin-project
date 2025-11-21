@@ -7,5 +7,6 @@ const users = Router();
 const auth = passport.authenticate("jwt", { session: false });
 
 users.get("/", auth, usersController.getUsers);
+users.get("/:userId", auth, usersController.getUserById);
 
 export default users;
