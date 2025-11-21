@@ -2,17 +2,25 @@ import styles from "../styles/Posts.module.css";
 import { useAuth } from "../contexts/AuthContext";
 import { shortenTimeFormat } from "../utils/shortenTimeFormat";
 
-function Post({ id, author, content, postedAt, comments, likes, handleLike }) {
+function Post({
+	id,
+	author,
+	content,
+	postedAt,
+	comments,
+	likes,
+	handleLike,
+	handleDislike,
+}) {
 	const { user } = useAuth();
 
 	const isLiked = likes.some((like) => like.user_id === user.id);
 
 	function handleLikeClick() {
 		if (isLiked) {
-			console.log(`Unlike  ${content}`);
+			handleDislike(user.id, id);
 		} else {
-			console.log(`Like  ${content}`);
-			handleLike(id, user.id);
+			handleLike(user.id, id);
 		}
 	}
 
@@ -64,6 +72,7 @@ function Post({ id, author, content, postedAt, comments, likes, handleLike }) {
 							style={{
 								fill: isLiked ? "#ec4899" : "none",
 								stroke: isLiked ? "#ec4899" : "currentColor",
+								transition: "fill 0.3s ease, stroke 0.3s ease",
 							}}
 						>
 							<path
@@ -74,7 +83,8 @@ function Post({ id, author, content, postedAt, comments, likes, handleLike }) {
 						</svg>
 						<p
 							style={{
-								color: isLiked ? "#ec4899" : "none",
+								color: isLiked ? "#ec4899" : "currentColor",
+								transition: "color 0.3s ease",
 							}}
 						>
 							{likes.length}

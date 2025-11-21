@@ -10,6 +10,6 @@ posts.get("/", auth, postsController.getPosts);
 posts.post("/", auth, postsController.createPost);
 posts.get("/:postId", auth, postsController.getPostLikes);
 posts.post("/likes", auth, postsController.createPostLike);
-posts.delete("/likes/:likeId", auth, postsController.deletePostLike);
+posts.delete("/likes", auth, postsController.deletePostLike);
 
 export default posts;

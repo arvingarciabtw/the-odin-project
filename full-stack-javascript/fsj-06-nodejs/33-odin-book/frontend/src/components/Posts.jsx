@@ -22,7 +22,7 @@ function Posts() {
 		fetchPosts();
 	}, []);
 
-	async function handleLike(postId, userId) {
+	async function handleLike(userId, postId) {
 		try {
 			await api.post("/api/posts/likes", {
 				userId,
@@ -40,7 +40,29 @@ function Posts() {
 				),
 			);
 		} catch (err) {
-			console.error("Failed to like the post:", err.message);
+			throw new Error(err.message);
+		}
+	}
+
+	async function handleDislike(userId, postId) {
+		try {
+			await api.delete("/api/posts/likes", {
+				userId,
+				postId,
+			});
+
+			setPosts((prevPosts) =>
+				prevPosts.map((post) =>
+					post.id === postId
+						? {
+								...post,
+								likes: post.likes.filter((like) => like.user_id !== userId),
+							}
+						: post,
+				),
+			);
+		} catch (err) {
+			throw new Error(err.message);
 		}
 	}
 
@@ -58,6 +80,7 @@ function Posts() {
 					comments={post.comments}
 					likes={post.likes}
 					handleLike={handleLike}
+					handleDislike={handleDislike}
 				/>
 			))}
 		</section>

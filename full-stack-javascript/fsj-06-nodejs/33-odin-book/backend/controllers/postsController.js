@@ -71,12 +71,15 @@ async function createPostLike(req, res) {
 }
 
 async function deletePostLike(req, res) {
-	const { likeId } = req.params;
+	const { userId, postId } = req.body;
 
 	try {
 		const postLike = await prisma.postLike.delete({
 			where: {
-				id: +likeId,
+				user_id_post_id: {
+					user_id: userId,
+					post_id: postId,
+				},
 			},
 		});
 
