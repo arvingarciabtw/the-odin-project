@@ -60,6 +60,62 @@ function PostPage() {
 		}
 	}
 
+	async function handleCommentLike(userId, commentId) {
+		try {
+			await api.post("/api/comments/likes", {
+				userId,
+				commentId,
+			});
+
+			setPost((prevPost) => {
+				const updatedComments = prevPost.comments.map((comment) => {
+					if (comment.id === commentId) {
+						return {
+							...comment,
+							likes: [...comment.likes, { user_id: userId }],
+						};
+					}
+					return comment;
+				});
+
+				return {
+					...prevPost,
+					comments: updatedComments,
+				};
+			});
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	}
+
+	async function handleCommentDislike(userId, commentId) {
+		try {
+			await api.delete("/api/comments/likes", {
+				userId,
+				commentId,
+			});
+
+			setPost((prevPost) => {
+				const updatedComments = prevPost.comments.map((comment) => {
+					if (comment.id === commentId) {
+						return {
+							...comment,
+							likes: comment.likes.filter((like) => like.user_id !== userId),
+						};
+					}
+					return comment;
+				});
+
+				return {
+					...prevPost,
+					comments: updatedComments,
+				};
+			});
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	}
+
 	if (!post) {
 		return (
 			<main className={styles.mainContainer}>
@@ -91,6 +147,8 @@ function PostPage() {
 						author={comment.author}
 						content={comment.content}
 						likes={comment.likes}
+						handleLike={handleCommentLike}
+						handleDislike={handleCommentDislike}
 						commentedAt={formatDistanceToNow(new Date(comment.created_at), {
 							addSuffix: false,
 						})}

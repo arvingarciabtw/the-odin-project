@@ -10,6 +10,9 @@ async function getComments(req, res) {
 			where: {
 				post_id: +postId,
 			},
+			orderBy: {
+				created_at: "desc",
+			},
 		});
 
 		res.status(200).json(comments);
@@ -69,9 +72,35 @@ async function createCommentLike(req, res) {
 	}
 }
 
+async function deleteCommentLike(req, res) {
+	const { userId, commentId } = req.body;
+
+	try {
+		const commentLike = await prisma.commentLike.delete({
+			where: {
+				user_id_comment_id: {
+					user_id: userId,
+					comment_id: commentId,
+				},
+			},
+		});
+
+		const commentLikes = await prisma.commentLike.findMany();
+
+		res.status(200).json({
+			message: "Deleted successfully.",
+			deleted: commentLike,
+			commentLikes: commentLikes,
+		});
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
 export default {
 	getComments,
 	createComment,
 	getCommentLikes,
 	createCommentLike,
+	deleteCommentLike,
 };

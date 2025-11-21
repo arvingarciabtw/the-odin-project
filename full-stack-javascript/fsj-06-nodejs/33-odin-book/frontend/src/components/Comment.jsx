@@ -2,10 +2,27 @@ import styles from "../styles/Comment.module.css";
 import { shortenTimeFormat } from "../utils/shortenTimeFormat";
 import { useAuth } from "../contexts/AuthContext";
 
-function Comment({ id, author, content, likes, commentedAt }) {
+function Comment({
+	id,
+	author,
+	content,
+	likes,
+	commentedAt,
+	handleLike,
+	handleDislike,
+}) {
 	const { user } = useAuth();
 
 	const isLiked = likes.some((like) => like.user_id === user.id);
+
+	function handleLikeClick(e) {
+		e.preventDefault();
+		if (isLiked) {
+			handleDislike(user.id, id);
+		} else {
+			handleLike(user.id, id);
+		}
+	}
 
 	return (
 		<div className={styles.comment}>

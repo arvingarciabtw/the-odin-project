@@ -10,5 +10,6 @@ comments.get("/:postId", auth, commentsController.getComments);
 comments.post("/", auth, commentsController.createComment);
 comments.get("/likes/:commentId", auth, commentsController.getCommentLikes);
 comments.post("/likes", auth, commentsController.createCommentLike);
+comments.delete("/likes", auth, commentsController.deleteCommentLike);
 
 export default comments;
