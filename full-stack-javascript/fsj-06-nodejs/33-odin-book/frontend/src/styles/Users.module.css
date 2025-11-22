@@ -1,6 +1,8 @@
 .users {
-  height: 100svh;
+  height: 100%;
+  max-height: 100svh;
   border-right: 1px solid var(--dark-gray);
+  overflow-y: auto;
 }
 
 .user {

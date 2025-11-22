@@ -7,6 +7,7 @@ function Users() {
 	const { user: loggedUser } = useAuth();
 
 	const [users, setUsers] = useState([]);
+	const [key, setKey] = useState(0);
 
 	useEffect(() => {
 		try {
@@ -23,18 +24,22 @@ function Users() {
 		} catch (err) {
 			throw new Error(err.message);
 		}
-	}, []);
+	}, [key]);
+
+	function refreshUsers() {
+		setKey((prevKey) => prevKey + 1);
+	}
 
 	return (
 		<section className={styles.users}>
 			{users.map((user) => (
-				<User key={user.id} user={user} />
+				<User key={user.id} user={user} refreshUsers={refreshUsers} />
 			))}
 		</section>
 	);
 }
 
-function User({ user }) {
+function User({ user, refreshUsers }) {
 	const { user: loggedUser } = useAuth();
 
 	const isFollowing = user.following.some(
@@ -47,6 +52,19 @@ function User({ user }) {
 		status = "Unfollow";
 	} else {
 		status = "Follow";
+	}
+
+	async function handleFollow() {
+		try {
+			if (status === "Follow") {
+				await api.post(`/api/users/${user.id}/follow`);
+			} else {
+				await api.post(`/api/users/${user.id}/unfollow`);
+			}
+			refreshUsers();
+		} catch (err) {
+			throw new Error(err.message);
+		}
 	}
 
 	return (
@@ -68,7 +86,9 @@ function User({ user }) {
 					</p>
 				</div>
 			</div>
-			<button className={styles.followButton}>{status}</button>
+			<button className={styles.followButton} onClick={handleFollow}>
+				{status}
+			</button>
 		</div>
 	);
 }
