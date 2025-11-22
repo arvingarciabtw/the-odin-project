@@ -41,16 +41,10 @@ function User({ user }) {
 		(item) => item.follower_id === loggedUser.id && item.status === "ACCEPTED",
 	);
 
-	const isPending = user.following.some(
-		(item) => item.follower_id === loggedUser.id && item.status === "PENDING",
-	);
-
 	let status;
 
 	if (isFollowing) {
 		status = "Unfollow";
-	} else if (isPending) {
-		status = "Pending";
 	} else {
 		status = "Follow";
 	}
