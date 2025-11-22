@@ -64,4 +64,43 @@ async function getUserById(req, res) {
 	}
 }
 
-export default { getUsers, getUserById };
+async function followUser(req, res) {
+	const { userId } = req.params;
+	const { id: followerId } = req.user;
+
+	try {
+		await prisma.follower.create({
+			data: {
+				follower_id: followerId,
+				following_id: +userId,
+				status: "ACCEPTED",
+			},
+		});
+
+		res.status(200).json({ message: "User followed successfully" });
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+async function unfollowUser(req, res) {
+	const { userId } = req.params;
+	const { id: followerId } = req.user;
+
+	try {
+		await prisma.follower.delete({
+			where: {
+				follower_id_following_id: {
+					follower_id: followerId,
+					following_id: +userId,
+				},
+			},
+		});
+
+		res.status(200).json({ message: "User unfollowed successfully" });
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+export default { getUsers, getUserById, followUser, unfollowUser };
