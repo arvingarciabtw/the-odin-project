@@ -57,7 +57,7 @@ function User({ user }) {
 
 	return (
 		<div className={styles.user}>
-			<img src="/logo_optimized.webp" alt="Profile picture" />
+			<img src="/default-profile.jpeg" alt="Profile picture" />
 			<div className={styles.userDetails}>
 				<p className={styles.fullname}>
 					{user.first_name} {user.last_name}

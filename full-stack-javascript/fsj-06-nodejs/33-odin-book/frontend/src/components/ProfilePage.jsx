@@ -93,7 +93,7 @@ function ProfilePage() {
 			<div className={styles.right}>
 				<section className={styles.profile}>
 					<div className={styles.profilePicture}>
-						<img src="/logo_optimized.webp" alt="Profile picture" />
+						<img src="/default-profile.jpeg" alt="Profile picture" />
 					</div>
 					<h1 className={styles.fullname}>
 						{user.first_name} {user.last_name}
@@ -111,7 +111,11 @@ function ProfilePage() {
 						</p>
 					</div>
 				</section>
-				<MyPosts user={user} handleLike={handleLike} handleDislike={handleDislike} />
+				<MyPosts
+					user={user}
+					handleLike={handleLike}
+					handleDislike={handleDislike}
+				/>
 			</div>
 		</main>
 	);

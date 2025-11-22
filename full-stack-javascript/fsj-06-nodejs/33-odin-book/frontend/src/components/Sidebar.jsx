@@ -17,7 +17,7 @@ function Sidebar() {
 			<Link to="/">
 				<img
 					className={styles.profilePicture}
-					src="/logo_optimized.webp"
+					src="/default-profile.jpeg"
 					alt="Arvin Garcia logo"
 				/>
 			</Link>
