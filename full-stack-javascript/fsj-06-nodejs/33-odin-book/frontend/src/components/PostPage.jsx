@@ -1,4 +1,5 @@
 import styles from "../styles/PostPage.module.css";
+import Hamburger from "../components/Hamburger";
 import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
 import Comment from "../components/Comment";
@@ -163,6 +164,7 @@ function PostPage() {
 
 	return (
 		<main className={styles.mainContainer}>
+			<Hamburger />
 			<Sidebar />
 			<section className={styles.postPage}>
 				<Post

@@ -7,8 +7,7 @@
 
 .postPage {
   padding: 0;
-  height: 100%;
-  max-height: 100svh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
