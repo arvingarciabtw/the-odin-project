@@ -29,7 +29,7 @@ function Comment({
 			<div>
 				<img
 					className={styles.userProfilePicture}
-					src="/logo_optimized.webp"
+					src="/default-profile.jpeg"
 					alt="Profile picture"
 				/>
 			</div>
