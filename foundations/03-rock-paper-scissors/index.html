@@ -1,35 +1,126 @@
 <!doctype html>
-<hmtl>
+<html class="dark">
   <head lang="en">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta
       name="description"
-      content="A rock paper scissors game played via the browser console."
+      content="My third project in The Odin Project curriculum, a rock paper scissors game."
     />
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <script defer src="./script.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1 class="title">Rock Paper Scissors</h1>
-      <div class="scores-container">
-        <h4 class="human-score">PLAYER SCORE: <span class="score">0</span></h4>
-        <h4 class="computer-score">
-          COMPUTER SCORE: <span class="score">0</span>
-        </h4>
+    <header>
+      <nav class="wrapper">
+        <div class="left">
+          <div class="logo"></div>
+          <h1 class="app-name">rps</h1>
+        </div>
+        <ul class="right">
+          <div class="header-buttons">
+            <li>
+              <button class="theme-toggle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="theme-toggle-icon"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                  <path d="M12 3l0 18"></path>
+                  <path d="M12 9l4.65 -4.65"></path>
+                  <path d="M12 14.3l7.37 -7.37"></path>
+                  <path d="M12 19.6l8.85 -8.85"></path>
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button class="menu-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="menu-icon"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              </button>
+            </li>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <main class="wrapper">
+      <div class="game-wrapper">
+        <p class="instructions">
+          Welcome to this rock paper scissors game! You will be up against a
+          computer. First to a score of 5, wins the game.
+        </p>
+        <p class="game-status">Choose your move!</p>
+        <div class="choices-wrapper">
+          <button id="rock-btn">Rock</button>
+          <button id="paper-btn">Paper</button>
+          <button id="scissors-btn">Scissors</button>
+        </div>
+        <div class="players-wrapper">
+          <p>Player: <span class="score" id="player-score">0</span></p>
+          <p>Computer: <span class="score" id="computer-score">0</span></p>
+        </div>
       </div>
-      <div class="moves-container">
-        <h2 class="human-move">MOVE</h2>
-        <h2 class="computer-move">MOVE</h2>
-      </div>
-      <p class="move-message">Choose your move: rock, paper, or scissors!</p>
-      <div class="buttons-container">
-        <button class="rock-button" type="button">ROCK</button>
-        <button class="paper-button" type="button">PAPER</button>
-        <button class="scissors-button" type="button">SCISSORS</button>
-      </div>
+    </main>
+    <footer>
+      Made by
+      <a
+        class="developer"
+        href="https://github.com/arvingarciabtw/the-odin-project"
+        target="_blank"
+        rel="noopener noreferrer"
+        >@arvingarciabtw</a
+      >
+    </footer>
+    <div class="modal">
+      <button class="close-modal-button" aria-label="Close modal">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="close-modal-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/index.html">About</a></li>
+        <li><a href="/index.html">Sign in</a></li>
+      </ul>
     </div>
-    <script src="script.js"></script>
   </body>
-</hmtl>
+</html>
