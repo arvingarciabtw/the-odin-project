@@ -48,194 +48,71 @@ closeModal.addEventListener("click", () => {
   --- GAME ---
 */
 const gameStatus = document.querySelector(".game-status");
+const buttons = document.querySelectorAll(".choice-btn");
+const playerScoreEl = document.querySelector("#player-score");
+const computerScoreEl = document.querySelector("#computer-score");
 
-const rock = document.querySelector("#rock-btn");
-const paper = document.querySelector("#paper-btn");
-const scissors = document.querySelector("#scissors-btn");
+const TURN_DURATION = 2000;
+const WINNING_SCORE = 5;
 
-const playerScore = document.querySelector("#player-score");
-const computerScore = document.querySelector("#computer-score");
-
-rock.addEventListener("click", () => {
-  const computerChoice = getComputerChoice();
-
-  const base = `Player clicked the rock button. Computer chose ${computerChoice}.`;
-  let victoryMessage;
-
-  switch (computerChoice) {
-    case "rock":
-      victoryMessage = "No one wins...";
-      break;
-    case "paper":
-      victoryMessage = "Computer wins!";
-      setTimeout(() => {
-        computerScore.textContent = Number(computerScore.textContent) + 1;
-      }, 2000);
-      break;
-    case "scissors":
-      victoryMessage = "Player wins!";
-      setTimeout(() => {
-        playerScore.textContent = Number(playerScore.textContent) + 1;
-      }, 2000);
-      break;
-    default:
-      victoryMessage = "";
-      break;
-  }
-
-  gameStatus.textContent = "Waiting for computer's move...";
-
-  rock.setAttribute("disabled", true);
-  paper.setAttribute("disabled", true);
-  scissors.setAttribute("disabled", true);
-
-  setTimeout(() => {
-    gameStatus.textContent = `${base} ${victoryMessage}`;
-
-    rock.removeAttribute("disabled");
-    paper.removeAttribute("disabled");
-    scissors.removeAttribute("disabled");
-
-    if (playerScore.textContent === "5" || computerScore.textContent === "5") {
-      rock.setAttribute("disabled", true);
-      paper.setAttribute("disabled", true);
-      scissors.setAttribute("disabled", true);
-
-      gameStatus.textContent = "Game over!";
-    }
-  }, 2000);
-});
-paper.addEventListener("click", () => {
-  const computerChoice = getComputerChoice();
-
-  const base = `Player clicked the paper button. Computer chose ${computerChoice}.`;
-  let victoryMessage;
-
-  switch (computerChoice) {
-    case "rock":
-      victoryMessage = "Player wins!";
-      setTimeout(() => {
-        playerScore.textContent = Number(playerScore.textContent) + 1;
-
-        if (playerScore.textContent === "5") {
-          rock.setAttribute("disabled", true);
-          paper.setAttribute("disabled", true);
-          scissors.setAttribute("disabled", true);
-        }
-      }, 2000);
-      break;
-    case "paper":
-      victoryMessage = "No one wins...";
-      break;
-    case "scissors":
-      victoryMessage = "Computer wins!";
-      setTimeout(() => {
-        computerScore.textContent = Number(computerScore.textContent) + 1;
-
-        if (computerScore.textContent === "5") {
-          rock.setAttribute("disabled", true);
-          paper.setAttribute("disabled", true);
-          scissors.setAttribute("disabled", true);
-        }
-      }, 2000);
-      break;
-    default:
-      victoryMessage = "";
-      break;
-  }
-
-  gameStatus.textContent = "Waiting for computer's move...";
-
-  rock.setAttribute("disabled", true);
-  paper.setAttribute("disabled", true);
-  scissors.setAttribute("disabled", true);
-
-  setTimeout(() => {
-    gameStatus.textContent = `${base} ${victoryMessage}`;
-
-    rock.removeAttribute("disabled");
-    paper.removeAttribute("disabled");
-    scissors.removeAttribute("disabled");
-
-    if (playerScore.textContent === "5" || computerScore.textContent === "5") {
-      rock.setAttribute("disabled", true);
-      paper.setAttribute("disabled", true);
-      scissors.setAttribute("disabled", true);
-
-      gameStatus.textContent = "Game over!";
-    }
-  }, 2000);
-});
-scissors.addEventListener("click", () => {
-  const computerChoice = getComputerChoice();
-
-  const base = `Player clicked the scissors button. Computer chose ${computerChoice}.`;
-  let victoryMessage;
-
-  switch (computerChoice) {
-    case "rock":
-      victoryMessage = "Computer wins!";
-      setTimeout(() => {
-        computerScore.textContent = Number(computerScore.textContent) + 1;
-
-        if (computerScore.textContent === "5") {
-          rock.setAttribute("disabled", true);
-          paper.setAttribute("disabled", true);
-          scissors.setAttribute("disabled", true);
-        }
-      }, 2000);
-      break;
-    case "paper":
-      victoryMessage = "Player wins!";
-      setTimeout(() => {
-        playerScore.textContent = Number(playerScore.textContent) + 1;
-
-        if (playerScore.textContent === "5") {
-          rock.setAttribute("disabled", true);
-          paper.setAttribute("disabled", true);
-          scissors.setAttribute("disabled", true);
-        }
-      }, 2000);
-      break;
-    case "scissors":
-      victoryMessage = "No one wins!";
-      break;
-    default:
-      victoryMessage = "";
-      break;
-  }
-
-  gameStatus.textContent = "Waiting for computer's move...";
-
-  rock.setAttribute("disabled", true);
-  paper.setAttribute("disabled", true);
-  scissors.setAttribute("disabled", true);
-
-  setTimeout(() => {
-    gameStatus.textContent = `${base} ${victoryMessage}`;
-
-    rock.removeAttribute("disabled");
-    paper.removeAttribute("disabled");
-    scissors.removeAttribute("disabled");
-
-    if (playerScore.textContent === "5" || computerScore.textContent === "5") {
-      rock.setAttribute("disabled", true);
-      paper.setAttribute("disabled", true);
-      scissors.setAttribute("disabled", true);
-
-      gameStatus.textContent = "Game over!";
-    }
-  }, 2000);
-});
+const outcomes = {
+  rock: { beats: "scissors", losesTo: "paper" },
+  paper: { beats: "rock", losesTo: "scissors" },
+  scissors: { beats: "paper", losesTo: "rock" },
+};
 
 function getComputerChoice() {
-  const num = Math.random();
+  const choices = Object.keys(outcomes);
+  return choices[Math.floor(Math.random() * choices.length)];
+}
 
-  if (num <= 0.33) {
-    return "rock";
-  } else if (num <= 0.66) {
-    return "paper";
-  } else {
-    return "scissors";
+function playRound(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) return "draw";
+  return outcomes[playerChoice].beats === computerChoice
+    ? "player"
+    : "computer";
+}
+
+function updateScore(winner) {
+  if (winner === "player") {
+    playerScoreEl.textContent = Number(playerScoreEl.textContent) + 1;
+  } else if (winner === "computer") {
+    computerScoreEl.textContent = Number(computerScoreEl.textContent) + 1;
   }
 }
+
+function handleChoice(e) {
+  const playerChoice = e.target.id.replace("-btn", "");
+  const computerChoice = getComputerChoice();
+
+  gameStatus.textContent = "Waiting for computer's move...";
+  toggleButtons(true);
+
+  setTimeout(() => {
+    const winner = playRound(playerChoice, computerChoice);
+    const messages = {
+      player: "Player wins!",
+      computer: "Computer wins!",
+      draw: "No one wins...",
+    };
+
+    updateScore(winner);
+    gameStatus.textContent = `Player chose ${playerChoice}. Computer chose ${computerChoice}. ${messages[winner]}`;
+
+    if (
+      Number(playerScoreEl.textContent) >= WINNING_SCORE ||
+      Number(computerScoreEl.textContent) >= WINNING_SCORE
+    ) {
+      gameStatus.textContent = "Game over!";
+      toggleButtons(true);
+    } else {
+      toggleButtons(false);
+    }
+  }, TURN_DURATION);
+}
+
+function toggleButtons(disabled) {
+  buttons.forEach((btn) => (btn.disabled = disabled));
+}
+
+buttons.forEach((btn) => btn.addEventListener("click", handleChoice));
