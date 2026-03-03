@@ -1,144 +1,230 @@
-function add(firstOperand, secondOperand) {
-  return firstOperand + secondOperand;
+/*
+  --- THEME TOGGLE ---
+*/
+const root = document.querySelector("html");
+const toggler = document.querySelector(".theme-toggle");
+const toggleIcon = document.querySelector(".theme-toggle-icon");
+
+if (localStorage.getItem("theme") === "dark") {
+  root.classList.add("dark");
+} else {
+  root.classList.remove("dark");
 }
 
-function subtract(firstOperand, secondOperand) {
-  return firstOperand - secondOperand;
-}
-
-function multiply(firstOperand, secondOperand) {
-  return firstOperand * secondOperand;
-}
-
-function divide(firstOperand, secondOperand) {
-  if (secondOperand === 0) {
-    return "You cant divide by 0, silly!";
-  }
-
-  let quotient = firstOperand / secondOperand;
-
-  function countDecimals(value) {
-    if (Math.floor(value) === value) return 0;
-    return value.toString().split(".")[1].length || 0;
-  }
-
-  if (countDecimals(quotient) > 2) {
-    quotient = quotient.toFixed(2);
-  }
-
-  return +quotient;
-}
-
-function operate(operator, firstOperand, secondOperand) {
-  if (operator === "+") {
-    return add(firstOperand, secondOperand);
-  } else if (operator === "-") {
-    return subtract(firstOperand, secondOperand);
-  } else if (operator === "×") {
-    return multiply(firstOperand, secondOperand);
-  } else if (operator === "÷") {
-    return divide(firstOperand, secondOperand);
+toggler.addEventListener("click", () => {
+  if (localStorage.getItem("theme") === "dark") {
+    root.classList.remove("dark");
+    localStorage.setItem("theme", "light");
   } else {
-    console.error("Something went wrong!");
+    root.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+/*
+  --- MOBILE MENU ---
+*/
+const menu = document.querySelector(".menu-button");
+const closeModal = document.querySelector(".close-modal-button");
+const modal = document.querySelector(".modal");
+
+menu.addEventListener("click", () => {
+  if (modal.style.display === "grid") {
+    modal.style.display = "none";
+  } else {
+    modal.style.display = "grid";
+  }
+});
+
+closeModal.addEventListener("click", () => {
+  if (modal.style.display === "grid") {
+    modal.style.display = "none";
+  } else {
+    modal.style.display = "grid";
+  }
+});
+
+/*
+  --- CALCULATOR ---
+*/
+const inputs = document.querySelector(".inputs");
+
+let firstOperand;
+let operator;
+let secondOperand;
+
+function add(a, b) {
+  return a + b;
+}
+function subtract(a, b) {
+  return a - b;
+}
+function multiply(a, b) {
+  return a * b;
+}
+function divide(a, b) {
+  return a / b;
+}
+function operate(firstOperand, secondOperand, operator) {
+  if (
+    firstOperand === undefined ||
+    secondOperand === undefined ||
+    operator === undefined
+  ) {
+    console.error("Error. Performed an invalid operation.");
+  }
+
+  switch (operator) {
+    case "+":
+      const sum = add(+firstOperand, +secondOperand);
+      return toFixedIfNecessary(sum);
+    case "-":
+      const difference = subtract(+firstOperand, +secondOperand);
+      return toFixedIfNecessary(difference);
+    case "×":
+      const product = multiply(+firstOperand, +secondOperand);
+      return toFixedIfNecessary(product);
+    case "÷":
+      const quotient = divide(+firstOperand, +secondOperand);
+      return toFixedIfNecessary(quotient);
   }
 }
 
-const buttonsContainer = document.querySelector(".buttons-container");
-const display = document.querySelector(".display");
+function toFixedIfNecessary(value, dp = 2) {
+  return +parseFloat(value).toFixed(dp);
+}
 
-let isAnOperator = null;
-let firstOperand = null;
-let secondOperand = null;
-let operator = null;
+function check(input, isOperator = false) {
+  // Second operand case
+  if (firstOperand !== undefined && operator !== undefined) {
+    if (!isOperator) {
+      secondOperand =
+        secondOperand === undefined
+          ? input === 0
+            ? undefined
+            : String(input)
+          : secondOperand + input;
 
-buttonsContainer.addEventListener("click", (event) => {
-  let target = event.target;
+      output.textContent = `${firstOperand} ${operator} ${secondOperand === undefined ? "" : secondOperand}`;
+    }
 
-  // Replace multiple leading zeros
-  display.textContent = display.textContent.replace(/^0+/, "");
+    if (input === "-") {
+      secondOperand =
+        secondOperand === undefined ? String(input) : secondOperand;
 
-  const operators = "+-×÷=";
-
-  let temp = display.textContent;
-
-  // Display number when clicked
-  for (let i = 0; i <= 9; i++) {
-    const current = i.toString();
-
-    if (isAnOperator) {
-      switch (target.className) {
-        case current:
-          display.textContent = current;
-          break;
-      }
-    } else {
-      switch (target.className) {
-        case current:
-          display.textContent += current;
-          break;
-      }
+      output.textContent = `${firstOperand} ${operator} ${secondOperand === undefined ? "-" : secondOperand}`;
     }
   }
 
-  for (const operator of operators) {
-    if (target.textContent.includes(operator)) {
-      isAnOperator = true;
+  // Operator case
+  if (firstOperand !== undefined && isOperator && firstOperand !== "-") {
+    if (
+      secondOperand !== undefined &&
+      operator !== undefined &&
+      secondOperand !== "-"
+    ) {
+      firstOperand = String(operate(firstOperand, secondOperand, operator));
+      secondOperand = undefined;
+      operator = input;
+
+      output.textContent = `${firstOperand} ${operator}`;
+    } else {
+      if (secondOperand === undefined) {
+        operator = input;
+      }
+      operator =
+        operator === undefined ? input : input !== "-" ? operator : operator;
+
+      output.textContent = `${firstOperand} ${operator} ${secondOperand === "-" ? "-" : ""}`;
+    }
+  }
+
+  // First operand case
+  if (operator === undefined && secondOperand === undefined) {
+    if (!isOperator) {
+      firstOperand =
+        firstOperand === undefined
+          ? input === 0
+            ? undefined
+            : String(input)
+          : firstOperand + input;
+
+      output.textContent = firstOperand;
+    }
+
+    if (input === "-" && firstOperand === undefined) {
+      firstOperand = firstOperand === undefined ? String(input) : firstOperand;
+
+      output.textContent = firstOperand;
+    }
+  }
+}
+
+inputs.addEventListener("click", (evt) => {
+  const btn = evt.target.closest("button");
+
+  if (!btn) return;
+
+  switch (btn.id) {
+    case "zero":
+      check(0);
       break;
-    } else {
-      isAnOperator = false;
-    }
-  }
-
-  // Display symbols, clearing, and equal
-  switch (target.className) {
+    case "one":
+      check(1);
+      break;
+    case "two":
+      check(2);
+      break;
+    case "three":
+      check(3);
+      break;
+    case "four":
+      check(4);
+      break;
+    case "five":
+      check(5);
+      break;
+    case "six":
+      check(6);
+      break;
+    case "seven":
+      check(7);
+      break;
+    case "eight":
+      check(8);
+      break;
+    case "nine":
+      check(9);
+      break;
     case "add":
-      display.textContent = "+";
+      check("+", true);
       break;
     case "subtract":
-      display.textContent = "-";
+      check("-", true);
       break;
     case "multiply":
-      display.textContent = "×";
+      check("×", true);
       break;
     case "divide":
-      display.textContent = "÷";
-      break;
-    case "clear":
-      display.textContent = "";
-      firstOperand = null;
-      secondOperand = null;
-      operator = null;
+      check("÷", true);
       break;
     case "equal":
-      break;
-  }
+      const result = operate(firstOperand, secondOperand, operator);
 
-  if (isAnOperator) {
-    if (!isNaN(Number(temp))) {
-      if (firstOperand === null) {
-        firstOperand = Number(temp);
-      } else if (secondOperand === null) {
-        secondOperand = Number(temp);
+      if (!isNaN(result)) {
+        firstOperand = result;
+        secondOperand = undefined;
+        operator = undefined;
+        output.textContent = firstOperand;
       }
-    }
 
-    if (firstOperand !== null && secondOperand !== null && operator !== null) {
-      const result = operate(operator, firstOperand, secondOperand);
-      console.log(
-        `RESULT OF ${firstOperand} ${operator} ${secondOperand} is: ${result}`,
-      );
-      display.textContent = result;
-      firstOperand = result;
-      secondOperand = null;
-    }
+      break;
+    case "clear":
+      firstOperand = undefined;
+      secondOperand = undefined;
+      operator = undefined;
 
-    if (operator === "÷" && secondOperand === 0) {
-      display.textContent = "ERROR";
-    }
-
-    operator = target.textContent;
-    if (operator === "=") {
-      firstOperand = null;
-    }
+      output.textContent = "";
+      break;
   }
 });
