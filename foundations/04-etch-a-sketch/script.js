@@ -1,97 +1,144 @@
-const main = document.querySelector("main");
+/*
+  --- THEME TOGGLE ---
+*/
+const root = document.querySelector("html");
+const toggler = document.querySelector(".theme-toggle");
+const toggleIcon = document.querySelector(".theme-toggle-icon");
+
+if (localStorage.getItem("theme") === "dark") {
+  root.classList.add("dark");
+} else {
+  root.classList.remove("dark");
+}
+
+toggler.addEventListener("click", () => {
+  if (localStorage.getItem("theme") === "dark") {
+    root.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  } else {
+    root.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+/*
+  --- MOBILE MENU ---
+*/
+const menu = document.querySelector(".menu-button");
+const closeModal = document.querySelector(".close-modal-button");
+const modal = document.querySelector(".modal");
+
+menu.addEventListener("click", () => {
+  if (modal.style.display === "grid") {
+    modal.style.display = "none";
+  } else {
+    modal.style.display = "grid";
+  }
+});
+
+closeModal.addEventListener("click", () => {
+  if (modal.style.display === "grid") {
+    modal.style.display = "none";
+  } else {
+    modal.style.display = "grid";
+  }
+});
+
+/*
+  --- GRID SIZE MODAL ---
+*/
+const trigger = document.querySelector("#set-grid-size-btn");
+const gridSizeModal = document.querySelector(".set-grid-size-modal");
+const closeGridSizeModal = document.querySelector("#close-grid-size-modal");
+
+trigger.addEventListener("click", () => {
+  if (
+    gridSizeModal.style.display === "" ||
+    gridSizeModal.style.display === "none"
+  ) {
+    gridSizeModal.style.display = "block";
+  }
+});
+
+closeGridSizeModal.addEventListener("click", () => {
+  if (gridSizeModal.style.display === "block") {
+    gridSizeModal.style.display = "none";
+  }
+});
+
+/*
+  --- ETCH-A-SKETCH ---
+*/
 const grid = document.querySelector(".grid");
-const gridSize = document.querySelector(".grid-size");
-const resetButton = document.querySelector(".btn-reset");
-const modesContainer = document.querySelector(".modes-container");
-const blackModeButton = document.querySelector(".btn-black-mode");
-const rgbModeButton = document.querySelector(".btn-rgb-mode");
-const opacityModeButton = document.querySelector(".btn-opacity-mode");
 
-function askInput() {
-  let userInput = +prompt("Input an integer from 1 - 100");
+let gridDimensions = 16;
 
-  while (!Number.isInteger(userInput) || userInput <= 0 || userInput > 100) {
-    userInput = +prompt("Invalid input. Please enter an integer from 1 - 100.");
-  }
+grid.style.gridTemplateColumns = `repeat(${gridDimensions}, 1fr)`;
+grid.style.gridTemplateRows = `repeat(${gridDimensions}, 1fr)`;
 
-  gridSize.textContent = `${userInput}x${userInput} Grid`;
+for (let i = 0; i < gridDimensions * gridDimensions; i++) {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
+  cell.style.border = "1px solid var(--color-fg)";
 
-  return userInput;
+  cell.addEventListener("mouseover", () => {
+    console.log("mouseovered a cell");
+    cell.style.backgroundColor = "var(--color-fg)";
+  });
+
+  grid.appendChild(cell);
 }
 
-function makeSquares(number) {
+const form = document.querySelector("#grid-size-form");
+const input = document.querySelector("#grid-size-input");
+const gridSize = document.querySelector(".grid-size span");
+
+form.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  console.log("form submitted");
+  console.log(input.value);
+
   grid.innerHTML = "";
-  for (let i = 1; i <= number * number; i++) {
-    const square = document.createElement("div");
-    square.classList.add("square");
-    square.classList.add(i);
-    square.style.backgroundColor = "white";
-    square.style.border = "1px solid #d0d0d0";
-    square.style.flex = "1 0 auto";
-    square.style.aspectRatio = "1 / 1";
 
-    const squareSide = 760 / number;
-    square.style.width = `${squareSide}px`;
-    grid.appendChild(square);
+  gridDimensions = input.value;
 
-    square.addEventListener("mouseenter", () => {
-      if (blackModeButton.classList.contains("active")) {
-        square.style.backgroundColor = "black";
-        square.style.border = "1px solid black";
-        square.style.opacity = "1";
-      } else if (rgbModeButton.classList.contains("active")) {
-        function getRandomColor() {
-          var letters = "0123456789ABCDEF";
-          var color = "#";
-          for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-          }
-          return color;
-        }
+  for (let i = 0; i < gridDimensions * gridDimensions; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.style.border = "1px solid var(--color-fg)";
 
-        const randomColor = getRandomColor();
-
-        square.style.backgroundColor = `${randomColor}`;
-        square.style.border = `1px solid ${randomColor}`;
-        square.style.opacity = "1";
-      } else if (opacityModeButton.classList.contains("active")) {
-        if (square.style.backgroundColor == "white") {
-          square.style.backgroundColor = "black";
-          square.style.border = "1px solid black";
-          square.style.opacity = +square.style.opacity + 0.1;
-        } else if (square.style.backgroundColor == "black") {
-          square.style.opacity = +square.style.opacity + 0.1;
-        }
-      }
+    cell.addEventListener("mouseover", () => {
+      console.log("mouseovered a cell");
+      cell.style.backgroundColor = "var(--color-fg)";
     });
-  }
-}
 
-resetButton.addEventListener("click", () => {
-  makeSquares(askInput());
+    grid.appendChild(cell);
+  }
+
+  grid.style.gridTemplateColumns = `repeat(${input.value}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${input.value}, 1fr)`;
+
+  gridSize.textContent = `${input.value}x${input.value}`;
+
+  input.value = "";
+
+  gridSizeModal.style.display = "none";
 });
 
-modesContainer.addEventListener("click", (event) => {
-  let target = event.target;
+const clearGridBtn = document.querySelector("#clear-grid-btn");
 
-  switch (target.className) {
-    case "btn-black-mode":
-      target.classList.toggle("active");
-      rgbModeButton.classList.remove("active");
-      opacityModeButton.classList.remove("active");
-      break;
-    case "btn-rgb-mode":
-      target.classList.toggle("active");
-      blackModeButton.classList.remove("active");
-      opacityModeButton.classList.remove("active");
-      break;
-    case "btn-opacity-mode":
-      target.classList.toggle("active");
-      blackModeButton.classList.remove("active");
-      rgbModeButton.classList.remove("active");
-      break;
+clearGridBtn.addEventListener("click", () => {
+  grid.innerHTML = "";
+
+  for (let i = 0; i < gridDimensions * gridDimensions; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.style.border = "1px solid var(--color-fg)";
+
+    cell.addEventListener("mouseover", () => {
+      cell.style.backgroundColor = "var(--color-fg)";
+    });
+
+    grid.appendChild(cell);
   }
 });
-
-// Initialize a default 64x64 grid on first visit
-makeSquares(64);
