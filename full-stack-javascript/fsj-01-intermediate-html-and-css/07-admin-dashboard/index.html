@@ -2,14 +2,21 @@
 <html>
   <head lang="en">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta
       name="description"
-      content="A simple dashboard user interface built with HTML and CSS."
+      content="My seventh project in The Odin Project curriculum, a UI of an admin dashboard."
     />
     <title>Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="./assets/images/profile.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/public/logo.png" />
+    <script defer src="./script.js"></script>
   </head>
   <body>
     <header>
@@ -37,6 +44,26 @@
           />
         </div>
         <div class="right">
+          <button class="theme-toggle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="theme-toggle-icon"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+              <path d="M12 3l0 18"></path>
+              <path d="M12 9l4.65 -4.65"></path>
+              <path d="M12 14.3l7.37 -7.37"></path>
+              <path d="M12 19.6l8.85 -8.85"></path>
+            </svg>
+          </button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -51,16 +78,16 @@
               d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5"
             />
           </svg>
-          <img src="./assets/images/among-us.png" alt="profile picture" />
-          <h3>Impos Thor</h3>
+          <div class="image-placeholder"></div>
+          <h3>Arvin Garcia</h3>
         </div>
       </div>
       <div class="bottom">
         <div class="left">
-          <img src="./assets/images/among-us.png" alt="profile picture" />
+          <div class="image-placeholder"></div>
           <div class="user-details-container">
             <p>Hi there,</p>
-            <h2>Impos Thor <span>(@redissus)</span></h2>
+            <h2>Arvin Garcia <span>(@arvingarcia)</span></h2>
           </div>
         </div>
         <div class="right">
@@ -715,41 +742,35 @@
         <h3>Crewmates</h3>
         <div class="all-crewmates">
           <div class="crewmate">
-            <img src="./assets/images/pink.jpg" alt="pink among us character" />
+            <div class="image-placeholder"></div>
             <div class="crewmate-details">
               <p class="crewmate-tag">@pinkiscrew</p>
               <p class="crewmate-name">Pink</p>
             </div>
           </div>
           <div class="crewmate">
-            <img src="./assets/images/blue.jpg" alt="blue among us character" />
+            <div class="image-placeholder"></div>
             <div class="crewmate-details">
               <p class="crewmate-tag">@bluevented</p>
               <p class="crewmate-name">Blue</p>
             </div>
           </div>
           <div class="crewmate">
-            <img
-              src="./assets/images/yellow.jpg"
-              alt="yellow among us character"
-            />
+            <div class="image-placeholder"></div>
             <div class="crewmate-details">
               <p class="crewmate-tag">@yellowcantswipe</p>
               <p class="crewmate-name">Yellow</p>
             </div>
           </div>
           <div class="crewmate">
-            <img src="./assets/images/cyan.jpg" alt="cyan among us character" />
+            <div class="image-placeholder"></div>
             <div class="crewmate-details">
               <p class="crewmate-tag">@cyanoncams</p>
               <p class="crewmate-name">Cyan</p>
             </div>
           </div>
           <div class="crewmate">
-            <img
-              src="./assets/images/white.jpg"
-              alt="white among us character"
-            />
+            <div class="image-placeholder"></div>
             <div class="crewmate-details">
               <p class="crewmate-tag">@whiteisafk</p>
               <p class="crewmate-name">White</p>
@@ -763,10 +784,10 @@
         Made by
         <a
           class="author"
-          href="https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-01-intermediate-html-and-css/07-admin-dashboard"
+          href="https://github.com/arvingarciabtw/the-odin-project"
           target="_blank"
           rel="noopener noreferrer"
-          >Arvin Garcia</a
+          >@arvingarciabtw</a
         >
       </p>
     </footer>
