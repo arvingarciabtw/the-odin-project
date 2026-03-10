@@ -1,172 +1,222 @@
-let books = [];
+/*
+  --- THEME TOGGLE ---
+*/
+const root = document.querySelector("html");
+const toggler = document.querySelector(".theme-toggle");
+const toggleIcon = document.querySelector(".theme-toggle-icon");
 
-// -- SELECTING DOM ELEMENTS --
-const booksContainer = document.querySelector(".books");
-const newBookButton = document.querySelector(".btn-new-book");
-const modal = document.querySelector("dialog");
-const closeModalButton = document.querySelector("dialog .btn-close");
-const form = document.querySelector("form");
+if (localStorage.getItem("theme") === "dark") {
+  root.classList.add("dark");
+} else {
+  root.classList.remove("dark");
+}
 
-// -- FUNCTIONS --
-function Book(title, author, pages, isRead, id) {
+toggler.addEventListener("click", () => {
+  if (localStorage.getItem("theme") === "dark") {
+    root.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  } else {
+    root.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+/*
+  --- MOBILE MENU ---
+*/
+const menu = document.querySelector(".menu-button");
+const closeModal = document.querySelector(".close-modal-button");
+const modal = document.querySelector(".modal");
+
+menu.addEventListener("click", () => {
+  if (modal.style.display === "grid") {
+    modal.style.display = "none";
+  } else {
+    modal.style.display = "grid";
+  }
+});
+
+closeModal.addEventListener("click", () => {
+  if (modal.style.display === "grid") {
+    modal.style.display = "none";
+  } else {
+    modal.style.display = "grid";
+  }
+});
+
+/*
+  --- LIBRARY ---
+*/
+let library = [];
+let bookToDelete = null;
+
+const libraryEl = document.querySelector(".library");
+
+if (localStorage.getItem("library")) {
+  library = JSON.parse(localStorage.getItem("library"));
+
+  let temp = [];
+
+  for (const book of library) {
+    const reconstructedBook = new Book(
+      book.title,
+      book.author,
+      book.pages,
+      book.isRead,
+    );
+    temp.push(reconstructedBook);
+  }
+
+  library = temp;
+} else {
+  addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", "180", true);
+  addBookToLibrary("To Kill a Mockingbird", "Harper Lee", "281", true);
+  addBookToLibrary("1984", "George Orwell", "328", false);
+  addBookToLibrary("Brave New World", "Aldous Huxley", "311", false);
+  addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", "277", true);
+  addBookToLibrary("Of Mice and Men", "John Steinbeck", "112", true);
+  addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "310", false);
+  addBookToLibrary("Fahrenheit 451", "Ray Bradbury", "158", false);
+  addBookToLibrary("Animal Farm", "George Orwell", "112", true);
+  addBookToLibrary("The Alchemist", "Paulo Coelho", "208", false);
+}
+
+displayLibrary();
+
+function Book(title, author, pages, isRead) {
+  this.id = crypto.randomUUID();
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.id = id;
-
-  if (isRead) {
-    this.isRead = "Read";
-  } else {
-    this.isRead = "Not Read";
-  }
+  this.isRead = isRead;
 }
 
-Book.prototype.toggleReadStatus = function () {
-  if (this.isRead === "Read") {
-    this.isRead = "Not Read";
-  } else {
-    this.isRead = "Read";
-  }
+Book.prototype.toggleStatus = function () {
+  this.isRead = !this.isRead;
 };
 
-function addBookToBooks(title, author, pages, isRead) {
-  const id = self.crypto.randomUUID();
-  const book = new Book(title, author, pages, isRead, id);
-  books.push(book);
-  return book;
+function addBookToLibrary(title, author, pages, isRead) {
+  library.push(new Book(title, author, pages, isRead));
+  localStorage.setItem("library", JSON.stringify(library));
 }
 
-function displayBooks() {
-  booksContainer.innerHTML = "";
-  const COLOR_GREEN = "#67a55a";
-  const COLOR_RED = "#ff6962";
+function displayLibrary() {
+  for (const book of library) {
+    const bookEl = document.createElement("div");
+    const titleEl = document.createElement("h1");
+    const authorEl = document.createElement("p");
+    const pagesEl = document.createElement("p");
+    const isReadEl = document.createElement("button");
+    const deleteBookTrigger = document.createElement("button");
+    const detailsWrapper = document.createElement("div");
+    const buttonsWrapper = document.createElement("div");
+    const deleteBookModal = document.querySelector(".delete-book-modal");
 
-  for (const book of books) {
-    // Book UI
-    const bookElement = document.createElement("div");
-    const title = document.createElement("p");
-    const author = document.createElement("p");
-    const pages = document.createElement("p");
-    const isRead = document.createElement("p");
-    const removeBookButton = document.createElement("button");
-    const toggleReadButton = document.createElement("button");
+    titleEl.textContent = book.title;
+    authorEl.textContent = book.author;
+    pagesEl.textContent = `A ${book.pages} page book by`;
+    isReadEl.textContent = book.isRead ? "Read" : "Unread";
+    deleteBookTrigger.textContent = "Delete";
 
-    bookElement.classList.add("book");
-    title.classList.add("title");
-    author.classList.add("author");
-    pages.classList.add("pages");
-    isRead.classList.add("is-read");
-    removeBookButton.classList.add("btn-remove-book");
-    removeBookButton.classList.add(book.id);
-    toggleReadButton.classList.add("btn-toggle-read");
+    detailsWrapper.appendChild(pagesEl);
+    detailsWrapper.appendChild(authorEl);
 
-    title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = "A " + book.pages + " page book by";
-    isRead.textContent = book.isRead;
-    removeBookButton.textContent = "×";
-    bookElement.setAttribute("id", book.id);
+    buttonsWrapper.appendChild(isReadEl);
+    buttonsWrapper.appendChild(deleteBookTrigger);
 
-    if (book.isRead === "Read") {
-      toggleReadButton.style.backgroundColor = COLOR_GREEN;
-    } else {
-      toggleReadButton.style.backgroundColor = COLOR_RED;
-    }
+    bookEl.appendChild(titleEl);
+    bookEl.appendChild(detailsWrapper);
+    bookEl.appendChild(buttonsWrapper);
 
-    bookElement.appendChild(toggleReadButton);
-    bookElement.appendChild(removeBookButton);
-    bookElement.appendChild(title);
-    bookElement.appendChild(pages);
-    bookElement.appendChild(author);
+    bookEl.dataset.id = book.id;
 
-    booksContainer.appendChild(bookElement);
-  }
+    libraryEl.appendChild(bookEl);
 
-  const removeBookButton = document.querySelectorAll(".btn-remove-book");
-  const toggleReadButtons = document.querySelectorAll(".btn-toggle-read");
-
-  for (let i = 0; i < removeBookButton.length; i++) {
-    removeBookButton[i].addEventListener("click", (event) => {
-      const parentID = event.target.parentNode.id;
-      const bookToBeRemoved = document.getElementById(`${parentID}`);
-      bookToBeRemoved.remove();
-      books = books.filter((book) => book.id !== parentID);
-      displayBooks();
+    deleteBookTrigger.addEventListener("click", () => {
+      bookToDelete = book;
+      deleteBookModal.style.display = "block";
     });
-  }
 
-  for (let i = 0; i < toggleReadButtons.length; i++) {
-    toggleReadButtons[i].addEventListener("click", () => {
-      if (books[i].isRead === "Read") {
-        toggleReadButtons[i].style.backgroundColor = COLOR_RED;
-        books[i].toggleReadStatus();
-      } else {
-        toggleReadButtons[i].style.backgroundColor = COLOR_GREEN;
-        books[i].toggleReadStatus();
+    isReadEl.addEventListener("click", () => {
+      book.toggleStatus();
+      localStorage.setItem("library", JSON.stringify(library));
+      clearLibraryDOM();
+      displayLibrary();
+    });
+
+    const closeDeleteModal = document.querySelector("#close-delete-book-modal");
+
+    closeDeleteModal.addEventListener("click", () => {
+      if (deleteBookModal.style.display === "block") {
+        deleteBookModal.style.display = "none";
       }
     });
   }
 }
 
-// -- EVENT LISTENERS --
-newBookButton.addEventListener("click", () => {
-  modal.showModal();
+const deleteBookBtn = document.querySelector("#delete-book-btn");
+const deleteBookModal = document.querySelector(".delete-book-modal");
+
+deleteBookBtn.addEventListener("click", () => {
+  if (!bookToDelete) return;
+
+  library = library.filter((currBook) => currBook.id !== bookToDelete.id);
+  localStorage.setItem("library", JSON.stringify(library));
+
+  bookToDelete = null;
+  deleteBookModal.style.display = "none";
+
+  clearLibraryDOM();
+  displayLibrary();
 });
 
-closeModalButton.addEventListener("click", () => {
-  modal.close();
-});
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const titleValue = document.querySelector(".title").value;
-  const authorValue = document.querySelector(".author").value;
-  const pagesValue = document.querySelector(".pages").value;
-  let isReadValue = false;
-
-  if (document.querySelector(".is-read").checked) {
-    isReadValue = true;
-  } else {
-    isReadValue = false;
-  }
-
-  modal.close();
-
-  addBookToBooks(titleValue, authorValue, pagesValue, isReadValue);
-  displayBooks();
-});
-
-// -- PREPOPULATE BOOKS ARRAY --
-
-const prepopulatedBooks = [
-  [
-    "Atomic Habits",
-    "The Last Days of Socrates",
-    "The Song of Achilles",
-    "Tao Te Ching",
-    1984,
-    "Clean Code",
-  ],
-  [
-    "James Clear",
-    "Plato",
-    "Madeline Miller",
-    "Lao Tzu",
-    "George Orwell",
-    "Robert Martin",
-  ],
-  [320, 304, 416, 86, 328, 464],
-  [true, false, false, true, true, false],
-];
-
-for (let i = 0; i < prepopulatedBooks[0].length; i++) {
-  const title = prepopulatedBooks[0][i];
-  const author = prepopulatedBooks[1][i];
-  const pages = prepopulatedBooks[2][i];
-  const isRead = prepopulatedBooks[3][i];
-
-  addBookToBooks(title, author, pages, isRead);
+function clearLibraryDOM() {
+  libraryEl.innerHTML = "";
 }
 
-displayBooks();
+// New book modal
+const newBookBtn = document.querySelector("#new-book-btn");
+const newBookModal = document.querySelector(".create-book-modal");
+const newBookForm = document.querySelector("#create-book-form");
+const closeNewBookBtn = document.querySelector("#close-create-book-modal");
+
+newBookBtn.addEventListener("click", () => {
+  if (
+    newBookModal.style.display === "none" ||
+    newBookModal.style.display === ""
+  ) {
+    newBookModal.style.display = "block";
+  }
+});
+
+closeNewBookBtn.addEventListener("click", () => {
+  if (newBookModal.style.display === "block") {
+    newBookModal.style.display = "none";
+  }
+});
+
+newBookForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  const titleEl = document.querySelector("#title");
+  const authorEl = document.querySelector("#author");
+  const pagesEl = document.querySelector("#pages");
+  const isReadEl = document.querySelector("#is-read");
+
+  addBookToLibrary(
+    titleEl.value,
+    authorEl.value,
+    pagesEl.value,
+    isReadEl.checked,
+  );
+
+  newBookModal.style.display = "none";
+
+  titleEl.value = "";
+  authorEl.value = "";
+  pagesEl.value = "";
+  isReadEl.checked = false;
+
+  clearLibraryDOM();
+  displayLibrary();
+});

@@ -1,29 +1,29 @@
 <h1 align="center">
-  Bookmark
-  <h4 align="center">Store all of your favorite books in one place with Bookmark.</h4>
+  Library
 </h1>
 
 <div align="center">
 
-![HTML5](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-%232965F1.svg?style=flat&logo=html5&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-%23F0DB4F.svg?style=flat&logo=html5&logoColor=black)
+![HTML](https://img.shields.io/badge/HTML5-%23E34F26.svg?style=flat&logo=html5&logoColor=white)
+[![CSS](https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#)
+[![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 
 </div>
-<img src="./assets/images/project.png" alt="screenshot of project" align="center">
 
-## 🚀 Live Site
+## Live Preview
 
-The live site can be viewed [here](https://library-lovat-seven.vercel.app/).
+The live site can be viewed [here](https://odin-08.arvingarcia.com).
 
-## 📝 Project Description
+**_NOTE_**:
+This is v2 of the website. This version has been refactored to follow a design template, include a light/dark toggle theme, and responsiveness. These features aren't strictly required at this point in The Odin Project curriculum. I am merely going back to my older projects in my free time, just to make my projects from The Odin Project more consistent.
 
-For this project, the task is to create a web application where users can add and remove books. The [project specification](https://www.theodinproject.com/lessons/node-path-javascript-library) goes over some of the features and how it should be implemented, but generally, there is a lot of freedom on how the project can be approached. Objects and object constructors were taught prior, so that was the main concept to be picked up from doing this task.
+## Setup
 
-## 💡 Learnings
+This app doesn't use any packages. To run this setup locally, easiest way I found is to do:
 
-Doing this project was fun! While [objects and object constructors](https://www.theodinproject.com/lessons/node-path-javascript-objects-and-object-constructors) were the primary concepts taught previously, I personally view this project more as a refresher on the JavaScript fundamentals taught in the [Foundations](https://www.theodinproject.com/paths/foundations/courses/foundations) course. Of course, the fundamentals were used a lot here, and so using those fundamentals in conjunction with objects and object constructors was a great learning experience.
+```bash
+npx serve .
+```
 
-On the topic of objects and object constructors, I only had one constructor function for creating a `Book` (as mentioned in the specification). Also, the `Book` constructor's prototype had a simple method named `toggleReadStatus()` that simply changes the `isRead` value of the object that invoked the method.
-
-Admittedly, I feel like I've practiced DOM manipulation more than objects and object constructors since creating the constructor function and adding a method to its prototype wasn't too complex. I hope to practice it more in future projects!
+After that, just head to [localhost:3000](http://localhost:3000) to see the app running.
