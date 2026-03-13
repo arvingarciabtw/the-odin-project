@@ -1,3 +1,29 @@
+/*
+  --- THEME TOGGLE ---
+*/
+const root = document.querySelector("html");
+const toggler = document.querySelector(".theme-toggle");
+const toggleIcon = document.querySelector(".theme-toggle-icon");
+
+if (localStorage.getItem("theme") === "dark") {
+  root.classList.add("dark");
+} else {
+  root.classList.remove("dark");
+}
+
+toggler.addEventListener("click", () => {
+  if (localStorage.getItem("theme") === "dark") {
+    root.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  } else {
+    root.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }
+});
+
+/*
+  --- GAME ---
+*/
 function Gameboard() {
   const rows = 3;
   const columns = 3;
@@ -96,14 +122,46 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
 
   const checkWin = (actualBoard) => {
     const winConditions = [
-      [[0, 0], [0, 1], [0, 2]],
-      [[1, 0], [1, 1], [1, 2]],
-      [[2, 0], [2, 1], [2, 2]],
-      [[0, 0], [1, 0], [2, 0]],
-      [[0, 1], [1, 1], [2, 1]],
-      [[0, 2], [1, 2], [2, 2]],
-      [[0, 0], [1, 1], [2, 2]],
-      [[0, 2], [1, 1], [2, 0]],
+      [
+        [0, 0],
+        [0, 1],
+        [0, 2],
+      ],
+      [
+        [1, 0],
+        [1, 1],
+        [1, 2],
+      ],
+      [
+        [2, 0],
+        [2, 1],
+        [2, 2],
+      ],
+      [
+        [0, 0],
+        [1, 0],
+        [2, 0],
+      ],
+      [
+        [0, 1],
+        [1, 1],
+        [2, 1],
+      ],
+      [
+        [0, 2],
+        [1, 2],
+        [2, 2],
+      ],
+      [
+        [0, 0],
+        [1, 1],
+        [2, 2],
+      ],
+      [
+        [0, 2],
+        [1, 1],
+        [2, 0],
+      ],
     ];
 
     for (const condition of winConditions) {
@@ -130,6 +188,7 @@ function Game(playerOneName = "Player One", playerTwoName = "Player Two") {
 }
 
 function UI() {
+  const startGameButton = document.querySelector(".btn-start-game");
   const playerOneName = document.querySelector(".player-one-input").value;
   const playerTwoName = document.querySelector(".player-two-input").value;
   const turn = document.querySelector(".turn");
@@ -152,7 +211,10 @@ function UI() {
         squareButton.dataset.column = index;
         squareButton.dataset.row = rowNum;
         squareButton.textContent = square.getValue();
-        squareButton.style.color = square.getValue() === "X" ? "#e3a134" : "#6882e2";
+        squareButton.style.color =
+          square.getValue() === "X"
+            ? "oklch(0.7918 0.1143 78.46)"
+            : "oklch(0.6314 0.1969 270.33)";
         boardContainer.appendChild(squareButton);
       });
       rowNum++;
@@ -160,7 +222,7 @@ function UI() {
 
     let isOver = game.checkWin(board);
 
-    function disableSquares () {
+    function disableSquares() {
       const allSquares = document.querySelectorAll(".square");
       for (const square of allSquares) {
         square.setAttribute("disabled", "disabled");
@@ -173,7 +235,7 @@ function UI() {
       disableSquares();
     }
 
-    if (!isOver && (game.getCounter() === 9)) {
+    if (!isOver && game.getCounter() === 9) {
       turn.textContent = "It's a draw!";
       startGameButton.textContent = "Restart Game";
       disableSquares();
@@ -194,7 +256,8 @@ function UI() {
   updateScreen();
 }
 
-const startGameButton = document.querySelector(".btn-start-game");
-startGameButton.addEventListener("click", () => {
+const startGameForm = document.querySelector("#start-form");
+startGameForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
   UI();
 });

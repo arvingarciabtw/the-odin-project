@@ -2,80 +2,106 @@
 <html>
   <head lang="en">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta
       name="description"
-      content="A tic-tac-toe game played in the browser, built with HTML, CSS, and JavaScript."
+      content="My ninth project in The Odin Project curriculum, a tic-tac-toe app."
     />
     <title>Tic-tac-toe</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="./assets/images/profile.jpg" />
-    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Fredoka:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/assets/logo.png" />
+    <script defer src="./script.js"></script>
   </head>
   <body>
     <header>
       <nav class="wrapper">
-        <h1><span>Tic-</span><span>tac-</span><span>toe</span></h1>
-        <ul>
-          <li>
-            <a
-              href="https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe#project-solution"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Specification</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://github.com/arvingarciabtw/the-odin-project/tree/main/full-stack-javascript/fsj-02-javascript/09-tic-tac-toe"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Source Code</a
-            >
-          </li>
+        <div class="left">
+          <div class="logo"></div>
+          <h1 class="app-name">tic-tac-toe</h1>
+        </div>
+        <ul class="right">
+          <div class="header-buttons">
+            <li>
+              <button class="theme-toggle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="theme-toggle-icon"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                  <path d="M12 3l0 18"></path>
+                  <path d="M12 9l4.65 -4.65"></path>
+                  <path d="M12 14.3l7.37 -7.37"></path>
+                  <path d="M12 19.6l8.85 -8.85"></path>
+                </svg>
+              </button>
+            </li>
+          </div>
         </ul>
       </nav>
     </header>
     <main class="wrapper">
-      <div class="inputs-container">
-        <div class="player-one-container">
-          <div>
-            <label for="player-one">Player 1 Name:</label>
-            <p class="player-one-indicator"></p>
+      <div class="game-wrapper">
+        <form class="inputs-container" id="start-form">
+          <div class="player-one-container">
+            <div>
+              <label for="player-one">Player 1 Name:</label>
+              <!-- <p class="player-one-indicator"></p> -->
+            </div>
+            <input
+              required
+              class="player-one-input"
+              type="text"
+              name="player-one"
+              id="player-one"
+              value="Luffy"
+            />
           </div>
-          <input
-            class="player-one-input"
-            type="text"
-            name="player-one"
-            id="player-one"
-            value="Luffy"
-          />
-        </div>
-        <div class="player-two-container">
-          <div>
-            <label for="player-two">Player 2 Name:</label>
-            <p class="player-two-indicator"></p>
+          <div class="player-two-container">
+            <div>
+              <label for="player-two">Player 2 Name:</label>
+              <!-- <p class="player-two-indicator"></p> -->
+            </div>
+            <input
+              required
+              class="player-two-input"
+              type="text"
+              name="player-two"
+              id="player-two"
+              value="Zoro"
+            />
           </div>
-          <input
-            class="player-two-input"
-            type="text"
-            name="player-two"
-            id="player-two"
-            value="Zoro"
-          />
+        </form>
+        <div class="btn-and-turn-container">
+          <button class="btn-start-game" type="submit" form="start-form">
+            Start Game
+          </button>
+          <h1 class="turn">
+            Please put player names before starting the game!
+          </h1>
         </div>
+        <div class="board-container"></div>
       </div>
-      <div class="btn-and-turn-container">
-        <button class="btn-start-game" type="button">Start Game</button>
-        <h1 class="turn">Please put player names before starting the game!</h1>
-      </div>
-      <div class="board-container"></div>
     </main>
-    <footer class="wrapper">
+    <footer>
       Made by
       <a
-        href="https://github.com/arvingarciabtw"
-        target="blank"
+        class="developer"
+        href="https://github.com/arvingarciabtw/the-odin-project"
+        target="_blank"
         rel="noopener noreferrer"
         >@arvingarciabtw</a
       >
